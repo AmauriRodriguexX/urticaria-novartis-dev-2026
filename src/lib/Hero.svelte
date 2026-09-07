@@ -33,6 +33,9 @@
 
 {#key ctx}<section class="hero context-transition campaign-hero">
   <div class="campaign-hero-bg" aria-hidden="true"></div>
+  <video class="campaign-hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="/assets/video/hero-context-test.mp4" type="video/mp4" />
+  </video>
   <div class="hero-copy animate-rise">
     <p class="kicker"><i></i>{copy[0]}</p>
     <h1>{copy[1]}<em>{word}</em>{copy[3]}</h1>
