@@ -6,7 +6,7 @@
   export let ctx = 'dia'
 </script>
 
-{#key ctx}<section class="hero context-transition">
+{#key ctx}<section class="hero context-transition campaign-hero">
   <div class="hero-copy animate-rise">
     <p class="kicker"><i></i>{copy[0]}</p>
     <h1>{copy[1]}<em>{word}</em>{copy[3]}</h1>
