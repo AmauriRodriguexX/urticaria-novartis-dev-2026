@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,500;0,600;0,700;1,600&amp;family=Barlow+Condensed:wght@400;500;600&amp;family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#e8e5d9;}
+  *{box-sizing:border-box;}
+  ::selection{background:rgba(238,112,103,.25);}
+  @keyframes bloomFloat{0%{transform:translate3d(0,0,0) scale(.9);opacity:0;}12%{opacity:.5;}50%{opacity:.32;}88%{opacity:.4;}100%{transform:translate3d(0,-26px,0) scale(1.18);opacity:0;}}
+  @keyframes lampBreathe{0%,100%{opacity:.78;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
+  @keyframes wormPulse{0%,100%{transform:scale(1);opacity:.85;}50%{transform:scale(.78);opacity:.55;}}
+  @keyframes rimGlint{0%,100%{opacity:.35;}50%{opacity:.9;}}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes overlayIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes qIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(238,112,103,.4);}70%{box-shadow:0 0 0 14px rgba(238,112,103,0);}100%{box-shadow:0 0 0 0 rgba(238,112,103,0);}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+</style>
+</helmet>
+
+<div style="{{ shell }}">
+
+  <div aria-hidden="true" style="{{ glowStyle }}"></div>
+
+  <sc-if value="{{ textureOn }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;">
+      <span style="position:absolute;left:8%;top:62%;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 35%, var(--bloom), transparent 68%);filter:blur(2px);animation:bloomFloat 11s ease-in-out infinite;"></span>
+      <span style="position:absolute;left:78%;top:24%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 40% 35%, var(--bloom), transparent 68%);filter:blur(2px);animation:bloomFloat 13s ease-in-out 2.5s infinite;"></span>
+      <span style="position:absolute;left:30%;top:18%;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 35%, var(--bloom), transparent 68%);filter:blur(2px);animation:bloomFloat 9.5s ease-in-out 1.2s infinite;"></span>
+      <span style="position:absolute;left:62%;top:74%;width:104px;height:104px;border-radius:50%;background:radial-gradient(circle at 40% 35%, var(--bloom), transparent 68%);filter:blur(2px);animation:bloomFloat 12.5s ease-in-out 3.4s infinite;"></span>
+    </div>
+  </sc-if>
+
+  <div style="position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,64px);">
+
+    <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 0 8px;">
+      <div style="display:flex;align-items:center;gap:11px;">
+        <span style="position:relative;width:26px;height:26px;border-radius:50% 50% 48% 48%/58% 58% 42% 42%;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.12));border:1.5px solid var(--rim);box-shadow:inset 0 4px 7px rgba(255,255,255,.5), inset 0 -3px 6px var(--rimShade);display:inline-block;">
+          <span style="position:absolute;left:50%;bottom:5px;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent);"></span>
+        </span>
+        <span style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:13px;font-weight:600;color:var(--ink-soft);">El lugar más pequeño</span>
+      </div>
+    </header>
+
+    <main style="padding:clamp(18px,4vw,40px) 0 clamp(48px,6vw,72px);">
+
+      <section style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,5vw,64px);align-items:center;min-height:clamp(420px,64vh,640px);">
+
+        <div style="animation:rise .7s ease both;">
+          <div style="display:inline-flex;align-items:center;gap:9px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:600;color:var(--accent);margin-bottom:22px;">
+            <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accentSoft);"></span>
+            <span ref="{{ kickerRef }}">{{ kicker }}</span>
+          </div>
+
+          <h1 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;line-height:.97;letter-spacing:-.015em;font-size:clamp(38px,6vw,76px);color:var(--ink);margin:0 0 22px;text-wrap:balance;">{{ headPre }}<span ref="{{ wordRef }}" style="color:var(--accent);transition:opacity .45s ease;">{{ headWord }}</span>{{ headPost }}</h1>
+
+          <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(16px,1.45vw,20px);line-height:1.62;color:var(--ink-soft);max-width:30em;margin:0 0 34px;">{{ sub }}</p>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;margin-bottom:30px;">
+            <button type="button" onClick="{{ openQuiz }}" style="{{ ctaStyle }}" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px var(--accentSoft);" style-focus="outline:3px solid var(--accent);outline-offset:3px;">
+              <span>{{ ctaPrimary }}</span>
+              <span aria-hidden="true" style="transition:transform .3s ease;">→</span>
+            </button>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13.5px;line-height:1.5;color:var(--ink-faint);max-width:24em;">{{ ctaNote }}</span>
+          </div>
+
+          <p style="font-family:'Barlow Semi Condensed',sans-serif;font-style:italic;font-weight:500;font-size:clamp(17px,1.5vw,21px);color:var(--ink-soft);margin:0;opacity:.9;">Que ocupe el lugar más pequeño de tu vida.</p>
+        </div>
+
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px;animation:rise .9s ease .12s both;">
+
+          <div aria-hidden="true" style="position:relative;width:clamp(230px,28vw,300px);height:clamp(230px,28vw,290px);margin-bottom:30px;display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,2vw,20px);">
+            <div style="position:absolute;left:38%;top:46%;transform:translate(-50%,-50%);width:74%;height:96%;border-radius:50%;background:radial-gradient(circle, var(--lifeGlow) 0%, transparent 64%);animation:lampBreathe 8s ease-in-out infinite;"></div>
+            <div style="position:absolute;left:0;right:0;bottom:9px;height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);"></div>
+            <div style="position:relative;width:clamp(86px,11vw,116px);height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;">
+              <div style="width:84%;height:11px;border-radius:50%;background:var(--shadow);filter:blur(6px);margin-bottom:-4px;"></div>
+              <svg viewBox="0 0 120 230" width="100%" height="96%" style="position:relative;display:block;overflow:visible;">
+                <g fill="var(--personFill)">
+                  <circle cx="60" cy="30" r="21"></circle>
+                  <path d="M60 51 c-19 0 -29 14 -31 35 l-7 64 c-1 9 12 11 14 2 l8 -50 2 0 -3 96 c-1 11 16 11 17 1 l4 -64 4 0 4 64 c1 10 18 10 17 -1 l-3 -96 2 0 8 50 c2 9 15 7 14 -2 l-7 -64 c-2 -21 -12 -35 -31 -35 z"></path>
+                </g>
+              </svg>
+            </div>
+            <div style="position:relative;width:clamp(46px,6vw,62px);height:clamp(52px,7vw,70px);flex:none;">
+              <div style="position:absolute;left:50%;bottom:1px;transform:translateX(-50%);width:90%;height:6px;border-radius:50%;background:var(--shadow);filter:blur(4px);"></div>
+              <div style="position:absolute;left:50%;top:2px;transform:translateX(-50%);width:64%;height:9px;border-radius:50%;border:1.5px solid var(--rim);border-bottom-color:transparent;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent);animation:rimGlint 6s ease-in-out infinite;"></div>
+              <div style="position:absolute;left:50%;top:6px;transform:translateX(-50%);width:64%;height:calc(100% - 9px);border-radius:14px 14px 46% 46%/12px 12px 30% 30%;background:linear-gradient(150deg,rgba(255,255,255,.34),rgba(255,255,255,.06) 52%,rgba(255,255,255,.18));-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);border:1.5px solid var(--rim);box-shadow:inset 3px 4px 9px rgba(255,255,255,.5), inset -4px -5px 11px var(--rimShade), 0 8px 18px var(--shadow);overflow:hidden;">
+                <span style="position:absolute;left:16%;top:10%;width:22%;height:58%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.7),transparent);filter:blur(1px);"></span>
+              </div>
+              <div style="position:absolute;left:50%;bottom:18%;transform:translateX(-50%);display:flex;gap:3px;align-items:flex-end;">
+                <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);animation:wormPulse 3.4s ease-in-out infinite;"></span>
+                <span style="width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.7;animation:wormPulse 3.4s ease-in-out .5s infinite;"></span>
+                <span style="width:3px;height:3px;border-radius:50%;background:var(--accent);opacity:.5;animation:wormPulse 3.4s ease-in-out 1s infinite;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align:center;border-top:1px solid var(--line);padding-top:24px;width:min(100%,360px);">
+            <div ref="{{ counterRef }}" style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:clamp(72px,11vw,150px);line-height:.82;letter-spacing:-.02em;color:var(--accent);">{{ counterInit }}</div>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(14px,1.2vw,16px);line-height:1.5;color:var(--ink-soft);margin:14px auto 0;max-width:26em;">{{ counterLabel }}</p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section id="autochequeo" style="margin-top:clamp(40px,6vw,80px);">
+        <p style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:600;color:var(--ink-faint);margin:0 0 22px;">{{ cardsKicker }}</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:18px;">
+
+          <button type="button" onClick="{{ openQuiz }}" style="{{ cardBtnStyle }}" style-hover="transform:translateY(-4px);border-color:var(--coral);box-shadow:0 20px 40px var(--shadow);" style-focus="outline:3px solid var(--coral);outline-offset:3px;">
+            <span style="display:flex;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;background:var(--coralSoft);color:var(--coral);font-family:'Barlow Semi Condensed';font-weight:700;font-size:20px;margin-bottom:18px;">?</span>
+            <h3 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:25px;line-height:1.05;color:var(--ink);margin:0 0 10px;">¿Será urticaria?</h3>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14.5px;line-height:1.58;color:var(--ink-soft);margin:0 0 20px;flex:1;">Reconoce las señales y distingue lo agudo de lo crónico: más de 6 semanas, sin un detonante claro. Un autochequeo que te orienta, no te diagnostica.</p>
+            <span style="font-family:'Barlow Semi Condensed';font-weight:600;font-size:15px;color:var(--coral);display:inline-flex;gap:7px;align-items:center;">Hacer el autochequeo <span aria-hidden="true">→</span></span>
+          </button>
+
+          <a href="#" style="{{ cardStyle }}" style-hover="transform:translateY(-4px);border-color:var(--cerulean);box-shadow:0 20px 40px var(--shadow);" style-focus="outline:3px solid var(--cerulean);outline-offset:3px;">
+            <span style="display:flex;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;background:var(--ceruleanSoft);color:var(--cerulean);margin-bottom:18px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z"></path></svg>
+            </span>
+            <h3 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:25px;line-height:1.05;color:var(--ink);margin:0 0 10px;">No lo estás imaginando</h3>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14.5px;line-height:1.58;color:var(--ink-soft);margin:0 0 20px;flex:1;">Otras personas la viven, y aprendieron a vivirla en pequeño. Sus historias, sin filtros, para que sepas que esto tiene nombre y compañía.</p>
+            <span style="font-family:'Barlow Semi Condensed';font-weight:600;font-size:15px;color:var(--cerulean);display:inline-flex;gap:7px;align-items:center;">Leer a la comunidad <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="#" style="{{ cardStyle }}" style-hover="transform:translateY(-4px);border-color:var(--jasmineLine);box-shadow:0 20px 40px var(--shadow);" style-focus="outline:3px solid var(--jasmineLine);outline-offset:3px;">
+            <span style="display:flex;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;background:var(--jasmineSoft);color:var(--jasmineInk);margin-bottom:18px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"></path><path d="M5 9h14l1 12H4L5 9z"></path></svg>
+            </span>
+            <h3 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:25px;line-height:1.05;color:var(--ink);margin:0 0 10px;">Hay algo más que puedes hacer</h3>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:14.5px;line-height:1.58;color:var(--ink-soft);margin:0 0 20px;flex:1;">Lleva a tu próxima consulta las palabras justas: «¿hay algo más que podamos intentar?». Te ayudamos a prepararla.</p>
+            <span style="font-family:'Barlow Semi Condensed';font-weight:600;font-size:15px;color:var(--jasmineInk);display:inline-flex;gap:7px;align-items:center;">Preparar mi consulta <span aria-hidden="true">→</span></span>
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer style="border-top:1px solid var(--line);padding:26px 0 40px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:baseline;justify-content:space-between;">
+      <p style="font-family:'Barlow Semi Condensed',sans-serif;font-style:italic;font-weight:500;font-size:18px;color:var(--ink-soft);margin:0;">Que ocupe el lugar más pequeño de tu vida.</p>
+      <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:12px;line-height:1.55;color:var(--ink-faint);margin:0;max-width:46em;">Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud. Tu hora, zona y estación se detectan solo en tu dispositivo, de forma anónima.</p>
+    </footer>
+
+  </div>
+
+  <div role="group" aria-label="Vista previa de contexto" style="{{ switcherStyle }}">
+    <span style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:600;opacity:.6;padding:0 4px;">Vista</span>
+    <sc-for list="{{ ctxOptions }}" as="opt" hint-placeholder-count="6">
+      <button type="button" onClick="{{ opt.onClick }}" style="{{ opt.style }}">{{ opt.label }}</button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ quizOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="Autochequeo: ¿Será urticaria?" tabindex="-1" ref="{{ quizRef }}" style="{{ overlayStyle }}">
+
+      <div style="max-width:680px;margin:0 auto;padding:clamp(18px,4vw,30px) clamp(18px,5vw,30px) 60px;min-height:100%;display:flex;flex-direction:column;">
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:18px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div aria-hidden="true" style="{{ motifWrap }}">
+              <div style="position:absolute;left:50%;top:1px;transform:translateX(-50%);width:62%;height:6px;border-radius:50%;border:1.5px solid var(--rim);border-bottom-color:transparent;"></div>
+              <div style="position:absolute;left:50%;top:4px;transform:translateX(-50%);width:62%;height:calc(100% - 6px);border-radius:9px 9px 46% 46%/8px 8px 30% 30%;background:linear-gradient(150deg,rgba(255,255,255,.34),rgba(255,255,255,.05) 52%,rgba(255,255,255,.16));border:1.5px solid var(--rim);box-shadow:inset 2px 2px 6px rgba(255,255,255,.45), inset -3px -3px 7px var(--rimShade);"></div>
+              <div style="position:absolute;left:50%;bottom:20%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--accent);"></div>
+            </div>
+            <span style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;color:var(--ink-soft);">Hazla pequeña · 1 min</span>
+          </div>
+          <button type="button" onClick="{{ closeQuiz }}" aria-label="Cerrar" style="{{ closeBtnStyle }}" style-hover="opacity:1;">✕</button>
+        </div>
+
+        <sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="height:5px;border-radius:30px;background:var(--line);overflow:hidden;margin-bottom:8px;">
+              <div style="height:100%;border-radius:30px;background:var(--accent);width:{{ progressPct }};transition:width .45s cubic-bezier(.4,0,.2,1);"></div>
+            </div>
+            <p style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:600;color:var(--ink-faint);margin:0 0 26px;">{{ stepLabel }}</p>
+
+            <div ref="{{ qAnimRef }}" style="animation:qIn .4s ease both;">
+              <h2 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:clamp(27px,4.4vw,38px);line-height:1.05;letter-spacing:-.01em;color:var(--ink);margin:0 0 10px;text-wrap:balance;">{{ qTitle }}</h2>
+              <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0 0 26px;max-width:34em;">{{ qSub }}</p>
+
+              <div style="display:flex;flex-direction:column;gap:11px;">
+                <sc-for list="{{ qOptions }}" as="opt" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ opt.onClick }}" style="{{ opt.style }}" style-hover="border-color:var(--accent);transform:translateY(-1px);" style-focus="outline:3px solid var(--accent);outline-offset:2px;">
+                    <span style="{{ opt.markerStyle }}">{{ opt.check }}</span>
+                    <span style="display:flex;flex-direction:column;gap:3px;min-width:0;">
+                      <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:17.5px;line-height:1.16;color:var(--ink);">{{ opt.label }}</span>
+                      <span style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:12.5px;line-height:1.4;color:var(--ink-soft);">{{ opt.desc }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:24px;">
+                <button type="button" onClick="{{ onBack }}" style="{{ backBtnStyle }}" style-hover="opacity:1;">{{ backLabel }}</button>
+                <sc-if value="{{ qIsMulti }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" onClick="{{ onContinue }}" style="{{ continueStyle }}" style-hover="transform:translateY(-2px);">{{ continueLabel }}</button>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isUrgent }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:qIn .4s ease both;text-align:center;max-width:520px;margin:8px auto 0;">
+            <div style="width:64px;height:64px;border-radius:50%;background:#ee7067;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;animation:pulseRing 1.8s ease-out infinite;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+            </div>
+            <h2 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.04;color:var(--ink);margin:0 0 14px;">{{ urgentTitle }}</h2>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:16px;line-height:1.6;color:var(--ink-soft);margin:0 0 28px;">{{ urgentBody }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+              <a href="tel:911" style="{{ urgentCtaStyle }}">Llamar a emergencias (911)</a>
+              <button type="button" onClick="{{ onSeeMap }}" style="{{ ghostBtnStyle }}" style-hover="opacity:1;">Ver especialistas para el seguimiento</button>
+            </div>
+            <button type="button" onClick="{{ closeQuiz }}" style="{{ textLinkStyle }}" style-hover="opacity:1;">Cerrar</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:qIn .4s ease both;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+              <div aria-hidden="true" style="position:relative;width:30px;height:34px;flex:none;opacity:.92;">
+                <div style="position:absolute;left:50%;top:1px;transform:translateX(-50%);width:62%;height:5px;border-radius:50%;border:1.5px solid var(--rim);border-bottom-color:transparent;"></div>
+                <div style="position:absolute;left:50%;top:3px;transform:translateX(-50%);width:62%;height:calc(100% - 5px);border-radius:7px 7px 46% 46%/6px 6px 30% 30%;background:linear-gradient(150deg,rgba(255,255,255,.34),rgba(255,255,255,.06) 52%,rgba(255,255,255,.16));border:1.5px solid var(--rim);"></div>
+                <div style="position:absolute;left:50%;bottom:22%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--accent);"></div>
+              </div>
+              <p style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;font-weight:600;color:var(--accent);margin:0;">Ya diste el primer paso para ponerla en su lugar.</p>
+            </div>
+
+            <h2 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:clamp(27px,4.4vw,38px);line-height:1.06;letter-spacing:-.01em;color:var(--ink);margin:0 0 14px;text-wrap:balance;">{{ rTitle }}</h2>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:16px;line-height:1.62;color:var(--ink-soft);margin:0 0 20px;max-width:36em;">{{ rBody }}</p>
+
+            <sc-if value="{{ rEscalation }}" hint-placeholder-val="">
+              <div style="border-left:3px solid var(--coral);background:var(--coralSoft);border-radius:0 12px 12px 0;padding:16px 18px;margin:0 0 16px;">
+                <p style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:14.5px;line-height:1.55;color:var(--ink);margin:0;">{{ rEscalation }}</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ rRecognition }}" hint-placeholder-val="">
+              <p style="font-family:'Barlow Semi Condensed',sans-serif;font-style:italic;font-weight:500;font-size:17px;line-height:1.4;color:var(--ink-soft);margin:0 0 26px;">{{ rRecognition }}</p>
+            </sc-if>
+
+            <div style="{{ cardPanelStyle }}">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line);">
+                <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--ink);">Tu resumen para el médico</span>
+                <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accentSoft);padding:5px 10px;border-radius:30px;">Orientativo</span>
+              </div>
+              <div style="padding:6px 20px 4px;">
+                <sc-for list="{{ cardRows }}" as="row" hint-placeholder-count="6">
+                  <div style="display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--lineSoft);">
+                    <span style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:600;color:var(--ink-faint);flex:none;width:38%;padding-top:2px;">{{ row.label }}</span>
+                    <span style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:14px;line-height:1.45;color:var(--ink);flex:1;">{{ row.value }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="padding:16px 20px;background:var(--accentSoft);">
+                <p style="font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:600;color:var(--ink-faint);margin:0 0 4px;">La pregunta que abre la conversación</p>
+                <p style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:600;font-size:19px;line-height:1.2;color:var(--ink);margin:0;">«¿Hay algo más que podamos intentar?»</p>
+              </div>
+              <div style="padding:12px 20px;">
+                <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:11.5px;line-height:1.5;color:var(--ink-faint);margin:0;">Esto orienta; tu médico confirma. Hecho con tus respuestas, en tu dispositivo.</p>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;padding:0 20px 18px;">
+                <button type="button" onClick="{{ onDownload }}" style="{{ cardActionStyle }}" style-hover="transform:translateY(-2px);">{{ downloadLabel }}</button>
+                <button type="button" onClick="{{ onCopy }}" style="{{ cardGhostStyle }}" style-hover="opacity:1;">{{ copyLabel }}</button>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px;">
+              <button type="button" onClick="{{ onSeeMap }}" style="{{ primaryBtnStyle }}" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px var(--accentSoft);">Ver especialistas cerca <span aria-hidden="true">→</span></button>
+              <button type="button" onClick="{{ onRestart }}" style="{{ textLinkStyle }}" style-hover="opacity:1;">Empezar de nuevo</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:qIn .4s ease both;">
+            <h2 style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:clamp(26px,4.2vw,36px);line-height:1.06;color:var(--ink);margin:0 0 8px;text-wrap:balance;">Especialistas certificados cerca de ti</h2>
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0 0 20px;max-width:34em;">Alergólogos y dermatólogos de la red de atención en urticaria. <strong style="color:var(--ink);font-weight:600;">Llévale tu tarjeta a uno de ellos.</strong></p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px;">
+              <sc-for list="{{ filterOptions }}" as="f" hint-placeholder-count="3">
+                <button type="button" onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px;">
+              <button type="button" onClick="{{ onGeo }}" style="{{ geoBtnStyle }}" style-hover="opacity:1;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px;"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>{{ geoLabel }}</button>
+              <input type="text" inputmode="numeric" placeholder="o tu código postal" value="{{ zipValue }}" onInput="{{ onZip }}" aria-label="Código postal" style="{{ zipInputStyle }}">
+            </div>
+
+            <div aria-hidden="true" style="{{ mapBoxStyle }}">
+              <div style="position:absolute;inset:0;opacity:.5;background:radial-gradient(circle at 30% 40%, var(--ceruleanSoft), transparent 40%), radial-gradient(circle at 70% 65%, var(--jasmineSoft), transparent 45%);"></div>
+              <div style="position:absolute;left:0;right:0;top:38%;height:8px;background:var(--line);opacity:.6;transform:rotate(-3deg);"></div>
+              <div style="position:absolute;left:0;right:0;top:64%;height:6px;background:var(--line);opacity:.5;transform:rotate(2deg);"></div>
+              <div style="position:absolute;left:46%;top:0;bottom:0;width:7px;background:var(--line);opacity:.5;transform:rotate(4deg);"></div>
+              <sc-for list="{{ pins }}" as="pin" hint-placeholder-count="4">
+                <div style="{{ pin.style }}" title="{{ pin.name }}"></div>
+              </sc-for>
+              <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--ink);border:3px solid var(--overlayBg);box-shadow:0 0 0 4px var(--accentSoft);"></div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
+              <sc-for list="{{ specialists }}" as="s" hint-placeholder-count="4">
+                <div style="{{ s.cardStyle }}">
+                  <div style="display:flex;align-items:flex-start;gap:12px;">
+                    <span style="{{ s.dotStyle }}"></span>
+                    <div style="min-width:0;flex:1;">
+                      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;justify-content:space-between;">
+                        <span style="font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--ink);">{{ s.name }}</span>
+                        <span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;color:var(--accent);">{{ s.dist }}</span>
+                      </div>
+                      <p style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:13px;color:var(--ink-soft);margin:2px 0 2px;">{{ s.specLabel }}</p>
+                      <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:12.5px;color:var(--ink-faint);margin:0;">{{ s.address }}</p>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+
+            <p style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:11.5px;line-height:1.5;color:var(--ink-faint);margin:18px 0 0;">{{ mapNote }}</p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px;">
+              <button type="button" onClick="{{ onBackToResult }}" style="{{ ghostBtnStyle }}" style-hover="opacity:1;">← Volver a mi resumen</button>
+              <button type="button" onClick="{{ closeQuiz }}" style="{{ textLinkStyle }}" style-hover="opacity:1;">Cerrar</button>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;forceContext&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;dia&quot;,&quot;calor&quot;,&quot;frio&quot;,&quot;madrugada&quot;,&quot;noche-calor&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;city&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Mérida&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showTexture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.countRef = React.createRef();
+    this.kickerRef = React.createRef();
+    this.wordRef = React.createRef();
+    this.counterRef = React.createRef();
+    this.quizRef = React.createRef();
+    this.qAnimRef = React.createRef();
+    this.state = {
+      textureOn: props.showTexture !== false,
+      forced: null,
+      quizOpen: false,
+      phase: 'quiz',
+      step: 0,
+      answers: {},
+      mapFilter: 'todos',
+      zip: '',
+      geo: null,
+      copied: false,
+      downloaded: false
+    };
+    this._timers = [];
+    this._raf = null;
+    this._activeCtx = null;
+    this._reduce = false;
+    this._onKey = (e) => { if (e.key === 'Escape' && this.state.quizOpen) this.closeQuiz(); };
+  }
+
+  componentDidMount(){
+    try { this._reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+    this.startClock();
+    this.startDynamics();
+    document.addEventListener('keydown', this._onKey);
+  }
+  componentDidUpdate(prevProps, prevState){
+    const ctx = this.computeCtx();
+    if (ctx !== this._activeCtx) this.startDynamics();
+    if (this.state.quizOpen && !prevState.quizOpen && this.quizRef.current){
+      try { this.quizRef.current.focus({preventScroll:true}); } catch(e){}
+    }
+    if (this.quizRef.current && (this.state.step !== prevState.step || this.state.phase !== prevState.phase)){
+      this.quizRef.current.scrollTop = 0;
+    }
+  }
+  componentWillUnmount(){ this.clearAll(); document.removeEventListener('keydown', this._onKey); }
+
+  clearAll(){
+    this._timers.forEach(t=>clearInterval(t)); this._timers=[];
+    if(this._raf) cancelAnimationFrame(this._raf);
+  }
+
+  computeCtx(){
+    if (this.state.forced) return this.state.forced;
+    const f = this.props.forceContext;
+    if (f && f !== 'auto') return f;
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMonth();
+    const winter = (m === 11 || m === 0 || m === 1);
+    const summer = (m >= 4 && m <= 8);
+    if (h >= 0 && h < 6) return summer ? 'noche-calor' : 'madrugada';
+    if (winter) return 'frio';
+    if (summer) return 'calor';
+    return 'dia';
+  }
+
+  isDark(ctx){ return ctx === 'madrugada' || ctx === 'noche-calor'; }
+  counterTarget(ctx){ return this.isDark(ctx) ? 18 : 1240; }
+
+  greeting(){
+    const h = new Date().getHours();
+    if (h < 12) return 'Buenos días';
+    if (h < 19) return 'Buenas tardes';
+    return 'Buenas noches';
+  }
+  clockText(){
+    const n = new Date();
+    let h = n.getHours(); const m = n.getMinutes();
+    const ap = h < 12 ? 'a.m.' : 'p.m.';
+    h = h % 12; if (h === 0) h = 12;
+    return h + ':' + (m<10?'0':'') + m + ' ' + ap;
+  }
+  fixedTime(ctx){
+    if (ctx === 'madrugada') return '3:15 a.m.';
+    if (ctx === 'noche-calor') return '9:00 p.m.';
+    return this.clockText();
+  }
+  startClock(){
+    const tick = () => {
+      const ctx = this.computeCtx();
+      if (this.isDark(ctx) && this.kickerRef.current) {
+        this.kickerRef.current.textContent = 'Son las ' + this.fixedTime(ctx);
+      }
+    };
+    tick();
+    this._timers.push(setInterval(tick, 1000 * 20));
+  }
+
+  startDynamics(){
+    this.clearAll();
+    this.startClock();
+    const ctx = this.computeCtx();
+    this._activeCtx = ctx;
+    const target = this.counterTarget(ctx);
+    const fmt = (v) => Math.round(v).toLocaleString('es-MX');
+    if (this.counterRef.current) {
+      if (this._reduce) {
+        this.counterRef.current.textContent = fmt(target);
+      } else {
+        const dur = 1500; const start = performance.now();
+        const step = (t) => {
+          const p = Math.min(1, (t - start) / dur);
+          const e = 1 - Math.pow(1 - p, 3);
+          if (this.counterRef.current) this.counterRef.current.textContent = fmt(target * e);
+          if (p < 1) this._raf = requestAnimationFrame(step);
+        };
+        this._raf = requestAnimationFrame(step);
+      }
+    }
+    if (ctx === 'dia' && !this._reduce && this.wordRef.current) {
+      const words = ['la comezón', 'los brotes', 'el insomnio', 'la incertidumbre'];
+      let i = 0;
+      this._timers.push(setInterval(() => {
+        const el = this.wordRef.current; if (!el) return;
+        el.style.opacity = '0';
+        setTimeout(() => { i = (i + 1) % words.length; el.textContent = words[i]; el.style.opacity = '1'; }, 420);
+      }, 2900));
+    }
+  }
+
+  /* ===================== QUIZ ENGINE ===================== */
+  openQuiz(){
+    try { document.body.style.overflow = 'hidden'; } catch(e){}
+    this.setState({ quizOpen:true, phase:'quiz', step:0, answers:{}, mapFilter:'todos', zip:'', geo:null, copied:false, downloaded:false });
+  }
+  closeQuiz(){
+    try { document.body.style.overflow = ''; } catch(e){}
+    this.setState({ quizOpen:false });
+  }
+
+  qBank(){
+    return {
+      p1: { kind:'single', title:'¿Qué se parece más a lo que tienes?', sub:'Elige la opción más cercana. Puede pasar en cualquier tono de piel.', options:[
+        { value:'habones', label:'Ronchas o habones que aparecen y se van', desc:'Como piquetes de mosco que cambian de lugar' },
+        { value:'hinchazon', label:'Hinchazón de labios, párpados o manos', desc:'La piel se infla, más que marcarse' },
+        { value:'solo_comezon', label:'Solo comezón, sin marca visible', desc:'Pica, pero no se ve nada en la piel' },
+        { value:'manchas_fijas', label:'Manchas que no se mueven ni desaparecen', desc:'Se quedan en el mismo sitio varios días' }
+      ]},
+      p1b: { kind:'single', title:'¿La hinchazón es en labios, lengua o garganta, o te cuesta respirar?', sub:'Esto es importante: ayuda a descartar una urgencia.', options:[
+        { value:'urgente', label:'Sí — labios, lengua, garganta, o me cuesta respirar', desc:'' },
+        { value:'no_urgente', label:'No — es en párpados, manos o pies', desc:'' }
+      ]},
+      p2: { kind:'single', title:'¿Las ronchas aparecen, se van y cambian de lugar en menos de un día?', sub:'Es el rasgo más característico de la urticaria.', options:[
+        { value:'si', label:'Sí, salen y desaparecen en horas', desc:'Y suelen cambiar de lugar' },
+        { value:'persisten', label:'No, se quedan días en el mismo sitio', desc:'O dejan moretón / marca al irse' },
+        { value:'no_seguro', label:'No estoy segura', desc:'No me he fijado bien' }
+      ]},
+      p3: { kind:'single', title:'¿Cuánto llevas con esto?', sub:'Las 6 semanas son la línea entre lo agudo y lo crónico.', options:[
+        { value:'aguda', label:'Menos de 6 semanas', desc:'Empezó hace poco' },
+        { value:'cronica', label:'Más de 6 semanas', desc:'Llevo bastante tiempo así' },
+        { value:'no_seguro', label:'No estoy segura', desc:'Va y viene desde hace tiempo' }
+      ]},
+      n1: { kind:'single', title:'¿Esto empezó mientras dormías, o lo venías sintiendo desde el día?', sub:'Nos ayuda a entender tu brote nocturno.', options:[
+        { value:'empezo_dormido', label:'Empezó o me despertó de noche', desc:'' },
+        { value:'venia_del_dia', label:'Ya lo sentía desde el día', desc:'' }
+      ]},
+      n2: { kind:'single', title:'¿Es la primera noche que te pasa, o ya van varias?', sub:'', options:[
+        { value:'primera', label:'Es la primera vez', desc:'' },
+        { value:'varias', label:'Ya van varias noches', desc:'' }
+      ]},
+      p4: { kind:'single', title:'¿Le encuentras un porqué?', sub:'Que no haya causa clara también es una pista valiosa.', options:[
+        { value:'detonante_claro', label:'Sí, un detonante claro', desc:'Una comida, un medicamento, una picadura' },
+        { value:'estreno_nuevo', label:'Estrené algo nuevo hace poco', desc:'Cosmético, bloqueador, ropa, detergente' },
+        { value:'sin_patron', label:'No encuentro ningún patrón', desc:'Aparece sin razón aparente' },
+        { value:'intermitente', label:'A veces sí, a veces no', desc:'No logro identificar qué la dispara' }
+      ]},
+      c1: { kind:'single', title:'¿Estrenaste algo en la piel hace poco?', sub:'Bloqueador, crema, cosmético o ropa nueva.', options:[
+        { value:'si', label:'Sí, algo nuevo en la piel', desc:'' },
+        { value:'no', label:'No, nada nuevo', desc:'' }
+      ]},
+      c2: { kind:'single', title:'¿Las ronchas salen más con el calor, el sudor o el sol?', sub:'', options:[
+        { value:'si', label:'Sí, con calor, sudor o sol', desc:'' },
+        { value:'no', label:'No noto esa relación', desc:'' }
+      ]},
+      f1: { kind:'single', title:'¿Las ronchas aparecen cuando te expones al frío?', sub:'Aire frío, agua fría, o al destaparte.', options:[
+        { value:'si', label:'Sí, con el frío', desc:'' },
+        { value:'no', label:'No noto esa relación', desc:'' }
+      ]},
+      f2: { kind:'single', title:'¿Tu piel se irrita más con el ambiente seco del invierno?', sub:'', options:[
+        { value:'si', label:'Sí, se reseca e irrita', desc:'' },
+        { value:'no', label:'No particularmente', desc:'' }
+      ]},
+      p5: { kind:'multi', title:'¿Cómo te afecta de verdad?', sub:'Marca todo lo que aplique. Esto es justo lo que tu médico necesita saber.', options:[
+        { value:'sueno', label:'Me quita el sueño', desc:'' },
+        { value:'concentracion', label:'Me cuesta concentrarme', desc:'' },
+        { value:'evito_planes', label:'Evito salir o hacer planes', desc:'' },
+        { value:'angustia', label:'Me angustia o me estresa', desc:'' },
+        { value:'trabajo', label:'Afecta mi trabajo', desc:'' }
+      ]},
+      p6: { kind:'single', title:'¿Ya probaste antihistamínicos y sigues igual?', sub:'Los que se venden para la alergia o la comezón.', options:[
+        { value:'fallido', label:'Sí, los tomé y sigo con síntomas', desc:'' },
+        { value:'funciona', label:'Sí, y me ayudaron', desc:'' },
+        { value:'ninguno', label:'No he tomado nada', desc:'' },
+        { value:'no_sabe', label:'No sé qué tomé', desc:'' }
+      ]}
+    };
+  }
+
+  flow(answers){
+    const ctx = this.computeCtx();
+    const isMadrugada = ctx === 'madrugada' || ctx === 'noche-calor';
+    const isCalor = ctx === 'calor' || ctx === 'noche-calor';
+    const isFrio = ctx === 'frio';
+    const ids = ['p1'];
+    if (answers.p1 === 'hinchazon') ids.push('p1b');
+    ids.push('p2','p3');
+    if (isMadrugada) ids.push('n1','n2');
+    ids.push('p4');
+    if (isCalor) ids.push('c1','c2');
+    if (isFrio) ids.push('f1','f2');
+    ids.push('p5','p6');
+    return ids;
+  }
+
+  answerSingle(id, value){
+    const answers = { ...this.state.answers, [id]: value };
+    if (id === 'p1' && value !== 'hinchazon') delete answers.p1b;
+    if (id === 'p1b' && value === 'urgente') { this.setState({ answers, phase:'urgent' }); return; }
+    this.advance(id, answers);
+  }
+  toggleMulti(id, value){
+    const cur = this.state.answers[id] || [];
+    const next = cur.includes(value) ? cur.filter(v=>v!==value) : [...cur, value];
+    this.setState({ answers: { ...this.state.answers, [id]: next } });
+  }
+  advance(id, answers){
+    const fl = this.flow(answers);
+    const i = fl.indexOf(id);
+    const next = i + 1;
+    if (next >= fl.length) this.setState({ answers, phase:'result' });
+    else this.setState({ answers, step: next });
+  }
+  back(){
+    if (this.state.phase === 'result' || this.state.phase === 'urgent'){
+      this.setState({ phase:'quiz' }); return;
+    }
+    if (this.state.phase === 'map'){ this.setState({ phase:'result' }); return; }
+    if (this.state.step > 0) this.setState({ step: this.state.step - 1 });
+    else this.closeQuiz();
+  }
+
+  resolveVars(a){
+    return {
+      RED_FLAG: a.p1b === 'urgente' ? 'urgente' : 'no_urgente',
+      EVAN: a.p2, DUR: a.p3, TRIG: a.p4,
+      IMP: a.p5 || [], AH: a.p6,
+      NEWP: a.c1 === 'si', INDC: a.c2 === 'si', INDF: a.f1 === 'si',
+      NOCT: a.n1 === 'empezo_dormido', P1: a.p1
+    };
+  }
+  resolveOutcome(v){
+    if (v.EVAN === 'persisten') return 'no_encaja';
+    if (v.TRIG === 'detonante_claro' || v.TRIG === 'estreno_nuevo' || v.NEWP) return 'mimic';
+    if ((v.INDC || v.INDF) && v.EVAN === 'si') return 'uce_inducible';
+    if (v.EVAN === 'si' && v.DUR === 'cronica' && (v.TRIG === 'sin_patron' || v.TRIG === 'intermitente')) return 'uce_probable';
+    if (v.EVAN === 'si' && v.DUR === 'aguda' && (v.TRIG === 'sin_patron' || v.TRIG === 'intermitente')) return 'uce_vigila';
+    return 'indeterminado';
+  }
+  inducibleWord(v){
+    if (v.INDC && v.INDF) return 'el frío y el calor';
+    if (v.INDF) return 'el frío';
+    if (v.INDC) return 'el calor';
+    return 'un detonante físico';
+  }
+  outcomeCopy(key, v){
+    const w = this.inducibleWord(v);
+    const M = {
+      uce_probable: {
+        label:'Compatible con urticaria crónica espontánea',
+        title:'Lo que describes encaja con urticaria crónica espontánea.',
+        body:'No es «solo alergia» y no es tu culpa: a veces no hay una causa, es autoinmune. La buena noticia es que tiene nombre — y ponerle nombre ya la hace más pequeña. Esto es lo que puedes hacer.'
+      },
+      uce_inducible: {
+        label:'Compatible con urticaria inducible (' + w + ')',
+        title:'Se comporta como una urticaria que se dispara con ' + w + '.',
+        body:'Sigue siendo urticaria: tu piel reacciona a un detonante físico. Si además te aparece sin causa clara y llevas semanas, vale la pena que tu médico lo revise con calma.'
+      },
+      uce_vigila: {
+        label:'Posible urticaria aguda — vigilar',
+        title:'Por ahora parece algo pasajero.',
+        body:'Se comporta como una urticaria aguda. Si cruza las 6 semanas y sigue apareciendo, vuelve aquí y, sobre todo, coméntaselo a tu médico.'
+      },
+      no_encaja: {
+        label:'No concluyente — requiere revisión médica',
+        title:'Esto no se comporta como una urticaria típica.',
+        body:'Las ronchas que se quedan días en el mismo lugar, o que dejan marca al irse, suelen ser otra cosa. Que un médico lo revise con calma — llévale este resumen para no empezar de cero.'
+      },
+      mimic: {
+        label:'Posible reacción a un nuevo desencadenante',
+        title:'Podría ser una reacción a algo nuevo.',
+        body:'Cuando hay algo recién estrenado de por medio, lo primero es descartar al sospechoso. Suspéndelo y coméntalo con tu médico. Si sigue más de 6 semanas aun quitándolo, podría ser otra cosa: vuelve.'
+      },
+      indeterminado: {
+        label:'No concluyente — requiere revisión médica',
+        title:'Con esto no alcanzo a orientarte del todo.',
+        body:'Y está bien: hay piezas que solo un médico puede juntar. Lo mejor es que lo revise con calma. Llévale este resumen para llegar con todo claro.'
+      }
+    };
+    return M[key] || M.indeterminado;
+  }
+  recognitionWord(imp){
+    if (imp.includes('sueno')) return 'el sueño';
+    if (imp.includes('trabajo')) return 'tu trabajo';
+    if (imp.includes('angustia')) return 'tu tranquilidad';
+    return null;
+  }
+
+  /* ---------- human-readable maps for the card ---------- */
+  hDur(v){ return ({aguda:'Menos de 6 semanas', cronica:'Más de 6 semanas', no_seguro:'No definido con certeza'})[v] || '—'; }
+  hEvan(v){ return ({si:'Aparecen y desaparecen en <24 h, cambian de lugar', persisten:'Se quedan días en el mismo sitio', no_seguro:'No definido con certeza'})[v] || '—'; }
+  hP1(v){ return ({habones:'Ronchas / habones que aparecen y se van', hinchazon:'Hinchazón (párpados / manos)', solo_comezon:'Comezón sin marca visible', manchas_fijas:'Manchas fijas'})[v] || '—'; }
+  hAH(v){ return ({fallido:'Tomó antihistamínico y sigue con síntomas', funciona:'Antihistamínico le ayuda', ninguno:'No ha tomado nada', no_sabe:'No sabe qué tomó'})[v] || '—'; }
+  hTrigger(v){
+    const parts = [];
+    const base = ({detonante_claro:'Detonante claro (comida / medicamento / picadura)', estreno_nuevo:'Estrenó un producto nuevo', sin_patron:'Sin patrón identificable', intermitente:'Intermitente, sin patrón claro'})[v.TRIG];
+    if (base) parts.push(base);
+    if (v.NEWP) parts.push('producto nuevo en la piel');
+    if (v.INDC) parts.push('empeora con calor / sudor / sol');
+    if (v.INDF) parts.push('aparece con el frío');
+    return parts.length ? parts.join(' · ') : '—';
+  }
+  hImpact(imp){
+    if (!imp || !imp.length) return 'No reportó impacto';
+    const L = {sueno:'Sueño', concentracion:'Concentración', evito_planes:'Vida social', angustia:'Ánimo / estrés', trabajo:'Trabajo'};
+    return imp.map(k=>L[k]||k).join(', ');
+  }
+
+  cardRows(v, ctx){
+    const rows = [
+      { label:'Tiempo con síntomas', value:this.hDur(v.DUR) },
+      { label:'Comportamiento', value:this.hEvan(v.EVAN) },
+      { label:'Posible detonante', value:this.hTrigger(v) },
+      { label:'Qué describe', value:this.hP1(v.P1) },
+      { label:'Impacto en vida / sueño', value:this.hImpact(v.IMP) },
+      { label:'Tratamiento previo', value:this.hAH(v.AH) }
+    ];
+    if (v.NOCT || ctx === 'madrugada' || ctx === 'noche-calor'){
+      rows.push({ label:'Patrón', value:'Aparece o empeora de noche' });
+    }
+    return rows;
+  }
+
+  buildCardText(v, ctx, oc){
+    const rows = this.cardRows(v, ctx);
+    let t = 'RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\\n';
+    t += '(Orientativo. Mi médico confirma.)\\n\\n';
+    t += 'Orientación: ' + oc.label + '\\n\\n';
+    rows.forEach(r => { t += '• ' + r.label + ': ' + r.value + '\\n'; });
+    t += '\\nMi pregunta clave: «¿Hay algo más que podamos intentar?»\\n';
+    return t;
+  }
+
+  downloadCard(){
+    const v = this.resolveVars(this.state.answers);
+    const ctx = this.computeCtx();
+    const oc = this.outcomeCopy(this.resolveOutcome(v), v);
+    const text = this.buildCardText(v, ctx, oc).replace(/\\\\n/g, '\n');
+    try {
+      const blob = new Blob([text], { type:'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'resumen-para-mi-medico.txt';
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(url), 1500);
+      this.setState({ downloaded:true });
+      setTimeout(()=>this.setState({ downloaded:false }), 2500);
+    } catch(e){ this.copyCard(); }
+  }
+  copyCard(){
+    const v = this.resolveVars(this.state.answers);
+    const ctx = this.computeCtx();
+    const oc = this.outcomeCopy(this.resolveOutcome(v), v);
+    const text = this.buildCardText(v, ctx, oc).replace(/\\\\n/g, '\n');
+    const done = () => { this.setState({ copied:true }); setTimeout(()=>this.setState({ copied:false }), 2200); };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, ()=>this._copyFallback(text, done)); }
+      else this._copyFallback(text, done);
+    } catch(e){ this._copyFallback(text, done); }
+  }
+  _copyFallback(text, done){
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta); done();
+    } catch(e){}
+  }
+
+  specialistData(){
+    return [
+      { name:'Dra. Elena Cárdenas', specialty:'alergologia', specLabel:'Alergología e Inmunología', address:'Av. Reforma 1820, Col. Centro', dist:'1.2 km', x:28, y:30 },
+      { name:'Dr. Marco Villaseñor', specialty:'dermatologia', specLabel:'Dermatología', address:'Calle 60 #495, Col. García Ginerés', dist:'2.0 km', x:58, y:48 },
+      { name:'Dra. Paula Rentería', specialty:'alergologia', specLabel:'Alergología', address:'Prol. Montejo 220, Col. Itzimná', dist:'2.8 km', x:72, y:28 },
+      { name:'Dr. Iván Solórzano', specialty:'dermatologia', specLabel:'Dermatología clínica', address:'Av. Pérez Ponce 134, Col. Alcalá Martín', dist:'3.4 km', x:38, y:64 },
+      { name:'Dra. Lucía Bermúdez', specialty:'alergologia', specLabel:'Alergología (adulto)', address:'Calle 21 #142, Col. México Norte', dist:'4.1 km', x:64, y:72 },
+      { name:'Dr. Andrés Fonseca', specialty:'dermatologia', specLabel:'Dermatología', address:'Av. Colón 508, Col. Centro', dist:'5.0 km', x:22, y:56 }
+    ];
+  }
+  onGeo(){
+    this.setState({ geo:'pending' });
+    try {
+      if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+          () => this.setState({ geo:'on' }),
+          () => this.setState({ geo:'denied' }),
+          { timeout:8000 }
+        );
+      } else this.setState({ geo:'denied' });
+    } catch(e){ this.setState({ geo:'denied' }); }
+  }
+
+  /* ===================== RENDER ===================== */
+  renderVals(){
+    const ctx = this.computeCtx();
+    const t = this.theme(ctx);
+    const c = this.copy(ctx);
+    const dark = this.isDark(ctx);
+
+    const shell = {
+      position:'relative', minHeight:'100vh', width:'100%', overflow:'hidden',
+      fontFamily:"'Montserrat', sans-serif", color:t.ink, background:t.bg,
+      transition:'background .8s ease, color .6s ease',
+      '--ink':t.ink, '--ink-soft':t.inkSoft, '--ink-faint':t.inkFaint,
+      '--accent':t.accent, '--accentSoft':t.accentSoft,
+      '--line':t.line, '--lineSoft': dark ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.05)',
+      '--rim':t.rim, '--rimShade':t.rimShade, '--shadow':t.shadow,
+      '--lifeGlow':t.lifeGlow, '--bloom':t.bloom,
+      '--overlayBg': dark ? '#15151b' : '#f4f1e8',
+      '--personFill': dark ? 'rgba(236,228,215,.92)' : (t.person || '#2f5560'),
+      '--coral': dark ? '#f08a72' : '#ee7067',
+      '--coralSoft': dark ? 'rgba(240,138,114,.16)' : 'rgba(238,112,103,.14)',
+      '--cerulean': dark ? '#5fbcd6' : '#0081a8',
+      '--ceruleanSoft': dark ? 'rgba(95,188,214,.16)' : 'rgba(0,129,168,.12)',
+      '--jasmineInk': dark ? '#f0c24f' : '#b07d0a',
+      '--jasmineSoft': dark ? 'rgba(240,194,79,.18)' : 'rgba(252,215,105,.30)',
+      '--jasmineLine': dark ? '#f0c24f' : '#e7b94a'
+    };
+
+    const glowStyle = dark ? {
+      position:'absolute', right:'14%', top:'2%', width:'min(46vw,540px)', height:'min(46vw,540px)',
+      borderRadius:'50%', zIndex:2, pointerEvents:'none',
+      background:'radial-gradient(circle, '+t.lifeGlow+' 0%, transparent 66%)',
+      filter:'blur(6px)', animation: this._reduce ? 'none' : 'lampBreathe 7s ease-in-out infinite'
+    } : { position:'absolute', inset:0, zIndex:0, pointerEvents:'none' };
+
+    const ctaInk = dark ? '#241a12' : '#fff';
+    const ctaStyle = {
+      display:'inline-flex', alignItems:'center', gap:'10px',
+      fontFamily:"'Barlow Semi Condensed', sans-serif", fontWeight:700, fontSize:'18px',
+      letterSpacing:'.01em', textDecoration:'none', color:ctaInk, background:t.accent,
+      padding:'15px 26px', borderRadius:'40px', border:'none', cursor:'pointer',
+      boxShadow:'0 10px 24px '+t.accentSoft, transition:'transform .3s ease, box-shadow .3s ease'
+    };
+
+    const cardStyle = {
+      display:'flex', flexDirection:'column', textDecoration:'none',
+      background:t.card, border:'1px solid '+t.cardBorder, borderRadius:'18px',
+      padding:'26px 24px 24px', minHeight:'230px',
+      transition:'transform .3s ease, box-shadow .3s ease, border-color .3s ease',
+      backdropFilter: dark ? 'blur(6px)' : 'none'
+    };
+    const cardBtnStyle = { ...cardStyle, cursor:'pointer', textAlign:'left', width:'100%', font:'inherit' };
+
+    const switcherStyle = {
+      position:'fixed', left:'50%', bottom:'18px', transform:'translateX(-50%)', zIndex:40,
+      display:'flex', alignItems:'center', gap:'4px', flexWrap:'wrap', justifyContent:'center',
+      padding:'6px 8px', borderRadius:'40px',
+      background: dark ? 'rgba(28,26,32,.82)' : 'rgba(255,255,255,.82)',
+      color: dark ? '#ece4d7' : '#3a4a4d',
+      border:'1px solid '+(dark?'rgba(255,255,255,.12)':'rgba(0,0,0,.08)'),
+      boxShadow:'0 10px 30px rgba(0,0,0,.18)', backdropFilter:'blur(10px)',
+      maxWidth:'calc(100vw - 24px)'
+    };
+    const mkOpt = (key,label) => {
+      const on = this.state.forced === key;
+      return { label, onClick: () => this.setState({ forced: key }), style: {
+        fontFamily:"'Barlow Condensed', sans-serif", textTransform:'uppercase', letterSpacing:'.08em',
+        fontSize:'12px', fontWeight:600, cursor:'pointer', whiteSpace:'nowrap',
+        border:'none', borderRadius:'30px', padding:'8px 13px', transition:'all .2s ease',
+        color: on ? (dark?'#241a12':'#fff') : 'inherit', background: on ? t.accent : 'transparent', opacity: on ? 1 : .72 } };
+    };
+    const ctxOptions = [
+      { label:'Auto', onClick:()=>this.setState({forced:null}), style:{ fontFamily:"'Barlow Condensed', sans-serif", textTransform:'uppercase', letterSpacing:'.08em', fontSize:'12px', fontWeight:600, cursor:'pointer', whiteSpace:'nowrap', border:'none', borderRadius:'30px', padding:'8px 13px', transition:'all .2s ease', color: this.state.forced===null ? (dark?'#241a12':'#fff') : 'inherit', background: this.state.forced===null ? t.accent : 'transparent', opacity: this.state.forced===null ? 1 : .72 } },
+      mkOpt('dia','Día'), mkOpt('calor','Calor'), mkOpt('frio','Frío'), mkOpt('madrugada','Madrugada'), mkOpt('noche-calor','Noche cálida')
+    ];
+
+    /* ---------- quiz view models ---------- */
+    const fl = this.flow(this.state.answers);
+    const totalSteps = fl.length;
+    const currentId = fl[this.state.step];
+    const bank = this.qBank();
+    const q = bank[currentId];
+    const progress = this.state.phase === 'quiz' ? (this.state.step / totalSteps) : 1;
+    const motifScale = 1 - 0.5 * progress;
+
+    const overlayStyle = {
+      position:'fixed', inset:0, zIndex:60, overflowY:'auto', WebkitOverflowScrolling:'touch',
+      background:t.bg, color:t.ink, fontFamily:"'Montserrat', sans-serif",
+      animation: this._reduce ? 'none' : 'overlayIn .35s ease both', outline:'none'
+    };
+    const closeBtnStyle = {
+      width:'38px', height:'38px', borderRadius:'50%', border:'1px solid '+t.line,
+      background:'transparent', color:t.inkSoft, cursor:'pointer', fontSize:'15px',
+      opacity:.8, transition:'opacity .2s ease', flex:'none'
+    };
+    const motifWrap = {
+      position:'relative', width:(22*motifScale+10)+'px', height:(26*motifScale+10)+'px',
+      flex:'none', transition:'width .5s ease, height .5s ease'
+    };
+
+    const optBase = (selected) => ({
+      display:'flex', alignItems:'flex-start', gap:'13px', width:'100%', textAlign:'left',
+      font:'inherit', cursor:'pointer', padding:'16px 18px', borderRadius:'15px',
+      border:'1.5px solid '+(selected ? t.accent : t.cardBorder),
+      background: selected ? t.accentSoft : t.card, color:t.ink,
+      boxShadow: selected ? ('inset 0 0 0 1px '+t.accent) : 'none',
+      transition:'border-color .2s ease, background .2s ease, transform .15s ease',
+      backdropFilter: dark ? 'blur(6px)' : 'none'
+    });
+    const markerStyle = (selected, multi) => ({
+      width:'22px', height:'22px', flex:'none', marginTop:'1px',
+      borderRadius: multi ? '7px' : '50%',
+      border:'2px solid '+(selected ? t.accent : t.inkFaint),
+      background: selected ? t.accent : 'transparent', color: dark ? '#241a12' : '#fff',
+      display:'flex', alignItems:'center', justifyContent:'center', fontSize:'13px', fontWeight:700,
+      transition:'all .2s ease'
+    });
+
+    let qOptions = [];
+    let qIsMulti = false;
+    if (q){
+      qIsMulti = q.kind === 'multi';
+      const sel = this.state.answers[currentId];
+      qOptions = q.options.map(o => {
+        const selected = qIsMulti ? (Array.isArray(sel) && sel.includes(o.value)) : (sel === o.value);
+        return {
+          label:o.label, desc:o.desc, check: selected ? '✓' : '',
+          style: optBase(selected), markerStyle: markerStyle(selected, qIsMulti),
+          onClick: qIsMulti ? (() => this.toggleMulti(currentId, o.value)) : (() => this.answerSingle(currentId, o.value))
+        };
+      });
+    }
+
+    const primaryBtnStyle = {
+      display:'inline-flex', alignItems:'center', gap:'9px',
+      fontFamily:"'Barlow Semi Condensed', sans-serif", fontWeight:700, fontSize:'16.5px',
+      color:ctaInk, background:t.accent, border:'none', cursor:'pointer',
+      padding:'13px 22px', borderRadius:'40px', boxShadow:'0 8px 20px '+t.accentSoft,
+      transition:'transform .25s ease, box-shadow .25s ease'
+    };
+    const continueStyle = { ...primaryBtnStyle, fontSize:'15.5px', padding:'12px 24px' };
+    const backBtnStyle = {
+      fontFamily:"'Barlow Semi Condensed', sans-serif", fontWeight:600, fontSize:'15px',
+      color:t.inkSoft, background:'transparent', border:'none', cursor:'pointer',
+      padding:'8px 4px', opacity:.78, transition:'opacity .2s ease'
+    };
+    const textLinkStyle = { ...backBtnStyle, fontSize:'14px' };
+    const ghostBtnStyle = {
+      fontFamily:"'Barlow Semi Condensed', sans-serif", fontWeight:600, fontSize:'15px',
+      color:t.ink, background:'transparent', border:'1.5px solid '+t.line, cursor:'pointer',
+      padding:'12px 18px', borderRadius:'40px', opacity:.9, transition:'opacity .2s ease'
+    };
+    const urgentCtaStyle = {
+      display:'inline-flex', alignItems:'center', gap:'8px', textDecoration:'none',
+      fontFamily:"'Barlow Semi Condensed', sans-serif", fontWeight:700, fontSize:'16.5px',
+      color:'#fff', background:'#ee7067', padding:'13px 24px', borderRadius:'40px',
+      boxShadow:'0 8px 22px rgba(238,112,103,.4)'
+    };
+
+    const cardPanelStyle = {
+      border:'1px solid '+t.cardBorder, borderRadius:'18px', background:t.card,
+      overflow:'hidden', backdropFilter: dark ? 'blur(6px)' : 'none'
+    };
+    const cardActionStyle = { ...primaryBtnStyle, fontSize:'14.5px', padding:'11px 18px' };
+    const cardGhostStyle = { ...ghostBtnStyle, fontSize:'14px', padding:'10px 16px' };
+
+    /* result data */
+    const v = this.resolveVars(this.state.answers);
+    const outcomeKey = this.resolveOutcome(v);
+    const oc = this.outcomeCopy(outcomeKey, v);
+    const modSet = ['uce_probable','uce_inducible','uce_vigila','indeterminado'];
+    let rEscalation = '';
+    let rRecognition = '';
+    if (modSet.indexOf(outcomeKey) !== -1){
+      if (v.AH === 'fallido') rEscalation = 'Ya probaste antihistamínicos y sigues con síntomas. Eso no es el final del camino — significa que aún no estás controlada. En tu próxima consulta, pregunta con estas palabras: «¿hay algo más que podamos intentar?».';
+      const rw = this.recognitionWord(v.IMP);
+      if (rw) rRecognition = 'Y que te quite ' + rw + ' es justo lo que tu médico necesita saber. Lo anotamos en tu resumen.';
+    }
+
+    /* map data */
+    const all = this.specialistData();
+    const filtered = this.state.mapFilter === 'todos' ? all : all.filter(s => s.specialty === this.state.mapFilter);
+    const specialists = filtered.map(s => ({
+      name:s.name, specLabel:s.specLabel, address:s.address, dist:s.dist,
+      cardStyle:{ border:'1px solid '+t.cardBorder, borderRadius:'14px', background:t.card, padding:'14px 16px', backdropFilter: dark?'blur(6px)':'none' },
+      dotStyle:{ width:'12px', height:'12px', borderRadius:'50%', flex:'none', marginTop:'5px', background: s.specialty==='alergologia' ? t.accent : (dark?'#5fbcd6':'#0081a8') }
+    }));
+    const pins = filtered.map(s => ({
+      name:s.name,
+      style:{ position:'absolute', left:s.x+'%', top:s.y+'%', transform:'translate(-50%,-100%)',
+        width:'16px', height:'16px', borderRadius:'50% 50% 50% 0', rotate:'-45deg',
+        background: s.specialty==='alergologia' ? t.accent : (dark?'#5fbcd6':'#0081a8'),
+        border:'2px solid '+(dark?'#15151b':'#fff'), boxShadow:'0 3px 6px '+t.shadow }
+    }));
+    const mkFilter = (key,label) => {
+      const on = this.state.mapFilter === key;
+      return { label, onClick:()=>this.setState({mapFilter:key}), style:{
+        fontFamily:"'Barlow Semi Condensed', sans-serif", fontWeight:600, fontSize:'14px',
+        cursor:'pointer', border:'1.5px solid '+(on?t.accent:t.line), borderRadius:'30px',
+        padding:'8px 15px', background: on?t.accentSoft:'transparent', color: on?t.accent:t.inkSoft,
+        transition:'all .2s ease' } };
+    };
+    const filterOptions = [ mkFilter('todos','Todos'), mkFilter('alergologia','Alergología'), mkFilter('dermatologia','Dermatología') ];
+    const geoLabel = this.state.geo === 'on' ? 'Mostrando cerca de ti' : (this.state.geo === 'pending' ? 'Ubicando…' : (this.state.geo === 'denied' ? 'Usa tu código postal' : 'Usar mi ubicación'));
+    const geoBtnStyle = {
+      display:'inline-flex', alignItems:'center', fontFamily:"'Barlow Semi Condensed', sans-serif",
+      fontWeight:600, fontSize:'14px', cursor:'pointer', color: this.state.geo==='on'?t.accent:t.ink,
+      background:'transparent', border:'1.5px solid '+(this.state.geo==='on'?t.accent:t.line),
+      borderRadius:'30px', padding:'9px 15px', opacity:.92, transition:'all .2s ease'
+    };
+    const zipInputStyle = {
+      fontFamily:"'Montserrat', sans-serif", fontSize:'14px', color:t.ink, background:t.card,
+      border:'1.5px solid '+t.line, borderRadius:'30px', padding:'9px 16px', width:'160px',
+      outline:'none'
+    };
+    const mapBoxStyle = {
+      position:'relative', width:'100%', height:'250px', borderRadius:'18px',
+      border:'1px solid '+t.cardBorder, background:t.card, overflow:'hidden',
+      backdropFilter: dark?'blur(6px)':'none'
+    };
+
+    return {
+      shell, glowStyle,
+      textureOn: this.state.textureOn,
+      kicker: c.kicker, kickerRef: this.kickerRef,
+      headPre: c.headPre, headWord: c.headWord, headPost: c.headPost, wordRef: this.wordRef,
+      sub: c.sub,
+      ctaStyle, ctaPrimary: c.ctaPrimary, ctaNote: c.ctaNote,
+      counterRef: this.counterRef, counterInit: this._reduce ? this.counterTarget(ctx).toLocaleString('es-MX') : '0',
+      counterLabel: c.counterLabel,
+      cardsKicker: dark ? 'Cuando estés lista, esto te espera' : 'Tres formas de empezar',
+      cardStyle, cardBtnStyle,
+      switcherStyle, ctxOptions,
+
+      // quiz
+      openQuiz: () => this.openQuiz(),
+      closeQuiz: () => this.closeQuiz(),
+      quizOpen: this.state.quizOpen, quizRef: this.quizRef, qAnimRef: this.qAnimRef,
+      overlayStyle, closeBtnStyle, motifWrap,
+      isQuiz: this.state.phase === 'quiz',
+      isUrgent: this.state.phase === 'urgent',
+      isResult: this.state.phase === 'result',
+      isMap: this.state.phase === 'map',
+      progressPct: Math.round(progress * 100) + '%',
+      stepLabel: 'Paso ' + (this.state.step + 1) + ' de ' + totalSteps,
+      qTitle: q ? q.title : '', qSub: q ? q.sub : '',
+      qOptions, qIsMulti,
+      onContinue: () => this.advance(currentId, this.state.answers),
+      continueLabel: 'Continuar →', continueStyle,
+      onBack: () => this.back(),
+      backLabel: this.state.step === 0 ? 'Cancelar' : '← Atrás',
+      backBtnStyle, textLinkStyle, ghostBtnStyle, primaryBtnStyle,
+
+      // urgent
+      urgentTitle: 'Esto puede ser una urgencia.',
+      urgentBody: 'La hinchazón de labios, lengua o garganta — o la dificultad para respirar — necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.',
+      urgentCtaStyle,
+      onSeeMap: () => this.setState({ phase:'map' }),
+
+      // result
+      rTitle: oc.title, rBody: oc.body, rEscalation, rRecognition,
+      cardPanelStyle, cardRows: this.cardRows(v, ctx),
+      cardActionStyle, cardGhostStyle,
+      onDownload: () => this.downloadCard(),
+      onCopy: () => this.copyCard(),
+      downloadLabel: this.state.downloaded ? '✓ Descargado' : 'Descargar resumen',
+      copyLabel: this.state.copied ? '✓ Copiado' : 'Copiar',
+      onRestart: () => this.setState({ phase:'quiz', step:0, answers:{} }),
+
+      // map
+      specialists, pins, filterOptions,
+      onGeo: () => this.onGeo(), geoLabel, geoBtnStyle,
+      zipValue: this.state.zip, onZip: (e) => this.setState({ zip: e.target.value }), zipInputStyle,
+      mapBoxStyle,
+      mapNote: 'Directorio de muestra de especialistas certificados (red de atención en urticaria). En producción se conecta al directorio curado que provee el equipo médico. La ubicación se usa solo para ordenar la lista, con tu permiso.',
+      onBackToResult: () => this.setState({ phase:'result' })
+    };
+  }
+
+  theme(ctx){
+    const T = {
+      'dia': {
+        bg:'radial-gradient(1100px 680px at 78% -8%, rgba(97,195,217,.30), transparent 60%), radial-gradient(900px 560px at 6% 108%, rgba(253,217,183,.55), transparent 58%), #f0eee6',
+        ink:'#22383f', inkSoft:'#5a6a6d', inkFaint:'#8b9698',
+        accent:'#ee7067', accentSoft:'rgba(238,112,103,.16)',
+        line:'#dcd8c9', card:'#fffdf8', cardBorder:'#e6e2d4',
+        lifeGlow:'rgba(97,195,217,.5)', bloom:'rgba(238,112,103,.22)', person:'#2c5560',
+        rim:'rgba(255,255,255,.7)', rimShade:'rgba(120,150,160,.28)', shadow:'rgba(80,110,120,.22)'
+      },
+      'calor': {
+        bg:'radial-gradient(1000px 640px at 82% -6%, rgba(252,215,105,.55), transparent 58%), radial-gradient(900px 560px at 4% 106%, rgba(238,112,103,.38), transparent 56%), #fbf2e6',
+        ink:'#4a2a22', inkSoft:'#7a5448', inkFaint:'#a98a7c',
+        accent:'#e0584d', accentSoft:'rgba(224,88,77,.16)',
+        line:'#ecd9c4', card:'#fffaf2', cardBorder:'#f0dcc6',
+        lifeGlow:'rgba(252,215,105,.6)', bloom:'rgba(238,112,103,.26)', person:'#6e3a2c',
+        rim:'rgba(255,255,255,.72)', rimShade:'rgba(180,120,80,.26)', shadow:'rgba(150,90,50,.2)'
+      },
+      'frio': {
+        bg:'radial-gradient(1000px 640px at 80% -8%, rgba(97,195,217,.42), transparent 58%), radial-gradient(900px 560px at 4% 108%, rgba(255,255,255,.85), transparent 56%), #eaf1f3',
+        ink:'#1c3b44', inkSoft:'#4f6970', inkFaint:'#85999e',
+        accent:'#0081a8', accentSoft:'rgba(0,129,168,.14)',
+        line:'#d3e0e3', card:'#fbfdfe', cardBorder:'#dde9eb',
+        lifeGlow:'rgba(97,195,217,.55)', bloom:'rgba(97,195,217,.28)', person:'#1e4b58',
+        rim:'rgba(255,255,255,.85)', rimShade:'rgba(90,140,155,.26)', shadow:'rgba(60,110,125,.2)'
+      },
+      'madrugada': {
+        bg:'radial-gradient(820px 620px at 76% 14%, rgba(252,215,105,.18), transparent 56%), radial-gradient(700px 540px at 70% 8%, rgba(238,112,103,.10), transparent 60%), #15151b',
+        ink:'#ece4d7', inkSoft:'#a59c8e', inkFaint:'#6f6a62',
+        accent:'#f0c24f', accentSoft:'rgba(240,194,79,.16)',
+        line:'rgba(255,255,255,.10)', card:'rgba(255,255,255,.045)', cardBorder:'rgba(255,255,255,.10)',
+        lifeGlow:'rgba(252,215,105,.32)', bloom:'rgba(240,194,79,.10)',
+        rim:'rgba(255,240,210,.5)', rimShade:'rgba(0,0,0,.4)', shadow:'rgba(0,0,0,.5)'
+      },
+      'noche-calor': {
+        bg:'radial-gradient(840px 640px at 74% 12%, rgba(238,112,103,.22), transparent 56%), radial-gradient(680px 520px at 72% 6%, rgba(252,215,105,.14), transparent 60%), #1a1418',
+        ink:'#f0e5db', inkSoft:'#ad9d92', inkFaint:'#776861',
+        accent:'#f08a72', accentSoft:'rgba(240,138,114,.18)',
+        line:'rgba(255,255,255,.10)', card:'rgba(255,255,255,.05)', cardBorder:'rgba(255,255,255,.11)',
+        lifeGlow:'rgba(238,112,103,.34)', bloom:'rgba(240,138,114,.12)',
+        rim:'rgba(255,225,205,.5)', rimShade:'rgba(0,0,0,.42)', shadow:'rgba(0,0,0,.5)'
+      }
+    };
+    return T[ctx] || T['dia'];
+  }
+
+  copy(ctx){
+    const city = this.props.city || 'Mérida';
+    const C = {
+      'dia': {
+        kicker: this.greeting(),
+        headPre:'Tu vida es más grande que ', headWord:'la comezón', headPost:' de la urticaria.',
+        sub:'Entender qué te pasa es el primer paso para que ocupe menos espacio. Te acompañamos a llegar lista a tu próxima consulta.',
+        ctaPrimary:'Descúbrelo en 1 minuto',
+        ctaNote:'Un autochequeo que te orienta. No reemplaza a tu médico.',
+        counterLabel:'personas usaron esta guía esta semana para entender qué les pasa.'
+      },
+      'calor': {
+        kicker:'En ' + city + ', ahora mismo',
+        headPre:'En ' + city + ' el calor está fuerte. Y el calor puede subir ', headWord:'los brotes', headPost:'.',
+        sub:'No es tu imaginación: el calor y la humedad despiertan la piel. Esto puede ayudarte hoy a entender qué te pasa.',
+        ctaPrimary:'Esto puede ayudarte hoy',
+        ctaNote:'Un autochequeo que te orienta. No reemplaza a tu médico.',
+        counterLabel:'personas usaron esta guía esta semana para entender qué les pasa.'
+      },
+      'frio': {
+        kicker:'Con el frío de esta temporada',
+        headPre:'Con el frío, a algunas personas la piel se les ', headWord:'brota', headPost:'.',
+        sub:'Sí, existe la urticaria por frío, y el aire seco del invierno irrita la piel. Esto ayuda a entender qué te pasa.',
+        ctaPrimary:'Entiende qué te pasa',
+        ctaNote:'Un autochequeo que te orienta. No reemplaza a tu médico.',
+        counterLabel:'personas usaron esta guía esta semana para entender qué les pasa.'
+      },
+      'madrugada': {
+        kicker:'Son las ' + this.fixedTime('madrugada'),
+        headPre:'¿No puedes ', headWord:'dormir', headPost:'?',
+        sub:'La comezón aparece justo cuando todo se queda en silencio. Respira: no estás sola, y esto pasa. Quédate, te acompañamos.',
+        ctaPrimary:'Quédate un momento',
+        ctaNote:'Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.',
+        counterLabel:'personas están despiertas, leyendo esto contigo, ahora mismo.'
+      },
+      'noche-calor': {
+        kicker:'Son las ' + this.fixedTime('noche-calor'),
+        headPre:'La noche está calurosa, y la comezón no te deja ', headWord:'dormir', headPost:'.',
+        sub:'El calor de esta noche aviva la piel. Respira: no estás sola, y esto pasa. Quédate, te acompañamos.',
+        ctaPrimary:'Quédate un momento',
+        ctaNote:'Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.',
+        counterLabel:'personas están despiertas, leyendo esto contigo, ahora mismo.'
+      }
+    };
+    return C[ctx] || C['dia'];
+  }
+}
+</script>
+</body>
+</html>
