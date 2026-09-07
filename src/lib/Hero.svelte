@@ -5,7 +5,7 @@
   export let onQuiz
   export let word = copy[2]
   export let ctx = 'dia'
-  const contextVideos = { madrugada:'/assets/video/hero-context-dawn.mp4', default:'/assets/video/hero-context-test.mp4' }
+  const contextVideos = { dia:'/assets/video/hero-context-dia.mp4', calor:'/assets/video/hero-context-calor.mp4', frio:'/assets/video/hero-context-frio.mp4', madrugada:'/assets/video/hero-context-madrugada.mp4', 'noche-calor':'/assets/video/hero-context-noche-calida.mp4', default:'/assets/video/hero-context-dia.mp4' }
   $: activeVideo = contextVideos[ctx] || contextVideos.default
   let animatedTarget = 0
   let mounted = false
