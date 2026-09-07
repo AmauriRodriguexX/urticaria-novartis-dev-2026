@@ -5,6 +5,8 @@
   export let onQuiz
   export let word = copy[2]
   export let ctx = 'dia'
+  const contextVideos = { madrugada:'/assets/video/hero-context-dawn.mp4', default:'/assets/video/hero-context-test.mp4' }
+  $: activeVideo = contextVideos[ctx] || contextVideos.default
   let animatedTarget = 0
   let mounted = false
   let frame
@@ -34,7 +36,7 @@
 {#key ctx}<section class="hero context-transition campaign-hero">
   <div class="campaign-hero-bg" aria-hidden="true"></div>
   <video class="campaign-hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-    <source src="/assets/video/hero-context-test.mp4" type="video/mp4" />
+    <source src={activeVideo} type="video/mp4" />
   </video>
   <div class="hero-copy animate-rise">
     <p class="kicker"><i></i>{copy[0]}</p>
