@@ -6,18 +6,27 @@
   export let word = copy[2]
   export let ctx = 'dia'
   let animatedTarget = 0
+  let mounted = false
+  let frame
 
-  onMount(() => {
+  function animateCounter(value) {
+    cancelAnimationFrame(frame)
+    animatedTarget = 0
     const started = performance.now()
     const duration = 900
-    let frame
     const tick = (now) => {
       const progress = Math.min(1, (now - started) / duration)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      animatedTarget = Math.round(target * eased)
+      animatedTarget = Math.round(value * (1 - Math.pow(1 - progress, 3)))
       if (progress < 1) frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)
+  }
+
+  $: if (mounted && target != null && ctx) animateCounter(target)
+
+  onMount(() => {
+    mounted = true
+    animateCounter(target)
     return () => cancelAnimationFrame(frame)
   })
 </script>
