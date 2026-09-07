@@ -4,11 +4,12 @@
  let forced = ['dia','calor','frio','madrugada','noche-calor'].includes(routePath) ? routePath : null, quizOpen = false, word = 'la comezón', textureOn = true
  const order=['dia','calor','frio','madrugada','noche-calor'];
  const bgSolid={dia:'#f0eee6',calor:'#fbf2e6',frio:'#eaf1f3',madrugada:'#15151b','noche-calor':'#1a1418'};
+ const switcherSurface={dia:'#fffdf8',calor:'#fffaf2',frio:'#fbfdfe',madrugada:'#25242d','noche-calor':'#2b2022'};
  const overlayStart={dia:'rgba(240,238,230,.96)',calor:'rgba(251,242,230,.96)',frio:'rgba(234,241,243,.96)',madrugada:'rgba(21,21,27,.96)','noche-calor':'rgba(26,20,24,.96)'};
  const overlayMid={dia:'rgba(240,238,230,.82)',calor:'rgba(251,242,230,.82)',frio:'rgba(234,241,243,.82)',madrugada:'rgba(21,21,27,.76)','noche-calor':'rgba(26,20,24,.76)'};
  const heroImages={dia:'/assets/img/hero-glass-woman-day-16x9.png',calor:'/assets/img/hero-glass-woman-heat-16x9.png',frio:'/assets/img/hero-glass-woman-cold-16x9.png',madrugada:'/assets/img/hero-glass-woman-dawn-16x9.png','noche-calor':'/assets/img/hero-glass-woman-warm-night-16x9.png'};
  function current(){const n=new Date(), h=n.getHours(),m=n.getMonth();if(h<6)return m>=4&&m<=8?'noche-calor':'madrugada';if([11,0,1].includes(m))return'frio';return m>=4&&m<=8?'calor':'dia'}
- $: ctx=forced || current(); $: theme=themes[ctx]; $: dark=['madrugada','noche-calor'].includes(ctx); $: copy=copies[ctx]; $: displayWord=ctx==='dia'?word:copy[2]; $: css=Object.entries(theme).map(([k,v])=>`--${k}:${v}`).join(';')+`;--bg-solid:${bgSolid[ctx]};--overlay-start:${overlayStart[ctx]};--overlay-mid:${overlayMid[ctx]};--hero-image:url('${heroImages[ctx]}');--switcher-surface:${theme.card};--switcher-border:${theme.border};--switcher-ink:${theme.ink}`; $: target=dark?18:1240;
+ $: ctx=forced || current(); $: theme=themes[ctx]; $: dark=['madrugada','noche-calor'].includes(ctx); $: copy=copies[ctx]; $: displayWord=ctx==='dia'?word:copy[2]; $: css=Object.entries(theme).map(([k,v])=>`--${k}:${v}`).join(';')+`;--bg-solid:${bgSolid[ctx]};--overlay-start:${overlayStart[ctx]};--overlay-mid:${overlayMid[ctx]};--hero-image:url('${heroImages[ctx]}');--switcher-surface:${switcherSurface[ctx]};--switcher-border:${dark?'rgba(255,255,255,.18)':theme.border};--switcher-ink:${theme.ink}`; $: target=dark?18:1240;
  onMount(() => {
    const route = location.pathname.replace(/^\//,'').toLowerCase();
    if (['dia','calor','frio','madrugada','noche-calor'].includes(route)) forced = route;
