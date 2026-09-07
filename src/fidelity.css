@@ -1,5 +1,13 @@
 /* Legacy fidelity controls and alternate rendering states. */
 .texture-toggle{margin-left:auto;padding:8px 13px;border:1px solid var(--line);border-radius:30px;background:color-mix(in srgb,var(--card) 55%,transparent);color:var(--faint);font:600 11px 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.shell{transition:background 1.15s cubic-bezier(.22,1,.36,1),color .8s ease}
+.context-transition{animation:contextReveal .8s cubic-bezier(.22,1,.36,1) both;transform-origin:50% 42%}
+.context-transition .hero-copy{animation:contextCopy .72s cubic-bezier(.22,1,.36,1) both}
+.context-transition .hero-art{animation:contextArt .9s cubic-bezier(.22,1,.36,1) .06s both}
+@keyframes contextReveal{from{opacity:.1;transform:translateY(14px) scale(.985);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes contextCopy{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+@keyframes contextArt{from{opacity:0;transform:translateX(18px) scale(.96)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.shell,.context-transition,.context-transition .hero-copy,.context-transition .hero-art{animation:none!important;transition:none!important}}
 .glass-only .glass{width:68%;height:82%;margin-bottom:8px}
 .switcher{left:50%;right:auto;bottom:18px;transform:translateX(-50%);padding:6px 8px;border-radius:40px;gap:4px;justify-content:center;max-width:calc(100vw - 24px);box-shadow:0 10px 30px rgba(0,0,0,.18);background:rgba(255,255,255,.82);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(10px)}
 .switcher button{padding:8px 13px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;opacity:.72}.switcher button.active{opacity:1}.cards a,.cards button{min-height:230px;padding:26px 24px 24px;border-radius:18px}.cards>p{margin-bottom:22px}
