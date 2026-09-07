@@ -3,8 +3,9 @@
  const routePath = typeof window !== 'undefined' ? window.location.pathname.replace(/^\//,'').toLowerCase() : ''
  let forced = ['dia','calor','frio','madrugada','noche-calor'].includes(routePath) ? routePath : null, quizOpen = false, word = 'la comezón', textureOn = true
  const order=['dia','calor','frio','madrugada','noche-calor'];
+ const bgSolid={dia:'#f0eee6',calor:'#fbf2e6',frio:'#eaf1f3',madrugada:'#15151b','noche-calor':'#1a1418'};
  function current(){const n=new Date(), h=n.getHours(),m=n.getMonth();if(h<6)return m>=4&&m<=8?'noche-calor':'madrugada';if([11,0,1].includes(m))return'frio';return m>=4&&m<=8?'calor':'dia'}
- $: ctx=forced || current(); $: theme=themes[ctx]; $: dark=['madrugada','noche-calor'].includes(ctx); $: copy=copies[ctx]; $: displayWord=ctx==='dia'?word:copy[2]; $: css=Object.entries(theme).map(([k,v])=>`--${k}:${v}`).join(';'); $: target=dark?18:1240;
+ $: ctx=forced || current(); $: theme=themes[ctx]; $: dark=['madrugada','noche-calor'].includes(ctx); $: copy=copies[ctx]; $: displayWord=ctx==='dia'?word:copy[2]; $: css=Object.entries(theme).map(([k,v])=>`--${k}:${v}`).join(';')+`;--bg-solid:${bgSolid[ctx]}`; $: target=dark?18:1240;
  onMount(() => {
    const route = location.pathname.replace(/^\//,'').toLowerCase();
    if (['dia','calor','frio','madrugada','noche-calor'].includes(route)) forced = route;
