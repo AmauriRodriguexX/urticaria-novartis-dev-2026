@@ -29,10 +29,10 @@
 @media(max-width:720px){.texture-toggle{font-size:9px;padding:6px 9px}.switcher{left:12px;right:12px;transform:none}}
 .shell[style*="#15151b"] .switcher,.shell[style*="#1a1418"] .switcher{background:rgba(255,255,255,.86);color:#22383f;border-color:rgba(0,0,0,.1)}
 .shell[style*="#15151b"] .switcher button,.shell[style*="#1a1418"] .switcher button,.shell[style*="#15151b"] .switcher button.active,.shell[style*="#1a1418"] .switcher button.active{color:#22383f}
-.campaign-hero .hero-art{position:relative;min-height:clamp(420px,36vw,560px);overflow:hidden;border-radius:28px;background:url('/assets/img/hero-glass-woman-right-16x9.png') 72% center/cover no-repeat;box-shadow:0 22px 54px rgba(25,15,12,.18)}
+.campaign-hero .hero-art{position:relative;min-height:clamp(420px,36vw,560px);overflow:hidden;border-radius:28px;background:url('/assets/img/hero-glass-woman-right-contained-16x9.png') 72% center/cover no-repeat;box-shadow:0 22px 54px rgba(25,15,12,.18)}
 .campaign-hero .hero-art::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,10,8,.08),transparent 48%,rgba(15,10,8,.04));pointer-events:none}
 .campaign-hero .hero-art>.scene,.campaign-hero .hero-art>.counter{display:none}
-.campaign-hero{position:relative;width:100vw;min-height:clamp(560px,72vh,820px);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);overflow:hidden;border-radius:0;background:url('/assets/img/hero-glass-woman-right-16x9.png') center/cover no-repeat;box-shadow:0 22px 54px rgba(25,15,12,.18)}
+.campaign-hero{position:relative;width:100vw;min-height:clamp(560px,72vh,820px);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);overflow:hidden;border-radius:0;background:url('/assets/img/hero-glass-woman-right-contained-16x9.png') center/cover no-repeat;box-shadow:0 22px 54px rgba(25,15,12,.18)}
 .campaign-hero::before{content:'';position:absolute;z-index:0;inset:0 auto 0 0;width:53%;background:linear-gradient(90deg,rgba(240,238,230,.96),rgba(240,238,230,.82) 78%,transparent);pointer-events:none}
 .campaign-hero>.hero-copy,.campaign-hero>.hero-art{position:relative;z-index:1;background:none;box-shadow:none}
 .campaign-hero .hero-art>.scene{display:none}
