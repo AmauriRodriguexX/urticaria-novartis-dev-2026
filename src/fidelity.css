@@ -1,0 +1,13 @@
+/* Legacy fidelity controls and alternate rendering states. */
+.texture-toggle{margin-left:auto;padding:8px 13px;border:1px solid var(--line);border-radius:30px;background:color-mix(in srgb,var(--card) 55%,transparent);color:var(--faint);font:600 11px 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.glass-only .glass{width:68%;height:82%;margin-bottom:8px}
+.switcher{left:50%;right:auto;bottom:18px;transform:translateX(-50%);padding:6px 8px;border-radius:40px;gap:4px;justify-content:center;max-width:calc(100vw - 24px);box-shadow:0 10px 30px rgba(0,0,0,.18);background:rgba(255,255,255,.82);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(10px)}
+.switcher button{padding:8px 13px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;opacity:.72}.switcher button.active{opacity:1}.cards a,.cards button{min-height:230px;padding:26px 24px 24px;border-radius:18px}.cards>p{margin-bottom:22px}
+.switcher button{font-size:0}.switcher button::after{font-size:12px}.switcher button:nth-of-type(1)::after{content:'Auto'}.switcher button:nth-of-type(2)::after{content:'Día'}.switcher button:nth-of-type(3)::after{content:'Calor'}.switcher button:nth-of-type(4)::after{content:'Frío'}.switcher button:nth-of-type(5)::after{content:'Madrugada'}.switcher button:nth-of-type(6)::after{content:'Noche cálida'}
+.cards>div>button:first-child b{color:#ee7067}.cards>div>a:nth-child(2) b{color:#0081a8}.cards>div>a:nth-child(3) b{color:#b48628}.cards>div>a:nth-child(2) i{background:rgba(0,129,168,.14);color:#0081a8}.cards>div>a:nth-child(3) i{background:rgba(252,215,105,.24);color:#8a6820}.shell[style*="#15151b"] .switcher,.shell[style*="#1a1418"] .switcher{background:rgba(28,26,32,.82);color:#ece4d7;border-color:rgba(255,255,255,.12)}
+@keyframes bloomFloat{0%{transform:translate3d(0,0,0) scale(.9);opacity:0}12%{opacity:.5}50%{opacity:.32}88%{opacity:.4}100%{transform:translate3d(0,-26px,0) scale(1.18);opacity:0}}
+@keyframes lampBreathe{0%,100%{opacity:.78;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes wormPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(.78);opacity:.55}}
+@keyframes rimGlint{0%,100%{opacity:.35}50%{opacity:.9}}
+.blooms i{animation-name:bloomFloat}.life-glow{animation-name:lampBreathe}.glass-worm b{animation-name:wormPulse}.glass-rim{animation:rimGlint 6s ease-in-out infinite}
+@media(max-width:720px){.texture-toggle{font-size:9px;padding:6px 9px}.switcher{left:12px;right:12px;transform:none}}
