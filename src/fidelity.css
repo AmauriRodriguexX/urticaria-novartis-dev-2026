@@ -32,7 +32,7 @@
 .campaign-hero .hero-art{position:relative;min-height:clamp(420px,36vw,560px)}
 .campaign-hero .hero-art>.scene,.campaign-hero .hero-art>.counter{display:none}
 .campaign-hero{position:relative;width:100vw;min-height:clamp(560px,72vh,820px);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);overflow:hidden;border-radius:0;background:url('/assets/img/hero-glass-woman-right-contained-16x9.png') center/cover no-repeat;box-shadow:none}
-.campaign-hero::after{content:'';position:absolute;z-index:0;inset:0;background:linear-gradient(180deg,transparent 68%,var(--bg-solid) 100%);pointer-events:none}
+.campaign-hero::after{content:'';position:absolute;z-index:0;inset:0;background:linear-gradient(180deg,transparent 61%,var(--bg-solid) 100%);pointer-events:none}
 .campaign-hero::before{content:'';position:absolute;z-index:0;inset:0 auto 0 0;width:63%;background:linear-gradient(90deg,rgb(249 240 227),rgba(240,238,230,.82) 39%,transparent);pointer-events:none}
 .campaign-hero>.hero-copy,.campaign-hero>.hero-art{position:relative;z-index:1;background:none;box-shadow:none}
 .campaign-hero .hero-art>.scene{display:none}
