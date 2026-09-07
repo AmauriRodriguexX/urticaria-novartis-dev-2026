@@ -36,7 +36,7 @@
 .campaign-hero .hero-art>.scene,.campaign-hero .hero-art>.counter{display:none}
 .campaign-hero{position:relative;width:100vw;min-height:clamp(560px,72vh,820px);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);overflow:hidden;border-radius:0;background:var(--hero-image) center/cover no-repeat;box-shadow:none}
 .campaign-hero-bg{position:absolute;z-index:0;inset:0;background-image:var(--hero-image);background-position:right;background-size:cover;background-repeat:no-repeat}
-.campaign-hero-video{position:absolute;z-index:0;inset:-3%;width:106%;height:106%;object-fit:cover;object-position:right center;pointer-events:none}
+.campaign-hero-video{position:absolute;z-index:0;inset:-3%;width:auto;height:auto;object-fit:cover;object-position:right center;pointer-events:none}
 .campaign-hero::before{content:'';position:absolute;z-index:1;inset:0 auto 0 0;width:71%;background:linear-gradient(90deg,var(--overlay-start),var(--overlay-mid) 61%,transparent);pointer-events:none}
 .campaign-hero::after{content:'';position:absolute;z-index:1;inset:0;background:linear-gradient(180deg,transparent 61%,var(--bg-solid) 100%);pointer-events:none}
 .campaign-hero>.hero-copy,.campaign-hero>.hero-art{position:relative;z-index:2;background:none;box-shadow:none}
