@@ -26,7 +26,7 @@
 </script>
 
 <svelte:window on:keydown={(e)=>e.key==='Escape'&&onClose()} />
-<div class="modal" role="dialog" aria-modal="true" aria-label="Autochequeo: ¿Será urticaria?" tabindex="-1">
+<div class="modal" role="dialog" aria-modal="true" aria-label="Quiz orientativo: ¿Será urticaria?" tabindex="-1">
  <div class="modal-inner"><header class="modal-head"><span class="mini-glass"></span><b>Hazla pequeña · 1 min</b><button aria-label="Cerrar" on:click={onClose}>✕</button></header>
  {#if phase==='quiz'}<div class="quiz"><div class="progress"><i style={`width:${(step/flow.length)*100}%`}></i></div><p class="step">Paso {step+1} de {flow.length}</p><h2>{q[1]}</h2><p class="sub">{q[2]}</p><div class="options">{#each q[3] as o}<button class:chosen={q[0]==='multi'?(answers[id]||[]).includes(o[0]):answers[id]===o[0]} on:click={()=>select(o[0])}><i>{(q[0]==='multi'?(answers[id]||[]).includes(o[0]):answers[id]===o[0])?'✓':''}</i><span><strong>{o[1]}</strong><small>{o[2]}</small></span></button>{/each}</div><div class="modal-actions"><button class="text" on:click={back}>{step?'← Atrás':'Cancelar'}</button>{#if q[0]==='multi'}<button class="button" on:click={advance}>Continuar →</button>{/if}</div></div>
  {:else if phase==='urgent'}<div class="urgent"><div class="warning">!</div><h2>Esto puede ser una urgencia.</h2><p>La hinchazón de labios, lengua o garganta — o la dificultad para respirar — necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p><a class="button" href="tel:911">Llamar a emergencias (911)</a><button class="text" on:click={()=>phase='map'}>Ver especialistas para el seguimiento</button></div>

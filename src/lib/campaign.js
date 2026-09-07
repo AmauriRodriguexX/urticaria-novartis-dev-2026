@@ -7,9 +7,9 @@ export const themes = {
 }
 
 export const copies = {
-  dia: ['Buenos días','Tu vida es más grande que ','la comezón',' de la urticaria.','Entender qué te pasa es el primer paso para que ocupe menos espacio. Te acompañamos a llegar lista a tu próxima consulta.','Descúbrelo en 1 minuto','Un autochequeo que te orienta. No reemplaza a tu médico.'],
-  calor: ['En Mérida, ahora mismo','En Mérida el calor está fuerte. Y el calor puede subir ','los brotes','.','No es tu imaginación: el calor y la humedad despiertan la piel. Esto puede ayudarte hoy a entender qué te pasa.','Esto puede ayudarte hoy','Un autochequeo que te orienta. No reemplaza a tu médico.'],
-  frio: ['Con el frío de esta temporada','Con el frío, a algunas personas la piel se les ','brota','.','Sí, existe la urticaria por frío, y el aire seco del invierno irrita la piel. Esto ayuda a entender qué te pasa.','Entiende qué te pasa','Un autochequeo que te orienta. No reemplaza a tu médico.'],
+  dia: ['Buenos días','Tu vida es más grande que ','la comezón',' de la urticaria.','Entender qué te pasa es el primer paso para que ocupe menos espacio. Te acompañamos a llegar lista a tu próxima consulta.','Descúbrelo en 1 minuto','Un quiz que te orienta. No reemplaza a tu médico.'],
+  calor: ['En Mérida, ahora mismo','En Mérida el calor está fuerte. Y el calor puede subir ','los brotes','.','No es tu imaginación: el calor y la humedad despiertan la piel. Esto puede ayudarte hoy a entender qué te pasa.','Esto puede ayudarte hoy','Un quiz que te orienta. No reemplaza a tu médico.'],
+  frio: ['Con el frío de esta temporada','Con el frío, a algunas personas la piel se les ','brota','.','Sí, existe la urticaria por frío, y el aire seco del invierno irrita la piel. Esto ayuda a entender qué te pasa.','Entiende qué te pasa','Un quiz que te orienta. No reemplaza a tu médico.'],
   madrugada: ['Son las 3:15 a.m.','¿No puedes ','dormir','?','La comezón aparece justo cuando todo se queda en silencio. Respira: no estás sola, y esto pasa. Quédate, te acompañamos.','Quédate un momento','Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.'],
   'noche-calor': ['Son las 9:00 p.m.','La noche está calurosa, y la comezón no te deja ','dormir','.','El calor de esta noche aviva la piel. Respira: no estás sola, y esto pasa. Quédate, te acompañamos.','Quédate un momento','Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.']
 }
