@@ -5,7 +5,8 @@
   export let onQuiz
   export let word = copy[2]
   export let ctx = 'dia'
-  const contextVideos = { dia:'/assets/video/hero-context-dia.mp4', calor:'/assets/video/hero-context-calor.mp4', frio:'/assets/video/hero-context-frio.mp4', madrugada:'/assets/video/hero-context-madrugada.mp4', 'noche-calor':'/assets/video/hero-context-noche-calida.mp4', default:'/assets/video/hero-context-dia.mp4' }
+  const assetBase = import.meta.env.BASE_URL
+  const contextVideos = { dia:`${assetBase}assets/video/hero-context-dia.mp4`, calor:`${assetBase}assets/video/hero-context-calor.mp4`, frio:`${assetBase}assets/video/hero-context-frio.mp4`, madrugada:`${assetBase}assets/video/hero-context-madrugada.mp4`, 'noche-calor':`${assetBase}assets/video/hero-context-noche-calida.mp4`, default:`${assetBase}assets/video/hero-context-dia.mp4` }
   $: activeVideo = contextVideos[ctx] || contextVideos.default
   let animatedTarget = 0
   let mounted = false
@@ -39,7 +40,7 @@
     <source src={activeVideo} type="video/mp4" />
   </video>
   {#if ctx === 'calor'}<video class="campaign-hero-video campaign-hero-itch-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-    <source src="/assets/video/hero-context-calor-comezon.mp4" type="video/mp4" />
+    <source src={`${assetBase}assets/video/hero-context-calor-comezon.mp4`} type="video/mp4" />
   </video>{/if}
   <div class="hero-hives" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="hero-copy animate-rise">
