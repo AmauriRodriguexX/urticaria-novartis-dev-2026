@@ -38,6 +38,7 @@
   <video class="campaign-hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
     <source src={activeVideo} type="video/mp4" />
   </video>
+  <div class="hero-hives" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="hero-copy animate-rise">
     <p class="kicker"><i></i>{copy[0]}</p>
     <h1>{copy[1]}<em>{word}</em>{copy[3]}</h1>
