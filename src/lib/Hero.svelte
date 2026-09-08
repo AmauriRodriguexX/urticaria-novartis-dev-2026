@@ -38,6 +38,9 @@
   <video class="campaign-hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
     <source src={activeVideo} type="video/mp4" />
   </video>
+  {#if ctx === 'calor'}<video class="campaign-hero-video campaign-hero-itch-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="/assets/video/hero-context-calor-comezon.mp4" type="video/mp4" />
+  </video>{/if}
   <div class="hero-hives" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="hero-copy animate-rise">
     <p class="kicker"><i></i>{copy[0]}</p>
