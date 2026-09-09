@@ -1,57 +1,91 @@
 <script>
   import { onMount } from 'svelte'
+  import { assetsFor } from './context.js'
+  import Icon from './Icon.svelte'
   export let copy
   export let target = 1240
   export let onQuiz
   export let word = copy[2]
   export let ctx = 'dia'
-  const assetBase = import.meta.env.BASE_URL
-  const contextVideos = { dia:`${assetBase}assets/video/hero-context-dia.mp4`, calor:`${assetBase}assets/video/hero-context-calor.mp4`, frio:`${assetBase}assets/video/hero-context-frio.mp4`, madrugada:`${assetBase}assets/video/hero-context-madrugada.mp4`, 'noche-calor':`${assetBase}assets/video/hero-context-noche-calida.mp4`, default:`${assetBase}assets/video/hero-context-dia.mp4` }
-  $: activeVideo = contextVideos[ctx] || contextVideos.default
-  let animatedTarget = 0
-  let mounted = false
-  let frame
+  export let videosMode = false
+  export let autoVideo = false
+
+  $: a = assetsFor(ctx)
+  $: videoSrc = autoVideo ? `${import.meta.env.BASE_URL}assets/video/hero-context-dia.mp4` : a.video
+
+  let animated = 0, mounted = false, frame
+  let ctaOffscreen = false
+  let videoAvailable = true
+
+  // Acción: se reengancha en cada render del hero (el {#key ctx} lo recrea al cambiar de vista).
+  function watchCta(node) {
+    const io = new IntersectionObserver(([e]) => { ctaOffscreen = !e.isIntersecting && e.boundingClientRect.top < 0 }, { threshold: 0 })
+    io.observe(node)
+    return { destroy() { io.disconnect(); ctaOffscreen = false } }
+  }
 
   function animateCounter(value) {
     cancelAnimationFrame(frame)
-    animatedTarget = 0
-    const started = performance.now()
-    const duration = 900
+    animated = 0
+    const started = performance.now(), duration = 900
     const tick = (now) => {
-      const progress = Math.min(1, (now - started) / duration)
-      animatedTarget = Math.round(value * (1 - Math.pow(1 - progress, 3)))
-      if (progress < 1) frame = requestAnimationFrame(tick)
+      const p = Math.min(1, (now - started) / duration)
+      animated = Math.round(value * (1 - Math.pow(1 - p, 3)))
+      if (p < 1) frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)
   }
-
   $: if (mounted && target != null && ctx) animateCounter(target)
 
   onMount(() => {
     mounted = true
-    animateCounter(target)
     return () => cancelAnimationFrame(frame)
   })
 </script>
 
-{#key ctx}<section class="hero context-transition campaign-hero">
-  <div class="campaign-hero-bg" aria-hidden="true"></div>
-  <video class="campaign-hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-    <source src={activeVideo} type="video/mp4" />
-  </video>
-  {#if ctx === 'calor'}<video class="campaign-hero-video campaign-hero-itch-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-    <source src={`${assetBase}assets/video/hero-context-calor-comezon.mp4`} type="video/mp4" />
-  </video>{/if}
-  <div class="hero-hives" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="hero-copy animate-rise">
-    <p class="kicker"><i></i>{copy[0]}</p>
-    <h1>{copy[1]}<em>{word}</em>{copy[3]}</h1>
+{#key ctx}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 1023px)" srcset={a.mobile} width="1080" height="1350" />
+      <img src={a.desktop} alt="" fetchpriority="high" decoding="async" width="1920" height="1080" />
+    </picture>
+    {#if videosMode && videoAvailable}
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster={a.desktop}
+        on:error={() => videoAvailable = false}
+        aria-hidden="true"
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+    {/if}
+    <div class="hero-shade"></div>
+  </div>
+
+  <div class="hero-copy rise">
+    <p class="kicker"><i aria-hidden="true"></i>{copy[0]}</p>
+    <h1 id="hero-title">{copy[1]}<em>{word}</em>{copy[3]}</h1>
     <p class="intro">{copy[4]}</p>
-    <div class="action-row"><button class="button" on:click={onQuiz}>{copy[5]} <span>→</span></button><small>{copy[6]}</small></div>
-    <p class="tagline">Que ocupe el lugar más pequeño de tu vida.</p>
+    <div class="action-row" use:watchCta>
+      <button class="button" on:click={onQuiz}><span>{copy[5]}</span><Icon name="arrow_forward" size={20} /></button>
+      <small>{copy[6]}</small>
+    </div>
+    <div class="counter">
+      <strong>{animated.toLocaleString('es-MX')}</strong>
+      <p>personas usaron esta guía esta semana para entender qué les pasa.</p>
+    </div>
   </div>
-  <div class="hero-art animate-rise delay">
-    <div class:glass-only={ctx !== 'dia'} class="scene" aria-hidden="true"><div class="life-glow"></div><div class="ground"></div>{#if ctx === 'dia'}<div class="person"><div class="person-shadow"></div><svg viewBox="0 0 120 230"><g fill="var(--person)"><circle cx="60" cy="30" r="21"></circle><path d="M60 51c-19 0-29 14-31 35l-7 64c-1 9 12 11 14 2l8-50 2 0-3 96c-1 11 16 11 17 1l4-64 4 0 4 64c1 10 18 10 17-1l-3-96 2 0 8 50c2 9 15 7 14-2l-7-64c-2-21-12-35-31-35z"></path></g></svg></div>{/if}<div class="glass"><div class="glass-rim"></div><div class="glass-body"></div><div class="glass-worm"><b></b><b></b><b></b></div></div></div>
-    <div class="counter"><strong>{animatedTarget.toLocaleString('es-MX')}</strong><p>personas usaron esta guía esta semana para entender qué les pasa.</p></div>
+</section>
+{/key}
+
+{#if ctaOffscreen}
+  <div class="sticky-cta" role="region" aria-label="Acceso rápido al quiz">
+    <button class="button" on:click={onQuiz}><span>{copy[5]}</span><Icon name="arrow_forward" size={20} /></button>
   </div>
-</section>{/key}
+{/if}
