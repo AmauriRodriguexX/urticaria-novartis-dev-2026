@@ -1,22 +1,109 @@
 <script>
- import { onMount } from 'svelte'; import Hero from './lib/Hero.svelte'; import QuizModal from './lib/QuizModal.svelte'; import { themes, copies } from './lib/campaign.js'
- const routePath = typeof window !== 'undefined' ? window.location.pathname.replace(/^\//,'').toLowerCase() : ''
- let forced = ['dia','calor','frio','madrugada','noche-calor'].includes(routePath) ? routePath : null, quizOpen = false, word = 'la comezón', textureOn = true
- const order=['dia','calor','frio','madrugada','noche-calor'];
- const bgSolid={dia:'#f0eee6',calor:'#fbf2e6',frio:'#eaf1f3',madrugada:'#15151b','noche-calor':'#1a1418'};
- const switcherSurface={dia:'#fffdf8',calor:'#fffaf2',frio:'#fbfdfe',madrugada:'#25242d','noche-calor':'#2b2022'};
- const overlayStart={dia:'rgba(240,238,230,.96)',calor:'rgba(251,242,230,.96)',frio:'rgba(234,241,243,.96)',madrugada:'rgba(21,21,27,.96)','noche-calor':'rgba(26,20,24,.96)'};
- const overlayMid={dia:'rgba(240,238,230,.82)',calor:'rgba(251,242,230,.82)',frio:'rgba(234,241,243,.82)',madrugada:'rgba(21,21,27,.76)','noche-calor':'rgba(26,20,24,.76)'};
- const assetBase=import.meta.env.BASE_URL; const heroImages={dia:`${assetBase}assets/img/hero-glass-woman-day-16x9.png`,calor:`${assetBase}assets/img/hero-glass-woman-heat-16x9.png`,frio:`${assetBase}assets/img/hero-glass-woman-cold-16x9.png`,madrugada:`${assetBase}assets/img/hero-glass-woman-dawn-16x9.png`,'noche-calor':`${assetBase}assets/img/hero-glass-woman-warm-night-16x9.png`};
- function current(){const n=new Date(), h=n.getHours(),m=n.getMonth();if(h<6)return m>=4&&m<=8?'noche-calor':'madrugada';if([11,0,1].includes(m))return'frio';return m>=4&&m<=8?'calor':'dia'}
- $: ctx=forced || current(); $: theme=themes[ctx]; $: dark=['madrugada','noche-calor'].includes(ctx); $: copy=copies[ctx]; $: displayWord=ctx==='dia'?word:copy[2]; $: css=Object.entries(theme).map(([k,v])=>`--${k}:${v}`).join(';')+`;--bg-solid:${bgSolid[ctx]};--overlay-start:${overlayStart[ctx]};--overlay-mid:${overlayMid[ctx]};--hero-image:url('${heroImages[ctx]}');--switcher-surface:${switcherSurface[ctx]};--switcher-border:${dark?'rgba(255,255,255,.18)':theme.border};--switcher-ink:${theme.ink};--switcher-active-ink:${dark?'#241a12':'#fff'}`; $: target=dark?18:1240;
- onMount(() => {
-   const route = location.pathname.replace(/^\//,'').toLowerCase();
-   if (['dia','calor','frio','madrugada','noche-calor'].includes(route)) forced = route;
-   const words=['la comezón','los brotes','el insomnio','la incertidumbre'];
-   const timer=setInterval(()=> { if (ctx==='dia') word=words[(words.indexOf(word)+1)%words.length] },2900);
-   return () => clearInterval(timer);
- })
+  import { onMount } from 'svelte'
+  import Hero from './lib/Hero.svelte'
+  import QuizModal from './lib/QuizModal.svelte'
+  import Icon from './lib/Icon.svelte'
+  import LogoNovartis from './lib/LogoNovartis.svelte'
+  import { themes, copies } from './lib/campaign.js'
+  import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled } from './lib/context.js'
+
+  let forced = forcedFromUrl()
+  let preview = previewEnabled()
+  let quizOpen = false
+  let word = 'la comezón'
+  let quizTrigger = null
+  let videosMode = typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '').endsWith('/videos')
+  let viewOpen = false
+
+  $: ctx = forced || resolveContext()
+  $: theme = themes[ctx]
+  $: dark = DARK.has(ctx)
+  $: copy = copies[ctx]
+  $: displayWord = ctx === 'dia' ? word : copy[2]
+  $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
+  $: target = dark ? 18 : 1240
+
+  function openQuiz(e) {
+    quizTrigger = e?.currentTarget || null
+    quizOpen = true
+  }
+  function closeQuiz() {
+    quizOpen = false
+    queueMicrotask(() => quizTrigger?.focus?.())
+  }
+  function setView(k) {
+    forced = k
+    viewOpen = false
+    const url = new URL(window.location.href)
+    if (k) url.searchParams.set('vista', k); else url.searchParams.delete('vista')
+    history.replaceState(history.state, '', url)
+  }
+
+  onMount(() => {
+    const words = ['la comezón', 'los brotes', 'el insomnio', 'la incertidumbre']
+    const timer = setInterval(() => { if (ctx === 'dia' && !quizOpen) word = words[(words.indexOf(word) + 1) % words.length] }, 2900)
+    return () => clearInterval(timer)
+  })
 </script>
-<svelte:head><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,500;0,600;0,700;1,600&family=Barlow+Condensed:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet"></svelte:head>
-<main class="shell" style={css}>{#if textureOn}<div class="blooms" aria-hidden="true"><i></i><i></i><i></i></div>{/if}<div class="page"><header class="brand"><span class="brand-mark"></span><span>El lugar más pequeño</span><button class="texture-toggle" on:click={()=>textureOn=!textureOn}>Textura: {textureOn?'activa':'inactiva'}</button></header><Hero {copy} {target} word={displayWord} {ctx} onQuiz={()=>quizOpen=true}/><section class="cards"><p>Tres formas de empezar</p><div><button on:click={()=>quizOpen=true}><i>?</i><h3>¿Será urticaria?</h3><span>Reconoce las señales y distingue lo agudo de lo crónico: más de 6 semanas, sin un detonante claro.</span><b>Hacer el autochequeo →</b></button><a href="#comunidad"><i>◌</i><h3>No lo estás imaginando</h3><span>Otras personas la viven, y aprendieron a vivirla en pequeño.</span><b>Leer a la comunidad →</b></a><a href="#consulta"><i>□</i><h3>Hay algo más que puedes hacer</h3><span>Lleva a tu próxima consulta las palabras justas para empezar la conversación.</span><b>Preparar mi consulta →</b></a></div></section><footer><em>Que ocupe el lugar más pequeño de tu vida.</em><small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small></footer></div><nav class="switcher" aria-label="Vista previa de contexto"><span>Vista</span><button class:active={!forced} on:click={()=>forced=null}>Auto</button>{#each order as k}<button class:active={forced===k} on:click={()=>forced=k}>{k==='noche-calor'?'Noche cálida':k}</button>{/each}</nav>{#if quizOpen}<QuizModal {ctx} onClose={()=>quizOpen=false}/>{/if}</main>
+
+<svelte:window on:click={() => viewOpen = false} />
+
+<main class="shell" class:dark style={css}>
+  <header class="brand">
+    <a class="brand-link" href={import.meta.env.BASE_URL} aria-label="Inicio">
+      <span>El lugar más pequeño</span>
+    </a>
+    {#if preview}
+      <div class="view-select">
+        <span>Vista</span>
+        <div class="view-dropdown">
+          <button class="view-trigger" type="button" aria-haspopup="listbox" aria-expanded={viewOpen} on:click|stopPropagation={() => viewOpen = !viewOpen}>
+            <span>{forced ? LABELS[forced] : 'Auto'}</span><i aria-hidden="true">⌄</i>
+          </button>
+          {#if viewOpen}
+            <div class="view-menu" role="listbox" aria-label="Seleccionar vista">
+              <button type="button" role="option" class:active={!forced} aria-selected={!forced} on:click={() => setView(null)}><span>Auto</span><small>Según la hora</small></button>
+              {#each ORDER as k}
+                <button type="button" role="option" class:active={forced === k} aria-selected={forced === k} on:click={() => setView(k)}><span>{LABELS[k]}</span><small>{k === 'dia' ? 'Luz natural' : k === 'calor' ? 'Ambiente cálido' : k === 'frio' ? 'Aire frío' : k === 'madrugada' ? 'De madrugada' : 'Noche cálida'}</small></button>
+              {/each}
+            </div>
+          {/if}
+        </div>
+      </div>
+    {/if}
+  </header>
+
+  <Hero {copy} {target} word={displayWord} {ctx} {videosMode} autoVideo={!forced} onQuiz={openQuiz} />
+
+  <section class="cards" aria-labelledby="cards-title">
+    <p id="cards-title" class="eyebrow">Tres formas de empezar</p>
+    <div class="cards-grid">
+      <button class="card card-quiz" on:click={openQuiz}>
+        <i><Icon name="quiz" size={22} /></i>
+        <h3>¿Será urticaria?</h3>
+        <span>Reconoce las señales y distingue lo agudo de lo crónico: más de 6 semanas, sin un detonante claro.</span>
+        <b>Hacer el quiz <Icon name="arrow_forward" size={18} /></b>
+      </button>
+      <a class="card card-community" href="#comunidad">
+        <i><Icon name="groups" size={22} /></i>
+        <h3>No lo estás imaginando</h3>
+        <span>Otras personas la viven, y aprendieron a vivirla en pequeño.</span>
+        <b>Leer a la comunidad <Icon name="arrow_forward" size={18} /></b>
+      </a>
+      <a class="card card-consult" href="#consulta">
+        <i><Icon name="stethoscope" size={22} /></i>
+        <h3>Hay algo más que puedes hacer</h3>
+        <span>Lleva a tu próxima consulta las palabras justas para empezar la conversación.</span>
+        <b>Preparar mi consulta <Icon name="arrow_forward" size={18} /></b>
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <em>Que ocupe el lugar más pequeño de tu vida.</em>
+    <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
+    <span class="novartis"><LogoNovartis alto={22} /></span>
+  </footer>
+
+  {#if quizOpen}<QuizModal {ctx} onClose={closeQuiz} />{/if}
+</main>

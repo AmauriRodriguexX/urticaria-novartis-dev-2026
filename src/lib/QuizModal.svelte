@@ -1,36 +1,238 @@
 <script>
+  import { onMount, tick } from 'svelte'
   import { questions } from './campaign.js'
+  import { construirFlujo, esUrgencia, leerResultado, construirResumen, ESCALACION, PREGUNTA_CLAVE } from './cuestionario.js'
+  import { DARK } from './context.js'
+  import Icon from './Icon.svelte'
+  import Directorio from './Directorio.svelte'
   export let ctx
   export let onClose
-  let phase = 'quiz', step = 0, answers = {}, filter = 'todos', zip = '', geo = null, copied = false, downloaded = false
-  $: dark = ['madrugada','noche-calor'].includes(ctx)
-  $: flow = getFlow()
+
+  let phase = 'quiz', step = 0, answers = {}, copied = false, downloaded = false
+  let dialog, heading
+  let indice = 0           // posición del modal dentro del historial; viaja DENTRO del estado
+  // Identificador de esta apertura del modal. Sin él, una entrada de historial
+  // sobrante de una apertura anterior (o de antes de recargar la página) revivía
+  // el modal en una pantalla que ya no correspondía.
+  const sesion = Math.random().toString(36).slice(2)
+  let cerrado = false
+  let limpiarAlVolver = false
+  let temporizadorCierre
+
+  $: dark = DARK.has(ctx)
+  $: flow = construirFlujo(answers, ctx)
   $: id = flow[step]
   $: q = questions[id]
-  $: values = resolve()
-  $: outcome = getOutcome(values)
-  $: rows = cardRows(values)
-  const specialists = [{name:'Dra. Elena Cárdenas',type:'alergologia',label:'Alergología e Inmunología',address:'Av. Reforma 1820, Col. Centro',dist:'1.2 km',x:28,y:30},{name:'Dr. Marco Villaseñor',type:'dermatologia',label:'Dermatología',address:'Calle 60 #495, Col. García Ginerés',dist:'2.0 km',x:58,y:48},{name:'Dra. Paula Rentería',type:'alergologia',label:'Alergología',address:'Prol. Montejo 220, Col. Itzimná',dist:'2.8 km',x:72,y:28},{name:'Dr. Iván Solórzano',type:'dermatologia',label:'Dermatología clínica',address:'Av. Pérez Ponce 134, Col. Alcalá Martín',dist:'3.4 km',x:38,y:64}]
-  function getFlow(){ const a=['p1']; if(answers.p1==='hinchazon')a.push('p1b'); a.push('p2','p3'); if(dark)a.push('n1','n2'); if(['calor','noche-calor'].includes(ctx))a.push('c1','c2');if(ctx==='frio')a.push('f1','f2');return [...a,'p4','p5','p6'] }
-  function select(value){ if(q[0]==='multi'){const old=answers[id]||[]; answers={...answers,[id]:old.includes(value)?old.filter(x=>x!==value):[...old,value]};return} const next={...answers,[id]:value}; if(id==='p1'&&value!=='hinchazon')delete next.p1b; answers=next;if(id==='p1b'&&value==='urgente'){phase='urgent';return} advance() }
-  function advance(){if(step+1>=flow.length) phase='result';else step++}
-  function back(){if(phase==='map')phase='result';else if(phase!=='quiz')phase='quiz';else if(step)step--;else onClose()}
-  function resolve(){return {EVAN:answers.p2,DUR:answers.p3,TRIG:answers.p4,IMP:answers.p5||[],AH:answers.p6,NEWP:answers.c1==='si',INDC:answers.c2==='si',INDF:answers.f1==='si',NOCT:answers.n1==='empezo_dormido',P1:answers.p1}}
-  function getOutcome(v){if(v.EVAN==='persisten')return ['Esto no se comporta como una urticaria típica.','Las ronchas que se quedan días en el mismo lugar necesitan una revisión médica. Llévale este resumen para no empezar de cero.'];if(v.TRIG==='detonante_claro'||v.TRIG==='estreno_nuevo'||v.NEWP)return ['Podría ser una reacción a algo nuevo.','Cuando hay algo recién estrenado de por medio, coméntalo con tu médico.'];if((v.INDC||v.INDF)&&v.EVAN==='si')return ['Se comporta como una urticaria con detonante físico.','Tu piel puede reaccionar al frío o calor. Vale la pena que tu médico lo revise.'];if(v.EVAN==='si'&&v.DUR==='cronica')return ['Lo que describes encaja con urticaria crónica espontánea.','No es solo alergia y no es tu culpa. Tiene nombre y hay opciones que puedes conversar con tu médico.'];if(v.EVAN==='si'&&v.DUR==='aguda')return ['Por ahora parece algo pasajero.','Si cruza las 6 semanas y sigue apareciendo, coméntaselo a tu médico.'];return ['Con esto no alcanzo a orientarte del todo.','Hay piezas que solo un médico puede juntar. Llévale este resumen para llegar con todo claro.']}
-  function cardRows(v){const label={aguda:'Menos de 6 semanas',cronica:'Más de 6 semanas',si:'Aparecen y desaparecen en <24 h',persisten:'Se quedan días en el mismo sitio',fallido:'Tomó antihistamínico y sigue con síntomas',funciona:'Antihistamínico le ayuda'};const impacts={sueno:'Sueño',concentracion:'Concentración',evito_planes:'Vida social',angustia:'Ánimo / estrés',trabajo:'Trabajo'};return [['Tiempo con síntomas',label[v.DUR]||'—'],['Comportamiento',label[v.EVAN]||'—'],['Impacto en vida / sueño',(v.IMP.map(x=>impacts[x]).join(', ')||'No reportó impacto')],['Tratamiento previo',label[v.AH]||'No definido']]} 
-  function summary(){return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${outcome[0]}\n\n${rows.map(r=>`• ${r[0]}: ${r[1]}`).join('\n')}\n\nMi pregunta clave: «¿Hay algo más que podamos intentar?»`}
-  function download(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([summary()],{type:'text/plain;charset=utf-8'}));a.download='resumen-para-mi-medico.txt';a.click();downloaded=true;setTimeout(()=>downloaded=false,2500)}
-  async function copy(){try{await navigator.clipboard.writeText(summary());copied=true;setTimeout(()=>copied=false,2200)}catch{}}
-  function locate(){geo='pending';navigator.geolocation?.getCurrentPosition(()=>geo='on',()=>geo='denied',{timeout:8000})}
-  $: visibleSpecialists = filter==='todos'?specialists:specialists.filter(s=>s.type===filter)
+  $: lectura = leerResultado(answers)
+  $: rows = construirResumen(answers, ctx, questions)
+  $: escalacion = ESCALACION.cuando(answers)
+
+
+  // ---------- flujo ----------
+  function select(value) {
+    if (q[0] === 'multi') {
+      const old = answers[id] || []
+      answers = { ...answers, [id]: old.includes(value) ? old.filter(x => x !== value) : [...old, value] }
+      return
+    }
+    const next = { ...answers, [id]: value }
+    if (id === 'p1' && value !== 'hinchazon') delete next.p1b
+    answers = next
+    if (esUrgencia(id, value)) { go('urgent', step); return }
+    advance()
+  }
+  function advance() { if (step + 1 >= flow.length) go('result', step); else go('quiz', step + 1) }
+  function back() { history.back() }
+
+  // Empezar de nuevo vuelve a la PRIMERA pantalla del quiz en lugar de apilar otra
+  // entrada; si no, el historial acumulaba el recorrido viejo y "atrás" paseaba por
+  // pantallas ya abandonadas.
+  function restart() {
+    if (indice > 0) { limpiarAlVolver = true; history.go(-indice) }
+    else { answers = {}; aplicar('quiz', 0) }
+  }
+
+  // ---------- historial ----------
+  // Cada pantalla del modal es una entrada. El índice viaja dentro del propio estado,
+  // así que no puede desincronizarse: para cerrar siempre basta con retroceder
+  // indice + 1 posiciones, sea cual sea el camino que haya seguido la persona.
+  function aplicar(nuevaFase, nuevoPaso) { phase = nuevaFase; step = nuevoPaso; enfocarTitulo() }
+
+  function go(nuevaFase, nuevoPaso) {
+    aplicar(nuevaFase, nuevoPaso)
+    indice += 1
+    history.pushState({ quiz: { phase, step, i: indice, s: sesion } }, '')
+  }
+
+  function onPop(e) {
+    const s = e.state?.quiz
+    if (s && s.s === sesion) {
+      indice = s.i
+      aplicar(s.phase, s.step)
+      if (limpiarAlVolver) { limpiarAlVolver = false; answers = {} }
+      return
+    }
+    // Salimos del modal por el botón atrás del navegador.
+    cerrarYa()
+  }
+
+  function close() {
+    if (cerrado) return
+    // Deshacemos exactamente las entradas que empujamos, ni una más.
+    history.go(-(indice + 1))
+    // Red de seguridad: si el navegador no dispara popstate, cerramos igual en vez
+    // de dejar el modal atorado.
+    temporizadorCierre = setTimeout(cerrarYa, 400)
+  }
+
+  function cerrarYa() {
+    if (cerrado) return
+    cerrado = true
+    clearTimeout(temporizadorCierre)
+    onClose()
+  }
+
+  async function enfocarTitulo() { await tick(); heading?.focus?.() }
+
+  // ---------- resultado ----------
+  function summary() {
+    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}\n\nMi pregunta clave: ${PREGUNTA_CLAVE}`
+  }
+  let downloading = false
+  async function download() {
+    if (downloading) return
+    downloading = true
+    try {
+      const { descargarResumen } = await import('./pdf/resumen.js')
+      await descargarResumen({
+        lectura,
+        rows,
+        pregunta: PREGUNTA_CLAVE,
+        escalacion: escalacion ? ESCALACION.enPdf : null
+      })
+      downloaded = true; setTimeout(() => downloaded = false, 2500)
+    } finally {
+      downloading = false
+    }
+  }
+  // El portapapeles moderno falla en contextos no seguros, sin foco o en navegadores
+  // viejos; sin respaldo el botón no hacía nada y no avisaba.
+  async function copy() {
+    const texto = summary()
+    let ok = false
+    try {
+      await navigator.clipboard.writeText(texto)
+      ok = true
+    } catch {
+      try {
+        const ta = document.createElement('textarea')
+        ta.value = texto
+        ta.setAttribute('readonly', '')
+        ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0'
+        document.body.appendChild(ta)
+        ta.select()
+        ok = document.execCommand('copy')
+        ta.remove()
+      } catch { ok = false }
+    }
+    if (ok) { copied = true; setTimeout(() => copied = false, 2200) }
+  }
+
+  // ---------- foco y scroll ----------
+  function trapTab(e) {
+    if (e.key !== 'Tab' || !dialog) return
+    const f = [...dialog.querySelectorAll('button:not([disabled]),a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el => el.offsetParent !== null)
+    if (!f.length) return
+    const first = f[0], last = f[f.length - 1]
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+  }
+  onMount(() => {
+    const scrollY = window.scrollY
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('popstate', onPop)
+    indice = 0
+    // Si la entrada actual arrastra un estado de modal (por ejemplo, tras recargar
+    // con el quiz abierto), lo limpiamos antes de empezar.
+    if (history.state?.quiz) history.replaceState({}, '')
+    history.pushState({ quiz: { phase: 'quiz', step: 0, i: 0, s: sesion } }, '')
+    return () => {
+      cerrado = true
+      clearTimeout(temporizadorCierre)
+      document.body.style.overflow = ''
+      window.removeEventListener('popstate', onPop)
+      window.scrollTo(0, scrollY)
+    }
+  })
 </script>
 
-<svelte:window on:keydown={(e)=>e.key==='Escape'&&onClose()} />
-<div class="modal" role="dialog" aria-modal="true" aria-label="Quiz orientativo: ¿Será urticaria?" tabindex="-1">
- <div class="modal-inner"><header class="modal-head"><span class="mini-glass"></span><b>Hazla pequeña · 1 min</b><button aria-label="Cerrar" on:click={onClose}>✕</button></header>
- {#if phase==='quiz'}<div class="quiz"><div class="progress"><i style={`width:${(step/flow.length)*100}%`}></i></div><p class="step">Paso {step+1} de {flow.length}</p><h2>{q[1]}</h2><p class="sub">{q[2]}</p><div class="options">{#each q[3] as o}<button class:chosen={q[0]==='multi'?(answers[id]||[]).includes(o[0]):answers[id]===o[0]} on:click={()=>select(o[0])}><i>{(q[0]==='multi'?(answers[id]||[]).includes(o[0]):answers[id]===o[0])?'✓':''}</i><span><strong>{o[1]}</strong><small>{o[2]}</small></span></button>{/each}</div><div class="modal-actions"><button class="text" on:click={back}>{step?'← Atrás':'Cancelar'}</button>{#if q[0]==='multi'}<button class="button" on:click={advance}>Continuar →</button>{/if}</div></div>
- {:else if phase==='urgent'}<div class="urgent"><div class="warning">!</div><h2>Esto puede ser una urgencia.</h2><p>La hinchazón de labios, lengua o garganta — o la dificultad para respirar — necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p><a class="button" href="tel:911">Llamar a emergencias (911)</a><button class="text" on:click={()=>phase='map'}>Ver especialistas para el seguimiento</button></div>
- {:else if phase==='result'}<div class="result"><p class="result-kicker">Ya diste el primer paso para ponerla en su lugar.</p><h2>{outcome[0]}</h2><p class="sub">{outcome[1]}</p>{#if values.AH==='fallido'}<p class="escalation">Ya probaste antihistamínicos y sigues con síntomas. En tu próxima consulta, pregunta: «¿hay algo más que podamos intentar?».</p>{/if}<div class="summary"><header><strong>Tu resumen para el médico</strong><small>Orientativo</small></header>{#each rows as row}<p><b>{row[0]}</b><span>{row[1]}</span></p>{/each}<footer><small>La pregunta que abre la conversación</small><strong>«¿Hay algo más que podamos intentar?»</strong></footer><div class="summary-actions"><button class="button" on:click={download}>{downloaded?'✓ Descargado':'Descargar resumen'}</button><button class="outline" on:click={copy}>{copied?'✓ Copiado':'Copiar'}</button></div></div><div class="modal-actions"><button class="button" on:click={()=>phase='map'}>Ver especialistas cerca →</button><button class="text" on:click={()=>{phase='quiz';step=0;answers={}}}>Empezar de nuevo</button></div></div>
- {:else}<div class="directory"><h2>Especialistas certificados cerca de ti</h2><p class="sub">Alergólogos y dermatólogos de la red de atención en urticaria. <b>Llévale tu tarjeta a uno de ellos.</b></p><div class="filters">{#each [['todos','Todos'],['alergologia','Alergología'],['dermatologia','Dermatología']] as f}<button class:active={filter===f[0]} on:click={()=>filter=f[0]}>{f[1]}</button>{/each}</div><div class="location"><button class="outline" on:click={locate}>{geo==='on'?'Mostrando cerca de ti':geo==='pending'?'Ubicando…':'Usar mi ubicación'}</button><input bind:value={zip} inputmode="numeric" placeholder="o tu código postal" /></div><div class="map">{#each visibleSpecialists as s}<i title={s.name} style={`left:${s.x}%;top:${s.y}%`}></i>{/each}</div>{#each visibleSpecialists as s}<article><i class={s.type}></i><div><strong>{s.name}</strong><em>{s.dist}</em><p>{s.label}</p><small>{s.address}</small></div></article>{/each}<p class="map-note">Directorio de muestra de especialistas certificados. En producción se conecta al directorio curado por el equipo médico.</p><button class="outline" on:click={back}>← Volver a mi resumen</button></div>{/if}
- </div>
+<svelte:window on:keydown={(e) => { if (e.key === 'Escape') close(); trapTab(e) }} />
+
+<div class="modal" role="dialog" aria-modal="true" aria-label="Quiz orientativo: ¿Será urticaria?" bind:this={dialog}>
+  <div class="modal-inner">
+    <header class="modal-head">
+      <span class="mini-glass" aria-hidden="true"></span>
+      <b>Hazla pequeña · 1 min</b>
+      <button class="close" aria-label="Cerrar" on:click={close}><Icon name="close" size={22} /></button>
+    </header>
+
+    {#if phase === 'quiz'}
+      <div class="quiz">
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax={flow.length} aria-valuenow={step + 1}><i style={`width:${((step + 1) / flow.length) * 100}%`}></i></div>
+        <p class="step">Paso {step + 1} de {flow.length}</p>
+        <h2 tabindex="-1" bind:this={heading}>{q[1]}</h2>
+        {#if q[2]}<p class="sub">{q[2]}</p>{/if}
+        <div class="options" role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
+          {#each q[3] as o}
+            {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
+            <button class:chosen={on} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
+              <i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
+              <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span>
+            </button>
+          {/each}
+        </div>
+        <div class="quiz-nav" class:has-next={q[0] === 'multi'}>
+          <button class="nav-back" on:click={step ? back : close}>
+            {#if step}<Icon name="arrow_back" size={18} /><span>Atrás</span>{:else}<span>Cancelar</span>{/if}
+          </button>
+          {#if q[0] === 'multi'}
+            <button class="button nav-next" on:click={advance}><span>Continuar</span><Icon name="arrow_forward" size={20} /></button>
+          {/if}
+        </div>
+      </div>
+
+    {:else if phase === 'urgent'}
+      <div class="urgent">
+        <div class="warning" aria-hidden="true"><Icon name="emergency" size={34} /></div>
+        <h2 tabindex="-1" bind:this={heading}>Esto puede ser una urgencia.</h2>
+        <p>La hinchazón de labios, lengua o garganta — o la dificultad para respirar — necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p>
+        <a class="button" href="tel:911"><Icon name="call" size={20} /><span>Llamar a emergencias (911)</span></a>
+        <button class="text" on:click={() => go('map', step)}><Icon name="location_on" size={18} /> Ver especialistas</button>
+      </div>
+
+    {:else if phase === 'result'}
+      <div class="result">
+        <p class="eyebrow accent">Ya diste el primer paso para ponerla en su lugar.</p>
+        <h2 tabindex="-1" bind:this={heading}>{lectura.titulo}</h2>
+        <p class="sub">{lectura.detalle}</p>
+        {#if escalacion}<p class="escalation">{ESCALACION.enPantalla}</p>{/if}
+        <div class="summary">
+          <header><strong>Tu resumen para el médico</strong><small>Orientativo</small></header>
+          {#each rows as row}<p><b>{row.etiqueta}</b><span class:vacio={row.sinResponder}>{row.valor}</span></p>{/each}
+          <footer><small>La pregunta que abre la conversación</small><strong>{PREGUNTA_CLAVE}</strong></footer>
+          <div class="summary-actions">
+            <button class="button" on:click={download} disabled={downloading}><Icon name={downloaded ? 'check' : 'download'} size={20} /><span>{downloaded ? 'Descargado' : downloading ? 'Generando\u2026' : 'Descargar resumen'}</span></button>
+            <button class="ghost" on:click={copy}><Icon name={copied ? 'check' : 'content_copy'} size={18} /><span>{copied ? 'Copiado' : 'Copiar'}</span></button>
+          </div>
+        </div>
+        <div class="result-next">
+          <button class="outline" on:click={() => go('map', step)}><Icon name="location_on" size={20} /><span>Ver especialistas cerca</span></button>
+          <button class="text quiet" on:click={restart}><Icon name="refresh" size={16} /> Empezar de nuevo</button>
+        </div>
+      </div>
+
+    {:else}
+      <Directorio {ctx} onBack={back} />
+    {/if}
+  </div>
 </div>
