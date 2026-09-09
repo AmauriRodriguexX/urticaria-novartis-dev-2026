@@ -3,7 +3,8 @@
   import Hero from './lib/Hero.svelte'
   import QuizModal from './lib/QuizModal.svelte'
   import Icon from './lib/Icon.svelte'
-  import LogoNovartis from './lib/LogoNovartis.svelte'
+  import PhotoLibrary from './lib/PhotoLibrary.svelte'
+  import Community from './lib/Community.svelte'
   import { themes, copies } from './lib/campaign.js'
   import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled } from './lib/context.js'
 
@@ -39,6 +40,24 @@
     history.replaceState(history.state, '', url)
   }
 
+  function handleAnchorClick(event) {
+    const link = event.target.closest?.('a[href^="#"]')
+    if (!link) return
+    const id = link.getAttribute('href')?.slice(1)
+    const section = id && document.getElementById(id)
+    if (!section) return
+    event.preventDefault()
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    section.classList.remove('section-arrive')
+    requestAnimationFrame(() => section.classList.add('section-arrive'))
+    window.setTimeout(() => section.classList.remove('section-arrive'), 900)
+  }
+
+  function handleDocumentClick(event) {
+    viewOpen = false
+    handleAnchorClick(event)
+  }
+
   onMount(() => {
     const words = ['la comezón', 'los brotes', 'el insomnio', 'la incertidumbre']
     const timer = setInterval(() => { if (ctx === 'dia' && !quizOpen) word = words[(words.indexOf(word) + 1) % words.length] }, 2900)
@@ -46,7 +65,7 @@
   })
 </script>
 
-<svelte:window on:click={() => viewOpen = false} />
+<svelte:window on:click={handleDocumentClick} />
 
 <main class="shell" class:dark style={css}>
   <header class="brand">
@@ -99,10 +118,13 @@
     </div>
   </section>
 
+  <PhotoLibrary />
+
+  <Community />
+
   <footer class="site-footer">
     <em>Que ocupe el lugar más pequeño de tu vida.</em>
     <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
-    <span class="novartis"><LogoNovartis alto={22} /></span>
   </footer>
 
   {#if quizOpen}<QuizModal {ctx} onClose={closeQuiz} />{/if}

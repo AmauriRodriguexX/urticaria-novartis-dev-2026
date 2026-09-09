@@ -11,7 +11,7 @@
   export let autoVideo = false
 
   $: a = assetsFor(ctx)
-  $: videoSrc = autoVideo ? `${import.meta.env.BASE_URL}assets/video/hero-context-dia.mp4` : a.video
+  $: videoSrc = autoVideo ? `${import.meta.env.BASE_URL}assets/video/hero-dia-auto.mp4` : a.video
 
   let animated = 0, mounted = false, frame
   let ctaOffscreen = false
@@ -43,7 +43,7 @@
   })
 </script>
 
-{#key ctx}
+{#key `${ctx}-${autoVideo ? 'auto' : 'manual'}`}
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-media" aria-hidden="true">
     <picture>

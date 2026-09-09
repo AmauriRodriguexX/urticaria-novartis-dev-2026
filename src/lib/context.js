@@ -26,10 +26,10 @@ const ESCENA = {
 
 const VIDEO = {
   dia: 'hero-context-dia.mp4',
-  calor: 'hero-context-calor.mp4',
+  calor: 'hero-dia-auto.mp4',
   frio: 'hero-context-frio.mp4',
   madrugada: 'hero-context-madrugada.mp4',
-  'noche-calor': 'hero-context-noche-calida.mp4'
+  'noche-calor': 'hero-context-madrugada.mp4',
 }
 
 export function assetsFor(ctx) {
