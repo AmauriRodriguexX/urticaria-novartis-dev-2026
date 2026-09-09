@@ -59,6 +59,5 @@ export function forcedFromUrl() {
 }
 
 export function previewEnabled() {
-  if (typeof window === 'undefined') return false
-  return import.meta.env.DEV || new URLSearchParams(window.location.search).has('vista')
+  return true
 }
