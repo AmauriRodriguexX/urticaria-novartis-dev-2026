@@ -2,3 +2,7 @@ node_modules/
 dist/
 .DS_Store
 *.log
+
+# Documentación y materiales internos: se conservan localmente, no se publican.
+/*.md
+/legacy/
