@@ -79,8 +79,48 @@ button, input, select { font: inherit; }
 .kicker { display: flex; align-items: center; gap: var(--s-2); margin: 0 0 var(--stack-xs); font: 600 12px var(--font-barlow-c); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
 .kicker i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accentSoft); }
 h1, h2, h3 { font-family: var(--font-barlow); margin: 0; color: var(--ink); }
-h1 { font-size: clamp(32px, 9vw, 44px); font-weight: 700; line-height: 1.02; letter-spacing: -.012em; text-wrap: balance; }
-h1 em { font-style: normal; color: var(--accent); transition: opacity .45s; }
+h1 { font-size: clamp(32px, 9vw, 44px); font-weight: 700; line-height: 1.05; letter-spacing: -.012em; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--accent); }
+
+/* Animación cinética vertical para palabras dinámicas rotativas */
+.dynamic-word-wrap {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.dynamic-word {
+  display: inline-block;
+  font-style: normal;
+  color: var(--accent);
+  will-change: transform, opacity, filter;
+  transition: transform .32s cubic-bezier(.16, 1, .3, 1), opacity .28s ease, filter .28s ease;
+}
+.dynamic-word-wrap.slide-out .dynamic-word {
+  transform: translateY(-18px);
+  opacity: 0;
+  filter: blur(4px);
+  transition: transform .25s cubic-bezier(.4, 0, 1, 1), opacity .22s ease, filter .22s ease;
+}
+.dynamic-word-wrap.slide-in .dynamic-word {
+  animation: wordSlideIn .44s cubic-bezier(.16, 1, .3, 1) both;
+}
+.dark .dynamic-word {
+  text-shadow: 0 0 20px var(--bloom);
+}
+
+@keyframes wordSlideIn {
+  0% {
+    transform: translateY(18px);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
 .intro { max-width: 30em; margin: var(--stack-s) 0 0; font-size: 15.5px; line-height: 1.6; color: var(--soft); }
 .action-row { display: flex; flex-direction: column; align-items: stretch; gap: var(--s-3); margin-top: var(--stack-m); }
 .action-row small { color: var(--faint); font-size: 12.5px; line-height: 1.5; text-align: center; }
