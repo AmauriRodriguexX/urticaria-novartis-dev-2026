@@ -1,0 +1,2431 @@
+[
+  {
+    "sec": "Sección 1",
+    "var": "Variación 2",
+    "text": "[NOMBRE], no presentas síntomas de urticaria, como ronchas, picazón o hinchazón. Es poco probable que sufras urticaria crónica espontánea.",
+    "trigger": "Pregunta 1: Ninguno (o Q1 a Q5 sin respuesta o suma 0-1 pts); Pregunta 6: Ninguna (o Q7 a Q12 sin respuesta o suma 0-1 pts).",
+    "score": "Síntomas: 0 - 1 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 0 - 2 pts (Rango de probabilidad: 0 - 2 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas leves de urticaria. Es poco probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas leves (ej. 1 síntoma leve en Q3/Q4/Q5 y duración < 1 mes en Q2); Q6: Ninguna / Q7-Q12: Sin afectación (0 pts).",
+    "score": "Síntomas: 2 - 3 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 2 - 4 pts (Rango de probabilidad: 0 - 2 / 3 - 7 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas leves de urticaria que afectan ligeramente tu vida diaria. Es poco probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas leves (ej. 1 síntoma leve en Q3 y duración < 1 mes); Q6: 1 área marcada; Q7-Q12: Puntuación baja (1 o 2 pts en escala).",
+    "score": "Síntomas: 2 - 3 pts | Calidad de vida: 2 - 4 pts | Puntuación total: 4 - 7 pts (Rango de probabilidad: 3 - 7 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas leves de urticaria que afectan algunas áreas de tu vida diaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas leves (2-3 pts); Q6: 2 o más áreas afectadas; Q7-Q12: Puntuación acumulada de 5 a 7 pts (ej. afectación moderada en 2 áreas).",
+    "score": "Síntomas: 2 - 3 pts | Calidad de vida: 5 - 7 pts | Puntuación total: 7 - 10 pts (Rango de probabilidad: 8 - 12 pts, o 3 - 7 si total = 7)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas leves de urticaria que afectan en gran medida tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas leves (2-3 pts); Q6: Múltiples áreas afectadas; Q7-Q12: Puntuación acumulada de 8 a 14 pts (afectación alta en varias actividades).",
+    "score": "Síntomas: 2 - 3 pts | Calidad de vida: 8 - 14 pts | Puntuación total: 10 - 17 pts (Rango de probabilidad: 13 - 24 pts, o 8 - 12 si total = 10-12)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas leves de urticaria que afectan gravemente tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas leves (2-3 pts); Q6: La mayoría o todas las áreas marcadas; Q7-Q12: Puntuación severa en casi todas las áreas (15-20 pts).",
+    "score": "Síntomas: 2 - 3 pts | Calidad de vida: 15 - 20 pts | Puntuación total: 17 - 23 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria. Es poco probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4-5 pts, ej. 2 síntomas leves o 1 moderado); Q6: Ninguna / Q7-Q12: Sin afectación (0 pts).",
+    "score": "Síntomas: 4 - 5 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 4 - 6 pts (Rango de probabilidad: 3 - 7 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria que afectan ligeramente tu vida diaria. Es poco probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4-5 pts); Q6: 1 área afectada; Q7-Q12: Afectación baja acumulando 2 pts (total de 6 a 7 pts).",
+    "score": "Síntomas: 4 - 5 pts | Calidad de vida: 2 - 4 pts | Puntuación total: 6 - 7 pts (Rango de probabilidad: 3 - 7 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria que afectan ligeramente tu vida diaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4-5 pts); Q6: 1 o 2 áreas afectadas; Q7-Q12: Afectación leve acumulando 3 a 4 pts (total de 8 a 9 pts).",
+    "score": "Síntomas: 4 - 5 pts | Calidad de vida: 2 - 4 pts | Puntuación total: 8 - 9 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria que afectan algunas áreas de tu vida diaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4-5 pts); Q6: 2 o 3 áreas afectadas; Q7-Q12: Afectación moderada acumulando 5 a 7 pts (total de 9 a 12 pts).",
+    "score": "Síntomas: 4 - 5 pts | Calidad de vida: 5 - 7 pts | Puntuación total: 9 - 12 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria que afectan en gran medida tu vida diaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4 pts); Q6: Varias áreas afectadas; Q7-Q12: Puntuación acumulada de 8 pts (total de 12 pts).",
+    "score": "Síntomas: 4 pts | Calidad de vida: 8 pts | Puntuación total: 12 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria que afectan en gran medida tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4-5 pts); Q6: Múltiples áreas afectadas; Q7-Q12: Puntuación acumulada de 9 a 14 pts (total de 13 a 19 pts).",
+    "score": "Síntomas: 4 - 5 pts | Calidad de vida: 8 - 14 pts | Puntuación total: 13 - 19 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas moderados de urticaria que afectan gravemente tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas moderados (4-5 pts); Q6: Casi todas las áreas afectadas; Q7-Q12: Afectación severa acumulando 15 a 20 pts (total de 19 a 24 pts, o 25 pts si total = 25).",
+    "score": "Síntomas: 4 - 5 pts | Calidad de vida: 15 - 20 pts | Puntuación total: 19 - 25 pts (Rango de probabilidad: 13 - 24 pts / 25 - 35 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria. Es poco probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos de corta duración (6-7 pts en síntomas); Q6: Ninguna / Q7-Q12: Sin afectación (0 pts).",
+    "score": "Síntomas: 6 - 7 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 6 - 7 pts (Rango de probabilidad: 3 - 7 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos (8-10 pts en síntomas); Q6: Ninguna / Q7-Q12: Sin afectación o mínima (0-1 pt).",
+    "score": "Síntomas: 8 - 10 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 8 - 11 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria que afectan ligeramente tu vida diaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos (6-9 pts); Q6: 1 área marcada; Q7-Q12: Puntuación baja acumulando 2 a 4 pts (total de 8 a 12 pts).",
+    "score": "Síntomas: 6 - 9 pts | Calidad de vida: 2 - 4 pts | Puntuación total: 8 - 12 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria que afectan ligeramente tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos (10 pts); Q6: 1 o 2 áreas marcadas; Q7-Q12: Puntuación acumulando 3 a 4 pts (total de 13 a 14 pts).",
+    "score": "Síntomas: 10 pts | Calidad de vida: 3 - 4 pts | Puntuación total: 13 - 14 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria que afectan algunas áreas de tu vida diaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos en el umbral bajo (6-7 pts); Q6: 2 áreas marcadas; Q7-Q12: Puntuación moderada acumulando 5 pts (total de 11 a 12 pts).",
+    "score": "Síntomas: 6 - 7 pts | Calidad de vida: 5 pts | Puntuación total: 11 - 12 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria que afectan algunas áreas de tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos (7-10 pts); Q6: 2 o 3 áreas marcadas; Q7-Q12: Puntuación moderada acumulando 5 a 7 pts (total de 13 a 17 pts).",
+    "score": "Síntomas: 7 - 10 pts | Calidad de vida: 5 - 7 pts | Puntuación total: 13 - 17 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria que afectan en gran medida tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos (6-10 pts); Q6: Múltiples áreas marcadas; Q7-Q12: Puntuación alta acumulando 8 a 14 pts (total de 14 a 24 pts).",
+    "score": "Síntomas: 6 - 10 pts | Calidad de vida: 8 - 14 pts | Puntuación total: 14 - 24 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas intensos de urticaria que afectan gravemente tu vida diaria. Es altamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas intensos (8-10 pts); Q6: Casi todas o todas las áreas marcadas; Q7-Q12: Afectación severa acumulando 15 a 20 pts (total de 25 a 30 pts).",
+    "score": "Síntomas: 8 - 10 pts | Calidad de vida: 15 - 20 pts | Puntuación total: 25 - 30 pts (Rango de probabilidad: 25 - 35 pts, o 13 - 24 si total = 21-24)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria. Es medianamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas muy intensos (11-12 pts en síntomas); Q6: Ninguna / Q7-Q12: Sin afectación (0 pts).",
+    "score": "Síntomas: 11 - 12 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 11 - 12 pts (Rango de probabilidad: 8 - 12 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas muy intensos (13-15 pts en síntomas); Q6: Ninguna / Q7-Q12: Sin afectación o mínima (0-1 pt).",
+    "score": "Síntomas: 13 - 15 pts | Calidad de vida: 0 - 1 pts | Puntuación total: 13 - 16 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria que afectan ligeramente tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas muy intensos (11-15 pts); Q6: 1 área marcada; Q7-Q12: Puntuación baja acumulando 2 a 4 pts (total de 13 a 19 pts).",
+    "score": "Síntomas: 11 - 15 pts | Calidad de vida: 2 - 4 pts | Puntuación total: 13 - 19 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria que afectan algunas áreas de tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas muy intensos (11-15 pts); Q6: 2 o 3 áreas marcadas; Q7-Q12: Puntuación moderada acumulando 5 a 7 pts (total de 16 a 22 pts).",
+    "score": "Síntomas: 11 - 15 pts | Calidad de vida: 5 - 7 pts | Puntuación total: 16 - 22 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria que afectan en gran medida tu vida diaria. Es probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas muy intensos (11-14 pts); Q6: Múltiples áreas marcadas; Q7-Q12: Puntuación alta acumulando 8 a 12 pts (total de 19 a 24 pts).",
+    "score": "Síntomas: 11 - 14 pts | Calidad de vida: 8 - 12 pts | Puntuación total: 19 - 24 pts (Rango de probabilidad: 13 - 24 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria que afectan en gran medida tu vida diaria. Es altamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas muy intensos (12-15 pts); Q6: Múltiples áreas marcadas; Q7-Q12: Puntuación alta acumulando 12 a 14 pts (total de 25 a 29 pts).",
+    "score": "Síntomas: 12 - 15 pts | Calidad de vida: 12 - 14 pts | Puntuación total: 25 - 29 pts (Rango de probabilidad: 25 - 35 pts)"
+  },
+  {
+    "sec": "Sección 1",
+    "var": "Variación 1",
+    "text": "[NOMBRE], presentas síntomas muy intensos de urticaria que afectan gravemente tu vida diaria. Es altamente probable que sufras urticaria crónica espontánea.",
+    "trigger": "Q1-Q5: Síntomas máximos (11-15 pts); Q6: Todas las 6 áreas marcadas; Q7-Q12: Puntuación severa máxima acumulando 15 a 20 pts (total de 26 a 35 pts).",
+    "score": "Síntomas: 11 - 15 pts | Calidad de vida: 15 - 20 pts | Puntuación total: 26 - 35 pts (Rango de probabilidad: 25 - 35 pts)"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 2",
+    "text": "(Dejar en blanco)",
+    "trigger": "Pregunta 1: Ninguno (o sin respuesta a Q1-Q5).",
+    "score": "Síntomas: 0 pts | Disparador por respuesta directa (sin síntomas reportados)"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día.",
+    "trigger": "Q1: Ronchas marcada; Q3: Opción 1 (Menos de 20 ronchas en 24h).",
+    "score": "Severidad Q3: 1 pt | Subtotal síntomas (con Q1 y duración Q2): 2 - 5 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día.",
+    "trigger": "Q1: Ronchas marcada; Q3: Opción 2 (De 20 a 50 ronchas en 24h).",
+    "score": "Severidad Q3: 2 pts | Subtotal síntomas (con Q1 y duración Q2): 3 - 6 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento.",
+    "trigger": "Q1: Ronchas marcada; Q3: Opción 3 (+ de 50 ronchas o áreas confluentes).",
+    "score": "Severidad Q3: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 4 - 7 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón leve.",
+    "trigger": "Q1: Picazón marcada; Q4: Opción 1 (Presente pero no molesta).",
+    "score": "Severidad Q4: 1 pt | Subtotal síntomas (con Q1 y duración Q2): 2 - 5 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón moderada que es algo molesta.",
+    "trigger": "Q1: Picazón marcada; Q4: Opción 2 (Molesta pero no interfiere con actividades).",
+    "score": "Severidad Q4: 2 pts | Subtotal síntomas (con Q1 y duración Q2): 3 - 6 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón severa que interfiere con tus actividades.",
+    "trigger": "Q1: Picazón marcada; Q4: Opción 3 (Picazón severa que interfiere).",
+    "score": "Severidad Q4: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 4 - 7 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Hinchazón marcada; Q5: Opción 1 (Leve, resuelve rápido y sin dolor).",
+    "score": "Severidad Q5: 1 pt | Subtotal síntomas (con Q1 y duración Q2): 2 - 5 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Hinchazón marcada; Q5: Opción 2 (Notoria, limita ligero o incomoda).",
+    "score": "Severidad Q5: 2 pts | Subtotal síntomas (con Q1 y duración Q2): 3 - 6 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Hinchazón marcada; Q5: Opción 3 (Severa, dolorosa o afecta movilidad).",
+    "score": "Severidad Q5: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 4 - 7 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día y picazón leve.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 1; Q4: Opción 1.",
+    "score": "Severidad Q3+Q4: 2 pts | Subtotal síntomas (con Q1 y duración Q2): 4 - 7 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día y picazón moderada que es algo molesta.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 1; Q4: Opción 2.",
+    "score": "Severidad Q3+Q4: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 5 - 8 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día y picazón severa que interfiere con tus actividades.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 1; Q4: Opción 3.",
+    "score": "Severidad Q3+Q4: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día y picazón leve.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 2; Q4: Opción 1.",
+    "score": "Severidad Q3+Q4: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 5 - 8 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día y picazón moderada que es algo molesta.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 2; Q4: Opción 2.",
+    "score": "Severidad Q3+Q4: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día y picazón severa que interfiere con tus actividades.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 2; Q4: Opción 3.",
+    "score": "Severidad Q3+Q4: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento y picazón leve.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 3; Q4: Opción 1.",
+    "score": "Severidad Q3+Q4: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento y picazón moderada que es algo molesta.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 3; Q4: Opción 2.",
+    "score": "Severidad Q3+Q4: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento y picazón severa que interfiere con tus actividades.",
+    "trigger": "Q1: Ronchas y Picazón; Q3: Opción 3; Q4: Opción 3.",
+    "score": "Severidad Q3+Q4: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 1; Q5: Opción 1.",
+    "score": "Severidad Q3+Q5: 2 pts | Subtotal síntomas (con Q1 y duración Q2): 4 - 7 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 1; Q5: Opción 2.",
+    "score": "Severidad Q3+Q5: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 5 - 8 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 1; Q5: Opción 3.",
+    "score": "Severidad Q3+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 2; Q5: Opción 1.",
+    "score": "Severidad Q3+Q5: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 5 - 8 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 2; Q5: Opción 2.",
+    "score": "Severidad Q3+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 2; Q5: Opción 3.",
+    "score": "Severidad Q3+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 3; Q5: Opción 1.",
+    "score": "Severidad Q3+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 3; Q5: Opción 2.",
+    "score": "Severidad Q3+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas e Hinchazón; Q3: Opción 3; Q5: Opción 3.",
+    "score": "Severidad Q3+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón leve e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 1; Q5: Opción 1.",
+    "score": "Severidad Q4+Q5: 2 pts | Subtotal síntomas (con Q1 y duración Q2): 4 - 7 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón leve e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 1; Q5: Opción 2.",
+    "score": "Severidad Q4+Q5: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 5 - 8 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón leve e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 1; Q5: Opción 3.",
+    "score": "Severidad Q4+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón moderada que es algo molesta e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 2; Q5: Opción 1.",
+    "score": "Severidad Q4+Q5: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 5 - 8 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón moderada que es algo molesta e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 2; Q5: Opción 2.",
+    "score": "Severidad Q4+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón moderada que es algo molesta e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 2; Q5: Opción 3.",
+    "score": "Severidad Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón severa que interfiere con tus actividades e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 3; Q5: Opción 1.",
+    "score": "Severidad Q4+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón severa que interfiere con tus actividades e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 3; Q5: Opción 2.",
+    "score": "Severidad Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas picazón severa que interfiere con tus actividades e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Picazón e Hinchazón; Q4: Opción 3; Q5: Opción 3.",
+    "score": "Severidad Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón leve e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 1; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 3 pts | Subtotal síntomas (con Q1 y duración Q2): 6 - 9 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón leve e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 1; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón leve e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 1; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón moderada que es algo molesta e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 2; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón moderada que es algo molesta e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 2; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón moderada que es algo molesta e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 2; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón severa que interfiere con tus actividades e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 3; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón severa que interfiere con tus actividades e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 3; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas menos de 20 ronchas al día, picazón severa que interfiere con tus actividades e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 1; Q4: Opción 3; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 7 pts | Subtotal síntomas (con Q1 y duración Q2): 10 - 13 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón leve e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 1; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 4 pts | Subtotal síntomas (con Q1 y duración Q2): 7 - 10 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón leve e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 1; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón leve e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 1; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón moderada que es algo molesta e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 2; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón moderada que es algo molesta e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 2; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón moderada que es algo molesta e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 2; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 7 pts | Subtotal síntomas (con Q1 y duración Q2): 10 - 13 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón severa que interfiere con tus actividades e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 3; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón severa que interfiere con tus actividades e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 3; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 7 pts | Subtotal síntomas (con Q1 y duración Q2): 10 - 13 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas entre 20 y 50 ronchas al día, picazón severa que interfiere con tus actividades e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 2; Q4: Opción 3; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 8 pts | Subtotal síntomas (con Q1 y duración Q2): 11 - 14 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón leve e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 1; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 5 pts | Subtotal síntomas (con Q1 y duración Q2): 8 - 11 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón leve e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 1; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón leve e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 1; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 7 pts | Subtotal síntomas (con Q1 y duración Q2): 10 - 13 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón moderada que es algo molesta e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 2; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 6 pts | Subtotal síntomas (con Q1 y duración Q2): 9 - 12 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón moderada que es algo molesta e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 2; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 7 pts | Subtotal síntomas (con Q1 y duración Q2): 10 - 13 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón moderada que es algo molesta e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 2; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 8 pts | Subtotal síntomas (con Q1 y duración Q2): 11 - 14 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón severa que interfiere con tus actividades e hinchazón leve que desaparece rápidamente.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 3; Q5: Opción 1.",
+    "score": "Severidad Q3+Q4+Q5: 7 pts | Subtotal síntomas (con Q1 y duración Q2): 10 - 13 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón severa que interfiere con tus actividades e hinchazón notoria que puede causar incomodidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 3; Q5: Opción 2.",
+    "score": "Severidad Q3+Q4+Q5: 8 pts | Subtotal síntomas (con Q1 y duración Q2): 11 - 14 pts"
+  },
+  {
+    "sec": "Sección 2",
+    "var": "Variación 1",
+    "text": "Presentas más de 50 ronchas o largas áreas de enrojecimiento, picazón severa que interfiere con tus actividades e hinchazón severa y dolorosa que dificulta la movilidad.",
+    "trigger": "Q1: Ronchas, Picazón e Hinchazón; Q3: Opción 3; Q4: Opción 3; Q5: Opción 3.",
+    "score": "Severidad Q3+Q4+Q5: 9 pts | Subtotal síntomas (con Q1 y duración Q2): 12 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 2",
+    "text": "(Dejar en blanco)",
+    "trigger": "Pregunta 6: Ninguna (o sin respuesta a Q6-Q12).",
+    "score": "Calidad de vida: 0 pts | Disparador por respuesta directa (sin afectaciones reportadas)"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar).",
+    "trigger": "Q6: Actividades diarias marcada; Q7: Puntuación > 0 (1 a 3 pts).",
+    "score": "Severidad Q7: 1 - 3 pts | Subtotal calidad de vida: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos).",
+    "trigger": "Q6: Actividades sociales marcada; Q8: Puntuación > 0 (1 a 3 pts).",
+    "score": "Severidad Q8: 1 - 3 pts | Subtotal calidad de vida: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual.",
+    "trigger": "Q6: Vida sexual marcada; Q9: Puntuación > 0 (1 a 3 pts).",
+    "score": "Severidad Q9: 1 - 3 pts | Subtotal calidad de vida: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: la manera en que te vistes.",
+    "trigger": "Q6: Vestimenta marcada; Q10: Puntuación > 0 (1 a 3 pts).",
+    "score": "Severidad Q10: 1 - 3 pts | Subtotal calidad de vida: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu trabajo o estudios.",
+    "trigger": "Q6: Trabajo o Estudios marcada; Q11: Puntuación > 0 (1 a 3 pts).",
+    "score": "Severidad Q11: 1 - 3 pts | Subtotal calidad de vida: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: calidad del sueño.",
+    "trigger": "Q6: Calidad de sueño marcada; Q12: Puntuación > 0 (1 a 3 pts).",
+    "score": "Severidad Q12: 1 - 3 pts | Subtotal calidad de vida: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar) y actividades sociales (como salir con tu pareja, familia o amigos).",
+    "trigger": "Q6: Actividades diarias y Actividades sociales; Q7 y Q8 > 0.",
+    "score": "Puntuación Q7+Q8: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar) y tu vida sexual.",
+    "trigger": "Q6: Actividades diarias y Vida sexual; Q7 y Q9 > 0.",
+    "score": "Puntuación Q7+Q9: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar) y la manera en que te vistes.",
+    "trigger": "Q6: Actividades diarias y Vestimenta; Q7 y Q10 > 0.",
+    "score": "Puntuación Q7+Q10: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar) y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias y Trabajo o Estudios; Q7 y Q11 > 0.",
+    "score": "Puntuación Q7+Q11: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar) y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias y Calidad de sueño; Q7 y Q12 > 0.",
+    "score": "Puntuación Q7+Q12: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos) y tu vida sexual.",
+    "trigger": "Q6: Actividades sociales y Vida sexual; Q8 y Q9 > 0.",
+    "score": "Puntuación Q8+Q9: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos) y la manera en que te vistes.",
+    "trigger": "Q6: Actividades sociales y Vestimenta; Q8 y Q10 > 0.",
+    "score": "Puntuación Q8+Q10: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos) y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades sociales y Trabajo o Estudios; Q8 y Q11 > 0.",
+    "score": "Puntuación Q8+Q11: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos) y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales y Calidad de sueño; Q8 y Q12 > 0.",
+    "score": "Puntuación Q8+Q12: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual y la manera en que te vistes.",
+    "trigger": "Q6: Vida sexual y Vestimenta; Q9 y Q10 > 0.",
+    "score": "Puntuación Q9+Q10: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual y tu trabajo o estudios.",
+    "trigger": "Q6: Vida sexual y Trabajo o Estudios; Q9 y Q11 > 0.",
+    "score": "Puntuación Q9+Q11: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual y calidad del sueño.",
+    "trigger": "Q6: Vida sexual y Calidad de sueño; Q9 y Q12 > 0.",
+    "score": "Puntuación Q9+Q12: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Vestimenta y Trabajo o Estudios; Q10 y Q11 > 0.",
+    "score": "Puntuación Q10+Q11: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Vestimenta y Calidad de sueño; Q10 y Q12 > 0.",
+    "score": "Puntuación Q10+Q12: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Trabajo o Estudios y Calidad de sueño; Q11 y Q12 > 0.",
+    "score": "Puntuación Q11+Q12: 2 - 6 pts | Subtotal calidad de vida: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos) y tu vida sexual.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales y Vida sexual; Q7-Q9 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos) y la manera en que te vistes.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales y Vestimenta; Q7, Q8, Q10 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos) y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales y Trabajo o Estudios; Q7, Q8, Q11 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos) y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales y Calidad de sueño; Q7, Q8, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual y la manera en que te vistes.",
+    "trigger": "Q6: Actividades diarias, Vida sexual y Vestimenta; Q7, Q9, Q10 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias, Vida sexual y Trabajo o Estudios; Q7, Q9, Q11 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Vida sexual y Calidad de sueño; Q7, Q9, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias, Vestimenta y Trabajo o Estudios; Q7, Q10, Q11 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Vestimenta y Calidad de sueño; Q7, Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Trabajo o Estudios y Calidad de sueño; Q7, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual y la manera en que te vistes.",
+    "trigger": "Q6: Actividades sociales, Vida sexual y Vestimenta; Q8, Q9, Q10 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades sociales, Vida sexual y Trabajo o Estudios; Q8, Q9, Q11 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales, Vida sexual y Calidad de sueño; Q8, Q9, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades sociales, Vestimenta y Trabajo o Estudios; Q8, Q10, Q11 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales, Vestimenta y Calidad de sueño; Q8, Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales, Trabajo o Estudios y Calidad de sueño; Q8, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual, la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Vida sexual, Vestimenta y Trabajo o Estudios; Q9, Q10, Q11 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual, la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Vida sexual, Vestimenta y Calidad de sueño; Q9, Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Vida sexual, Trabajo o Estudios y Calidad de sueño; Q9, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Vestimenta, Trabajo o Estudios y Calidad de sueño; Q10, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 3 - 9 pts | Subtotal calidad de vida: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual y la manera en que te vistes.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales, Vida sexual y Vestimenta; Q7-Q10 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales, Vida sexual y Trabajo o Estudios; Q7-Q9, Q11 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales, Vida sexual y Calidad de sueño; Q7-Q9, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales, Vestimenta y Trabajo o Estudios; Q7, Q8, Q10, Q11 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales, Vestimenta y Calidad de sueño; Q7, Q8, Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Actividades sociales, Trabajo o Estudios y Calidad de sueño; Q7, Q8, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual, la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades diarias, Vida sexual, Vestimenta y Trabajo o Estudios; Q7, Q9-Q11 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual, la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Vida sexual, Vestimenta y Calidad de sueño; Q7, Q9, Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Vida sexual, Trabajo o Estudios y Calidad de sueño; Q7, Q9, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades diarias, Vestimenta, Trabajo o Estudios y Calidad de sueño; Q7, Q10-Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: Actividades sociales, Vida sexual, Vestimenta y Trabajo o Estudios; Q8-Q11 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales, Vida sexual, Vestimenta y Calidad de sueño; Q8-Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales, Vida sexual, Trabajo o Estudios y Calidad de sueño; Q8, Q9, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Actividades sociales, Vestimenta, Trabajo o Estudios y Calidad de sueño; Q8, Q10-Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: tu vida sexual, la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Vida sexual, Vestimenta, Trabajo o Estudios y Calidad de sueño; Q9-Q12 > 0.",
+    "score": "Puntuación acumulada: 4 - 12 pts | Subtotal calidad de vida: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, la manera en que te vistes y tu trabajo o estudios.",
+    "trigger": "Q6: 5 áreas marcadas (excepto Calidad de sueño); Q7-Q11 > 0.",
+    "score": "Puntuación acumulada: 5 - 15 pts | Subtotal calidad de vida: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, la manera en que te vistes y calidad del sueño.",
+    "trigger": "Q6: 5 áreas marcadas (excepto Trabajo o Estudios); Q7-Q10, Q12 > 0.",
+    "score": "Puntuación acumulada: 5 - 15 pts | Subtotal calidad de vida: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: 5 áreas marcadas (excepto Vestimenta); Q7-Q9, Q11, Q12 > 0.",
+    "score": "Puntuación acumulada: 5 - 15 pts | Subtotal calidad de vida: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: 5 áreas marcadas (excepto Vida sexual); Q7, Q8, Q10-Q12 > 0.",
+    "score": "Puntuación acumulada: 5 - 15 pts | Subtotal calidad de vida: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), tu vida sexual, la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: 5 áreas marcadas (excepto Actividades sociales); Q7, Q9-Q12 > 0.",
+    "score": "Puntuación acumulada: 5 - 15 pts | Subtotal calidad de vida: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: 5 áreas marcadas (excepto Actividades diarias); Q8-Q12 > 0.",
+    "score": "Puntuación acumulada: 5 - 15 pts | Subtotal calidad de vida: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 3",
+    "var": "Variación 1",
+    "text": "Estos síntomas han afectado negativamente áreas de tu vida como: actividades diarias (como limpiar tu hogar), actividades sociales (como salir con tu pareja, familia o amigos), tu vida sexual, la manera en que te vistes, tu trabajo o estudios y calidad del sueño.",
+    "trigger": "Q6: Todas las 6 áreas marcadas; Q7 a Q12 > 0.",
+    "score": "Puntuación acumulada: 6 - 18 pts (hasta 20 pts) | Subtotal calidad de vida: 6 - 20 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 3",
+    "text": "Tus brotes se dan principalmente por la mañana, pero no se ven influenciados por factores como el calor, el frío, el estrés, el sudor o la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Q15-Q19: Sin factores (0 pts o sin respuesta).",
+    "score": "Detonantes: 0 pts | Disparador por momento del día (sin factores externos)"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 3",
+    "text": "Tus brotes se dan principalmente por la tarde, pero no se ven influenciados por factores como el calor, el frío, el estrés, el sudor o la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Q15-Q19: Sin factores (0 pts o sin respuesta).",
+    "score": "Detonantes: 0 pts | Disparador por momento del día (sin factores externos)"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 3",
+    "text": "Tus brotes se dan principalmente por la noche, pero no se ven influenciados por factores como el calor, el frío, el estrés, el sudor o la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Q15-Q19: Sin factores (0 pts o sin respuesta).",
+    "score": "Detonantes: 0 pts | Disparador por momento del día (sin factores externos)"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 4",
+    "text": "Tus brotes se dan sin importar el momento del día y no se ven influenciados por factores como el calor, el frío, el estrés, el sudor o la ropa.",
+    "trigger": "Q14: No me afecta el momento del día (Opción 4); Q15-Q19: Sin factores (0 pts o sin respuesta).",
+    "score": "Detonantes: 0 pts | Disparador por ausencia de momento y factores"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor.",
+    "trigger": "Q14: Opción 4; Factor Calor (Q15 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío.",
+    "trigger": "Q14: Opción 4; Factor Frío (Q16 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el estrés.",
+    "trigger": "Q14: Opción 4; Factor Estrés (Q17 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el sudor.",
+    "trigger": "Q14: Opción 4; Factor Sudor (Q18 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como la ropa.",
+    "trigger": "Q14: Opción 4; Factor Ropa (Q19 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor y el frío.",
+    "trigger": "Q14: Opción 4; Factores Calor y Frío (Q15, Q16 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor y el estrés.",
+    "trigger": "Q14: Opción 4; Factores Calor y Estrés (Q15, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor y el sudor.",
+    "trigger": "Q14: Opción 4; Factores Calor y Sudor (Q15, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Calor y Ropa (Q15, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío y el estrés.",
+    "trigger": "Q14: Opción 4; Factores Frío y Estrés (Q16, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío y el sudor.",
+    "trigger": "Q14: Opción 4; Factores Frío y Sudor (Q16, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Frío y Ropa (Q16, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el estrés y el sudor.",
+    "trigger": "Q14: Opción 4; Factores Estrés y Sudor (Q17, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el estrés y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Estrés y Ropa (Q17, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Sudor y Ropa (Q18, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío y el estrés.",
+    "trigger": "Q14: Opción 4; Factores Calor, Frío y Estrés (Q15-Q17 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío y el sudor.",
+    "trigger": "Q14: Opción 4; Factores Calor, Frío y Sudor (Q15, Q16, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Calor, Frío y Ropa (Q15, Q16, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el estrés y el sudor.",
+    "trigger": "Q14: Opción 4; Factores Calor, Estrés y Sudor (Q15, Q17, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el estrés y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Calor, Estrés y Ropa (Q15, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Calor, Sudor y Ropa (Q15, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío, el estrés y el sudor.",
+    "trigger": "Q14: Opción 4; Factores Frío, Estrés y Sudor (Q16-Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío, el estrés y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Frío, Estrés y Ropa (Q16, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Frío, Sudor y Ropa (Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; Factores Estrés, Sudor y Ropa (Q17-Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío, el estrés y el sudor.",
+    "trigger": "Q14: Opción 4; 4 factores (Q15-Q18 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío, el estrés y la ropa.",
+    "trigger": "Q14: Opción 4; 4 factores (Q15-Q17, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; 4 factores (Q15, Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; 4 factores (Q15, Q17-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; 4 factores (Q16-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 2",
+    "text": "Tus brotes se dan sin importar el momento del día y se ven influenciados por factores como el calor, el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Opción 4; Todos los 5 factores (Q15-Q19 > 0).",
+    "score": "Severidad factores: 5 - 15 pts | Detonantes: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor.",
+    "trigger": "Q14: Mañana (Opción 1); Factor Calor (Q15 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío.",
+    "trigger": "Q14: Mañana (Opción 1); Factor Frío (Q16 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el estrés.",
+    "trigger": "Q14: Mañana (Opción 1); Factor Estrés (Q17 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factor Sudor (Q18 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factor Ropa (Q19 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor y el frío.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor y Frío (Q15, Q16 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor y el estrés.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor y Estrés (Q15, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor y Sudor (Q15, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor y Ropa (Q15, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío y el estrés.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Frío y Estrés (Q16, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Frío y Sudor (Q16, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Frío y Ropa (Q16, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el estrés y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Estrés y Sudor (Q17, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el estrés y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Estrés y Ropa (Q17, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Sudor y Ropa (Q18, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío y el estrés.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor, Frío y Estrés (Q15-Q17 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor, Frío y Sudor (Q15, Q16, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor, Frío y Ropa (Q15, Q16, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el estrés y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor, Estrés y Sudor (Q15, Q17, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el estrés y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor, Estrés y Ropa (Q15, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Calor, Sudor y Ropa (Q15, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío, el estrés y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Frío, Estrés y Sudor (Q16-Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío, el estrés y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Frío, Estrés y Ropa (Q16, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Frío, Sudor y Ropa (Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Factores Estrés, Sudor y Ropa (Q17-Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío, el estrés y el sudor.",
+    "trigger": "Q14: Mañana (Opción 1); 4 factores (Q15-Q18 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío, el estrés y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); 4 factores (Q15-Q17, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); 4 factores (Q15, Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); 4 factores (Q15, Q17-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); 4 factores (Q16-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la mañana y se ven influenciados por factores como el calor, el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Mañana (Opción 1); Todos los 5 factores (Q15-Q19 > 0).",
+    "score": "Severidad factores: 5 - 15 pts | Detonantes: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor.",
+    "trigger": "Q14: Tarde (Opción 2); Factor Calor (Q15 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío.",
+    "trigger": "Q14: Tarde (Opción 2); Factor Frío (Q16 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el estrés.",
+    "trigger": "Q14: Tarde (Opción 2); Factor Estrés (Q17 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factor Sudor (Q18 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factor Ropa (Q19 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor y el frío.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor y Frío (Q15, Q16 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor y el estrés.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor y Estrés (Q15, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor y Sudor (Q15, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor y Ropa (Q15, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío y el estrés.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Frío y Estrés (Q16, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Frío y Sudor (Q16, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Frío y Ropa (Q16, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el estrés y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Estrés y Sudor (Q17, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el estrés y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Estrés y Ropa (Q17, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Sudor y Ropa (Q18, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío y el estrés.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor, Frío y Estrés (Q15-Q17 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor, Frío y Sudor (Q15, Q16, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor, Frío y Ropa (Q15, Q16, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el estrés y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor, Estrés y Sudor (Q15, Q17, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el estrés y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor, Estrés y Ropa (Q15, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Calor, Sudor y Ropa (Q15, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío, el estrés y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Frío, Estrés y Sudor (Q16-Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío, el estrés y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Frío, Estrés y Ropa (Q16, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Frío, Sudor y Ropa (Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Factores Estrés, Sudor y Ropa (Q17-Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío, el estrés y el sudor.",
+    "trigger": "Q14: Tarde (Opción 2); 4 factores (Q15-Q18 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío, el estrés y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); 4 factores (Q15-Q17, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); 4 factores (Q15, Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); 4 factores (Q15, Q17-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); 4 factores (Q16-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la tarde y se ven influenciados por factores como el calor, el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Tarde (Opción 2); Todos los 5 factores (Q15-Q19 > 0).",
+    "score": "Severidad factores: 5 - 15 pts | Detonantes: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor.",
+    "trigger": "Q14: Noche (Opción 3); Factor Calor (Q15 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío.",
+    "trigger": "Q14: Noche (Opción 3); Factor Frío (Q16 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el estrés.",
+    "trigger": "Q14: Noche (Opción 3); Factor Estrés (Q17 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factor Sudor (Q18 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factor Ropa (Q19 > 0).",
+    "score": "Severidad factor: 1 - 3 pts | Detonantes: 1 - 3 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor y el frío.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor y Frío (Q15, Q16 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor y el estrés.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor y Estrés (Q15, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor y Sudor (Q15, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor y Ropa (Q15, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío y el estrés.",
+    "trigger": "Q14: Noche (Opción 3); Factores Frío y Estrés (Q16, Q17 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factores Frío y Sudor (Q16, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Frío y Ropa (Q16, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el estrés y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factores Estrés y Sudor (Q17, Q18 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el estrés y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Estrés y Ropa (Q17, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Sudor y Ropa (Q18, Q19 > 0).",
+    "score": "Severidad factores: 2 - 6 pts | Detonantes: 2 - 6 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío y el estrés.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor, Frío y Estrés (Q15-Q17 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor, Frío y Sudor (Q15, Q16, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor, Frío y Ropa (Q15, Q16, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el estrés y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor, Estrés y Sudor (Q15, Q17, Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el estrés y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor, Estrés y Ropa (Q15, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Calor, Sudor y Ropa (Q15, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío, el estrés y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); Factores Frío, Estrés y Sudor (Q16-Q18 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío, el estrés y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Frío, Estrés y Ropa (Q16, Q17, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Frío, Sudor y Ropa (Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Factores Estrés, Sudor y Ropa (Q17-Q19 > 0).",
+    "score": "Severidad factores: 3 - 9 pts | Detonantes: 3 - 9 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío, el estrés y el sudor.",
+    "trigger": "Q14: Noche (Opción 3); 4 factores (Q15-Q18 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío, el estrés y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); 4 factores (Q15-Q17, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); 4 factores (Q15, Q16, Q18, Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); 4 factores (Q15, Q17-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); 4 factores (Q16-Q19 > 0).",
+    "score": "Severidad factores: 4 - 12 pts | Detonantes: 4 - 12 pts"
+  },
+  {
+    "sec": "Sección 4",
+    "var": "Variación 1",
+    "text": "Tus brotes se dan principalmente por la noche y se ven influenciados por factores como el calor, el frío, el estrés, el sudor y la ropa.",
+    "trigger": "Q14: Noche (Opción 3); Todos los 5 factores (Q15-Q19 > 0).",
+    "score": "Severidad factores: 5 - 15 pts | Detonantes: 5 - 15 pts"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 1",
+    "text": "No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un dermatólogo o un médico general que te canalice con un especialista para recibir un tratamiento adecuado a tu caso.",
+    "trigger": "Q20: No (Opción 0); Q23: No (Opción 0).",
+    "score": "Consulta médica: No | Tratamiento: No"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 2",
+    "text": "No has consultado a un médico sobre tus síntomas, pero has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: No (Opción 0); Q23: Sí (Opción 1); Q24: Tratamiento básico (Opción 1).",
+    "score": "Consulta médica: No | Tratamiento: Básico (automedicación/casero)"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 2",
+    "text": "No has consultado a un médico sobre tus síntomas, pero has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: No (Opción 0); Q23: Sí (Opción 1); Q24: Tratamiento intermedio (Opción 2).",
+    "score": "Consulta médica: No | Tratamiento: Intermedio (fármacos estándar)"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 2",
+    "text": "No has consultado a un médico sobre tus síntomas, pero has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: No (Opción 0); Q23: Sí (Opción 1); Q24: Tratamiento avanzado (Opción 3).",
+    "score": "Consulta médica: No | Tratamiento: Avanzado (altas dosis/terapias)"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos pocas veces y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos pocas veces y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos pocas veces y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos al menos una vez al mes y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos al menos una vez al mes y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos al menos una vez al mes y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos de manera constante y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos de manera constante y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos de manera constante y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos pocas veces y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos pocas veces y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos pocas veces y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos al menos una vez al mes y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos al menos una vez al mes y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos al menos una vez al mes y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos de manera constante y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos de manera constante y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con alergólogos de manera constante y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos pocas veces y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos pocas veces y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos pocas veces y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos al menos una vez al mes y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos al menos una vez al mes y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos al menos una vez al mes y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos de manera constante y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos de manera constante y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y dermatólogos de manera constante y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Dermatólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos pocas veces y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos pocas veces y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos pocas veces y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos al menos una vez al mes y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos al menos una vez al mes y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos al menos una vez al mes y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos de manera constante y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos de manera constante y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales y alergólogos de manera constante y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos pocas veces y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos pocas veces y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos pocas veces y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos al menos una vez al mes y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos al menos una vez al mes y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos al menos una vez al mes y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos de manera constante y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos de manera constante y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con dermatólogos y alergólogos de manera constante y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Dermatólogo y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos pocas veces y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos pocas veces y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos pocas veces y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Pocas veces (Opción 1); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Pocas veces | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos al menos una vez al mes y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos al menos una vez al mes y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos al menos una vez al mes y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Frecuente (Opción 2); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Frecuente (mensual) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos de manera constante y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Básico (Opción 1).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Básico"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos de manera constante y has recibido tratamiento como antihistamínicos y corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Intermedio (Opción 2).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Intermedio"
+  },
+  {
+    "sec": "Sección 5",
+    "var": "Variante 3",
+    "text": "Has recibido consulta con médicos generales, dermatólogos y alergólogos de manera constante y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides.",
+    "trigger": "Q20: Sí; Q22: Médico general, Dermatólogo y Alergólogo; Q21: Intenso (Opción 3); Q23: Sí; Q24: Avanzado (Opción 3).",
+    "score": "Frecuencia: Constante (seguimiento) | Tratamiento: Avanzado"
+  },
+  {
+    "sec": "Sección 6",
+    "var": "Variante 1",
+    "text": "Consideras que tu tratamiento no ha sido nada efectivo. Tomando en cuenta esto, tus síntomas y el impacto en tu vida, recomendamos altamente importante que hables con un especialista sobre tus síntomas y posibles tratamientos.",
+    "trigger": "Q23: Sí; Q25: Opción 0 (Nada efectivo); Síntomas >= 2 pts y Calidad de vida >= 2 pts.",
+    "score": "Efectividad: 0 pts | Umbral clínico cumplido"
+  },
+  {
+    "sec": "Sección 6",
+    "var": "Variante 1",
+    "text": "Consideras que tu tratamiento ha sido poco efectivo. Tomando en cuenta esto, tus síntomas y el impacto en tu vida, recomendamos altamente importante que hables con un especialista sobre tus síntomas y posibles tratamientos.",
+    "trigger": "Q23: Sí; Q25: Opción 1 (Poco efectivo); Síntomas >= 2 pts y Calidad de vida >= 2 pts.",
+    "score": "Efectividad: 1 pt | Umbral clínico cumplido"
+  },
+  {
+    "sec": "Sección 6",
+    "var": "Variante 2",
+    "text": "Consideras que tu tratamiento ha sido medianamente efectivo. Tomando en cuenta esto, tus síntomas y el impacto en tu vida, recomendamos importante que hables con un especialista sobre la urticaria crónica y los tratamientos disponibles.",
+    "trigger": "Q23: Sí; Q25: Opción 2 (Medianamente efectivo); Síntomas >= 2 pts y Calidad de vida >= 2 pts.",
+    "score": "Efectividad: 2 pts | Umbral clínico cumplido"
+  },
+  {
+    "sec": "Sección 6",
+    "var": "Variante 3",
+    "text": "Consideras que tu tratamiento ha sido muy efectivo. Tomando en cuenta esto, tus síntomas y el impacto en tu vida, recomendamos continúes con tu tratamiento de la mano de tu proveedor de salud.",
+    "trigger": "Q23: Sí; Q25: Opción 3 (Mucho / Muy efectivo); Síntomas >= 2 pts y Calidad de vida >= 2 pts.",
+    "score": "Efectividad: 3 pts | Umbral clínico cumplido"
+  },
+  {
+    "sec": "Sección 6",
+    "var": "Variante 4",
+    "text": "(No aplica: no ha recibido tratamiento ni alcanza el umbral de síntomas y calidad de vida)",
+    "trigger": "Q23: No (Opción 0), o sin tratamiento previo, o no alcanza umbral de síntomas/calidad de vida.",
+    "score": "Efectividad: N/A | No aplica recomendación de tratamiento"
+  }
+]

@@ -1,0 +1,254 @@
+[
+  {
+    "num": 0.0,
+    "cat": "datos perosnales",
+    "var": "nombre",
+    "prompt": "¿Cuál es tu nombre completo?",
+    "type": "Texto",
+    "options": null,
+    "logic": null
+  },
+  {
+    "num": 1.0,
+    "cat": "Síntomas",
+    "var": "sintomas",
+    "prompt": "¿Has presentado alguno de los siguientes síntomas? (marca los que hayas presentado)",
+    "type": "Checkbox",
+    "options": "Ninguno (se acaba el formulario)\n\n1. Ronchas\n2. Picazón\n3. Hinchazón",
+    "logic": "Se acaba la sección si contesta ninguno"
+  },
+  {
+    "num": 2.0,
+    "cat": "Síntomas",
+    "var": "tiempo",
+    "prompt": "¿Cuánto tiempo llevas con estos síntomas?",
+    "type": "Radial",
+    "options": "0. Menos de 1 semana\n1. De 1 semana a 1 mes\n2. De 1 mes a 6 meses\n3. Más de 6 meses",
+    "logic": "Solo se muestra si marca mínimo un síntoma en la pregunta 1"
+  },
+  {
+    "num": 3.0,
+    "cat": "Síntomas",
+    "var": "ronchas",
+    "prompt": "En la última semana, ¿Cómo calificas la cantidad de ronchas que has tenido?",
+    "type": "Radial",
+    "options": "0. Ninguna\n1. Leve: Menos de 20 Ronchas en 24h\n2. Moderada: De 20 a 50 ronchas en 24h\n3. Alta: + de 50 ronchas en 24h o largas áreas de ronchas que se unen en una sola",
+    "logic": "Solo se muestra si marca ronchas en la pregunta 1"
+  },
+  {
+    "num": 4.0,
+    "cat": "Síntomas",
+    "var": "picazon",
+    "prompt": "En la última semana, ¿Cómo calificas la intensidad de la picazón que has tenido?",
+    "type": "Radial",
+    "options": "0. Ninguna\n1. Leve: Presente pero no molesta\n2. Moderada: Es molesta pero no interfiere con actividades diarias o el sueño\n3. Alta: Picazón severa que interfiere con el sueño o actividades diarias",
+    "logic": "Solo se muestra si marca picazón en la pregunta 1"
+  },
+  {
+    "num": 5.0,
+    "cat": "Síntomas",
+    "var": "hinchazon",
+    "prompt": "En la última semana, ¿Cómo calificas la hinchazón que has tenido?",
+    "type": "Radial",
+    "options": "0: Ninguno: No he tenido hinchazón en ninguna parte del cuerpo).\n1: Leve: Hinchazón leve en una zona, resuelve rápidamente y no causa dolor).\n2: Moderado: Hinchazón notoria que limita ligeramente el movimiento o causa incomodidad).\n3: Intenso : Hinchazón severa, dolorosa, disfigurante o que afecta la movilidad/deglución).",
+    "logic": "Solo se muestra si marca hinchazón en la pregunta 1\n"
+  },
+  {
+    "num": 6.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "actividades",
+    "prompt": "¿Qué áreas de tu vida se han visto afectadas por tus síntomas? (Marca todas las que apliquen)",
+    "type": "Checkbox",
+    "options": "Actividades diarias (compras, limpieza, jardinería)\nActividades sociales (en pareja, con familia, o con amigos)\nVestimenta\nTrabajo o Estudios\nCalidad de sueño",
+    "logic": null
+  },
+  {
+    "num": 7.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "impacto",
+    "prompt": "En la última semana, ¿Qué tanto han interferido tus síntomas con tus actividades diarias?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho\n",
+    "logic": "Solo se muestra si marca actividades diarias en pregunta 6"
+  },
+  {
+    "num": 8.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "relaicones",
+    "prompt": "En la última semana, ¿Qué tanto han afectado tus síntomas a tus relaciones familiares, amistosas y de pareja?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho\n",
+    "logic": "Solo se muestra si marca actividades sociales en pregunta 6"
+  },
+  {
+    "num": 9.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "vidaSexual",
+    "prompt": "En la última semana, ¿Qué tanto han afectado tus síntomas tu vida sexual?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho\n",
+    "logic": "Solo se muestra si marca actividades sociales en pregunta 6"
+  },
+  {
+    "num": 10.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "ropa",
+    "prompt": "En la última semana, ¿Qué tanto han influenciado tus síntomas la ropa que usas?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho\n",
+    "logic": "Solo se muestra si marca trabajo o estudios en pregunta 6"
+  },
+  {
+    "num": 11.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "trabajoEstudio",
+    "prompt": "En la última semana, ¿Qué tanto han afectado tus síntomas a tu trabajo o estudios?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho\n",
+    "logic": "Solo se muestra si marca vestimenta en pregunta 6"
+  },
+  {
+    "num": 12.0,
+    "cat": "Impacto en calidad de vida",
+    "var": "sueno",
+    "prompt": "En la última semana, ¿Qué tanto han afectado tus síntomas tu calidad de sueño?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho\n",
+    "logic": "Solo se muestra si marca calidad de sueño en pregunta 6"
+  },
+  {
+    "num": 13.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes",
+    "prompt": "¿Consideras que alguno de los siguientes eventos desencadena tus síntomas? (Marca todos los que apliquen)",
+    "type": "Checkbox",
+    "options": "Clima Caliente\nClima Frío\nEstrés\nSudor\nRopa\nOtro (especificar)",
+    "logic": "2 variantes: una para frío y otra para calor"
+  },
+  {
+    "num": 14.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes1",
+    "prompt": "¿Sueles presentar más brotes en algún momento del día? (Marca todos los que apliquen)",
+    "type": "Checkbox",
+    "options": "Mañana\nTarde\nNoche\nNo me afecta el momento del día",
+    "logic": "3 variantes: maña tarde y noche"
+  },
+  {
+    "num": 15.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes2",
+    "prompt": "¿Qué tanto afecta el calor la intensidad de tus síntomas?",
+    "type": "Radial",
+    "options": "0: Sin efecto: No afecta mi piel.\n1: Leve: Siento ligera irritación pero cede rápido.\n2: Moderado: Provoca ronchas visibles de forma recurrente.  \n3: Intenso: Desencadena inmediatamente brotes graves de ronchas o hinchazón.",
+    "logic": "Mostrar solo si marca calor como la causa (pregunta 12)"
+  },
+  {
+    "num": 16.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes3",
+    "prompt": "¿Qué tanto afecta el frío la intensidad de tus síntomas?",
+    "type": "Radial",
+    "options": "0: Sin efecto: No afecta mi piel.\n1: Leve: Siento ligera irritación pero cede rápido.\n2: Moderado: Provoca ronchas visibles de forma recurrente.  \n3: Intenso: Desencadena inmediatamente brotes graves de ronchas o hinchazón.",
+    "logic": "Mostrar solo si marca frío como la causa (pregunta 12)"
+  },
+  {
+    "num": 17.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes4",
+    "prompt": "¿Qué tanto afecta el estrés la intensidad de tus síntomas?",
+    "type": "Radial",
+    "options": "0: Sin efecto: No afecta mi piel.\n1: Leve: Siento ligera irritación pero cede rápido.\n2: Moderado: Provoca ronchas visibles de forma recurrente.  \n3: Intenso: Desencadena inmediatamente brotes graves de ronchas o hinchazón.",
+    "logic": "Mostrar solo si marca estrés como la causa (pregunta 12)"
+  },
+  {
+    "num": 18.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes5",
+    "prompt": "¿Qué tanto afecta el sudor la intensidad de tus síntomas?",
+    "type": "Radial",
+    "options": "0: Sin efecto: No afecta mi piel.\n1: Leve: Siento ligera irritación pero cede rápido.\n2: Moderado: Provoca ronchas visibles de forma recurrente.  \n3: Intenso: Desencadena inmediatamente brotes graves de ronchas o hinchazón.",
+    "logic": "Mostrar solo si marca sudor como la causa (pregunta 12)"
+  },
+  {
+    "num": 19.0,
+    "cat": "Desencadenantes",
+    "var": "desencadenantes6",
+    "prompt": "¿Qué tanto afecta tu ropa la intensidad de tus síntomas?",
+    "type": "Radial",
+    "options": "0: Sin efecto: No afecta mi piel.\n1: Leve: Siento ligera irritación pero cede rápido.\n2: Moderado: Provoca ronchas visibles de forma recurrente.  \n3: Intenso: Desencadena inmediatamente brotes graves de ronchas o hinchazón.",
+    "logic": "Mostrar solo si marca ropa como la causa (pregunta 12)"
+  },
+  {
+    "num": 20.0,
+    "cat": "Tratamiento",
+    "var": null,
+    "prompt": "¿Has consultado al médico cobre tus síntomas?",
+    "type": "Radial",
+    "options": "0. No\n1. Sí",
+    "logic": null
+  },
+  {
+    "num": 21.0,
+    "cat": "Tratamiento",
+    "var": null,
+    "prompt": "¿Con qué frecuencia has consultado al médico sobre tus síntomas?",
+    "type": "Radial",
+    "options": "1: Pocas veces: He consultado 1 o 2 veces con un médico general\n2: Frecuentemente: He acudido a consultas al menos una vez al mes\n3: Intenso: Estoy en seguimiento continuo con dermatología o alergología",
+    "logic": "Solo se muestra si la pregunta 20 tiene por respuesta \"Sí\""
+  },
+  {
+    "num": 22.0,
+    "cat": "Tratamiento",
+    "var": null,
+    "prompt": "¿Qué tipo de médico has consultado? Marca los aplicables",
+    "type": "Checkbox",
+    "options": "Médico general\nDermatólogo\nAlergólogo\nOtro (especificar)",
+    "logic": "Solo se muestra si la pregunta 20 tiene por respuesta \"Sí\""
+  },
+  {
+    "num": 23.0,
+    "cat": "Tratamiento",
+    "var": null,
+    "prompt": "¿Has recibido alguna clase de tratamiento para tratar tus síntomas? (sea un remedio casero o tratamiento profesional)",
+    "type": "Radial",
+    "options": "0. No\n1. Sí",
+    "logic": null
+  },
+  {
+    "num": 24.0,
+    "cat": "Tratamiento",
+    "var": null,
+    "prompt": "¿Qué tipo de tratamiento has llevado para tratar tus síntomas?",
+    "type": "Checkbox",
+    "options": "1: Básico: Uso de antihistamínicos de venta libre u ocasionales, o remedios caseros/cremas tópicas.\n2: Intermedio: Tratamiento prescrito por médico: antihistamínicos a dosis continuas o ciclos cortos de corticoides orales/inyectados.\n3: Avanzado: Uso de dosis altas de antihistamínicos, corticoides frecuentes o terapias avanzadas bajo supervisión médica.",
+    "logic": "Solo se muestra si la pregunta 23 tiene como respuesta \"Sí\""
+  },
+  {
+    "num": 25.0,
+    "cat": "Tratamiento",
+    "var": null,
+    "prompt": "¿Qué tan efectivo consideras que tu tratamiento ha sido para reducir tus síntomas?",
+    "type": "Radial",
+    "options": "0. Nada\n1. Un poco\n2. Medianamente\n3. Mucho",
+    "logic": "Solo se dispara si la pregunta 23 tiene como respuesta \"Sí\""
+  },
+  {
+    "num": 26.0,
+    "cat": "Seguimiento",
+    "var": null,
+    "prompt": "Recibe tus resultados por correo",
+    "type": "email",
+    "options": null,
+    "logic": null
+  },
+  {
+    "num": 27.0,
+    "cat": "Seguimiento",
+    "var": null,
+    "prompt": "¿Buscas un preofesional para atender tus síntomas? Mira nuestro directorio de médicos certificados",
+    "type": "link",
+    "options": null,
+    "logic": null
+  }
+]

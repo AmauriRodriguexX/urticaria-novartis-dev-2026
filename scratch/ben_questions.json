@@ -1,0 +1,680 @@
+{
+  "q0": [
+    "text",
+    "¿Cuál es tu nombre completo?",
+    "datos perosnales",
+    []
+  ],
+  "q1": [
+    "multi",
+    "¿Has presentado alguno de los siguientes síntomas? (marca los que hayas presentado)",
+    "Síntomas",
+    [
+      [
+        "ninguno__se_acaba_el_formulario_",
+        "Ninguno (se acaba el formulario)",
+        ""
+      ],
+      [
+        "1",
+        "Ronchas",
+        ""
+      ],
+      [
+        "2",
+        "Picazón",
+        ""
+      ],
+      [
+        "3",
+        "Hinchazón",
+        ""
+      ]
+    ]
+  ],
+  "q2": [
+    "single",
+    "¿Cuánto tiempo llevas con estos síntomas?",
+    "Síntomas",
+    [
+      [
+        "0",
+        "Menos de 1 semana",
+        ""
+      ],
+      [
+        "1",
+        "De 1 semana a 1 mes",
+        ""
+      ],
+      [
+        "2",
+        "De 1 mes a 6 meses",
+        ""
+      ],
+      [
+        "3",
+        "Más de 6 meses",
+        ""
+      ]
+    ]
+  ],
+  "q3": [
+    "single",
+    "En la última semana, ¿Cómo calificas la cantidad de ronchas que has tenido?",
+    "Síntomas",
+    [
+      [
+        "0",
+        "Ninguna",
+        ""
+      ],
+      [
+        "1. Leve",
+        "Menos de 20 Ronchas en 24h",
+        ""
+      ],
+      [
+        "2. Moderada",
+        "De 20 a 50 ronchas en 24h",
+        ""
+      ],
+      [
+        "3. Alta",
+        "+ de 50 ronchas en 24h o largas áreas de ronchas que se unen en una sola",
+        ""
+      ]
+    ]
+  ],
+  "q4": [
+    "single",
+    "En la última semana, ¿Cómo calificas la intensidad de la picazón que has tenido?",
+    "Síntomas",
+    [
+      [
+        "0",
+        "Ninguna",
+        ""
+      ],
+      [
+        "1. Leve",
+        "Presente pero no molesta",
+        ""
+      ],
+      [
+        "2. Moderada",
+        "Es molesta pero no interfiere con actividades diarias o el sueño",
+        ""
+      ],
+      [
+        "3. Alta",
+        "Picazón severa que interfiere con el sueño o actividades diarias",
+        ""
+      ]
+    ]
+  ],
+  "q5": [
+    "single",
+    "En la última semana, ¿Cómo calificas la hinchazón que has tenido?",
+    "Síntomas",
+    [
+      [
+        "0",
+        "Ninguno",
+        "No he tenido hinchazón en ninguna parte del cuerpo)."
+      ],
+      [
+        "1",
+        "Leve",
+        "Hinchazón leve en una zona, resuelve rápidamente y no causa dolor)."
+      ],
+      [
+        "2",
+        "Moderado",
+        "Hinchazón notoria que limita ligeramente el movimiento o causa incomodidad)."
+      ],
+      [
+        "3",
+        "Intenso",
+        "Hinchazón severa, dolorosa, disfigurante o que afecta la movilidad/deglución)."
+      ]
+    ]
+  ],
+  "q6": [
+    "multi",
+    "¿Qué áreas de tu vida se han visto afectadas por tus síntomas? (Marca todas las que apliquen)",
+    "Impacto en calidad de vida",
+    [
+      [
+        "actividades_diarias__compras__limpieza__jardineria_",
+        "Actividades diarias (compras, limpieza, jardinería)",
+        ""
+      ],
+      [
+        "actividades_sociales__en_pareja__con_familia__o_con_amigos_",
+        "Actividades sociales (en pareja, con familia, o con amigos)",
+        ""
+      ],
+      [
+        "vestimenta",
+        "Vestimenta",
+        ""
+      ],
+      [
+        "trabajo_o_estudios",
+        "Trabajo o Estudios",
+        ""
+      ],
+      [
+        "calidad_de_sueno",
+        "Calidad de sueño",
+        ""
+      ]
+    ]
+  ],
+  "q7": [
+    "single",
+    "En la última semana, ¿Qué tanto han interferido tus síntomas con tus actividades diarias?",
+    "Impacto en calidad de vida",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q8": [
+    "single",
+    "En la última semana, ¿Qué tanto han afectado tus síntomas a tus relaciones familiares, amistosas y de pareja?",
+    "Impacto en calidad de vida",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q9": [
+    "single",
+    "En la última semana, ¿Qué tanto han afectado tus síntomas tu vida sexual?",
+    "Impacto en calidad de vida",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q10": [
+    "single",
+    "En la última semana, ¿Qué tanto han influenciado tus síntomas la ropa que usas?",
+    "Impacto en calidad de vida",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q11": [
+    "single",
+    "En la última semana, ¿Qué tanto han afectado tus síntomas a tu trabajo o estudios?",
+    "Impacto en calidad de vida",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q12": [
+    "single",
+    "En la última semana, ¿Qué tanto han afectado tus síntomas tu calidad de sueño?",
+    "Impacto en calidad de vida",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q13": [
+    "multi",
+    "¿Consideras que alguno de los siguientes eventos desencadena tus síntomas? (Marca todos los que apliquen)",
+    "Desencadenantes",
+    [
+      [
+        "clima_caliente",
+        "Clima Caliente",
+        ""
+      ],
+      [
+        "clima_frio",
+        "Clima Frío",
+        ""
+      ],
+      [
+        "estres",
+        "Estrés",
+        ""
+      ],
+      [
+        "sudor",
+        "Sudor",
+        ""
+      ],
+      [
+        "ropa",
+        "Ropa",
+        ""
+      ],
+      [
+        "otro__especificar_",
+        "Otro (especificar)",
+        ""
+      ]
+    ]
+  ],
+  "q14": [
+    "multi",
+    "¿Sueles presentar más brotes en algún momento del día? (Marca todos los que apliquen)",
+    "Desencadenantes",
+    [
+      [
+        "manana",
+        "Mañana",
+        ""
+      ],
+      [
+        "tarde",
+        "Tarde",
+        ""
+      ],
+      [
+        "noche",
+        "Noche",
+        ""
+      ],
+      [
+        "no_me_afecta_el_momento_del_dia",
+        "No me afecta el momento del día",
+        ""
+      ]
+    ]
+  ],
+  "q15": [
+    "single",
+    "¿Qué tanto afecta el calor la intensidad de tus síntomas?",
+    "Desencadenantes",
+    [
+      [
+        "0",
+        "Sin efecto",
+        "No afecta mi piel."
+      ],
+      [
+        "1",
+        "Leve",
+        "Siento ligera irritación pero cede rápido."
+      ],
+      [
+        "2",
+        "Moderado",
+        "Provoca ronchas visibles de forma recurrente."
+      ],
+      [
+        "3",
+        "Intenso",
+        "Desencadena inmediatamente brotes graves de ronchas o hinchazón."
+      ]
+    ]
+  ],
+  "q16": [
+    "single",
+    "¿Qué tanto afecta el frío la intensidad de tus síntomas?",
+    "Desencadenantes",
+    [
+      [
+        "0",
+        "Sin efecto",
+        "No afecta mi piel."
+      ],
+      [
+        "1",
+        "Leve",
+        "Siento ligera irritación pero cede rápido."
+      ],
+      [
+        "2",
+        "Moderado",
+        "Provoca ronchas visibles de forma recurrente."
+      ],
+      [
+        "3",
+        "Intenso",
+        "Desencadena inmediatamente brotes graves de ronchas o hinchazón."
+      ]
+    ]
+  ],
+  "q17": [
+    "single",
+    "¿Qué tanto afecta el estrés la intensidad de tus síntomas?",
+    "Desencadenantes",
+    [
+      [
+        "0",
+        "Sin efecto",
+        "No afecta mi piel."
+      ],
+      [
+        "1",
+        "Leve",
+        "Siento ligera irritación pero cede rápido."
+      ],
+      [
+        "2",
+        "Moderado",
+        "Provoca ronchas visibles de forma recurrente."
+      ],
+      [
+        "3",
+        "Intenso",
+        "Desencadena inmediatamente brotes graves de ronchas o hinchazón."
+      ]
+    ]
+  ],
+  "q18": [
+    "single",
+    "¿Qué tanto afecta el sudor la intensidad de tus síntomas?",
+    "Desencadenantes",
+    [
+      [
+        "0",
+        "Sin efecto",
+        "No afecta mi piel."
+      ],
+      [
+        "1",
+        "Leve",
+        "Siento ligera irritación pero cede rápido."
+      ],
+      [
+        "2",
+        "Moderado",
+        "Provoca ronchas visibles de forma recurrente."
+      ],
+      [
+        "3",
+        "Intenso",
+        "Desencadena inmediatamente brotes graves de ronchas o hinchazón."
+      ]
+    ]
+  ],
+  "q19": [
+    "single",
+    "¿Qué tanto afecta tu ropa la intensidad de tus síntomas?",
+    "Desencadenantes",
+    [
+      [
+        "0",
+        "Sin efecto",
+        "No afecta mi piel."
+      ],
+      [
+        "1",
+        "Leve",
+        "Siento ligera irritación pero cede rápido."
+      ],
+      [
+        "2",
+        "Moderado",
+        "Provoca ronchas visibles de forma recurrente."
+      ],
+      [
+        "3",
+        "Intenso",
+        "Desencadena inmediatamente brotes graves de ronchas o hinchazón."
+      ]
+    ]
+  ],
+  "q20": [
+    "single",
+    "¿Has consultado al médico cobre tus síntomas?",
+    "Tratamiento",
+    [
+      [
+        "0",
+        "No",
+        ""
+      ],
+      [
+        "1",
+        "Sí",
+        ""
+      ]
+    ]
+  ],
+  "q21": [
+    "single",
+    "¿Con qué frecuencia has consultado al médico sobre tus síntomas?",
+    "Tratamiento",
+    [
+      [
+        "1",
+        "Pocas veces",
+        "He consultado 1 o 2 veces con un médico general"
+      ],
+      [
+        "2",
+        "Frecuentemente",
+        "He acudido a consultas al menos una vez al mes"
+      ],
+      [
+        "3",
+        "Intenso",
+        "Estoy en seguimiento continuo con dermatología o alergología"
+      ]
+    ]
+  ],
+  "q22": [
+    "multi",
+    "¿Qué tipo de médico has consultado? Marca los aplicables",
+    "Tratamiento",
+    [
+      [
+        "medico_general",
+        "Médico general",
+        ""
+      ],
+      [
+        "dermatologo",
+        "Dermatólogo",
+        ""
+      ],
+      [
+        "alergologo",
+        "Alergólogo",
+        ""
+      ],
+      [
+        "otro__especificar_",
+        "Otro (especificar)",
+        ""
+      ]
+    ]
+  ],
+  "q23": [
+    "single",
+    "¿Has recibido alguna clase de tratamiento para tratar tus síntomas? (sea un remedio casero o tratamiento profesional)",
+    "Tratamiento",
+    [
+      [
+        "0",
+        "No",
+        ""
+      ],
+      [
+        "1",
+        "Sí",
+        ""
+      ]
+    ]
+  ],
+  "q24": [
+    "multi",
+    "¿Qué tipo de tratamiento has llevado para tratar tus síntomas?",
+    "Tratamiento",
+    [
+      [
+        "1",
+        "Básico",
+        "Uso de antihistamínicos de venta libre u ocasionales, o remedios caseros/cremas tópicas."
+      ],
+      [
+        "2",
+        "Intermedio",
+        "Tratamiento prescrito por médico: antihistamínicos a dosis continuas o ciclos cortos de corticoides orales/inyectados."
+      ],
+      [
+        "3",
+        "Avanzado",
+        "Uso de dosis altas de antihistamínicos, corticoides frecuentes o terapias avanzadas bajo supervisión médica."
+      ]
+    ]
+  ],
+  "q25": [
+    "single",
+    "¿Qué tan efectivo consideras que tu tratamiento ha sido para reducir tus síntomas?",
+    "Tratamiento",
+    [
+      [
+        "0",
+        "Nada",
+        ""
+      ],
+      [
+        "1",
+        "Un poco",
+        ""
+      ],
+      [
+        "2",
+        "Medianamente",
+        ""
+      ],
+      [
+        "3",
+        "Mucho",
+        ""
+      ]
+    ]
+  ],
+  "q26": [
+    "email",
+    "Recibe tus resultados por correo",
+    "Seguimiento",
+    []
+  ],
+  "q27": [
+    "link",
+    "¿Buscas un preofesional para atender tus síntomas? Mira nuestro directorio de médicos certificados",
+    "Seguimiento",
+    []
+  ]
+}
