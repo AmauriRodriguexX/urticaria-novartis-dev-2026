@@ -179,65 +179,37 @@ h1 em { font-style: normal; color: var(--accent); }
   inset: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: rgba(14, 26, 32, 0.68);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background-color: var(--bg-solid, #f0eee6);
+  background-image: var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--ink);
   opacity: 1;
-  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-              backdrop-filter 0.3s ease,
-              -webkit-backdrop-filter 0.3s ease;
-  animation: modal-glass-enter 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.dark .modal {
-  background: rgba(8, 8, 12, 0.82);
+  transition: opacity 0.28s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: modal-fade-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .modal-inner {
-  min-height: auto;
+  min-height: 100%;
   max-width: 680px;
-  margin: clamp(20px, 4.5vh, 52px) auto;
-  padding: var(--s-5) clamp(18px, 4vw, 36px) calc(var(--s-6) + env(safe-area-inset-bottom));
-  background: var(--card, #fffdf8);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  margin: auto;
+  padding: 0 var(--gutter) calc(var(--s-7) + env(safe-area-inset-bottom));
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0px);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.25s ease,
-              filter 0.25s ease;
-  animation: modal-sheet-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+              opacity 0.25s ease;
+  animation: modal-sheet-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.dark .modal-inner {
-  background: #18171e;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
-}
-
-@media (max-width: 639px) {
-  .modal-inner {
-    margin: 12px 8px;
-    padding: var(--s-4) var(--s-4) var(--s-6);
-    border-radius: 20px;
-  }
-}
-
-/* Efecto Apple / Glass de Salida */
+/* Efecto de salida suave al cerrar */
 .modal.is-closing {
   opacity: 0 !important;
-  backdrop-filter: blur(0px) !important;
-  -webkit-backdrop-filter: blur(0px) !important;
   pointer-events: none;
 }
 
 .modal.is-closing .modal-inner {
   opacity: 0 !important;
-  transform: scale(0.95) translateY(16px) !important;
-  filter: blur(8px) !important;
+  transform: scale(0.97) translateY(12px) !important;
 }
 
 .modal-head {
@@ -541,29 +513,18 @@ h1 em { font-style: normal; color: var(--accent); }
 @keyframes header-in { from { opacity: 0; transform: translateY(-8px); } }
 @keyframes video-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes card-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes overlay { from { opacity: 0; } }
-@keyframes modal-glass-enter {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-  }
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 @keyframes modal-sheet-enter {
   from {
     opacity: 0;
-    transform: scale(0.96) translateY(20px);
-    filter: blur(4px);
+    transform: scale(0.98) translateY(14px);
   }
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
-    filter: blur(0px);
   }
 }
 @keyframes ring { 70% { box-shadow: 0 0 0 14px transparent; } }
