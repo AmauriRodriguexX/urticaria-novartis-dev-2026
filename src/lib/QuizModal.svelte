@@ -293,9 +293,31 @@
             <button class="ghost" on:click={copy}><Icon name={copied ? 'check' : 'content_copy'} size={18} /><span>{copied ? 'Copiado' : 'Copiar'}</span></button>
           </div>
         </div>
-        <div class="result-next">
-          <button class="outline" on:click={() => go('map', step)}><Icon name="location_on" size={20} /><span>Ver especialistas cerca</span></button>
-          <button class="text quiet" on:click={restart}><Icon name="refresh" size={16} /> Empezar de nuevo</button>
+
+        {#if answers.q19 !== '3'}
+          <div class="result-banner-cta">
+            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Especialistas certificados</span>
+            <div class="banner-body">
+              <h3>¿Buscas un especialista que trate tus síntomas?</h3>
+              <p>Encuentra médicos dermatólogos y alergólogos certificados cerca de ti para dar el siguiente paso.</p>
+            </div>
+            <button class="button banner-action" on:click={() => go('map', step)}>
+              <span>Mira nuestro directorio médico</span>
+              <Icon name="arrow_forward" size={18} />
+            </button>
+          </div>
+        {/if}
+
+        <div class="result-next" class:has-banner={answers.q19 !== '3'}>
+          {#if answers.q19 === '3'}
+            <button class="outline" on:click={() => go('map', step)}>
+              <Icon name="location_on" size={20} />
+              <span>Ver directorio médico</span>
+            </button>
+          {/if}
+          <button class="text quiet" on:click={restart}>
+            <Icon name="refresh" size={16} /> Empezar de nuevo
+          </button>
         </div>
       </div>
 
