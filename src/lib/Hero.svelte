@@ -78,7 +78,7 @@
     </div>
     <div class="counter">
       <strong>{animated.toLocaleString('es-MX')}</strong>
-      <p>personas usaron esta guía esta semana para entender qué les pasa.</p>
+      <p>{ctx === 'madrugada' || ctx === 'noche-calor' ? 'personas están conectadas o buscando alivio esta noche.' : 'personas usaron esta guía esta semana para entender qué les pasa.'}</p>
     </div>
   </div>
 </section>
