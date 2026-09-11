@@ -6,7 +6,8 @@
   import PhotoLibrary from './lib/PhotoLibrary.svelte'
   import Community from './lib/Community.svelte'
   import { themes, copies } from './lib/campaign.js'
-  import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled } from './lib/context.js'
+  import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled, formatTimeGreeting } from './lib/context.js'
+  import { detectGeoAndWeather } from './lib/geo.js'
 
   let forced = forcedFromUrl()
   let preview = previewEnabled()
@@ -15,11 +16,16 @@
   let quizTrigger = null
   let videosMode = typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '').endsWith('/videos')
   let viewOpen = false
+  let geoData = null
+  let now = new Date()
 
-  $: ctx = forced || resolveContext()
+  $: autoCtx = resolveContext(now, geoData)
+  $: ctx = forced || autoCtx
   $: theme = themes[ctx]
   $: dark = DARK.has(ctx)
-  $: copy = copies[ctx]
+  $: rawCopy = copies[ctx]
+  $: dynamicKicker = formatTimeGreeting(ctx, geoData?.city, now)
+  $: copy = [dynamicKicker, ...rawCopy.slice(1)]
   $: displayWord = ctx === 'dia' ? word : copy[2]
   $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
   let quizInitialPhase = 'quiz'
@@ -69,9 +75,21 @@
     if (window.location.hash === '#consulta') {
       openQuiz(null, 'map')
     }
+
+    // Detección automática y no bloqueante de ciudad y clima
+    detectGeoAndWeather().then(data => {
+      if (data) geoData = data
+    })
+
+    // Actualización de reloj cada 30 segundos
+    const clockTimer = setInterval(() => { now = new Date() }, 30000)
+
     const words = ['los brotes', 'la comezón', 'el insomnio', 'la incertidumbre']
     const timer = setInterval(() => { if (ctx === 'dia' && !quizOpen) word = words[(words.indexOf(word) + 1) % words.length] }, 2900)
-    return () => clearInterval(timer)
+    return () => {
+      clearInterval(timer)
+      clearInterval(clockTimer)
+    }
   })
 </script>
 
