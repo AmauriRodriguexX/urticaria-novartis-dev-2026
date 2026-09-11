@@ -181,10 +181,10 @@ export function generarReporteBen(r) {
   else cvDesc = ' que afectan gravemente tu vida diaria'
 
   let probDesc = ''
-  if (total <= 7) probDesc = 'Es poco probable que sufras urticaria crónica espontánea.'
-  else if (total <= 12) probDesc = 'Es medianamente probable que sufras urticaria crónica espontánea.'
-  else if (total <= 24) probDesc = 'Es probable que sufras urticaria crónica espontánea.'
-  else probDesc = 'Es altamente probable que sufras urticaria crónica espontánea.'
+  if (total <= 7) probDesc = 'Es poco probable que padezcas urticaria crónica espontánea.'
+  else if (total <= 12) probDesc = 'La probabilidad de que padezcas urticaria crónica espontánea es moderada.'
+  else if (total <= 24) probDesc = 'Es probable que padezcas urticaria crónica espontánea.'
+  else probDesc = 'Es altamente probable que padezcas urticaria crónica espontánea.'
 
   const seccion1 = `${nombre}, ${sDesc}${cvDesc}. ${probDesc}`
 
@@ -315,7 +315,7 @@ export function esUrgencia(id, valor) {
 export function leerResultado(respuestas) {
   const rep = generarReporteBen(respuestas)
   return {
-    titulo: rep.total >= 13 ? 'Lo que describes encaja con urticaria crónica espontánea.' : (rep.total >= 8 ? 'Presentas síntomas compatibles con urticaria crónica.' : 'Tus síntomas parecen de baja probabilidad de UCE.'),
+    titulo: rep.total >= 13 ? 'Lo que describes encaja con urticaria crónica espontánea.' : (rep.total >= 8 ? 'Presentas síntomas compatibles con urticaria crónica espontánea.' : 'Es poco probable que padezcas urticaria crónica espontánea.'),
     detalle: rep.seccion1,
     reporte: rep
   }

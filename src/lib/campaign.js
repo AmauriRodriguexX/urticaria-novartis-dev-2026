@@ -18,10 +18,10 @@ export const questions = {
   // --- Preguntas de Ben (Novartis CSU Cuestionario) ---
   q0: ['text', '¿Cuál es tu nombre? (Opcional)', 'Para personalizar tu resumen médico orientativo.', []],
 
-  q1: ['multi', '¿Has presentado alguno de los siguientes síntomas?', 'Marca todos los que hayas presentado en tu piel.', [
+  q1: ['multi', '¿Has presentado alguno de los siguientes síntomas?', 'Marca todos los que hayas notado en tu piel.', [
     ['ninguno', 'Ninguno de estos', ''],
-    ['ronchas', 'Ronchas o habones', 'Marcas rojizas o elevadas que aparecen y desaparecen'],
-    ['picazon', 'Picazón o comezón', 'Ganas intensas o incómodas de rascarse'],
+    ['ronchas', 'Ronchas en la piel', 'Marcas rojizas o elevadas que aparecen y desaparecen'],
+    ['picazon', 'Comezón intensa', 'Sensación constante o incómoda de querer rascarte'],
     ['hinchazon', 'Hinchazón', 'En labios, párpados, manos o pies']
   ]],
 
@@ -44,14 +44,14 @@ export const questions = {
     ['3', 'Alta (+ de 50 ronchas)', 'Grandes áreas de ronchas que se unen']
   ]],
 
-  q4: ['single', 'En la última semana, ¿cómo calificas la intensidad de la picazón?', '¿Qué tanto te ha molestado la comezón?', [
+  q4: ['single', 'En la última semana, ¿qué tan intensa ha sido la comezón?', '¿Qué tanto te ha molestado en tu día a día?', [
     ['0', 'Ninguna', 'Sin comezón'],
     ['1', 'Leve', 'Presente pero no molesta'],
     ['2', 'Moderada', 'Molesta pero no interfiere con tus actividades o sueño'],
-    ['3', 'Alta / Severa', 'Picazón intensa que interfiere con tu día o el sueño']
+    ['3', 'Alta / Severa', 'Comezón intensa que interfiere con tu día o el sueño']
   ]],
 
-  q5: ['single', 'En la última semana, ¿cómo calificas la hinchazón que has tenido?', 'Inflamación bajo la piel (angioedema).', [
+  q5: ['single', 'En la última semana, ¿cómo ha sido la hinchazón en tu cuerpo?', 'Hinchazón debajo de la piel en labios, párpados, manos o pies.', [
     ['0', 'Ninguna', 'No he tenido hinchazón'],
     ['1', 'Leve', 'Hinchazón ligera en una zona, cede rápido sin dolor'],
     ['2', 'Moderada', 'Notoria, limita ligeramente o causa molestia'],
@@ -74,7 +74,7 @@ export const questions = {
     ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
   ]],
 
-  q9: ['single', 'En la última semana, ¿qué tanto han influenciado tus síntomas la ropa que usas?', '', [
+  q9: ['single', 'En la última semana, ¿qué tanto han condicionado los síntomas la ropa que usas?', 'Por ejemplo, evitar ciertas telas, texturas o prendas ajustadas.', [
     ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
   ]],
 
@@ -92,7 +92,7 @@ export const questions = {
     ['estres', 'Estrés emocional o tensión', ''],
     ['sudor', 'Sudor o ejercicio físico', ''],
     ['ropa', 'Ropa ajustada o roce constante', ''],
-    ['sin_patron', 'No encuentro ningún patrón claro', '']
+    ['sin_patron', 'No identifico ningún detonante claro', 'Aparecen de manera espontánea']
   ]],
 
   q13: ['single', '¿Sueles presentar más brotes en algún momento del día?', '¿Notas algún horario en particular?', [
@@ -119,18 +119,18 @@ export const questions = {
     ['alergologo', 'Alergólogo/a', '']
   ]],
 
-  q17: ['single', '¿Has recibido alguna clase de tratamiento?', 'Medicamentos recetados, de venta libre o remedios.', [
+  q17: ['single', '¿Has tomado o aplicado algún tratamiento para estos síntomas?', 'Medicamentos recetados, de venta libre o remedios.', [
     ['0', 'No', 'No he tomado ni aplicado nada'],
     ['1', 'Sí', 'He tomado o aplicado tratamientos']
   ]],
 
-  q18: ['multi', '¿Qué tipo de tratamiento has llevado?', 'Marca los que conozcas.', [
+  q18: ['multi', '¿Qué tipo de tratamiento has utilizado?', 'Selecciona los que hayas probado.', [
     ['1', 'Básico', 'Antihistamínicos de venta libre, pomadas o remedios caseros'],
     ['2', 'Intermedio', 'Antihistamínicos recetados a dosis continuas o corticoides'],
     ['3', 'Avanzado', 'Dosis altas, tratamientos específicos o seguimiento estrecho']
   ]],
 
-  q19: ['single', '¿Qué tan efectivo consideras que ha sido tu tratamiento para reducir tus síntomas?', '', [
+  q19: ['single', '¿Qué tan efectivo ha sido tu tratamiento para controlar tus síntomas?', '', [
     ['0', 'Nada efectivo', 'Sigo con los mismos síntomas'],
     ['1', 'Poco efectivo', 'Apenas he notado alivio'],
     ['2', 'Medianamente efectivo', 'Me ayuda pero los brotes regresan'],
