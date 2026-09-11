@@ -11,7 +11,7 @@
   export let autoVideo = false
 
   $: a = assetsFor(ctx)
-  $: videoSrc = autoVideo ? `${import.meta.env.BASE_URL}assets/video/hero-dia-auto.mp4` : a.video
+  $: videoSrc = a.video
 
   let animated = 0, mounted = false, frame
   let ctaOffscreen = false
