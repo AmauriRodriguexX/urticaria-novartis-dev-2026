@@ -11,7 +11,7 @@
   let forced = forcedFromUrl()
   let preview = previewEnabled()
   let quizOpen = false
-  let word = 'la comezón'
+  let word = 'los brotes'
   let quizTrigger = null
   let videosMode = typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '').endsWith('/videos')
   let viewOpen = false
@@ -22,10 +22,12 @@
   $: copy = copies[ctx]
   $: displayWord = ctx === 'dia' ? word : copy[2]
   $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
+  let quizInitialPhase = 'quiz'
   $: target = dark ? 18 : 1240
 
-  function openQuiz(e) {
+  function openQuiz(e, phase = 'quiz') {
     quizTrigger = e?.currentTarget || null
+    quizInitialPhase = phase
     quizOpen = true
   }
   function closeQuiz() {
@@ -44,6 +46,11 @@
     const link = event.target.closest?.('a[href^="#"]')
     if (!link) return
     const id = link.getAttribute('href')?.slice(1)
+    if (id === 'consulta') {
+      event.preventDefault()
+      openQuiz(null, 'map')
+      return
+    }
     const section = id && document.getElementById(id)
     if (!section) return
     event.preventDefault()
@@ -59,7 +66,10 @@
   }
 
   onMount(() => {
-    const words = ['la comezón', 'los brotes', 'el insomnio', 'la incertidumbre']
+    if (window.location.hash === '#consulta') {
+      openQuiz(null, 'map')
+    }
+    const words = ['los brotes', 'la comezón', 'el insomnio', 'la incertidumbre']
     const timer = setInterval(() => { if (ctx === 'dia' && !quizOpen) word = words[(words.indexOf(word) + 1) % words.length] }, 2900)
     return () => clearInterval(timer)
   })
@@ -70,7 +80,7 @@
 <main class="shell" class:dark style={css}>
   <header class="brand">
     <a class="brand-link" href={import.meta.env.BASE_URL} aria-label="Inicio">
-      <span>El lugar más pequeño</span>
+      <span>tuvidaesmásgrande.org</span>
     </a>
     {#if preview}
       <div class="view-select">
@@ -106,15 +116,15 @@
       <a class="card card-community" href="#comunidad">
         <i><Icon name="groups" size={22} /></i>
         <h3>No lo estás imaginando</h3>
-        <span>Otras personas la viven, y aprendieron a vivirla en pequeño.</span>
+        <span>Otras personas la viven y aprendieron que su vida es más grande que los síntomas.</span>
         <b>Leer a la comunidad <Icon name="arrow_forward" size={18} /></b>
       </a>
-      <a class="card card-consult" href="#consulta">
+      <button class="card card-consult" type="button" on:click={(e) => openQuiz(e, 'map')}>
         <i><Icon name="stethoscope" size={22} /></i>
         <h3>Hay algo más que puedes hacer</h3>
         <span>Lleva a tu próxima consulta las palabras justas para empezar la conversación.</span>
         <b>Preparar mi consulta <Icon name="arrow_forward" size={18} /></b>
-      </a>
+      </button>
     </div>
   </section>
 
@@ -123,9 +133,9 @@
   <Community />
 
   <footer class="site-footer">
-    <em>Que ocupe el lugar más pequeño de tu vida.</em>
+    <em>Tu vida es más grande que los brotes de urticaria crónica espontánea.</em>
     <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
   </footer>
 
-  {#if quizOpen}<QuizModal {ctx} onClose={closeQuiz} />{/if}
+  {#if quizOpen}<QuizModal {ctx} initialPhase={quizInitialPhase} onClose={closeQuiz} />{/if}
 </main>
