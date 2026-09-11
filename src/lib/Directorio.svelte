@@ -146,28 +146,37 @@
     </label>
   </div>
 
-  <div class="map-shell" class:is-dark={dark}>
-    <div class="map" bind:this={mapEl} role="application" aria-label="Mapa de especialistas"></div>
+  <div class="dir-grid">
+    <div class="dir-map-pane">
+      <div class="map-shell" class:is-dark={dark}>
+        <div class="map" bind:this={mapEl} role="application" aria-label="Mapa de especialistas"></div>
+      </div>
+      <div class="dir-tips">
+        <strong><Icon name="stethoscope" size={17} /> ¿Qué llevar a tu consulta?</strong>
+        <p>1. Fotos de tus brotes fechadas. 2. Nota de si duran menos o más de 24 h. 3. Antihistamínicos que ya probaste.</p>
+      </div>
+    </div>
+
+    <div class="dir-list-pane">
+      {#if cpValido}<p class="dir-status"><Icon name="location_on" size={15} /> Ordenado por cercanía al {zip}.</p>{/if}
+
+      <ul class="doc-list">
+        {#each visible as s (s.id)}
+          <li>
+            <button id={`doc-${s.id}`} class="doc" class:is-active={active === s.id} on:click={() => select(s.id)} aria-pressed={active === s.id}>
+              <span class="doc-dot" style={`background:${TYPES[s.type].color}`}></span>
+              <span class="doc-body">
+                <strong>{s.name}</strong>
+                <span class="doc-spec">{s.label}</span>
+                <span class="doc-addr"><Icon name="location_on" size={14} />{s.address}</span>
+              </span>
+              <span class="doc-dist">{s.dist}</span>
+            </button>
+          </li>
+        {/each}
+      </ul>
+    </div>
   </div>
 
-  {#if cpValido}<p class="dir-status"><Icon name="location_on" size={15} /> Ordenado por cercanía al {zip}.</p>{/if}
-
-  <ul class="doc-list">
-    {#each visible as s (s.id)}
-      <li>
-        <button id={`doc-${s.id}`} class="doc" class:is-active={active === s.id} on:click={() => select(s.id)} aria-pressed={active === s.id}>
-          <span class="doc-dot" style={`background:${TYPES[s.type].color}`}></span>
-          <span class="doc-body">
-            <strong>{s.name}</strong>
-            <span class="doc-spec">{s.label}</span>
-            <span class="doc-addr"><Icon name="location_on" size={14} />{s.address}</span>
-          </span>
-          <span class="doc-dist">{s.dist}</span>
-        </button>
-      </li>
-    {/each}
-  </ul>
-
-  <p class="map-note"><Icon name="quiz" size={16} /> Directorio de muestra de especialistas certificados. En producción se conecta al directorio curado por el equipo médico.</p>
-  <button class="outline" on:click={onBack}><Icon name="arrow_back" size={18} /><span>Volver</span></button>
+  <button class="outline dir-back-btn" on:click={onBack}><Icon name="arrow_back" size={18} /><span>Volver</span></button>
 </div>

@@ -7,8 +7,9 @@
   import Directorio from './Directorio.svelte'
   export let ctx
   export let onClose
+  export let initialPhase = 'quiz'
 
-  let phase = 'quiz', step = 0, answers = {}, copied = false, downloaded = false
+  let phase = initialPhase, step = 0, answers = {}, copied = false, downloaded = false
   let dialog, heading
   let indice = 0           // posición del modal dentro del historial; viaja DENTRO del estado
   // Identificador de esta apertura del modal. Sin él, una entrada de historial
@@ -64,6 +65,12 @@
     history.pushState({ quiz: { phase, step, i: indice, s: sesion } }, '')
   }
 
+  let isClosing = false
+
+  function handleBackdrop(e) {
+    if (e.target === dialog) close()
+  }
+
   function onPop(e) {
     const s = e.state?.quiz
     if (s && s.s === sesion) {
@@ -72,17 +79,23 @@
       if (limpiarAlVolver) { limpiarAlVolver = false; answers = {} }
       return
     }
-    // Salimos del modal por el botón atrás del navegador.
-    cerrarYa()
+    // Salimos del modal por el botón atrás del navegador con animación suave
+    if (!isClosing) {
+      isClosing = true
+      setTimeout(cerrarYa, 280)
+    } else {
+      cerrarYa()
+    }
   }
 
   function close() {
-    if (cerrado) return
-    // Deshacemos exactamente las entradas que empujamos, ni una más.
-    history.go(-(indice + 1))
-    // Red de seguridad: si el navegador no dispara popstate, cerramos igual en vez
-    // de dejar el modal atorado.
-    temporizadorCierre = setTimeout(cerrarYa, 400)
+    if (cerrado || isClosing) return
+    isClosing = true
+    setTimeout(() => {
+      if (cerrado) return
+      history.go(-(indice + 1))
+      temporizadorCierre = setTimeout(cerrarYa, 350)
+    }, 280)
   }
 
   function cerrarYa() {
@@ -155,7 +168,7 @@
     // Si la entrada actual arrastra un estado de modal (por ejemplo, tras recargar
     // con el quiz abierto), lo limpiamos antes de empezar.
     if (history.state?.quiz) history.replaceState({}, '')
-    history.pushState({ quiz: { phase: 'quiz', step: 0, i: 0, s: sesion } }, '')
+    history.pushState({ quiz: { phase: initialPhase, step: 0, i: 0, s: sesion } }, '')
     return () => {
       cerrado = true
       clearTimeout(temporizadorCierre)
@@ -168,11 +181,21 @@
 
 <svelte:window on:keydown={(e) => { if (e.key === 'Escape') close(); trapTab(e) }} />
 
-<div class="modal" role="dialog" aria-modal="true" aria-label="Quiz orientativo: ¿Será urticaria?" bind:this={dialog}>
-  <div class="modal-inner">
+<div
+  class="modal"
+  class:is-closing={isClosing}
+  role="dialog"
+  aria-modal="true"
+  tabindex="-1"
+  aria-label="Orientación médica y autochequeo"
+  bind:this={dialog}
+  on:click={handleBackdrop}
+  on:keydown={(e) => { if (e.key === 'Escape') close() }}
+>
+  <div class="modal-inner" class:is-wide={phase === 'map'}>
     <header class="modal-head">
       <span class="mini-glass" aria-hidden="true"></span>
-      <b>Hazla pequeña · 1 min</b>
+      <b>{phase === 'map' ? 'Especialistas y Consulta' : 'Tu vida es más grande · 1 min'}</b>
       <button class="close" aria-label="Cerrar" on:click={close}><Icon name="close" size={22} /></button>
     </header>
 
@@ -182,7 +205,7 @@
         <p class="step">Paso {step + 1} de {flow.length}</p>
         <h2 tabindex="-1" bind:this={heading}>{q[1]}</h2>
         {#if q[2]}<p class="sub">{q[2]}</p>{/if}
-        <div class="options" role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
+        <div class="options" class:options-grid={q[3] && q[3].length >= 4} role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
           {#each q[3] as o}
             {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
             <button class:chosen={on} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>

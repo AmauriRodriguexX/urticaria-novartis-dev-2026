@@ -156,12 +156,9 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
   set('normal', 7.5, COLORS.faint)
   const legal = doc.splitTextToSize(
     'Este resumen es orientativo y no constituye un diagnóstico. Fue generado a partir de respuestas propias en un autochequeo informativo. Solo un profesional de la salud puede valorar el caso.',
-    CONTENT - 34
+    CONTENT
   )
   doc.text(legal, M, footTop + 6)
-
-  set('bold', 9, COLORS.soft)
-  doc.text('NOVARTIS', PAGE.w - M, footTop + 8, { align: 'right' })
 
   return doc
 }
