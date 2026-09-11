@@ -25,7 +25,18 @@
   $: dark = DARK.has(ctx)
   $: rawCopy = copies[ctx]
   $: dynamicKicker = formatTimeGreeting(ctx, geoData?.city, now)
-  $: copy = [dynamicKicker, ...rawCopy.slice(1)]
+  $: copy = (() => {
+    let list = [dynamicKicker, ...rawCopy.slice(1)]
+    if (geoData?.city) {
+      if (ctx === 'calor') {
+        // "En Mérida el calor está fuerte..." -> "En [Ciudad] el calor está fuerte..."
+        list[1] = `En ${geoData.city} el calor está fuerte. Y el calor puede subir `
+      } else if (ctx === 'frio') {
+        list[1] = `Con el frío en ${geoData.city}, a algunas personas la piel se les `
+      }
+    }
+    return list
+  })()
   $: displayWord = ctx === 'dia' ? word : copy[2]
   $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
   let quizInitialPhase = 'quiz'
