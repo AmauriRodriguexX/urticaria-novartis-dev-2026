@@ -15,15 +15,125 @@ export const copies = {
 }
 
 export const questions = {
- p1:['single','¿Qué se parece más a lo que tienes?','Elige la opción más cercana. Puede pasar en cualquier tono de piel.',[['habones','Ronchas o habones que aparecen y se van','Como piquetes de mosco que cambian de lugar'],['hinchazon','Hinchazón de labios, párpados o manos','La piel se infla, más que marcarse'],['solo_comezon','Solo comezón, sin marca visible','Pica, pero no se ve nada en la piel'],['manchas_fijas','Manchas que no se mueven ni desaparecen','Se quedan en el mismo sitio varios días']]],
- p1b:['single','¿La hinchazón es en labios, lengua o garganta, o te cuesta respirar?','Esto es importante: ayuda a descartar una urgencia.',[['urgente','Sí — labios, lengua, garganta, o me cuesta respirar',''],['no_urgente','No — es en párpados, manos o pies','']]],
- p2:['single','¿Las ronchas aparecen, se van y cambian de lugar en menos de un día?','Es el rasgo más característico de la urticaria.',[['si','Sí, salen y desaparecen en horas','Y suelen cambiar de lugar'],['persisten','No, se quedan días en el mismo sitio','O dejan moretón / marca al irse'],['no_seguro','No tengo la certeza','No me he fijado bien']]],
- p3:['single','¿Cuánto llevas con esto?','Las 6 semanas son la línea entre lo agudo y lo crónico.',[['aguda','Menos de 6 semanas','Empezó hace poco'],['cronica','Más de 6 semanas','Llevo bastante tiempo así'],['no_seguro','No tengo la certeza','Va y viene desde hace tiempo']]],
- n1:['single','¿Esto empezó mientras dormías, o lo venías sintiendo desde el día?','Nos ayuda a entender tu brote nocturno.',[['empezo_dormido','Empezó o me despertó de noche',''],['venia_del_dia','Ya lo sentía desde el día','']]],
- n2:['single','¿Es la primera noche que te pasa, o ya van varias?','',[['primera','Es la primera vez',''],['varias','Ya van varias noches','']]],
- p4:['single','¿Le encuentras un porqué?','Que no haya causa clara también es una pista valiosa.',[['detonante_claro','Sí, un detonante claro','Una comida, un medicamento, una picadura'],['estreno_nuevo','Estrené algo nuevo hace poco','Cosmético, bloqueador, ropa, detergente'],['sin_patron','No encuentro ningún patrón','Aparece sin razón aparente'],['intermitente','A veces sí, a veces no','No logro identificar qué la dispara']]],
- c1:['single','¿Estrenaste algo en la piel hace poco?','Bloqueador, crema, cosmético o ropa nueva.',[['si','Sí, algo nuevo en la piel',''],['no','No, nada nuevo','']]], c2:['single','¿Las ronchas salen más con el calor, el sudor o el sol?','',[['si','Sí, con calor, sudor o sol',''],['no','No noto esa relación','']]],
- f1:['single','¿Las ronchas aparecen cuando te expones al frío?','Aire frío, agua fría, o al destaparte.',[['si','Sí, con el frío',''],['no','No noto esa relación','']]], f2:['single','¿Tu piel se irrita más con el ambiente seco del invierno?','',[['si','Sí, se reseca e irrita',''],['no','No particularmente','']]],
- p5:['multi','¿Cómo te afecta de verdad?','Marca todo lo que aplique. Esto es justo lo que tu médico necesita saber.',[['sueno','Me quita el sueño',''],['concentracion','Me cuesta concentrarme',''],['evito_planes','Evito salir o hacer planes',''],['angustia','Me angustia o me estresa',''],['trabajo','Afecta mi trabajo','']]],
- p6:['single','¿Ya probaste antihistamínicos y sigues igual?','Los que se venden para la alergia o la comezón.',[['fallido','Sí, los tomé y sigo con síntomas',''],['funciona','Sí, y me ayudaron',''],['ninguno','No he tomado nada',''],['no_sabe','No sé qué tomé','']]]
+  // --- Preguntas de Ben (Novartis CSU Cuestionario) ---
+  q0: ['text', '¿Cuál es tu nombre? (Opcional)', 'Para personalizar tu resumen médico orientativo.', []],
+
+  q1: ['multi', '¿Has presentado alguno de los siguientes síntomas?', 'Marca todos los que hayas presentado en tu piel.', [
+    ['ninguno', 'Ninguno de estos', ''],
+    ['ronchas', 'Ronchas o habones', 'Marcas rojizas o elevadas que aparecen y desaparecen'],
+    ['picazon', 'Picazón o comezón', 'Ganas intensas o incómodas de rascarse'],
+    ['hinchazon', 'Hinchazón', 'En labios, párpados, manos o pies']
+  ]],
+
+  q1b: ['single', '¿La hinchazón es en labios, lengua o garganta, o te cuesta respirar?', 'Esto es importante: ayuda a descartar una urgencia.', [
+    ['urgente', 'Sí — labios, lengua, garganta, o me cuesta respirar', ''],
+    ['no_urgente', 'No — es en párpados, manos o pies', '']
+  ]],
+
+  q2: ['single', '¿Cuánto tiempo llevas con estos síntomas?', 'El tiempo ayuda a distinguir entre un brote pasajero o crónico.', [
+    ['0', 'Menos de 1 semana', 'Empezó hace unos días'],
+    ['1', 'De 1 semana a 1 mes', 'Lleva varias semanas'],
+    ['2', 'De 1 mes a 6 meses', 'Varios meses continuos o intermitentes'],
+    ['3', 'Más de 6 meses', 'Llevo bastante tiempo con brotes']
+  ]],
+
+  q3: ['single', 'En la última semana, ¿cómo calificas la cantidad de ronchas que has tenido?', 'Aproximadamente en un periodo de 24 horas.', [
+    ['0', 'Ninguna', 'No he tenido ronchas visibles'],
+    ['1', 'Leve (Menos de 20 ronchas)', 'Aparecen pocas y aisladas'],
+    ['2', 'Moderada (De 20 a 50 ronchas)', 'Brote notorio en varias partes'],
+    ['3', 'Alta (+ de 50 ronchas)', 'Grandes áreas de ronchas que se unen']
+  ]],
+
+  q4: ['single', 'En la última semana, ¿cómo calificas la intensidad de la picazón?', '¿Qué tanto te ha molestado la comezón?', [
+    ['0', 'Ninguna', 'Sin comezón'],
+    ['1', 'Leve', 'Presente pero no molesta'],
+    ['2', 'Moderada', 'Molesta pero no interfiere con tus actividades o sueño'],
+    ['3', 'Alta / Severa', 'Picazón intensa que interfiere con tu día o el sueño']
+  ]],
+
+  q5: ['single', 'En la última semana, ¿cómo calificas la hinchazón que has tenido?', 'Inflamación bajo la piel (angioedema).', [
+    ['0', 'Ninguna', 'No he tenido hinchazón'],
+    ['1', 'Leve', 'Hinchazón ligera en una zona, cede rápido sin dolor'],
+    ['2', 'Moderada', 'Notoria, limita ligeramente o causa molestia'],
+    ['3', 'Intensa', 'Severa, dolorosa o que dificulta el movimiento']
+  ]],
+
+  q6: ['multi', '¿Qué áreas de tu vida se han visto afectadas por tus síntomas?', 'Marca todas las que apliquen.', [
+    ['actividades', 'Actividades diarias', 'Compras, limpieza, tareas del hogar'],
+    ['sociales', 'Vida social y relaciones', 'Pareja, familia o reuniones con amigos'],
+    ['vestimenta', 'Elección de vestimenta', 'Evitar telas, texturas o ropa ajustada'],
+    ['trabajo', 'Trabajo o estudios', 'Concentración y rendimiento'],
+    ['sueno', 'Calidad de sueño', 'Despertares nocturnos o insomnio']
+  ]],
+
+  q7: ['single', 'En la última semana, ¿qué tanto han interferido los síntomas con tus actividades diarias?', '', [
+    ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
+  ]],
+
+  q8: ['single', 'En la última semana, ¿qué tanto han afectado a tus relaciones familiares, sociales o de pareja?', '', [
+    ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
+  ]],
+
+  q9: ['single', 'En la última semana, ¿qué tanto han influenciado tus síntomas la ropa que usas?', '', [
+    ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
+  ]],
+
+  q10: ['single', 'En la última semana, ¿qué tanto han afectado a tu trabajo o estudios?', '', [
+    ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
+  ]],
+
+  q11: ['single', 'En la última semana, ¿qué tanto han afectado tu calidad de sueño?', '', [
+    ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
+  ]],
+
+  q12: ['multi', '¿Consideras que alguno de estos eventos desencadena o intensifica tus síntomas?', 'Marca todos los factores que notes.', [
+    ['calor', 'Clima caliente, sol o duchas calientes', ''],
+    ['frio', 'Clima frío, aire helado o agua fría', ''],
+    ['estres', 'Estrés emocional o tensión', ''],
+    ['sudor', 'Sudor o ejercicio físico', ''],
+    ['ropa', 'Ropa ajustada o roce constante', ''],
+    ['sin_patron', 'No encuentro ningún patrón claro', '']
+  ]],
+
+  q13: ['single', '¿Sueles presentar más brotes en algún momento del día?', '¿Notas algún horario en particular?', [
+    ['manana', 'Por la mañana', ''],
+    ['tarde', 'Por la tarde', ''],
+    ['noche', 'Por la noche o madrugada', ''],
+    ['sin_patron', 'Sin importar el momento del día', '']
+  ]],
+
+  q14: ['single', '¿Has consultado previamente a un médico sobre estos síntomas?', '', [
+    ['0', 'No', 'Aún no he ido a consulta médica'],
+    ['1', 'Sí', 'Ya he tenido consultas']
+  ]],
+
+  q15: ['single', '¿Con qué frecuencia has consultado?', '', [
+    ['1', 'Pocas veces', '1 o 2 veces con médico general'],
+    ['2', 'Frecuentemente', 'Al menos una vez al mes'],
+    ['3', 'Seguimiento continuo', 'En control continuo con especialista']
+  ]],
+
+  q16: ['multi', '¿Qué tipo de especialista has consultado?', 'Marca todos los que apliquen.', [
+    ['general', 'Médico general', ''],
+    ['dermatologo', 'Dermatólogo/a', ''],
+    ['alergologo', 'Alergólogo/a', '']
+  ]],
+
+  q17: ['single', '¿Has recibido alguna clase de tratamiento?', 'Medicamentos recetados, de venta libre o remedios.', [
+    ['0', 'No', 'No he tomado ni aplicado nada'],
+    ['1', 'Sí', 'He tomado o aplicado tratamientos']
+  ]],
+
+  q18: ['multi', '¿Qué tipo de tratamiento has llevado?', 'Marca los que conozcas.', [
+    ['1', 'Básico', 'Antihistamínicos de venta libre, pomadas o remedios caseros'],
+    ['2', 'Intermedio', 'Antihistamínicos recetados a dosis continuas o corticoides'],
+    ['3', 'Avanzado', 'Dosis altas, tratamientos específicos o seguimiento estrecho']
+  ]],
+
+  q19: ['single', '¿Qué tan efectivo consideras que ha sido tu tratamiento para reducir tus síntomas?', '', [
+    ['0', 'Nada efectivo', 'Sigo con los mismos síntomas'],
+    ['1', 'Poco efectivo', 'Apenas he notado alivio'],
+    ['2', 'Medianamente efectivo', 'Me ayuda pero los brotes regresan'],
+    ['3', 'Muy efectivo', 'Controla favorablemente mis síntomas']
+  ]]
 }
