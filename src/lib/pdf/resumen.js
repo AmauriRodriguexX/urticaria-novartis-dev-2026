@@ -59,23 +59,46 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
 
   // ---------- lectura orientativa ----------
   set('bold', 8, COLORS.coral)
-  doc.text('LECTURA ORIENTATIVA', M, y)
-  y += 8
+  doc.text('LECTURA ORIENTATIVA Y PERFIL CLÍNICO', M, y)
+  y += 7
 
-  set('bold', 18, COLORS.ink)
+  set('bold', 15, COLORS.ink)
   const titulo = doc.splitTextToSize(lectura.titulo, CONTENT)
   doc.text(titulo, M, y)
-  y += titulo.length * 7.6 + 3
+  y += titulo.length * 6.8 + 2
 
-  set('normal', 10.5, COLORS.soft)
+  set('normal', 9.5, COLORS.soft)
   const detalle = doc.splitTextToSize(lectura.detalle, CONTENT)
   doc.text(detalle, M, y)
-  y += detalle.length * 5.2 + 12
+  y += detalle.length * 4.8 + 8
+
+  // ---------- secciones clínicas de Ben (si están disponibles) ----------
+  if (lectura.reporte) {
+    const rep = lectura.reporte
+    const bloques = []
+    if (rep.seccion2) bloques.push(['SÍNTOMAS REPORTADOS', rep.seccion2])
+    if (rep.seccion3) bloques.push(['CALIDAD DE VIDA', rep.seccion3])
+    if (rep.seccion4) bloques.push(['DETONANTES', rep.seccion4])
+    if (rep.seccion5) bloques.push(['HISTORIAL DE TRATAMIENTO', rep.seccion5])
+
+    if (bloques.length > 0) {
+      bloques.forEach(([etq, txt]) => {
+        set('bold', 7, COLORS.cerulean)
+        doc.text(etq, M, y)
+        y += 4.2
+        set('normal', 8.5, COLORS.ink)
+        const t = doc.splitTextToSize(txt, CONTENT)
+        doc.text(t, M, y)
+        y += t.length * 4.2 + 4.5
+      })
+      y += 2
+    }
+  }
 
   // ---------- tabla ----------
   set('bold', 8, COLORS.faint)
-  doc.text('LO QUE REPORTÉ', M, y)
-  y += 6
+  doc.text('DETALLE DE RESPUESTAS', M, y)
+  y += 5
 
   // La tabla se ajusta al número de preguntas: el cuestionario cambia según el
   // contexto y contenidos puede agregar más, así que nada va a medida fija.

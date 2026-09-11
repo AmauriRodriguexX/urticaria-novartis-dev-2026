@@ -33,14 +33,31 @@
   function select(value) {
     if (q[0] === 'multi') {
       const old = answers[id] || []
-      answers = { ...answers, [id]: old.includes(value) ? old.filter(x => x !== value) : [...old, value] }
+      let updated = []
+      // En q1, si elige 'ninguno' desmarca los demás; si elige otro, quita 'ninguno'
+      if (id === 'q1') {
+        if (value === 'ninguno') {
+          updated = old.includes('ninguno') ? [] : ['ninguno']
+        } else {
+          const filtered = old.filter(x => x !== 'ninguno')
+          updated = filtered.includes(value) ? filtered.filter(x => x !== value) : [...filtered, value]
+        }
+      } else {
+        updated = old.includes(value) ? old.filter(x => x !== value) : [...old, value]
+      }
+      answers = { ...answers, [id]: updated }
       return
     }
+
     const next = { ...answers, [id]: value }
-    if (id === 'p1' && value !== 'hinchazon') delete next.p1b
+    if (id === 'q1' && !next.q1?.includes('hinchazon')) delete next.q1b
     answers = next
     if (esUrgencia(id, value)) { go('urgent', step); return }
     advance()
+  }
+
+  function handleTextInput(e) {
+    answers = { ...answers, [id]: e.target.value }
   }
   function advance() { if (step + 1 >= flow.length) go('result', step); else go('quiz', step + 1) }
   function back() { history.back() }
@@ -205,20 +222,34 @@
         <p class="step">Paso {step + 1} de {flow.length}</p>
         <h2 tabindex="-1" bind:this={heading}>{q[1]}</h2>
         {#if q[2]}<p class="sub">{q[2]}</p>{/if}
-        <div class="options" class:options-grid={q[3] && q[3].length >= 4} role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
-          {#each q[3] as o}
-            {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
-            <button class:chosen={on} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
-              <i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
-              <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span>
-            </button>
-          {/each}
-        </div>
-        <div class="quiz-nav" class:has-next={q[0] === 'multi'}>
+        {#if q[0] === 'text'}
+          <div class="input-row" style="margin: 1.5rem 0;">
+            <input
+              type="text"
+              class="text-input"
+              placeholder="Escribe tu nombre o déjalo en blanco"
+              value={answers[id] || ''}
+              on:input={handleTextInput}
+              on:keydown={(e) => { if (e.key === 'Enter') advance() }}
+              style="width: 100%; padding: 0.85rem 1.1rem; border-radius: 12px; border: 1px solid var(--line, #dcd8c9); background: var(--card, #fff); font-size: 1.05rem; color: var(--ink, #22383f);"
+            />
+          </div>
+        {:else}
+          <div class="options" class:options-grid={q[3] && q[3].length >= 4} role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
+            {#each q[3] as o}
+              {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
+              <button class:chosen={on} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
+                <i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
+                <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span>
+              </button>
+            {/each}
+          </div>
+        {/if}
+        <div class="quiz-nav" class:has-next={q[0] === 'multi' || q[0] === 'text'}>
           <button class="nav-back" on:click={step ? back : close}>
             {#if step}<Icon name="arrow_back" size={18} /><span>Atrás</span>{:else}<span>Cancelar</span>{/if}
           </button>
-          {#if q[0] === 'multi'}
+          {#if q[0] === 'multi' || q[0] === 'text'}
             <button class="button nav-next" on:click={advance}><span>Continuar</span><Icon name="arrow_forward" size={20} /></button>
           {/if}
         </div>
@@ -238,6 +269,17 @@
         <p class="eyebrow accent">Ya diste el primer paso para ponerla en su lugar.</p>
         <h2 tabindex="-1" bind:this={heading}>{lectura.titulo}</h2>
         <p class="sub">{lectura.detalle}</p>
+
+        {#if lectura.reporte}
+          <div class="report-box" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--card, #fff); border-radius: 14px; border: 1px solid var(--border, #e6e2d4); line-height: 1.6; font-size: 0.98rem; text-align: left;">
+            {#if lectura.reporte.seccion2}<p style="margin-bottom: 0.75rem;"><strong>Síntomas:</strong> {lectura.reporte.seccion2}</p>{/if}
+            {#if lectura.reporte.seccion3}<p style="margin-bottom: 0.75rem;"><strong>Impacto diario:</strong> {lectura.reporte.seccion3}</p>{/if}
+            {#if lectura.reporte.seccion4}<p style="margin-bottom: 0.75rem;"><strong>Detonantes:</strong> {lectura.reporte.seccion4}</p>{/if}
+            {#if lectura.reporte.seccion5}<p style="margin-bottom: 0.75rem;"><strong>Historial médico:</strong> {lectura.reporte.seccion5}</p>{/if}
+            {#if lectura.reporte.seccion6}<p style="margin-bottom: 0; color: var(--accent, #e0584d); font-weight: 600;">{lectura.reporte.seccion6}</p>{/if}
+          </div>
+        {/if}
+
         {#if escalacion}<p class="escalation">{ESCALACION.enPantalla}</p>{/if}
         <div class="summary">
           <header><strong>Tu resumen para el médico</strong><small>Orientativo</small></header>
