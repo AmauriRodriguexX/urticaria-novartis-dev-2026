@@ -289,7 +289,15 @@ h1 em { font-style: normal; color: var(--accent); transition: opacity .45s; }
 .scroll-arrow.right { right: -6px; }
 .filters-wrap:hover .scroll-arrow, .scroll-arrow:focus-visible { opacity: 1; transform: translateY(-50%) scale(1); }
 .filters-wrap.at-start .scroll-arrow.left, .filters-wrap.at-end .scroll-arrow.right { opacity: 0 !important; pointer-events: none; }
-.zip { display: flex; align-items: center; gap: var(--s-2); padding: 0 var(--s-3) 0 var(--s-4); border: 1.5px solid var(--line); border-radius: var(--radius-pill); background: var(--card); color: var(--faint); transition: border-color .2s, color .2s; }
+.dir-actions { display: flex; align-items: center; gap: var(--s-2); width: 100%; }
+.geo-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: var(--radius-pill); background: var(--card); color: var(--soft); font: 600 13px var(--font-barlow); cursor: pointer; white-space: nowrap; transition: border-color .2s, color .2s, background .2s, transform .2s; flex: none; }
+.geo-btn:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
+.geo-btn.is-active { border-color: var(--accent); background: var(--accentSoft); color: var(--accent); font-weight: 700; }
+.geo-btn.loading { opacity: .75; pointer-events: none; }
+.geo-btn.loading :global(.icon) { animation: geoSpin 1s infinite linear; }
+@keyframes geoSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.zip { display: flex; align-items: center; gap: var(--s-2); padding: 0 var(--s-3) 0 var(--s-4); border: 1.5px solid var(--line); border-radius: var(--radius-pill); background: var(--card); color: var(--faint); transition: border-color .2s, color .2s; flex: 1; min-width: 0; }
 .zip.is-on { border-color: var(--accent); color: var(--accent); }
 .zip input { width: 100%; min-width: 0; min-height: 46px; padding: 0; border: 0; background: transparent; color: var(--ink); outline: none; font-size: 14px; }
 .zip-clear { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border: 0; border-radius: 50%; background: transparent; color: var(--faint); cursor: pointer; }
@@ -305,6 +313,10 @@ h1 em { font-style: normal; color: var(--accent); transition: opacity .45s; }
 .map-shell .leaflet-bar a { background: var(--card); color: var(--ink); border-color: var(--border); }
 .map-shell .pin { display: block; width: 22px; height: 22px; border: 2.5px solid #fff; border-radius: 50% 50% 50% 0; background: var(--pin); box-shadow: 0 4px 10px rgba(0,0,0,.28); transform: rotate(-45deg); transition: transform .2s, box-shadow .2s; }
 .map-shell .pin.is-active { transform: rotate(-45deg) scale(1.32); box-shadow: 0 8px 18px rgba(0,0,0,.4); }
+.map-shell .user-pin-wrap { position: relative; display: grid; place-items: center; }
+.map-shell .user-pin { display: block; width: 14px; height: 14px; border: 2.5px solid #fff; border-radius: 50%; background: #0081a8; box-shadow: 0 2px 8px rgba(0, 129, 168, .5); position: relative; z-index: 2; }
+.map-shell .user-pulse { position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin-top: -17px; margin-left: -17px; border-radius: 50%; background: rgba(0, 129, 168, .32); animation: userPulse 2s infinite ease-out; z-index: 1; pointer-events: none; }
+@keyframes userPulse { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(1.65); opacity: 0; } }
 
 .doc-list { list-style: none; display: flex; flex-direction: column; gap: var(--s-2); margin: var(--s-4) 0 0; padding: 0; }
 .doc { display: flex; align-items: flex-start; gap: var(--s-3); width: 100%; padding: var(--s-4); border: 1.5px solid var(--border); border-radius: 14px; background: var(--card); color: var(--ink); text-align: left; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
@@ -557,7 +569,8 @@ h1 em { font-style: normal; color: var(--accent); transition: opacity .45s; }
   .filters-wrap { flex: 1; }
   .filters-scroll { margin: 0; padding: 3px 0; }
   .scroll-arrow { display: grid; }
-  .zip { flex: none; width: 230px; }
+  .dir-actions { flex: none; width: auto; }
+  .zip { flex: none; width: 170px; }
   .dir-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--s-5); align-items: start; margin-top: var(--stack-m); }
   .dir-grid .map-shell { margin-top: 0; }
   .dir-grid .map { height: 430px; }
