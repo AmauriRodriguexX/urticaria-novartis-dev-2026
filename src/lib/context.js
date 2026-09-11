@@ -102,7 +102,8 @@ export function formatTimeGreeting(ctx, city = null, now = new Date()) {
     return city ? `En ${city}, ahora mismo` : 'Ahora mismo'
   }
   if (ctx === 'frio') {
-    return city ? `Con el frío en ${city}` : 'Con el frío de esta temporada'
+    const mom = h < 12 ? 'Esta mañana con el frío' : h < 19 ? 'Esta tarde con el frío' : 'Con el frío'
+    return city ? `${mom} en ${city}` : `${mom} de esta temporada`
   }
   // Día: saludo natural según mañana o tarde (con ciudad si está disponible)
   const saludo = h >= 12 && h < 19 ? 'Buenas tardes' : 'Buenos días'
