@@ -41,14 +41,55 @@ export function assetsFor(ctx) {
   }
 }
 
-// Solo hora y mes del dispositivo por ahora. Cuando exista la matriz
-// geo + clima, esta función es el único punto que cambia.
-export function resolveContext(now = new Date()) {
+// Detección de noche / madrugada (10:00 p.m. a 6:00 a.m.)
+export function isNight(now = new Date()) {
+  const h = now.getHours()
+  return h >= 22 || h < 6
+}
+
+// Resolución automática del contexto: hora real del usuario + clima regional + temporada
+export function resolveContext(now = new Date(), weather = null) {
   const h = now.getHours(), m = now.getMonth()
+  const night = isNight(now)
+  const temp = weather?.temp
+
+  // Si tenemos temperatura real desde el servicio meteorológico
+  if (temp != null) {
+    if (night) {
+      return temp >= 24 ? 'noche-calor' : 'madrugada'
+    }
+    if (temp >= 27) return 'calor'
+    if (temp <= 15) return 'frio'
+    return 'dia'
+  }
+
+  // Fallback instantáneo basado en horario del dispositivo y estacionalidad
   const warmSeason = m >= 4 && m <= 8
-  if (h < 6) return warmSeason ? 'noche-calor' : 'madrugada'
+  if (night) return warmSeason ? 'noche-calor' : 'madrugada'
   if ([11, 0, 1].includes(m)) return 'frio'
   return warmSeason ? 'calor' : 'dia'
+}
+
+// Generador dinámico de saludo/reloj según ciudad y hora real
+export function formatTimeGreeting(ctx, city = null, now = new Date()) {
+  let h = now.getHours()
+  const m = now.getMinutes().toString().padStart(2, '0')
+  const ampm = h >= 12 ? 'p.m.' : 'a.m.'
+  let h12 = h % 12
+  if (h12 === 0) h12 = 12
+  const horaStr = `Son las ${h12}:${m} ${ampm}`
+
+  if (ctx === 'madrugada' || ctx === 'noche-calor') {
+    return city ? `${horaStr} en ${city}` : horaStr
+  }
+  if (ctx === 'calor') {
+    return city ? `En ${city}, ahora mismo` : 'Ahora mismo'
+  }
+  if (ctx === 'frio') {
+    return city ? `Con el frío en ${city}` : 'Con el frío de esta temporada'
+  }
+  // Día: saludo natural según mañana o tarde
+  return h >= 12 && h < 19 ? 'Buenas tardes' : 'Buenos días'
 }
 
 // Vista forzada solo por query (?vista=madrugada). Funciona con cualquier base path.
@@ -58,6 +99,9 @@ export function forcedFromUrl() {
   return ORDER.includes(v) ? v : null
 }
 
+// En producción pública este navegador NO existe. Solo se activa para el equipo si se indica en URL.
 export function previewEnabled() {
-  return true
+  if (typeof window === 'undefined') return false
+  const p = new URLSearchParams(window.location.search)
+  return p.has('preview') || p.has('dev') || p.has('vista')
 }
