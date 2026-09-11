@@ -104,8 +104,9 @@ export function formatTimeGreeting(ctx, city = null, now = new Date()) {
   if (ctx === 'frio') {
     return city ? `Con el frío en ${city}` : 'Con el frío de esta temporada'
   }
-  // Día: saludo natural según mañana o tarde
-  return h >= 12 && h < 19 ? 'Buenas tardes' : 'Buenos días'
+  // Día: saludo natural según mañana o tarde (con ciudad si está disponible)
+  const saludo = h >= 12 && h < 19 ? 'Buenas tardes' : 'Buenos días'
+  return city ? `${saludo} en ${city}` : saludo
 }
 
 // Vista forzada solo por query (?vista=madrugada). Funciona con cualquier base path.
