@@ -38,13 +38,36 @@ export async function detectGeoAndWeather() {
   try {
     // Paso A: IPinfo / Geo IP
     const ipinfoToken = import.meta.env.VITE_IPINFO_TOKEN
-    const geoUrl = ipinfoToken
-      ? `https://ipinfo.io/json?token=${ipinfoToken}`
-      : 'https://ipapi.co/json/'
+    let geoData = null
 
-    const geoRes = await fetch(geoUrl, { signal: controller.signal })
-    if (!geoRes.ok) throw new Error('Geo lookup failed')
-    const geoData = await geoRes.json()
+    if (ipinfoToken) {
+      try {
+        const r = await fetch(`https://ipinfo.io/json?token=${ipinfoToken}`, { signal: controller.signal })
+        if (r.ok) geoData = await r.json()
+      } catch {}
+    }
+
+    if (!geoData) {
+      try {
+        const r = await fetch('https://ipwho.is/', { signal: controller.signal })
+        if (r.ok) {
+          const d = await r.json()
+          if (d.success !== false) geoData = d
+        }
+      } catch {}
+    }
+
+    if (!geoData) {
+      try {
+        const r = await fetch('https://ipapi.co/json/', { signal: controller.signal })
+        if (r.ok) {
+          const d = await r.json()
+          if (!d.error) geoData = d
+        }
+      } catch {}
+    }
+
+    if (!geoData) throw new Error('Geo lookup unavailable')
 
     const city = geoData.city || null
     let lat = geoData.latitude || (geoData.loc ? parseFloat(geoData.loc.split(',')[0]) : null)
