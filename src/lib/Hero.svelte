@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, onDestroy } from 'svelte'
   import { assetsFor } from './context.js'
   import Icon from './Icon.svelte'
   export let copy
@@ -16,6 +16,23 @@
   let animated = 0, mounted = false, frame
   let ctaOffscreen = false
   let videoAvailable = true
+
+  // Animación refinada de transición para palabras dinámicas
+  let currentWord = word
+  let animClass = ''
+  let flipTimer = null
+
+  $: if (word && word !== currentWord) {
+    animClass = 'slide-out'
+    clearTimeout(flipTimer)
+    flipTimer = setTimeout(() => {
+      currentWord = word
+      animClass = 'slide-in'
+      flipTimer = setTimeout(() => {
+        animClass = ''
+      }, 460)
+    }, 260)
+  }
 
   // Acción: se reengancha en cada render del hero (el {#key ctx} lo recrea al cambiar de vista).
   function watchCta(node) {
@@ -40,7 +57,15 @@
 
   onMount(() => {
     mounted = true
-    return () => cancelAnimationFrame(frame)
+    return () => {
+      cancelAnimationFrame(frame)
+      clearTimeout(flipTimer)
+    }
+  })
+
+  onDestroy(() => {
+    cancelAnimationFrame(frame)
+    clearTimeout(flipTimer)
   })
 </script>
 
@@ -71,7 +96,7 @@
 
   <div class="hero-copy rise">
     <p class="kicker"><i aria-hidden="true"></i>{copy[0]}</p>
-    <h1 id="hero-title">{copy[1]}<em>{word}</em>{copy[3]}</h1>
+    <h1 id="hero-title">{copy[1]}<span class="dynamic-word-wrap {animClass}"><em class="dynamic-word">{currentWord}</em></span>{copy[3]}</h1>
     <p class="intro">{copy[4]}</p>
     <div class="action-row" use:watchCta>
       <button class="button" on:click={onQuiz}><span>{copy[5]}</span><Icon name="arrow_forward" size={20} /></button>

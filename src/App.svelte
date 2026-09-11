@@ -12,12 +12,25 @@
   let forced = forcedFromUrl()
   let preview = previewEnabled()
   let quizOpen = false
-  let word = 'los brotes'
   let quizTrigger = null
   let videosMode = typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '').endsWith('/videos')
   let viewOpen = false
   let geoData = null
   let now = new Date()
+
+  // Palabras dinámicas por contexto:
+  // En día/tarde se enfoca en síntomas y sensaciones diurnas (NUNCA insomnio de día).
+  // En madrugada y noche cálida se enfoca en descanso y conciliación de sueño nocturno.
+  const WORDS_BY_CTX = {
+    dia: ['los brotes', 'la comezón', 'el ardor', 'las ronchas', 'la incertidumbre'],
+    calor: ['los brotes', 'la comezón', 'la inflamación'],
+    frio: ['brota', 'irrita', 'inflama'],
+    madrugada: ['dormir', 'descansar', 'conciliar el sueño'],
+    'noche-calor': ['dormir', 'descansar']
+  }
+
+  let wordIndex = 0
+  let word = WORDS_BY_CTX.dia[0]
 
   $: autoCtx = resolveContext(now, geoData)
   $: ctx = forced || autoCtx
@@ -37,7 +50,13 @@
     }
     return list
   })()
-  $: displayWord = ctx === 'dia' ? word : copy[2]
+
+  $: wordPool = WORDS_BY_CTX[ctx] || [copy[2]]
+  $: if (!wordPool.includes(word)) {
+    wordIndex = 0
+    word = wordPool[0]
+  }
+  $: displayWord = word
   $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
   let quizInitialPhase = 'quiz'
 
@@ -107,8 +126,16 @@
     // Actualización de reloj cada 30 segundos
     const clockTimer = setInterval(() => { now = new Date() }, 30000)
 
-    const words = ['los brotes', 'la comezón', 'el insomnio', 'la incertidumbre']
-    const timer = setInterval(() => { if (ctx === 'dia' && !quizOpen) word = words[(words.indexOf(word) + 1) % words.length] }, 2900)
+    // Rotación orgánica de palabras cada 3.2s según contexto (sin insomnio de día)
+    const timer = setInterval(() => {
+      if (!quizOpen) {
+        const pool = WORDS_BY_CTX[ctx] || [copy[2]]
+        if (pool.length > 1) {
+          wordIndex = (wordIndex + 1) % pool.length
+          word = pool[wordIndex]
+        }
+      }
+    }, 3200)
 
     // Simulación en vivo de usuarios nocturnos:
     // Cada 14 segundos, el contador puede variar ligeramente (+1, -1, +2) manteniéndose entre 15 y 27
