@@ -41,16 +41,31 @@ export function assetsFor(ctx) {
   }
 }
 
+// Simulación de fecha/hora si viene especificado por query param (?hora=23 o ?hora=3)
+export function getSimulatedDate(baseDate = new Date()) {
+  if (typeof window === 'undefined') return baseDate
+  const p = new URLSearchParams(window.location.search)
+  const h = p.get('hora')
+  if (h !== null && !isNaN(parseInt(h, 10))) {
+    const d = new Date(baseDate.getTime())
+    d.setHours(parseInt(h, 10), 0, 0, 0)
+    return d
+  }
+  return baseDate
+}
+
 // Detección de noche / madrugada (10:00 p.m. a 6:00 a.m.)
 export function isNight(now = new Date()) {
-  const h = now.getHours()
+  const d = getSimulatedDate(now)
+  const h = d.getHours()
   return h >= 22 || h < 6
 }
 
 // Resolución automática del contexto: hora real del usuario + clima regional + temporada
 export function resolveContext(now = new Date(), weather = null) {
-  const h = now.getHours(), m = now.getMonth()
-  const night = isNight(now)
+  const d = getSimulatedDate(now)
+  const h = d.getHours(), m = d.getMonth()
+  const night = isNight(d)
   const temp = weather?.temp
 
   // Si tenemos temperatura real desde el servicio meteorológico
@@ -72,8 +87,9 @@ export function resolveContext(now = new Date(), weather = null) {
 
 // Generador dinámico de saludo/reloj según ciudad y hora real
 export function formatTimeGreeting(ctx, city = null, now = new Date()) {
-  let h = now.getHours()
-  const m = now.getMinutes().toString().padStart(2, '0')
+  const d = getSimulatedDate(now)
+  let h = d.getHours()
+  const m = d.getMinutes().toString().padStart(2, '0')
   const ampm = h >= 12 ? 'p.m.' : 'a.m.'
   let h12 = h % 12
   if (h12 === 0) h12 = 12

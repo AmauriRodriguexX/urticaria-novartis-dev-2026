@@ -7,6 +7,19 @@ const CACHE_TTL = 1000 * 60 * 30 // 30 minutos de caché en sesión
 export async function detectGeoAndWeather() {
   if (typeof window === 'undefined') return null
 
+  // 0. Simulación directa por parámetros de URL (?ciudad=Monterrey&temp=35)
+  const params = new URLSearchParams(window.location.search)
+  const simCity = params.get('ciudad') || params.get('city')
+  const simTemp = params.get('temp') || params.get('temperatura')
+  if (simCity || simTemp) {
+    return {
+      city: simCity || 'Ciudad de México',
+      temp: simTemp ? parseFloat(simTemp) : 22,
+      lat: 19.43,
+      lon: -99.13
+    }
+  }
+
   // 1. Revisar caché de sesión
   try {
     const cached = sessionStorage.getItem(CACHE_KEY)
