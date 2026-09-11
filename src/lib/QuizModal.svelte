@@ -140,7 +140,10 @@
         pregunta: PREGUNTA_CLAVE,
         escalacion: escalacion ? ESCALACION.enPdf : null
       })
-      downloaded = true; setTimeout(() => downloaded = false, 2500)
+      downloaded = true
+      setTimeout(() => { downloaded = false }, 2500)
+    } catch (err) {
+      console.error('Error al generar PDF:', err)
     } finally {
       downloading = false
     }

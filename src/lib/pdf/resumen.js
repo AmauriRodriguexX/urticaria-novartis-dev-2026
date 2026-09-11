@@ -102,6 +102,7 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
 
   // ---------- tabla de respuestas (compacta y proporcional) ----------
   const tableRows = rows.slice(0, 14) // Muestra las respuestas clínicas más relevantes
+  const reservado = 42 + (escalacion ? 18 : 0) // espacio para escalación, pregunta clave y márgenes
   const espacioLibre = PAGE.h - 40 - y - reservado
   const rowH = Math.max(6.5, Math.min(10, espacioLibre / Math.max(tableRows.length, 1)))
   const tableTop = y
