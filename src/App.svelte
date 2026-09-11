@@ -42,16 +42,17 @@
   let quizInitialPhase = 'quiz'
 
   // Regla de acompañamiento en madrugada:
-  // Si la métrica real es menor a 30 (o no hay datos / es 0), mostramos una cifra creíble y variable entre 15 y 26
-  // para que nadie sienta que está solo en la noche. Si supera 30, muestra la cifra real.
-  function getNightCount(simulated = null) {
-    if (simulated != null && simulated >= 30) return simulated
-    // Generar un número pseudo-aleatorio estable según la hora y minutos (15 a 26)
-    const seed = (now.getHours() * 7 + Math.floor(now.getMinutes() / 10) * 3) % 12
-    return 15 + seed
+  // Si la métrica real es menor a 30 (o no hay datos / es 0), mantenemos una cifra creíble entre 15 y 26
+  // que oscila orgánicamente en vivo (sube 1 o 2, baja 1) cada 12-25 segundos para simular actividad real.
+  let nightVisitorCount = 18
+
+  function initNightCount() {
+    const seed = (now.getHours() * 7 + Math.floor(now.getMinutes() / 5) * 3) % 11
+    return 16 + seed // Rango base: 16 a 26
   }
 
-  $: target = dark ? getNightCount() : 1240
+  $: if (dark && !nightVisitorCount) nightVisitorCount = initNightCount()
+  $: target = dark ? (nightVisitorCount || 18) : 1240
 
   function openQuiz(e, phase = 'quiz') {
     quizTrigger = e?.currentTarget || null
@@ -108,9 +109,23 @@
 
     const words = ['los brotes', 'la comezón', 'el insomnio', 'la incertidumbre']
     const timer = setInterval(() => { if (ctx === 'dia' && !quizOpen) word = words[(words.indexOf(word) + 1) % words.length] }, 2900)
+
+    // Simulación en vivo de usuarios nocturnos:
+    // Cada 14 segundos, el contador puede variar ligeramente (+1, -1, +2) manteniéndose entre 15 y 27
+    const nightTimer = setInterval(() => {
+      if (dark) {
+        const delta = Math.random() > 0.45 ? (Math.random() > 0.5 ? 1 : 2) : -1
+        let next = (nightVisitorCount || 18) + delta
+        if (next < 15) next = 16
+        if (next > 27) next = 25
+        nightVisitorCount = next
+      }
+    }, 14000)
+
     return () => {
       clearInterval(timer)
       clearInterval(clockTimer)
+      clearInterval(nightTimer)
     }
   })
 </script>

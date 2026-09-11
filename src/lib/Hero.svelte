@@ -26,11 +26,12 @@
 
   function animateCounter(value) {
     cancelAnimationFrame(frame)
-    animated = 0
-    const started = performance.now(), duration = 900
+    const fromVal = animated || 0
+    const started = performance.now(), duration = 800
     const tick = (now) => {
       const p = Math.min(1, (now - started) / duration)
-      animated = Math.round(value * (1 - Math.pow(1 - p, 3)))
+      const ease = 1 - Math.pow(1 - p, 3)
+      animated = Math.round(fromVal + (value - fromVal) * ease)
       if (p < 1) frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)
