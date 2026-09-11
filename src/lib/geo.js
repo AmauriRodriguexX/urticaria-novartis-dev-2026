@@ -12,11 +12,29 @@ export async function detectGeoAndWeather() {
   const simCity = params.get('ciudad') || params.get('city')
   const simTemp = params.get('temp') || params.get('temperatura')
   if (simCity || simTemp) {
+    const cityClean = (simCity || 'Ciudad de México').toLowerCase().trim()
+    const cityCoords = {
+      'monterrey': { lat: 25.6866, lon: -100.3161 },
+      'guadalajara': { lat: 20.6597, lon: -103.3496 },
+      'zapopan': { lat: 20.7233, lon: -103.3848 },
+      'mérida': { lat: 20.9674, lon: -89.5926 },
+      'merida': { lat: 20.9674, lon: -89.5926 },
+      'puebla': { lat: 19.0414, lon: -98.2063 },
+      'querétaro': { lat: 20.5888, lon: -100.3899 },
+      'queretaro': { lat: 20.5888, lon: -100.3899 },
+      'toluca': { lat: 19.2826, lon: -99.6557 },
+      'tijuana': { lat: 32.5149, lon: -117.0382 },
+      'león': { lat: 21.1221, lon: -101.6826 },
+      'leon': { lat: 21.1221, lon: -101.6826 },
+      'cancún': { lat: 21.1619, lon: -86.8515 },
+      'cancun': { lat: 21.1619, lon: -86.8515 }
+    }
+    const coords = cityCoords[cityClean] || { lat: 19.4326, lon: -99.1332 }
     return {
       city: simCity || 'Ciudad de México',
       temp: simTemp ? parseFloat(simTemp) : 22,
-      lat: 19.43,
-      lon: -99.13
+      lat: coords.lat,
+      lon: coords.lon
     }
   }
 
