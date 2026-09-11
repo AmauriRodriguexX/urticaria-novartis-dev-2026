@@ -100,62 +100,51 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
   doc.text('DETALLE DE RESPUESTAS', M, y)
   y += 5
 
-  // La tabla se ajusta al número de preguntas: el cuestionario cambia según el
-  // contexto y contenidos puede agregar más, así que nada va a medida fija.
-  const reservado = 46 + (escalacion ? 22 : 0)   // bloque de pregunta y, si aplica, escalación
+  // ---------- tabla de respuestas (compacta y proporcional) ----------
+  const tableRows = rows.slice(0, 14) // Muestra las respuestas clínicas más relevantes
   const espacioLibre = PAGE.h - 40 - y - reservado
-  const rowH = Math.max(9, Math.min(13, espacioLibre / Math.max(rows.length, 1)))
-  const compacta = rowH < 12
+  const rowH = Math.max(6.5, Math.min(10, espacioLibre / Math.max(tableRows.length, 1)))
   const tableTop = y
   fill(COLORS.card)
-  doc.roundedRect(M, y, CONTENT, rowH * rows.length, 3, 3, 'F')
+  doc.roundedRect(M, y, CONTENT, rowH * tableRows.length, 2.5, 2.5, 'F')
 
-  rows.forEach((row, i) => {
+  tableRows.forEach((row, i) => {
     const top = tableTop + i * rowH
     if (i > 0) {
       doc.setDrawColor(...COLORS.line)
       doc.setLineWidth(0.2)
-      doc.line(M + 6, top, M + CONTENT - 6, top)
+      doc.line(M + 4, top, M + CONTENT - 4, top)
     }
-    if (compacta) {
-      // etiqueta a la izquierda y respuesta a la derecha, como en pantalla
-      set('bold', 7, COLORS.faint)
-      doc.text(String(row.etiqueta).toUpperCase(), M + 6, top + rowH / 2 + 1.2)
-      set('normal', 9.5, COLORS.ink)
-      const valor = doc.splitTextToSize(String(row.valor), CONTENT - 82)
-      doc.text(valor[0], M + CONTENT - 6, top + rowH / 2 + 1.2, { align: 'right' })
-    } else {
-      set('bold', 7.5, COLORS.faint)
-      doc.text(String(row.etiqueta).toUpperCase(), M + 6, top + 5.4)
-      set('normal', 11, COLORS.ink)
-      const valor = doc.splitTextToSize(String(row.valor), CONTENT - 12)
-      doc.text(valor[0], M + 6, top + 10.4)
-    }
+    set('bold', 6.5, COLORS.faint)
+    doc.text(String(row.etiqueta).toUpperCase(), M + 5, top + rowH / 2 + 1)
+    set('normal', 8, COLORS.ink)
+    const valor = doc.splitTextToSize(String(row.valor), CONTENT - 75)
+    doc.text(valor[0], M + CONTENT - 5, top + rowH / 2 + 1, { align: 'right' })
   })
-  y = tableTop + rowH * rows.length + 12
+  y = tableTop + rowH * tableRows.length + 8
 
   // ---------- escalación, solo si aplica ----------
   if (escalacion) {
     const texto = doc.splitTextToSize(escalacion, CONTENT - 14)
-    const h = texto.length * 4.8 + 10
+    const h = texto.length * 4.2 + 8
     fill(COLORS.coralSoft)
-    doc.roundedRect(M, y, CONTENT, h, 3, 3, 'F')
+    doc.roundedRect(M, y, CONTENT, h, 2.5, 2.5, 'F')
     fill(COLORS.coral)
     doc.rect(M, y, 1.6, h, 'F')
-    set('normal', 9.5, COLORS.ink)
-    doc.text(texto, M + 8, y + 7)
-    y += h + 12
+    set('normal', 8.5, COLORS.ink)
+    doc.text(texto, M + 6, y + 5.5)
+    y += h + 8
   }
 
   // ---------- la pregunta ----------
   fill(COLORS.cerulean)
-  const qH = 26
-  doc.roundedRect(M, y, CONTENT, qH, 3, 3, 'F')
-  set('normal', 8.5, COLORS.white)
-  doc.text('LA PREGUNTA QUE ABRE LA CONVERSACIÓN', M + 8, y + 9)
-  set('bold', 14, COLORS.white)
-  doc.text(pregunta, M + 8, y + 19)
-  y += qH + 14
+  const qH = 22
+  doc.roundedRect(M, y, CONTENT, qH, 2.5, 2.5, 'F')
+  set('normal', 7.5, COLORS.white)
+  doc.text('LA PREGUNTA QUE ABRE LA CONVERSACIÓN', M + 8, y + 7)
+  set('bold', 12.5, COLORS.white)
+  doc.text(pregunta, M + 8, y + 16)
+  y += qH + 8
 
   // ---------- espacio para el médico, solo si sobra hoja ----------
   const notasFin = PAGE.h - 38
