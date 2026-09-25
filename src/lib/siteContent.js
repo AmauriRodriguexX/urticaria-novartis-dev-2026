@@ -2,9 +2,20 @@ import pageMetadata from './pageMetadata.json'
 
 const BASE = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
 
+// Parámetros de las ligas de prueba (escenario, hora, ciudad, clima) que se conservan al navegar entre páginas.
+const TEST_PARAMS = ['vista', 'hora', 'ciudad', 'city', 'temp', 'temperatura']
+const testQuery = (() => {
+  if (typeof window === 'undefined') return ''
+  const current = new URLSearchParams(window.location.search)
+  const kept = new URLSearchParams()
+  for (const key of TEST_PARAMS) if (current.has(key)) kept.set(key, current.get(key))
+  const query = kept.toString()
+  return query ? `?${query}` : ''
+})()
+
 export function routeHref(slug = '') {
   const clean = String(slug).replace(/^\/+|\/+$/g, '')
-  return `${BASE}${clean ? `${clean}/` : ''}`
+  return `${BASE}${clean ? `${clean}/` : ''}${testQuery}`
 }
 
 export function routeFromPath(pathname = window.location.pathname) {
