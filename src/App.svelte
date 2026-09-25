@@ -10,18 +10,17 @@
   import Community from './lib/Community.svelte'
   import { blogDrafts } from './lib/blogDrafts.js'
   import { themes } from './lib/campaign.js'
-  import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled } from './lib/context.js'
+  import { DARK, SOLID, resolveContext, forcedFromUrl } from './lib/context.js'
   import { detectGeoAndWeather } from './lib/geo.js'
   import { homeCopyFor, landingPages, navigation, routeFromPath, routeHref } from './lib/siteContent.js'
   import pageMetadata from './lib/pageMetadata.json'
   import { SITE_DOMAIN, SITE_NAME } from './lib/site.js'
 
   let route = routeFromPath()
-  let forced = forcedFromUrl()
-  let preview = previewEnabled()
+  // Todo es automático (hora, clima y ciudad). ?vista= solo fuerza un escenario en las ligas de prueba.
+  const forced = forcedFromUrl()
   let quizOpen = false
   let quizTrigger = null
-  let viewOpen = false
   let geoData = null
   let now = new Date()
   let quizInitialPhase = 'quiz'
@@ -31,9 +30,10 @@
   $: ctx = forced || autoCtx
   $: isHome = !route || route === 'videos'
   $: videosMode = route === 'videos'
-  $: theme = isHome ? themes[ctx] : themes.dia
-  $: dark = isHome && DARK.has(ctx)
-  $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[isHome ? ctx : 'dia']}`
+  // El tema por hora y clima se aplica en todo el sitio, no solo en el Inicio.
+  $: theme = themes[ctx]
+  $: dark = DARK.has(ctx)
+  $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
   $: copy = homeCopyFor(ctx, now, geoData?.city, geoData?.temp)
   $: page = landingPages[route]
   $: blogArticle = route?.startsWith('blog/') ? blogDrafts.find(draft => draft.slug === route.slice('blog/'.length)) : null
@@ -44,21 +44,13 @@
   function openQuiz(e, phase = 'quiz') {
     quizTrigger = e?.currentTarget || null
     quizInitialPhase = phase
-    modalCtx = isHome ? ctx : 'dia'
+    modalCtx = ctx
     quizOpen = true
   }
   function closeQuiz() {
     quizOpen = false
     queueMicrotask(() => quizTrigger?.focus?.())
   }
-  function setView(k) {
-    forced = k
-    viewOpen = false
-    const url = new URL(window.location.href)
-    if (k) url.searchParams.set('vista', k); else url.searchParams.delete('vista')
-    history.replaceState(history.state, '', url)
-  }
-
   function handleAnchorClick(event) {
     const link = event.target.closest?.('a[href^="#"]')
     if (!link) return
@@ -80,18 +72,13 @@
     }
   }
 
-  function handleDocumentClick(event) {
-    viewOpen = false
-    handleAnchorClick(event)
-  }
-
   onMount(() => {
     if (window.location.hash === '#consulta') {
       openQuiz(null, 'map')
     }
 
     // Detección automática y no bloqueante de ciudad y clima
-    if (isHome) detectGeoAndWeather().then(data => { if (data) geoData = data })
+    detectGeoAndWeather().then(data => { if (data) geoData = data })
 
     // Actualización de reloj cada 30 segundos
     const clockTimer = setInterval(() => { now = new Date() }, 30000)
@@ -104,7 +91,7 @@
   <meta name="description" content={pageDescription} />
 </svelte:head>
 
-<svelte:window on:click={handleDocumentClick} />
+<svelte:window on:click={handleAnchorClick} />
 
 <div class="shell" class:dark style={css}>
   <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
@@ -118,24 +105,6 @@
           <a class:active={route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/'))} aria-current={route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/')) ? 'page' : undefined} href={routeHref(item.slug)}>{item.label}</a>
         {/each}
       </nav>
-      {#if preview}
-        <div class="view-select">
-          <span>Vista</span>
-          <div class="view-dropdown">
-            <button class="view-trigger" type="button" aria-haspopup="listbox" aria-expanded={viewOpen} on:click|stopPropagation={() => viewOpen = !viewOpen}>
-              <span>{forced ? LABELS[forced] : 'Auto'}</span><i aria-hidden="true">⌄</i>
-            </button>
-            {#if viewOpen}
-              <div class="view-menu" role="listbox" aria-label="Seleccionar vista">
-                <button type="button" role="option" class:active={!forced} aria-selected={!forced} on:click={() => setView(null)}><span>Auto</span><small>Según la hora</small></button>
-                {#each ORDER as k}
-                  <button type="button" role="option" class:active={forced === k} aria-selected={forced === k} on:click={() => setView(k)}><span>{LABELS[k]}</span><small>{k === 'dia' ? 'Luz natural' : k === 'calor' ? 'Ambiente cálido' : k === 'frio' ? 'Aire frío' : k === 'madrugada' ? 'De madrugada' : 'Noche cálida'}</small></button>
-                {/each}
-              </div>
-            {/if}
-          </div>
-        </div>
-      {/if}
     </div>
   </header>
 

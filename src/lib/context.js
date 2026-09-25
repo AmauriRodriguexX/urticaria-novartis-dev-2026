@@ -3,8 +3,6 @@
 
 export const ORDER = ['dia', 'calor', 'frio', 'madrugada', 'noche-calor']
 
-export const LABELS = { dia: 'Día', calor: 'Calor', frio: 'Frío', madrugada: 'Madrugada', 'noche-calor': 'Noche cálida' }
-
 export const DARK = new Set(['madrugada', 'noche-calor'])
 
 // Color sólido de fondo por contexto (los temas usan gradientes; los velos necesitan un color plano).
@@ -115,11 +113,4 @@ export function forcedFromUrl() {
   if (typeof window === 'undefined') return null
   const v = new URLSearchParams(window.location.search).get('vista')
   return ORDER.includes(v) ? v : null
-}
-
-// En producción pública este navegador NO existe. Solo se activa para el equipo si se indica en URL.
-export function previewEnabled() {
-  if (typeof window === 'undefined') return false
-  const p = new URLSearchParams(window.location.search)
-  return p.has('preview') || p.has('dev') || p.has('vista')
 }
