@@ -1,6 +1,6 @@
 {
   "": {
-    "metaTitle": "Urticaria Crónica Espontánea | Más que Urticaria",
+    "metaTitle": "Lo más pequeño de tu vida - Pon fin a la Urticaria Crónica Espontánea",
     "metaDescription": "Vivir con picazón, habones o hinchazón puede sentirse abrumador. En Más que Urticaria te acompañamos a entender tus síntomas y preparar tu consulta."
   },
   "sobre-nosotros": {
@@ -8,7 +8,7 @@
     "metaDescription": "Conoce qué ofrece Más que Urticaria, un sitio informativo con recursos para entender los síntomas y preparar una consulta."
   },
   "sintomas": {
-    "metaTitle": "Síntomas de urticaria crónica espontánea | Más que Urticaria",
+    "metaTitle": "¿Cuáles son los síntomas de la Urticaria Crónica Espontánea?",
     "metaDescription": "Reconoce los síntomas frecuentes de urticaria y prepara tus preguntas para la consulta."
   },
   "tratamiento": {
@@ -16,23 +16,27 @@
     "metaDescription": "Conoce información general sobre tratamientos y conversa con un profesional de la salud."
   },
   "testimonios": {
-    "metaTitle": "Testimonios | Más que Urticaria",
+    "metaTitle": "Casos reales de Urticaria Crónica Espontánea. No estás solo",
     "metaDescription": "Historias compartidas por la comunidad sobre urticaria crónica espontánea. Explora experiencias de muestra y recursos informativos."
   },
   "diario": {
-    "metaTitle": "Diario de síntomas de urticaria | Más que Urticaria",
+    "metaTitle": "Diario de Urticaria. Registra tus brotes y síntomas",
     "metaDescription": "Registra síntomas y prepara la información que quieres compartir en consulta."
   },
   "test": {
-    "metaTitle": "Test orientativo de urticaria | Más que Urticaria",
+    "metaTitle": "¿Padeces de UCE? Haz nuestro test y Descúbrelo",
     "metaDescription": "Responde el test orientativo para ordenar tus síntomas y preparar una consulta."
   },
   "blog": {
-    "metaTitle": "Blog sobre urticaria crónica espontánea | Más que Urticaria",
-    "metaDescription": "Bocetos editoriales sobre urticaria crónica espontánea, registro y preparación para consulta. Los textos están generados con IA y pendientes de revisión."
+    "metaTitle": "Blog sobre Urticaria Crónica Espontánea",
+    "metaDescription": "Temas sobre urticaria crónica espontánea: estrés, preparación de la consulta con dermatología y mitos sobre dietas restrictivas."
   },
   "recursos-herramientas": {
     "metaTitle": "Recursos y herramientas | Más que Urticaria",
     "metaDescription": "Encuentra el test orientativo, el Diario de Síntomas y recursos para preparar una consulta."
+  },
+  "directorio-medico": {
+    "metaTitle": "Médicos Especialistas en Urticaria Crónica Espontánea",
+    "metaDescription": "Directorio de médicos especialistas en urticaria crónica: dermatólogos, alergólogos e inmunólogos cerca de ti para valorar tus síntomas."
   }
 }

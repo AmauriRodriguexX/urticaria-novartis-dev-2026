@@ -62,6 +62,12 @@ export const PREGUNTAS = [
     resumen: 'Afectación en relaciones sociales'
   },
   {
+    id: 'q8b',
+    contextos: 'todos',
+    si: (r) => Array.isArray(r.q6) && r.q6.includes('sexual'),
+    resumen: 'Afectación en vida sexual'
+  },
+  {
     id: 'q9',
     contextos: 'todos',
     si: (r) => Array.isArray(r.q6) && r.q6.includes('vestimenta'),
@@ -152,7 +158,7 @@ export function calcularPuntuacionBen(r) {
   if (r.q5 != null) sintomasPts += parseInt(r.q5, 10) || 0
 
   let cvPts = 0
-  ;['q7', 'q8', 'q9', 'q10', 'q11'].forEach((id) => {
+  ;['q7', 'q8', 'q8b', 'q9', 'q10', 'q11'].forEach((id) => {
     if (r[id] != null) cvPts += parseInt(r[id], 10) || 0
   })
 
@@ -181,10 +187,10 @@ export function generarReporteBen(r) {
   else cvDesc = ' que afectan gravemente tu vida diaria'
 
   let probDesc = ''
-  if (total <= 7) probDesc = 'Es poco probable que padezcas urticaria crónica espontánea.'
-  else if (total <= 12) probDesc = 'La probabilidad de que padezcas urticaria crónica espontánea es moderada.'
-  else if (total <= 24) probDesc = 'Es probable que padezcas urticaria crónica espontánea.'
-  else probDesc = 'Es altamente probable que padezcas urticaria crónica espontánea.'
+  if (total <= 7) probDesc = 'Es poco probable que sufras urticaria crónica espontánea.'
+  else if (total <= 12) probDesc = 'Es medianamente probable que sufras urticaria crónica espontánea.'
+  else if (total <= 24) probDesc = 'Es probable que sufras urticaria crónica espontánea.'
+  else probDesc = 'Es altamente probable que sufras urticaria crónica espontánea.'
 
   const seccion1 = `${nombre}, ${sDesc}${cvDesc}. ${probDesc}`
 
@@ -205,12 +211,18 @@ export function generarReporteBen(r) {
   const seccion2 = sList.length > 0 ? `Presentas ${formatListES(sList, 'y')}.` : ''
 
   // SECCIÓN 3: Afectaciones en calidad de vida
-  const aList = []
-  if (r.q6 && r.q6.includes('actividades')) aList.push('actividades diarias (como compras, limpieza o tareas)')
-  if (r.q6 && r.q6.includes('sociales')) aList.push('actividades sociales (como salir con tu pareja, familia o amigos)')
-  if (r.q6 && r.q6.includes('vestimenta')) aList.push('la ropa que usas')
-  if (r.q6 && r.q6.includes('trabajo')) aList.push('tu trabajo o estudios')
-  if (r.q6 && r.q6.includes('sueno')) aList.push('tu calidad de sueño')
+  // Solo se listan las áreas marcadas cuya escala suma más de 0 pts (orden del Excel).
+  const AREAS = [
+    ['actividades', 'q7', 'actividades diarias (como limpiar tu hogar)'],
+    ['sociales', 'q8', 'actividades sociales (como salir con tu pareja, familia o amigos)'],
+    ['sexual', 'q8b', 'tu vida sexual'],
+    ['vestimenta', 'q9', 'la manera en que te vistes'],
+    ['trabajo', 'q10', 'tu trabajo o estudios'],
+    ['sueno', 'q11', 'calidad del sueño']
+  ]
+  const aList = AREAS
+    .filter(([area, q]) => r.q6?.includes(area) && (parseInt(r[q], 10) || 0) > 0)
+    .map(([, , texto]) => texto)
 
   const seccion3 = aList.length > 0 ? `Estos síntomas han afectado negativamente áreas de tu vida como: ${formatListES(aList, 'y')}.` : ''
 
@@ -230,13 +242,19 @@ export function generarReporteBen(r) {
     else if (r.q13 === 'sin_patron') momentoStr = 'sin importar el momento del día'
   }
 
+  const SIN_FACTORES = 'factores como el calor, el frío, el estrés, el sudor o la ropa'
+  // "principalmente" solo acompaña a un momento concreto del día.
+  const momentoFrase = r.q13 === 'sin_patron' ? momentoStr : `principalmente ${momentoStr}`
+
   let seccion4 = ''
   if (momentoStr && dList.length > 0) {
-    seccion4 = `Tus brotes se dan principalmente ${momentoStr} y se ven influenciados por factores como ${formatListES(dList, 'y')}.`
+    seccion4 = `Tus brotes se dan ${momentoFrase} y se ven influenciados por factores como ${formatListES(dList, 'y')}.`
   } else if (dList.length > 0) {
     seccion4 = `Tus brotes se ven influenciados por factores como ${formatListES(dList, 'y')}.`
+  } else if (r.q13 === 'sin_patron') {
+    seccion4 = `Tus brotes se dan ${momentoStr} y no se ven influenciados por ${SIN_FACTORES}.`
   } else if (momentoStr) {
-    seccion4 = `Tus brotes se dan principalmente ${momentoStr}.`
+    seccion4 = `Tus brotes se dan ${momentoFrase}, pero no se ven influenciados por ${SIN_FACTORES}.`
   }
 
   // SECCIÓN 5: Tratamiento y Consulta
@@ -244,11 +262,14 @@ export function generarReporteBen(r) {
   const consulto = r.q14 === '1'
   const trat = r.q17 === '1'
 
-  if (!consulto && !trat) {
-    seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un especialista certificado para recibir una evaluación personalizada.'
+  if (r.q14 == null) {
+    // Sin síntomas no se hicieron las preguntas de historial: no hay nada que resumir.
+    seccion5 = ''
+  } else if (!consulto && !trat) {
+    seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un dermatólogo o un médico general que te canalice con un especialista para recibir un tratamiento adecuado a tu caso.'
   } else if (!consulto && trat) {
     const tipoT = r.q18 && r.q18.includes('3') ? 'tratamiento avanzado con altas dosis de antihistamínicos o corticoides' : (r.q18 && r.q18.includes('2') ? 'tratamiento como antihistamínicos y corticoides' : 'tratamiento básico, como medicamentos de venta libre y remedios caseros')
-    seccion5 = `No has consultado a un médico sobre tus síntomas, pero has recibido ${tipoT}. Es importante consultar a un especialista para un diagnóstico certero.`
+    seccion5 = `No has consultado a un médico sobre tus síntomas, pero has recibido ${tipoT}.`
   } else if (consulto) {
     const medList = []
     if (r.q16 && r.q16.includes('general')) medList.push('médicos generales')
@@ -263,14 +284,19 @@ export function generarReporteBen(r) {
   }
 
   // SECCIÓN 6: Recomendación Final
+  // Copy del Excel con su redacción corregida ("recomendamos altamente importante que…").
+  // Solo aplica con tratamiento y con el umbral clínico: síntomas >= 2 y calidad de vida >= 2.
+  const CIERRE = 'Tomando en cuenta esto, tus síntomas y el impacto en tu vida,'
   let seccion6 = ''
-  if (trat) {
-    if (r.q19 === '0' || r.q19 === '1') {
-      seccion6 = 'Consideras que tu tratamiento ha sido poco o nada efectivo. Tomando en cuenta esto, tus síntomas y el impacto en tu vida, es altamente importante que hables con un especialista sobre tratamientos de nueva generación para la urticaria crónica.'
+  if (trat && sPts >= 2 && cvPts >= 2) {
+    if (r.q19 === '0') {
+      seccion6 = `Consideras que tu tratamiento no ha sido nada efectivo. ${CIERRE} es muy importante que hables con un especialista sobre tus síntomas y posibles tratamientos.`
+    } else if (r.q19 === '1') {
+      seccion6 = `Consideras que tu tratamiento ha sido poco efectivo. ${CIERRE} es muy importante que hables con un especialista sobre tus síntomas y posibles tratamientos.`
     } else if (r.q19 === '2') {
-      seccion6 = 'Consideras que tu tratamiento ha sido medianamente efectivo. Tomando en cuenta esto, tus síntomas y el impacto en tu vida, recomendamos hablar con tu especialista sobre optimizar el control de tus síntomas.'
+      seccion6 = `Consideras que tu tratamiento ha sido medianamente efectivo. ${CIERRE} es importante que hables con un especialista sobre la urticaria crónica y los tratamientos disponibles.`
     } else if (r.q19 === '3') {
-      seccion6 = 'Consideras que tu tratamiento ha sido muy efectivo. Te recomendamos continuar con tu tratamiento de la mano de tu médico especialista.'
+      seccion6 = `Consideras que tu tratamiento ha sido muy efectivo. ${CIERRE} te recomendamos que continúes con tu tratamiento de la mano de tu proveedor de salud.`
     }
   }
 
@@ -281,12 +307,15 @@ export function generarReporteBen(r) {
 // MENSAJE DE ESCALACIÓN
 // ---------------------------------------------------------------------------
 export const ESCALACION = {
-  cuando: (r) => r.q19 === '0' || r.q19 === '1',
+  cuando: (r) => r.q17 === '1' && (r.q19 === '0' || r.q19 === '1'),
   enPantalla: 'Has llevado tratamiento y sigues con síntomas persistentes. En tu próxima consulta, pregunta: «¿hay algo más que podamos intentar?».',
   enPdf: 'He llevado tratamiento previo sin control adecuado de mis síntomas. Quisiera valorar opciones avanzadas o tratamientos dirigidos.'
 }
 
 export const PREGUNTA_CLAVE = '«¿Hay algo más que podamos intentar?»'
+
+// La pregunta clave solo tiene sentido para quien ya lleva un tratamiento.
+export const mostrarPreguntaClave = (r) => r.q17 === '1'
 
 // ============================================================================
 // MOTOR DE FLUJO Y RESUMEN
@@ -315,7 +344,7 @@ export function esUrgencia(id, valor) {
 export function leerResultado(respuestas) {
   const rep = generarReporteBen(respuestas)
   return {
-    titulo: rep.total >= 13 ? 'Lo que describes encaja con urticaria crónica espontánea.' : (rep.total >= 8 ? 'Presentas síntomas compatibles con urticaria crónica espontánea.' : 'Es poco probable que padezcas urticaria crónica espontánea.'),
+    titulo: 'Tu resultado orientativo',
     detalle: rep.seccion1,
     reporte: rep
   }

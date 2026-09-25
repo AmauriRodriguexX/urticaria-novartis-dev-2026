@@ -9,7 +9,7 @@
   import 'leaflet/dist/leaflet.css'
 
   export let ctx = 'dia'
-  export let onBack
+  export let onBack = null
 
   $: dark = DARK.has(ctx)
 
@@ -371,5 +371,5 @@
     </div>
   </div>
 
-  <button class="outline dir-back-btn" on:click={onBack}><Icon name="arrow_back" size={18} /><span>Volver</span></button>
+  {#if onBack}<button class="outline dir-back-btn" on:click={onBack}><Icon name="arrow_back" size={18} /><span>Volver</span></button>{/if}
 </div>

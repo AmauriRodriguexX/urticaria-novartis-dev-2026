@@ -2,12 +2,14 @@
   import { onMount } from 'svelte'
   import { routeHref } from './siteContent.js'
   import SymptomDiary from './SymptomDiary.svelte'
+  import Directorio from './Directorio.svelte'
   import Icon from './Icon.svelte'
   import { reveal } from './reveal.js'
 
   export let page
   export let onQuiz
   export let isResources = false
+  export let ctx = 'dia'
   let showSampleNotice = true
 
   onMount(() => {
@@ -72,6 +74,7 @@
   {/if}
 
   {#if page.diaryTool}<SymptomDiary />{/if}
+  {#if page.directoryTool}<section class="directory-page" aria-label="Directorio de especialistas"><Directorio {ctx} /></section>{/if}
 
   <div class="content-sections">
     {#each page.sections as section, i}
