@@ -12,9 +12,10 @@
   import { themes } from './lib/campaign.js'
   import { DARK, SOLID, resolveContext, forcedFromUrl } from './lib/context.js'
   import { detectGeoAndWeather } from './lib/geo.js'
+  import { heroVariation } from './lib/heroVariations.js'
   import { homeCopyFor, landingPages, navigation, routeFromPath, routeHref } from './lib/siteContent.js'
   import pageMetadata from './lib/pageMetadata.json'
-  import { SITE_DOMAIN, SITE_NAME } from './lib/site.js'
+  import { SITE_DOMAIN, SITE_NAME, SITE_URL } from './lib/site.js'
 
   let route = routeFromPath()
   // Todo es automático (hora, clima y ciudad). ?vista= solo fuerza un escenario en las ligas de prueba.
@@ -34,12 +35,34 @@
   $: theme = themes[ctx]
   $: dark = DARK.has(ctx)
   $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
-  $: copy = homeCopyFor(ctx, now, geoData?.city, geoData?.temp)
-  $: page = landingPages[route]
+  // Con ?vista= forzada, el texto sigue al escenario visual y no a la temperatura.
+  $: heroTemp = forced ? null : geoData?.temp
+  $: copy = homeCopyFor(ctx, now, geoData?.city, heroTemp)
+  $: basePage = landingPages[route]
+  $: pageHero = basePage ? heroVariation(route, ctx, now, heroTemp, geoData?.city) : null
+  $: page = pageHero ? { ...basePage, title: pageHero.title, intro: pageHero.intro || basePage.intro } : basePage
   $: blogArticle = route?.startsWith('blog/') ? blogDrafts.find(draft => draft.slug === route.slice('blog/'.length)) : null
   $: isBlogRoute = route === 'blog' || !!blogArticle
   $: pageTitle = blogArticle ? `${blogArticle.title} | Blog | Más que Urticaria` : page?.metaTitle || (isHome ? pageMetadata[''].metaTitle : 'Página no encontrada | Más que Urticaria')
-  $: pageDescription = blogArticle?.excerpt || page?.metaDescription || (isHome ? copy.intro : 'Más que Urticaria: información y herramientas para preparar tu consulta.')
+  $: pageDescription = blogArticle?.excerpt || page?.metaDescription || (isHome ? pageMetadata[''].metaDescription : 'Más que Urticaria: información y herramientas para preparar tu consulta.')
+  $: canonicalUrl = `${SITE_URL}/${route ? `${route}/` : ''}`
+  $: syncHead(pageTitle, pageDescription, canonicalUrl)
+  $: faqs = (page?.sections || []).flatMap(section => section.faqs || [])
+  $: jsonLd = JSON.stringify(faqs.length
+    ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) }
+    : isHome ? { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: `${SITE_URL}/`, inLanguage: 'es-MX' } : null)
+  $: jsonLdTag = jsonLd === 'null' ? '' : `<script type="application/ld+json">${jsonLd.replaceAll('<', '\\u003c')}<\/script>`
+
+  // index.html y el postbuild ya traen estas etiquetas; aquí solo se actualizan al navegar (sin duplicarlas).
+  function syncHead(title, description, url) {
+    if (typeof document === 'undefined') return
+    const set = (selector, attr, value) => document.head.querySelector(selector)?.setAttribute(attr, value)
+    set('meta[name="description"]', 'content', description)
+    set('meta[property="og:title"]', 'content', title)
+    set('meta[property="og:description"]', 'content', description)
+    set('meta[property="og:url"]', 'content', url)
+    set('link[rel="canonical"]', 'href', url)
+  }
 
   function openQuiz(e, phase = 'quiz') {
     quizTrigger = e?.currentTarget || null
@@ -88,7 +111,7 @@
 
 <svelte:head>
   <title>{pageTitle}</title>
-  <meta name="description" content={pageDescription} />
+  {#if jsonLdTag}{@html jsonLdTag}{/if}
 </svelte:head>
 
 <svelte:window on:click={handleAnchorClick} />
@@ -118,7 +141,7 @@
   {:else if route === 'testimonios'}
     <main id="main-content" class="testimonials-main"><Community /></main>
   {:else if page}
-    <LandingPage {page} onQuiz={openQuiz} isResources={route === 'recursos-herramientas'} />
+    <LandingPage {page} {ctx} onQuiz={openQuiz} isResources={route === 'recursos-herramientas'} />
     {#if route === 'recursos-herramientas'}<PhotoLibrary />{/if}
   {:else}
     <main id="main-content" class="content-page"><section class="content-hero"><p class="eyebrow accent">Más que Urticaria</p><h1>Esta página todavía no está disponible</h1><p class="content-lead">Vuelve al inicio para explorar los recursos y la información del sitio.</p><a class="button" href={routeHref('')}>Ir al Inicio</a></section></main>
@@ -127,6 +150,7 @@
   <footer class="site-footer">
     <em>Tu vida es más grande que los brotes de urticaria crónica espontánea.</em>
     <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
+    <small>Sitio desarrollado con el patrocinio de Novartis.</small>
     <div class="footer-domain">
       <a href={routeHref('')}>{SITE_DOMAIN}</a>
       <span>© {new Date().getFullYear()} {SITE_NAME}</span>

@@ -1,4 +1,5 @@
 import pageMetadata from './pageMetadata.json'
+import { heroVariation } from './heroVariations.js'
 
 const BASE = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
 
@@ -29,16 +30,18 @@ export const navigation = [
   { label: 'Recursos', slug: 'recursos-herramientas' },
   { label: 'Síntomas', slug: 'sintomas' },
   { label: 'Tratamientos', slug: 'tratamiento' },
+  { label: 'Directorio', slug: 'directorio-medico' },
   { label: 'Testimonios', slug: 'testimonios' },
   { label: 'Blog', slug: 'blog' },
   { label: 'Acerca de', slug: 'sobre-nosotros' }
 ]
 
-export function homeCopyFor() {
+export function homeCopyFor(ctx, now, city, temp) {
+  const variation = heroVariation('', ctx, now, temp, city)
   return {
     kicker: 'Más que Urticaria',
-    title: 'Urticaria Crónica Espontánea: Haz de la Urticaria la Parte Más Pequeña de tu Vida',
-    intro: "Vivir con picazón constante, habones e hinchazón inesperada puede sentirse abrumador. En 'Más que Urticaria' te acompañamos para que entiendas tu diagnóstico, encuentres la atención médica adecuada y recuerdes que tu vida es mucho más grande que tus síntomas.",
+    title: variation?.title || 'Urticaria Crónica Espontánea: Haz de la Urticaria la Parte Más Pequeña de tu Vida',
+    intro: variation?.intro || "Vivir con picazón constante, habones e hinchazón inesperada puede sentirse abrumador. En 'Más que Urticaria' te acompañamos para que entiendas tu diagnóstico, encuentres la atención médica adecuada y recuerdes que tu vida es mucho más grande que tus síntomas.",
     primaryCta: 'Hacer Test de Autoevaluación',
     secondaryCta: 'Buscar Especialista',
     note: ''
@@ -57,7 +60,8 @@ export const landingPages = {
         id: 'causa', title: '¿Quiénes somos?',
         paragraphs: [
           '“Más que Urticaria” es un sitio informativo sobre urticaria crónica espontánea (UCE). Aquí puedes explorar explicaciones en lenguaje claro, registrar lo que observas y preparar preguntas para una consulta.',
-          'El contenido del sitio no ofrece diagnóstico ni atención médica. Un profesional de la salud puede valorar tus síntomas y conversar contigo sobre los siguientes pasos.'
+          'El contenido del sitio no ofrece diagnóstico ni atención médica. Un profesional de la salud puede valorar tus síntomas y conversar contigo sobre los siguientes pasos.',
+          'Este sitio es desarrollado con el patrocinio de Novartis.'
         ]
       },
       {
@@ -156,7 +160,7 @@ export const landingPages = {
     eyebrow: 'Información para tu próxima consulta',
     title: 'Tratamientos para la Urticaria Crónica Espontánea: Encuentra el Camino hacia el Alivio',
     intro: 'El tratamiento adecuado depende de cada persona y debe definirse con un profesional de la salud. Esta guía reúne preguntas e información para preparar esa conversación.',
-    ctas: [{ label: 'Buscar Especialista', action: 'directory' }],
+    ctas: [{ label: 'Buscar Especialista', route: 'directorio-medico' }],
     sections: [
       {
         title: '¿Cómo se aborda la urticaria crónica?',
@@ -216,7 +220,7 @@ export const landingPages = {
         ]
       }
     ],
-    closing: { title: 'Da el siguiente paso con acompañamiento médico', text: 'Prepara tus preguntas y conversa con un profesional de la salud sobre las opciones para ti.', cta: { label: 'Buscar Especialista', action: 'directory' } }
+    closing: { title: 'Da el siguiente paso con acompañamiento médico', text: 'Prepara tus preguntas y conversa con un profesional de la salud sobre las opciones para ti.', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
   },
   testimonios: {
     ...pageMetadata.testimonios,
@@ -241,8 +245,8 @@ export const landingPages = {
       {
         title: 'Preguntas frecuentes sobre las historias',
         faqs: [
-          { question: '¿Puedo compartir mi testimonio de forma anónima?', answer: 'Las historias se publicarán con autorización. Antes de recibir testimonios, se explicará cómo proteger tu identidad y elegir qué información compartir.' },
-          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes explorar la información y las herramientas del sitio para preparar una conversación con un profesional de la salud.' }
+          { question: '¿Puedo compartir mi testimonio de forma anónima?', answer: 'Sí. Sabemos que la salud cutánea es un tema muy personal. Si deseas compartir tu historia para inspirar a otros pero prefieres resguardar tu identidad, podemos usar un seudónimo.' },
+          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro Directorio Médico para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.' }
         ]
       }
     ],
@@ -282,7 +286,7 @@ export const landingPages = {
       }
     ],
     diaryTool: true,
-    closing: { title: '¿Listo para tu próxima consulta?', text: 'Lleva tus observaciones y preguntas para conversar con un profesional de la salud.', cta: { label: 'Buscar Especialista', action: 'directory' } }
+    closing: { title: '¿Listo para tu próxima consulta?', text: 'Lleva tus observaciones y preguntas para conversar con un profesional de la salud.', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
   },
   test: {
     ...pageMetadata.test,
@@ -319,6 +323,33 @@ export const landingPages = {
       }
     ],
     closing: { title: '¿Quieres ordenar tus dudas?', text: 'Usa el test orientativo para preparar una conversación con un profesional.', cta: { label: 'Ir al Test', route: 'test' } }
+  },
+  'directorio-medico': {
+    ...pageMetadata['directorio-medico'],
+    eyebrow: 'Directorio médico',
+    title: 'Médicos especialistas en urticaria crónica espontánea',
+    intro: 'Encuentra dermatólogos, alergólogos e inmunólogos cerca de ti. Un médico especialista en urticaria puede valorar tus síntomas y conversar contigo sobre los siguientes pasos.',
+    directoryTool: true,
+    sections: [
+      {
+        title: '¿Qué especialista en urticaria crónica puedo consultar?',
+        cards: [
+          { title: 'Dermatología', text: 'El directorio de dermatólogos reúne especialistas en la piel que pueden valorar ronchas, habones y comezón persistente.' },
+          { title: 'Alergología', text: 'Un alergólogo especialista en urticaria puede ayudarte a distinguir entre una reacción alérgica y una urticaria crónica.' },
+          { title: 'Inmunología clínica', text: 'Valora cómo responde el sistema inmunitario cuando los brotes se repiten durante más de seis semanas.' }
+        ]
+      },
+      {
+        title: 'Cómo usar el directorio de médicos y clínicas',
+        list: [
+          'Filtra por especialidad o escribe tu código postal para ver médicos y clínicas cercanas.',
+          'Usa tu ubicación para ordenar la lista por distancia.',
+          'Lleva a la consulta tu resumen del test o tu Diario de Síntomas.'
+        ],
+        notice: 'Este directorio es informativo. La elección del especialista y cualquier tratamiento se definen en consulta con un profesional de la salud.'
+      }
+    ],
+    closing: { title: 'Prepara tu consulta', text: 'Ordena lo que has observado antes de hablar con un especialista.', cta: { label: 'Ir al Test de Síntomas', route: 'test' } }
   },
   'recursos-herramientas': {
     ...pageMetadata['recursos-herramientas'],

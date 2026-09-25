@@ -1,7 +1,7 @@
 <script>
   import { onMount, tick } from 'svelte'
   import { questions } from './campaign.js'
-  import { construirFlujo, esUrgencia, leerResultado, construirResumen, ESCALACION, PREGUNTA_CLAVE } from './cuestionario.js'
+  import { construirFlujo, esUrgencia, leerResultado, construirResumen, ESCALACION, PREGUNTA_CLAVE, mostrarPreguntaClave } from './cuestionario.js'
   import { DARK } from './context.js'
   import Icon from './Icon.svelte'
   import Directorio from './Directorio.svelte'
@@ -27,6 +27,7 @@
   $: lectura = leerResultado(answers)
   $: rows = construirResumen(answers, ctx, questions)
   $: escalacion = ESCALACION.cuando(answers)
+  $: preguntaClave = mostrarPreguntaClave(answers) ? PREGUNTA_CLAVE : null
 
 
   // ---------- flujo ----------
@@ -34,12 +35,13 @@
     if (q[0] === 'multi') {
       const old = answers[id] || []
       let updated = []
-      // En q1, si elige 'ninguno' desmarca los demás; si elige otro, quita 'ninguno'
-      if (id === 'q1') {
-        if (value === 'ninguno') {
-          updated = old.includes('ninguno') ? [] : ['ninguno']
+      // La opción "ninguno" desmarca las demás; elegir otra quita "ninguno"
+      const exclusiva = { q1: 'ninguno', q12: 'sin_patron' }[id]
+      if (exclusiva) {
+        if (value === exclusiva) {
+          updated = old.includes(exclusiva) ? [] : [exclusiva]
         } else {
-          const filtered = old.filter(x => x !== 'ninguno')
+          const filtered = old.filter(x => x !== exclusiva)
           updated = filtered.includes(value) ? filtered.filter(x => x !== value) : [...filtered, value]
         }
       } else {
@@ -59,7 +61,10 @@
   function handleTextInput(e) {
     answers = { ...answers, [id]: e.target.value }
   }
-  function advance() { if (step + 1 >= flow.length) go('result', step); else go('quiz', step + 1) }
+  function advance() {
+    const siguiente = construirFlujo(answers, ctx)
+    if (step + 1 >= siguiente.length) go('result', step); else go('quiz', step + 1)
+  }
   function back() { history.back() }
 
   // Empezar de nuevo vuelve a la PRIMERA pantalla del quiz en lugar de apilar otra
@@ -126,7 +131,7 @@
 
   // ---------- resultado ----------
   function summary() {
-    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}\n\nMi pregunta clave: ${PREGUNTA_CLAVE}`
+    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}${preguntaClave ? `\n\nMi pregunta clave: ${preguntaClave}` : ''}`
   }
   let downloading = false
   async function download() {
@@ -137,7 +142,7 @@
       await descargarResumen({
         lectura,
         rows,
-        pregunta: PREGUNTA_CLAVE,
+        pregunta: preguntaClave,
         escalacion: escalacion ? ESCALACION.enPdf : null
       })
       downloaded = true
@@ -222,7 +227,7 @@
     {#if phase === 'quiz'}
       <div class="quiz">
         <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax={flow.length} aria-valuenow={step + 1}><i style={`width:${((step + 1) / flow.length) * 100}%`}></i></div>
-        <p class="step">Paso {step + 1} de {flow.length}</p>
+        <p class="step">Paso {step + 1}</p>
         <h2 tabindex="-1" bind:this={heading}>{q[1]}</h2>
         {#if q[2]}<p class="sub">{q[2]}</p>{/if}
         {#if q[0] === 'text'}
@@ -273,7 +278,7 @@
         <h2 tabindex="-1" bind:this={heading}>{lectura.titulo}</h2>
         <p class="sub">{lectura.detalle}</p>
 
-        {#if lectura.reporte}
+        {#if lectura.reporte && [2, 3, 4, 5, 6].some(n => lectura.reporte[`seccion${n}`])}
           <div class="report-box" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--card, #fff); border-radius: 14px; border: 1px solid var(--border, #e6e2d4); line-height: 1.6; font-size: 0.98rem; text-align: left;">
             {#if lectura.reporte.seccion2}<p style="margin-bottom: 0.75rem;"><strong>Síntomas:</strong> {lectura.reporte.seccion2}</p>{/if}
             {#if lectura.reporte.seccion3}<p style="margin-bottom: 0.75rem;"><strong>Impacto diario:</strong> {lectura.reporte.seccion3}</p>{/if}
@@ -287,7 +292,7 @@
         <div class="summary">
           <header><strong>Tu resumen para el médico</strong><small>Orientativo</small></header>
           {#each rows as row}<p><b>{row.etiqueta}</b><span class:vacio={row.sinResponder}>{row.valor}</span></p>{/each}
-          <footer><small>La pregunta que abre la conversación</small><strong>{PREGUNTA_CLAVE}</strong></footer>
+          {#if preguntaClave}<footer><small>La pregunta que abre la conversación</small><strong>{preguntaClave}</strong></footer>{/if}
           <div class="summary-actions">
             <button class="button" on:click={download} disabled={downloading}><Icon name={downloaded ? 'check' : 'download'} size={20} /><span>{downloaded ? 'Descargado' : downloading ? 'Generando\u2026' : 'Descargar resumen'}</span></button>
             <button class="ghost" on:click={copy}><Icon name={copied ? 'check' : 'content_copy'} size={18} /><span>{copied ? 'Copiado' : 'Copiar'}</span></button>

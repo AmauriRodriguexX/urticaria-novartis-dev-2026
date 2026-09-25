@@ -138,15 +138,17 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
     y += h + 8
   }
 
-  // ---------- la pregunta ----------
-  fill(COLORS.cerulean)
-  const qH = 22
-  doc.roundedRect(M, y, CONTENT, qH, 2.5, 2.5, 'F')
-  set('normal', 7.5, COLORS.white)
-  doc.text('LA PREGUNTA QUE ABRE LA CONVERSACIÓN', M + 8, y + 7)
-  set('bold', 12.5, COLORS.white)
-  doc.text(pregunta, M + 8, y + 16)
-  y += qH + 8
+  // ---------- la pregunta, solo si ya lleva tratamiento ----------
+  if (pregunta) {
+    fill(COLORS.cerulean)
+    const qH = 22
+    doc.roundedRect(M, y, CONTENT, qH, 2.5, 2.5, 'F')
+    set('normal', 7.5, COLORS.white)
+    doc.text('LA PREGUNTA QUE ABRE LA CONVERSACIÓN', M + 8, y + 7)
+    set('bold', 12.5, COLORS.white)
+    doc.text(pregunta, M + 8, y + 16)
+    y += qH + 8
+  }
 
   // ---------- espacio para el médico, solo si sobra hoja ----------
   const notasFin = PAGE.h - 38

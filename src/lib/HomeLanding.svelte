@@ -1,4 +1,5 @@
 <script>
+  import { casos, iniciales } from './testimonios.js'
   import { homeArticles, routeHref } from './siteContent.js'
   import { blogDrafts } from './blogDrafts.js'
   import Icon from './Icon.svelte'
@@ -19,13 +20,10 @@
   const route = [
     { icon: 'quiz', title: 'Reconoce tus síntomas', text: 'Identifica las diferencias clave entre una alergia común y la urticaria crónica realizando nuestro test de orientación en menos de 5 minutos.', tag: 'Menos de 5 minutos', cta: 'Hacer el test', href: routeHref('test') },
     { icon: 'download', title: 'Registra tus brotes', text: 'Lleva tu bitácora diaria mediante nuestra Web App gratuita o descargando la plantilla imprimible en PDF para llevarla a tu cita médica.', tag: 'Web App gratuita · PDF', cta: 'Abrir el diario', href: routeHref('diario') },
-    { icon: 'stethoscope', title: 'Encuentra tratamiento', text: 'Descubre las opciones de medicamento para urticaria respaldadas por guías médicas y conecta con dermatólogos y alergólogos en México.', tag: 'Dermatólogos y alergólogos', cta: 'Buscar especialista', href: '#consulta' }
+    { icon: 'stethoscope', title: 'Encuentra tratamiento', text: 'Descubre las opciones de medicamento para urticaria respaldadas por guías médicas y conecta con dermatólogos y alergólogos en México.', tag: 'Dermatólogos y alergólogos', cta: 'Buscar especialista', href: routeHref('directorio-medico') }
   ]
 
-  const stories = [
-    { title: 'Una forma de entender lo que pasaba', quote: 'Pensé que era alergia a la comida. Entender qué es la UCE y buscar orientación de un especialista me ayudó a preparar mejor mis preguntas.' },
-    { title: 'Hablar de la picazón nocturna', quote: 'La picazón por la noche afectaba mi descanso. Anotar lo que observaba me dio palabras para conversarlo en consulta.' }
-  ]
+  const stories = casos.filter(caso => caso.homeQuote)
 
   const pillars = ['Romper el aislamiento', 'Educar a la sociedad', 'Herramientas prácticas para tu bienestar']
 
@@ -105,10 +103,9 @@
       {#each stories as story}
         <article class="home-story-card">
           <span class="home-story-mark" aria-hidden="true">“</span>
-          <span class="home-story-tag">Historia de muestra</span>
-          <h3>{story.title}</h3>
-          <blockquote>{story.quote}</blockquote>
-          <footer><span class="home-story-avatar" aria-hidden="true"><Icon name="groups" size={18} /></span><small>Relato representativo · sin autor real</small></footer>
+          <h3>{story.name} ({story.detail.replace(/ \(.*\)$/, '')})</h3>
+          <blockquote>{story.homeQuote}</blockquote>
+          <footer><span class="home-story-avatar testimonial-photo">{#if story.photo}<img src={`${import.meta.env.BASE_URL}${story.photo}`} alt={`Retrato de ${story.name}`} loading="lazy" />{:else}<span aria-hidden="true">{iniciales(story.name)}</span>{/if}</span><small>{story.detail}</small></footer>
         </article>
       {/each}
     </div>
@@ -155,7 +152,7 @@
     </div>
     <div class="home-final-actions">
       <a class="button" href={routeHref('test')}>Ir al Test de Síntomas <Icon name="arrow_forward" size={18} /></a>
-      <a class="button home-final-secondary" href="#consulta">Buscar Especialista <Icon name="arrow_forward" size={18} /></a>
+      <a class="button home-final-secondary" href={routeHref('directorio-medico')}>Buscar Especialista <Icon name="arrow_forward" size={18} /></a>
     </div>
   </section>
 </div>

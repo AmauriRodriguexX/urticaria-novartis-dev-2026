@@ -61,6 +61,7 @@ export const questions = {
   q6: ['multi', '¿Qué áreas de tu vida se han visto afectadas por tus síntomas?', 'Marca todas las que apliquen.', [
     ['actividades', 'Actividades diarias', 'Compras, limpieza, tareas del hogar'],
     ['sociales', 'Vida social y relaciones', 'Pareja, familia o reuniones con amigos'],
+    ['sexual', 'Vida sexual', 'Intimidad con tu pareja'],
     ['vestimenta', 'Elección de vestimenta', 'Evitar telas, texturas o ropa ajustada'],
     ['trabajo', 'Trabajo o estudios', 'Concentración y rendimiento'],
     ['sueno', 'Calidad de sueño', 'Despertares nocturnos o insomnio']
@@ -71,6 +72,10 @@ export const questions = {
   ]],
 
   q8: ['single', 'En la última semana, ¿qué tanto han afectado a tus relaciones familiares, sociales o de pareja?', '', [
+    ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
+  ]],
+
+  q8b: ['single', 'En la última semana, ¿qué tanto han afectado tu vida sexual?', '', [
     ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
   ]],
 
