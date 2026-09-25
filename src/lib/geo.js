@@ -1,4 +1,4 @@
-// Servicio de contexto geográfico y climático para tuvidaesmásgrande.org
+// Servicio de contexto geográfico y climático para masqueurticaria.org
 // Diseñado para ser no bloqueante, resiliente y respetuoso de la privacidad.
 
 const CACHE_KEY = 'uce_geo_ctx'

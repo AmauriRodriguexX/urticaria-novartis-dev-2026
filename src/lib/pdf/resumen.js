@@ -1,5 +1,6 @@
 // Genera el PDF del resumen para el médico.
 // Todo se carga bajo demanda: jsPDF y las fuentes solo llegan cuando la persona descarga.
+import { SITE_DOMAIN, SITE_NAME } from '../site.js'
 
 const COLORS = {
   ink: [34, 56, 63],
@@ -172,6 +173,11 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
     CONTENT
   )
   doc.text(legal, M, footTop + 6)
+
+  set('bold', 8, COLORS.ink)
+  doc.text(SITE_NAME, M, PAGE.h - 10)
+  set('bold', 8, COLORS.coral)
+  doc.text(SITE_DOMAIN, M + CONTENT, PAGE.h - 10, { align: 'right' })
 
   return doc
 }

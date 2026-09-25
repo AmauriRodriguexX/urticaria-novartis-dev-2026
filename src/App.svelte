@@ -4,78 +4,47 @@
   import QuizModal from './lib/QuizModal.svelte'
   import Icon from './lib/Icon.svelte'
   import PhotoLibrary from './lib/PhotoLibrary.svelte'
+  import HomeLanding from './lib/HomeLanding.svelte'
+  import LandingPage from './lib/LandingPage.svelte'
+  import BlogPage from './lib/BlogPage.svelte'
   import Community from './lib/Community.svelte'
-  import { themes, copies } from './lib/campaign.js'
-  import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled, formatTimeGreeting } from './lib/context.js'
+  import { blogDrafts } from './lib/blogDrafts.js'
+  import { themes } from './lib/campaign.js'
+  import { ORDER, LABELS, DARK, SOLID, resolveContext, forcedFromUrl, previewEnabled } from './lib/context.js'
   import { detectGeoAndWeather } from './lib/geo.js'
+  import { homeCopyFor, landingPages, navigation, routeFromPath, routeHref } from './lib/siteContent.js'
+  import pageMetadata from './lib/pageMetadata.json'
+  import { SITE_DOMAIN, SITE_NAME } from './lib/site.js'
 
+  let route = routeFromPath()
   let forced = forcedFromUrl()
   let preview = previewEnabled()
   let quizOpen = false
   let quizTrigger = null
-  let videosMode = typeof window !== 'undefined' && window.location.pathname.replace(/\/$/, '').endsWith('/videos')
   let viewOpen = false
   let geoData = null
   let now = new Date()
-
-  // Palabras dinámicas por contexto:
-  // En día/tarde se enfoca en síntomas y sensaciones diurnas (NUNCA insomnio de día).
-  // En madrugada y noche cálida se enfoca en descanso y conciliación de sueño nocturno.
-  const WORDS_BY_CTX = {
-    dia: ['los brotes', 'la comezón', 'el ardor', 'las ronchas', 'la incertidumbre'],
-    calor: ['los brotes', 'la comezón', 'la inflamación'],
-    frio: ['brota', 'irrita', 'inflama'],
-    madrugada: ['dormir', 'descansar', 'conciliar el sueño'],
-    'noche-calor': ['dormir', 'descansar']
-  }
-
-  let wordIndex = 0
-  let word = WORDS_BY_CTX.dia[0]
+  let quizInitialPhase = 'quiz'
+  let modalCtx = 'dia'
 
   $: autoCtx = resolveContext(now, geoData)
   $: ctx = forced || autoCtx
-  $: theme = themes[ctx]
-  $: dark = DARK.has(ctx)
-  $: rawCopy = copies[ctx]
-  $: dynamicKicker = formatTimeGreeting(ctx, geoData?.city, now)
-  $: copy = (() => {
-    let list = [dynamicKicker, ...rawCopy.slice(1)]
-    if (geoData?.city) {
-      if (ctx === 'calor') {
-        // "En Mérida el calor está fuerte..." -> "En [Ciudad] el calor está fuerte..."
-        list[1] = `En ${geoData.city} el calor está fuerte. Y el calor puede subir `
-      } else if (ctx === 'frio') {
-        list[1] = `Con el frío en ${geoData.city}, a algunas personas la piel se les `
-      }
-    }
-    return list
-  })()
-
-  $: wordPool = WORDS_BY_CTX[ctx] || [copy[2]]
-  $: if (!wordPool.includes(word)) {
-    wordIndex = 0
-    word = wordPool[0]
-  }
-  $: displayWord = word
-  $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[ctx]}`
-  let quizInitialPhase = 'quiz'
-
-  // Regla de acompañamiento en madrugada:
-  // Si la métrica real es menor a 30 (o no hay datos / es 0), mantenemos una cifra creíble entre 15 y 26
-  // que oscila orgánicamente en vivo (sube 1 o 2, baja 1) cada 12-25 segundos para simular actividad real.
-  let nightVisitorCount = 18
-
-  function initNightCount() {
-    const seed = (now.getHours() * 7 + Math.floor(now.getMinutes() / 5) * 3) % 11
-    return 16 + seed // Rango base: 16 a 26
-  }
-
-  $: if (dark && !nightVisitorCount) nightVisitorCount = initNightCount()
-  $: target = dark ? (nightVisitorCount || 18) : 1240
+  $: isHome = !route || route === 'videos'
+  $: videosMode = route === 'videos'
+  $: theme = isHome ? themes[ctx] : themes.dia
+  $: dark = isHome && DARK.has(ctx)
+  $: css = Object.entries(theme).map(([k, v]) => `--${k}:${v}`).join(';') + `;--bg-solid:${SOLID[isHome ? ctx : 'dia']}`
+  $: copy = homeCopyFor(ctx, now, geoData?.city, geoData?.temp)
+  $: page = landingPages[route]
+  $: blogArticle = route?.startsWith('blog/') ? blogDrafts.find(draft => draft.slug === route.slice('blog/'.length)) : null
+  $: isBlogRoute = route === 'blog' || !!blogArticle
+  $: pageTitle = blogArticle ? `${blogArticle.title} | Blog | Más que Urticaria` : page?.metaTitle || (isHome ? pageMetadata[''].metaTitle : 'Página no encontrada | Más que Urticaria')
+  $: pageDescription = blogArticle?.excerpt || page?.metaDescription || (isHome ? copy.intro : 'Más que Urticaria: información y herramientas para preparar tu consulta.')
 
   function openQuiz(e, phase = 'quiz') {
     quizTrigger = e?.currentTarget || null
     quizInitialPhase = phase
+    modalCtx = isHome ? ctx : 'dia'
     quizOpen = true
   }
   function closeQuiz() {
@@ -102,10 +71,13 @@
     const section = id && document.getElementById(id)
     if (!section) return
     event.preventDefault()
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    section.classList.remove('section-arrive')
-    requestAnimationFrame(() => section.classList.add('section-arrive'))
-    window.setTimeout(() => section.classList.remove('section-arrive'), 900)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    section.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
+    if (!reduceMotion) {
+      section.classList.remove('section-arrive')
+      requestAnimationFrame(() => section.classList.add('section-arrive'))
+      window.setTimeout(() => section.classList.remove('section-arrive'), 900)
+    }
   }
 
   function handleDocumentClick(event) {
@@ -119,105 +91,78 @@
     }
 
     // Detección automática y no bloqueante de ciudad y clima
-    detectGeoAndWeather().then(data => {
-      if (data) geoData = data
-    })
+    if (isHome) detectGeoAndWeather().then(data => { if (data) geoData = data })
 
     // Actualización de reloj cada 30 segundos
     const clockTimer = setInterval(() => { now = new Date() }, 30000)
-
-    // Rotación orgánica de palabras cada 3.2s según contexto (sin insomnio de día)
-    const timer = setInterval(() => {
-      if (!quizOpen) {
-        const pool = WORDS_BY_CTX[ctx] || [copy[2]]
-        if (pool.length > 1) {
-          wordIndex = (wordIndex + 1) % pool.length
-          word = pool[wordIndex]
-        }
-      }
-    }, 3200)
-
-    // Simulación en vivo de usuarios nocturnos:
-    // Cada 14 segundos, el contador puede variar ligeramente (+1, -1, +2) manteniéndose entre 15 y 27
-    const nightTimer = setInterval(() => {
-      if (dark) {
-        const delta = Math.random() > 0.45 ? (Math.random() > 0.5 ? 1 : 2) : -1
-        let next = (nightVisitorCount || 18) + delta
-        if (next < 15) next = 16
-        if (next > 27) next = 25
-        nightVisitorCount = next
-      }
-    }, 14000)
-
-    return () => {
-      clearInterval(timer)
-      clearInterval(clockTimer)
-      clearInterval(nightTimer)
-    }
+    return () => clearInterval(clockTimer)
   })
 </script>
 
+<svelte:head>
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+</svelte:head>
+
 <svelte:window on:click={handleDocumentClick} />
 
-<main class="shell" class:dark style={css}>
+<div class="shell" class:dark style={css}>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
   <header class="brand">
-    <a class="brand-link" href={import.meta.env.BASE_URL} aria-label="Inicio">
-      <span>tuvidaesmásgrande.org</span>
+    <a class="brand-link" href={routeHref('')} aria-label="Inicio">
+      <span>Más que Urticaria</span>
     </a>
-    {#if preview}
-      <div class="view-select">
-        <span>Vista</span>
-        <div class="view-dropdown">
-          <button class="view-trigger" type="button" aria-haspopup="listbox" aria-expanded={viewOpen} on:click|stopPropagation={() => viewOpen = !viewOpen}>
-            <span>{forced ? LABELS[forced] : 'Auto'}</span><i aria-hidden="true">⌄</i>
-          </button>
-          {#if viewOpen}
-            <div class="view-menu" role="listbox" aria-label="Seleccionar vista">
-              <button type="button" role="option" class:active={!forced} aria-selected={!forced} on:click={() => setView(null)}><span>Auto</span><small>Según la hora</small></button>
-              {#each ORDER as k}
-                <button type="button" role="option" class:active={forced === k} aria-selected={forced === k} on:click={() => setView(k)}><span>{LABELS[k]}</span><small>{k === 'dia' ? 'Luz natural' : k === 'calor' ? 'Ambiente cálido' : k === 'frio' ? 'Aire frío' : k === 'madrugada' ? 'De madrugada' : 'Noche cálida'}</small></button>
-              {/each}
-            </div>
-          {/if}
+    <div class="brand-actions">
+      <nav class="site-navigation" aria-label="Navegación principal">
+        {#each navigation as item}
+          <a class:active={route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/'))} aria-current={route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/')) ? 'page' : undefined} href={routeHref(item.slug)}>{item.label}</a>
+        {/each}
+      </nav>
+      {#if preview}
+        <div class="view-select">
+          <span>Vista</span>
+          <div class="view-dropdown">
+            <button class="view-trigger" type="button" aria-haspopup="listbox" aria-expanded={viewOpen} on:click|stopPropagation={() => viewOpen = !viewOpen}>
+              <span>{forced ? LABELS[forced] : 'Auto'}</span><i aria-hidden="true">⌄</i>
+            </button>
+            {#if viewOpen}
+              <div class="view-menu" role="listbox" aria-label="Seleccionar vista">
+                <button type="button" role="option" class:active={!forced} aria-selected={!forced} on:click={() => setView(null)}><span>Auto</span><small>Según la hora</small></button>
+                {#each ORDER as k}
+                  <button type="button" role="option" class:active={forced === k} aria-selected={forced === k} on:click={() => setView(k)}><span>{LABELS[k]}</span><small>{k === 'dia' ? 'Luz natural' : k === 'calor' ? 'Ambiente cálido' : k === 'frio' ? 'Aire frío' : k === 'madrugada' ? 'De madrugada' : 'Noche cálida'}</small></button>
+                {/each}
+              </div>
+            {/if}
+          </div>
         </div>
-      </div>
-    {/if}
+      {/if}
+    </div>
   </header>
 
-  <Hero {copy} {target} word={displayWord} {ctx} {videosMode} autoVideo={!forced} onQuiz={openQuiz} />
-
-  <section class="cards" aria-labelledby="cards-title">
-    <p id="cards-title" class="eyebrow">Tres formas de empezar</p>
-    <div class="cards-grid">
-      <button class="card card-quiz" on:click={openQuiz}>
-        <i><Icon name="quiz" size={22} /></i>
-        <h3>¿Será urticaria?</h3>
-        <span>Reconoce las señales y distingue lo agudo de lo crónico: más de 6 semanas, sin un detonante claro.</span>
-        <b>Hacer el quiz <Icon name="arrow_forward" size={18} /></b>
-      </button>
-      <a class="card card-community" href="#comunidad">
-        <i><Icon name="groups" size={22} /></i>
-        <h3>No lo estás imaginando</h3>
-        <span>Otras personas la viven y aprendieron que su vida es más grande que los síntomas.</span>
-        <b>Leer a la comunidad <Icon name="arrow_forward" size={18} /></b>
-      </a>
-      <button class="card card-consult" type="button" on:click={(e) => openQuiz(e, 'map')}>
-        <i><Icon name="stethoscope" size={22} /></i>
-        <h3>Hay algo más que puedes hacer</h3>
-        <span>Lleva a tu próxima consulta las palabras justas para empezar la conversación.</span>
-        <b>Preparar mi consulta <Icon name="arrow_forward" size={18} /></b>
-      </button>
-    </div>
-  </section>
-
-  <PhotoLibrary />
-
-  <Community />
+  {#if isHome}
+    <main id="main-content">
+      <Hero {copy} {ctx} {videosMode} autoVideo={!forced} onQuiz={openQuiz} />
+      <HomeLanding />
+    </main>
+  {:else if isBlogRoute}
+    <BlogPage article={blogArticle} />
+  {:else if route === 'testimonios'}
+    <main id="main-content" class="testimonials-main"><Community /></main>
+  {:else if page}
+    <LandingPage {page} onQuiz={openQuiz} isResources={route === 'recursos-herramientas'} />
+    {#if route === 'recursos-herramientas'}<PhotoLibrary />{/if}
+  {:else}
+    <main id="main-content" class="content-page"><section class="content-hero"><p class="eyebrow accent">Más que Urticaria</p><h1>Esta página todavía no está disponible</h1><p class="content-lead">Vuelve al inicio para explorar los recursos y la información del sitio.</p><a class="button" href={routeHref('')}>Ir al Inicio</a></section></main>
+  {/if}
 
   <footer class="site-footer">
     <em>Tu vida es más grande que los brotes de urticaria crónica espontánea.</em>
     <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
+    <div class="footer-domain">
+      <a href={routeHref('')}>{SITE_DOMAIN}</a>
+      <span>© {new Date().getFullYear()} {SITE_NAME}</span>
+    </div>
   </footer>
 
-  {#if quizOpen}<QuizModal {ctx} initialPhase={quizInitialPhase} onClose={closeQuiz} />{/if}
-</main>
+  {#if quizOpen}<QuizModal ctx={modalCtx} initialPhase={quizInitialPhase} onClose={closeQuiz} />{/if}
+</div>
