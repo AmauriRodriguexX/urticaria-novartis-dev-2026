@@ -1,6 +1,7 @@
 <script>
   import { onMount, tick } from 'svelte'
   import Icon from './Icon.svelte'
+  import LeyendaProfesional from './LeyendaProfesional.svelte'
   import { routeHref } from './siteContent.js'
   import { reveal } from './reveal.js'
   import { casos } from './testimonios.js'
@@ -175,5 +176,6 @@
       <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>Directorio Médico</a> para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.</p><a class="faq-cta" href={routeHref('directorio-medico')}>Ir al directorio médico <Icon name="arrow_forward" size={16} /></a></details>
     </div>
   </section>
+  <LeyendaProfesional />
   <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir con un alergólogo o dermatólogo y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi Testimonio <Icon name="arrow_forward" size={18} /></button></section>
 </div>

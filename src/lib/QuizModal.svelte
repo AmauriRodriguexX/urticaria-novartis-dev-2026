@@ -5,6 +5,8 @@
   import { DARK } from './context.js'
   import Icon from './Icon.svelte'
   import Directorio from './Directorio.svelte'
+  import UasGauge from './UasGauge.svelte'
+  import ScaleSelect from './ScaleSelect.svelte'
   export let ctx
   export let onClose
   export let initialPhase = 'quiz'
@@ -24,6 +26,12 @@
   $: flow = construirFlujo(answers, ctx)
   $: id = flow[step]
   $: q = questions[id]
+  // Habones y comezón (UAS7): la persona coloca la flecha en una escala de colores y luego continúa
+  $: isScale = id === 'q3' || id === 'q4'
+  // Q1 y Q1b llevan un espacio de imagen por opción (las imágenes las entrega Novartis); ver ajustes-colega/imagenes/INDICE.md
+  $: conImagen = id === 'q1b' || id === 'q1'
+  // Mitos sobre la causa que la persona ha escuchado (Q12), sin contar "Nadie me ha dicho nada"
+  $: mitos = (answers.q12 || []).filter(v => v !== 'sin_patron')
   $: lectura = leerResultado(answers)
   $: rows = construirResumen(answers, ctx, questions)
   $: escalacion = ESCALACION.cuando(answers)
@@ -230,6 +238,16 @@
         <p class="step">Paso {step + 1}</p>
         <h2 tabindex="-1" bind:this={heading}>{q[1]}</h2>
         {#if q[2]}<p class="sub">{q[2]}</p>{/if}
+        {#if id === 'q2'}
+          <div class="weeks" aria-label="Línea de tiempo de 0 a 12 semanas, con la marca de 6 semanas">
+            <div class="weeks-track" aria-hidden="true">
+              <span class="weeks-short"></span><span class="weeks-long"></span>
+              <span class="weeks-mark"><em>6 semanas</em></span>
+            </div>
+            <div class="weeks-axis" aria-hidden="true"><span>0</span><span>12 semanas o más</span></div>
+            <p class="weeks-note">La urticaria crónica espontánea se identifica cuando los síntomas se presentan durante <strong>6 semanas o más</strong>. <a href="https://medlineplus.gov/spanish/ency/article/000845.htm" target="_blank" rel="noopener">Fuente [1]<span class="sr-only"> (se abre en otra pestaña)</span></a></p>
+          </div>
+        {/if}
         {#if q[0] === 'text'}
           <div class="input-row" style="margin: 1.5rem 0;">
             <input
@@ -242,23 +260,26 @@
               style="width: 100%; padding: 0.85rem 1.1rem; border-radius: 12px; border: 1px solid var(--line, #dcd8c9); background: var(--card, #fff); font-size: 1.05rem; color: var(--ink, #22383f);"
             />
           </div>
+        {:else if isScale}
+          <ScaleSelect options={q[3]} value={answers[id]} nombre={q[1]} onchange={(v) => (answers = { ...answers, [id]: v })} />
         {:else}
-          <div class="options" class:options-grid={q[3] && q[3].length >= 4} role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
+          <div class="options" class:options-grid={q[3] && q[3].length >= 4 && !conImagen} class:options-media={conImagen} class:options-q1={id === 'q1'} role={q[0] === 'multi' ? 'group' : 'radiogroup'}>
             {#each q[3] as o}
               {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
-              <button class:chosen={on} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
-                <i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
-                <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span>
+              <button class:chosen={on} class:opt-none={o[0] === 'ninguno'} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
+                {#if conImagen && o[0] !== 'ninguno'}<span class="opt-media" aria-hidden="true"><em>Imagen por definir</em></span>{/if}
+                <span class="opt-row"><i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
+                <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span></span>
               </button>
             {/each}
           </div>
         {/if}
-        <div class="quiz-nav" class:has-next={q[0] === 'multi' || q[0] === 'text'}>
+        <div class="quiz-nav" class:has-next={q[0] === 'multi' || q[0] === 'text' || isScale}>
           <button class="nav-back" on:click={step ? back : close}>
             {#if step}<Icon name="arrow_back" size={18} /><span>Atrás</span>{:else}<span>Cancelar</span>{/if}
           </button>
-          {#if q[0] === 'multi' || q[0] === 'text'}
-            <button class="button nav-next" on:click={advance}><span>Continuar</span><Icon name="arrow_forward" size={20} /></button>
+          {#if q[0] === 'multi' || q[0] === 'text' || isScale}
+            <button class="button nav-next" on:click={advance} disabled={isScale && answers[id] == null}><span>Continuar</span><Icon name="arrow_forward" size={20} /></button>
           {/if}
         </div>
       </div>
@@ -280,11 +301,23 @@
         <p class="sub">{lectura.detalle}</p>
         <p class="sub quiz-legal-note"><small>Este resultado es solo orientativo y no es un diagnóstico. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</small></p>
 
+        {#if answers.q3 != null || answers.q4 != null}
+          <UasGauge total={((parseInt(answers.q3, 10) || 0) + (parseInt(answers.q4, 10) || 0)) * 7} titulo="Estimación de tu actividad semanal (UAS7)" aviso="Calculada con tus respuestas sobre habones (ronchas) y comezón en la última semana. Es una estimación orientativa, no un puntaje clínico ni un diagnóstico: solo un alergólogo o dermatólogo puede evaluarte. En el Diario de Síntomas puedes llevar el cálculo de los 7 días." fuenteUrl="https://pmc.ncbi.nlm.nih.gov/articles/PMC10219198/" />
+        {/if}
+
+        {#if mitos.length}
+          <aside class="myth-card" role="note">
+            <strong>Has escuchado {mitos.length === 1 ? 'un comentario' : `${mitos.length} comentarios`} sobre la causa de tus ronchas.</strong>
+            <span>En la urticaria crónica espontánea las ronchas aparecen sin un desencadenante externo identificable{mitos.includes('estres') ? '; el estrés suele ser una consecuencia, no la causa' : ''}. Conversarlo con un alergólogo o dermatólogo ayuda a aclararlo.
+              <a href="https://doi.org/10.4168/aair.2025.17.5.531" target="_blank" rel="noopener">Fuente<span class="sr-only"> (se abre en otra pestaña)</span></a></span>
+          </aside>
+        {/if}
+
         {#if lectura.reporte && [2, 3, 4, 5, 6].some(n => lectura.reporte[`seccion${n}`])}
           <div class="report-box" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--card, #fff); border-radius: 14px; border: 1px solid var(--border, #e6e2d4); line-height: 1.6; font-size: 0.98rem; text-align: left;">
             {#if lectura.reporte.seccion2}<p style="margin-bottom: 0.75rem;"><strong>Síntomas:</strong> {lectura.reporte.seccion2}</p>{/if}
             {#if lectura.reporte.seccion3}<p style="margin-bottom: 0.75rem;"><strong>Impacto diario:</strong> {lectura.reporte.seccion3}</p>{/if}
-            {#if lectura.reporte.seccion4}<p style="margin-bottom: 0.75rem;"><strong>Detonantes:</strong> {lectura.reporte.seccion4}</p>{/if}
+            {#if lectura.reporte.seccion4}<p style="margin-bottom: 0.75rem;"><strong>Comentarios sobre la causa:</strong> {lectura.reporte.seccion4}</p>{/if}
             {#if lectura.reporte.seccion5}<p style="margin-bottom: 0.75rem;"><strong>Historial médico:</strong> {lectura.reporte.seccion5}</p>{/if}
             {#if lectura.reporte.seccion6}<p style="margin-bottom: 0; color: var(--accent, #e0584d); font-weight: 600;">{lectura.reporte.seccion6}</p>{/if}
           </div>

@@ -79,7 +79,7 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
     const bloques = []
     if (rep.seccion2) bloques.push(['SÍNTOMAS REPORTADOS', rep.seccion2])
     if (rep.seccion3) bloques.push(['CALIDAD DE VIDA', rep.seccion3])
-    if (rep.seccion4) bloques.push(['DETONANTES', rep.seccion4])
+    if (rep.seccion4) bloques.push(['COMENTARIOS SOBRE LA CAUSA', rep.seccion4])
     if (rep.seccion5) bloques.push(['HISTORIAL DE TRATAMIENTO', rep.seccion5])
 
     if (bloques.length > 0) {

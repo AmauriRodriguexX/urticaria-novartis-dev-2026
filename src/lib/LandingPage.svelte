@@ -7,6 +7,7 @@
   import SkinTimeline from './SkinTimeline.svelte'
   import Cita from './Cita.svelte'
   import Fuentes from './Fuentes.svelte'
+  import LeyendaProfesional from './LeyendaProfesional.svelte'
   import Icon from './Icon.svelte'
   import { reveal } from './reveal.js'
   import { NOTA_TEST } from './site.js'
@@ -79,7 +80,7 @@
     <aside class="sample-page-notice" role="note"><p>{page.sampleNotice.text}</p><button type="button" aria-label="Cerrar aviso" title="Cerrar aviso" on:click={dismissSampleNotice}><Icon name="close" size={18} /></button></aside>
   {/if}
 
-  {#if page.diaryTool}<SymptomDiary />{/if}
+  {#if page.diaryTool}<SymptomDiary ref={page.diaryRef} />{/if}
   {#if page.directoryTool}<section class="directory-page" aria-label="Directorio de especialistas"><Directorio {ctx} /></section>{/if}
 
   <div class="content-sections">
@@ -108,13 +109,24 @@
           </ul>{/if}
         {/if}
 
+        {#if section.visuals}
+          <div class="content-visuals">
+            {#each section.visuals.items as name}
+              <a class="content-visual" href={routeHref(section.visuals.route)}>
+                <div class="content-card-media" role="img" aria-label={`Imagen por definir: ${name}`}><span>Imagen por definir</span></div>
+                <strong>{name}</strong>
+              </a>
+            {/each}
+          </div>
+        {/if}
+
         {#if section.cards}
           <div class="content-card-grid" class:content-card-grid-4={section.cardsRow === 4}>
             {#each section.cards as card}
               {#if card.route || card.anchor}
                 <a class="content-card content-card-link" href={cardHref(card)}>
                   <span class="content-card-icon" aria-hidden="true"><Icon name={cardIcon(card)} size={22} /></span>
-                  <h3>{card.title}</h3><p>{card.text}</p>
+                  <h3>{card.title}</h3>{#if card.text}<p>{card.text}</p>{/if}
                   {#if card.linkLabel}<span class="content-card-cta">{card.linkLabel} <Icon name="arrow_forward" size={16} /></span>{/if}
                 </a>
               {:else}
@@ -174,7 +186,7 @@
     {#if page.sources}<Fuentes sources={page.sources} prefix="ref" />{/if}
 
     {#if page.legalNote !== false}
-      <aside class="content-notice content-legal-note" role="note"><Icon name="emergency" size={20} /><span>Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</span></aside>
+      <LeyendaProfesional />
     {/if}
 
     {#if page.closing}

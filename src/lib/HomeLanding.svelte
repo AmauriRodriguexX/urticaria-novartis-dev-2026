@@ -6,6 +6,7 @@
   import Cita from './Cita.svelte'
   import SkinSamples from './SkinSamples.svelte'
   import Fuentes from './Fuentes.svelte'
+  import LeyendaProfesional from './LeyendaProfesional.svelte'
   import { reveal } from './reveal.js'
 
   const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
@@ -133,7 +134,7 @@
     <a class="button secondary" href={routeHref('sobre-nosotros')}>Conoce más sobre nosotros <Icon name="arrow_forward" size={18} /></a>
   </section>
 
-  <div class="home-refs"><Fuentes sources={homeSources} prefix="ref" /></div>
+  <div class="home-refs"><Fuentes sources={homeSources} prefix="ref" /><LeyendaProfesional /></div>
 
   <section class="home-final" aria-labelledby="home-final-title" data-reveal>
     <div class="home-final-copy">

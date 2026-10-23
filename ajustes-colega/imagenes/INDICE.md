@@ -31,3 +31,19 @@ Dirección de la página: `/sintomas/`. Cada tarjeta se muestra con la imagen ar
 
 ## Ficha de cada candidata (se llena en `CREDITOS.md`)
 Archivo, qué muestra, tono de piel, licencia, autor y liga de la página original. Marcar si es foto de una persona real.
+
+## Espacios de imagen del test (esperan imágenes de Novartis)
+| Dónde | Espacio | Qué debe mostrar | Estado |
+|---|---|---|---|
+| Test, Q1b "¿La hinchazón es en labios, lengua o garganta, o te cuesta respirar?" | Opción 1: "Sí — labios, lengua, garganta, o me cuesta respirar" | Hinchazón en labios, lengua o garganta (imagen ilustrativa; evitar fotos alarmantes de personas reales) | "Imagen por definir" |
+| Test, Q1b | Opción 2: "No — es en párpados, manos o pies" | Hinchazón en párpados, manos o pies | "Imagen por definir" |
+
+Ambos espacios son 16:9 y se rellenan en `QuizModal.svelte` (variable `conImagen`, clase `.opt-media`). Si Novartis entrega las imágenes, se muestran dentro de esos recuadros con texto alternativo; las que ya existan para la hinchazón de Síntomas se pueden reutilizar.
+
+| Test, Q1 "¿Has presentado alguno de los siguientes síntomas?" | Habones (ronchas) en la piel | Las mismas imágenes de habones de Síntomas sección 01 | "Imagen por definir" |
+| Test, Q1 | Comezón intensa | La imagen de comezón de Síntomas sección 01 | "Imagen por definir" |
+| Test, Q1 | Hinchazón (angioedema) | La imagen de hinchazón de Síntomas sección 01 | "Imagen por definir" |
+
+En Q1, "Ninguno de estos" no lleva imagen y ocupa una fila completa debajo de las tres opciones con imagen.
+
+| Acerca de, sección 03 | Habones (ronchas), Hinchazón (angioedema) y Comezón | Las mismas imágenes de Síntomas sección 01 (recuadros 4:3) | "Imagen por definir" |

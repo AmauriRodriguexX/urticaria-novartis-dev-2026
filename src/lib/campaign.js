@@ -30,11 +30,11 @@ export const questions = {
     ['no_urgente', 'No — es en párpados, manos o pies', '']
   ]],
 
-  q2: ['single', '¿Cuánto tiempo llevas con estos síntomas?', 'El tiempo ayuda a distinguir entre un brote pasajero o crónico.', [
+  q2: ['single', '¿Cuánto tiempo llevas con estos síntomas?', 'El tiempo ayuda a distinguir entre ronchas pasajeras y crónicas.', [
     ['0', 'Menos de 1 semana', 'Empezó hace unos días'],
-    ['1', 'De 1 semana a 1 mes', 'Lleva varias semanas'],
-    ['2', 'De 1 mes a 6 meses', 'Varios meses continuos o intermitentes'],
-    ['3', 'Más de 6 meses', 'Llevo bastante tiempo con brotes']
+    ['1', 'De 1 a 6 semanas', 'Todavía no cumple 6 semanas'],
+    ['2', 'De 6 semanas a 6 meses', 'Ya pasó de las 6 semanas'],
+    ['3', 'Más de 6 meses', 'Llevo bastante tiempo con ronchas']
   ]],
 
   q3: ['single', 'En la última semana, ¿cómo calificas la cantidad de ronchas que has tenido?', 'Aproximadamente en un periodo de 24 horas.', [
@@ -91,16 +91,17 @@ export const questions = {
     ['0', 'Nada', ''], ['1', 'Un poco', ''], ['2', 'Medianamente', ''], ['3', 'Mucho', '']
   ]],
 
-  q12: ['multi', '¿Consideras que alguno de estos eventos desencadena o intensifica tus síntomas?', 'Marca todos los factores que notes.', [
-    ['calor', 'Clima caliente, sol o duchas calientes', ''],
-    ['frio', 'Clima frío, aire helado o agua fría', ''],
-    ['estres', 'Estrés emocional o tensión', ''],
-    ['sudor', 'Sudor o ejercicio físico', ''],
-    ['ropa', 'Ropa ajustada o roce constante', ''],
-    ['sin_patron', 'No identifico ningún detonante claro', 'Aparecen de manera espontánea']
+  q12: ['multi', 'Cuando te salen habones (ronchas), ¿cuáles de estos comentarios has recibido?', 'Son mitos que escuchan a diario las personas con urticaria crónica espontánea. Marca todos los que te hayan dicho.', [
+    ['estres', 'Es por estrés', ''],
+    ['alergia', 'Es una alergia', ''],
+    ['sudor', 'Es por el sudor', ''],
+    ['clima', 'Es por el clima', ''],
+    ['comida', 'Es por lo que comes', ''],
+    ['ropa', 'Es por la ropa o el jabón', ''],
+    ['sin_patron', 'Nadie me ha dicho nada', '']
   ]],
 
-  q13: ['single', '¿Sueles presentar más brotes en algún momento del día?', '¿Notas algún horario en particular?', [
+  q13: ['single', '¿Sueles presentar más ronchas en algún momento del día?', '¿Notas algún horario en particular?', [
     ['manana', 'Por la mañana', ''],
     ['tarde', 'Por la tarde', ''],
     ['noche', 'Por la noche o madrugada', ''],
@@ -130,15 +131,16 @@ export const questions = {
   ]],
 
   q18: ['multi', '¿Qué tipo de tratamiento has utilizado?', 'Selecciona los que hayas probado.', [
-    ['1', 'Por mi cuenta', 'Lo usé por mi cuenta o por poco tiempo'],
-    ['2', 'Continuo', 'Me lo indicaron y lo uso de forma continua'],
-    ['3', 'Con seguimiento', 'Tengo seguimiento estrecho con un alergólogo o dermatólogo']
+    ['oral', 'Pastillas o jarabes', 'Por la boca'],
+    ['inyeccion', 'Inyecciones', 'Aplicadas por personal de salud'],
+    ['piel', 'Productos en la piel', 'Que se aplican sobre la piel'],
+    ['otro', 'Otro', 'Otro tipo de tratamiento']
   ]],
 
   q19: ['single', '¿Qué tan efectivo ha sido tu tratamiento para controlar tus síntomas?', '', [
     ['0', 'Nada efectivo', 'Sigo con los mismos síntomas'],
     ['1', 'Poco efectivo', 'Apenas he notado alivio'],
-    ['2', 'Medianamente efectivo', 'Me ayuda pero los brotes regresan'],
+    ['2', 'Medianamente efectivo', 'Me ayuda pero las ronchas regresan'],
     ['3', 'Muy efectivo', 'Controla favorablemente mis síntomas']
   ]]
 }
