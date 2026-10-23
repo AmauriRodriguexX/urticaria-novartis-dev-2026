@@ -3,6 +3,7 @@
   import Icon from './Icon.svelte'
   import { routeHref } from './siteContent.js'
   import { blogDrafts } from './blogDrafts.js'
+  import Fuentes from './Fuentes.svelte'
 
   export let article = null
 
@@ -54,6 +55,8 @@
           </section>
         {/each}
       </article>
+
+      {#if article.sources?.length}<Fuentes sources={article.sources.map((s, i) => ({ n: i + 1, text: s.label, url: s.href }))} prefix="blog" />{/if}
 
       <a class="blog-resource-cta" href={routeHref('recursos-herramientas')}><span><small>PARA SEGUIR EXPLORANDO</small><strong>Conoce los recursos del sitio</strong></span><Icon name="arrow_forward" size={20} /></a>
     </div>

@@ -35,7 +35,7 @@ export const PREGUNTAS = [
     id: 'q4',
     contextos: 'todos',
     si: (r) => Array.isArray(r.q1) && r.q1.includes('picazon'),
-    resumen: 'Intensidad de picazón'
+    resumen: 'Intensidad de comezón'
   },
   {
     id: 'q5',
@@ -173,7 +173,7 @@ export function generarReporteBen(r) {
 
   // SECCIÓN 1: Diagnóstico probabilístico
   let sDesc = ''
-  if (sPts <= 1) sDesc = 'no presentas síntomas de urticaria, como ronchas, picazón o hinchazón'
+  if (sPts <= 1) sDesc = 'no presentas síntomas de urticaria, como habones (ronchas), comezón o hinchazón (angioedema)'
   else if (sPts <= 3) sDesc = 'presentas síntomas leves de urticaria'
   else if (sPts <= 5) sDesc = 'presentas síntomas moderados de urticaria'
   else if (sPts <= 10) sDesc = 'presentas síntomas intensos de urticaria'
@@ -200,9 +200,9 @@ export function generarReporteBen(r) {
   else if (r.q3 === '2') sList.push('entre 20 y 50 ronchas al día')
   else if (r.q3 === '3') sList.push('más de 50 ronchas o largas áreas de enrojecimiento')
 
-  if (r.q4 === '1') sList.push('picazón leve')
-  else if (r.q4 === '2') sList.push('picazón moderada que es algo molesta')
-  else if (r.q4 === '3') sList.push('picazón severa que interfiere con tus actividades')
+  if (r.q4 === '1') sList.push('comezón leve')
+  else if (r.q4 === '2') sList.push('comezón moderada que es algo molesta')
+  else if (r.q4 === '3') sList.push('comezón severa que interfiere con tus actividades')
 
   if (r.q5 === '1') sList.push('hinchazón leve que desaparece rápidamente')
   else if (r.q5 === '2') sList.push('hinchazón notoria que puede causar incomodidad')
@@ -266,9 +266,9 @@ export function generarReporteBen(r) {
     // Sin síntomas no se hicieron las preguntas de historial: no hay nada que resumir.
     seccion5 = ''
   } else if (!consulto && !trat) {
-    seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un dermatólogo o un médico general que te canalice con un especialista para recibir un tratamiento adecuado a tu caso.'
+    seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un alergólogo o dermatólogo, o con un médico general que te canalice con uno de ellos, para recibir un tratamiento adecuado a tu caso.'
   } else if (!consulto && trat) {
-    const tipoT = r.q18 && r.q18.includes('3') ? 'tratamiento avanzado con altas dosis de antihistamínicos o corticoides' : (r.q18 && r.q18.includes('2') ? 'tratamiento como antihistamínicos y corticoides' : 'tratamiento básico, como medicamentos de venta libre y remedios caseros')
+    const tipoT = r.q18 && r.q18.includes('3') ? 'un tratamiento con seguimiento estrecho' : (r.q18 && r.q18.includes('2') ? 'un tratamiento continuo' : 'un tratamiento por tu cuenta o por poco tiempo')
     seccion5 = `No has consultado a un médico sobre tus síntomas, pero has recibido ${tipoT}.`
   } else if (consulto) {
     const medList = []
@@ -278,7 +278,7 @@ export function generarReporteBen(r) {
     const medStr = medList.length > 0 ? formatListES(medList, 'y') : 'médicos'
 
     const freqStr = r.q15 === '3' ? 'de manera constante' : (r.q15 === '2' ? 'al menos una vez al mes' : 'pocas veces')
-    const tipoT = trat ? (r.q18 && r.q18.includes('3') ? ' y has recibido tratamiento avanzado con altas dosis de antihistamínicos o corticoides' : (r.q18 && r.q18.includes('2') ? ' y has recibido tratamiento como antihistamínicos y corticoides' : ' y has recibido tratamiento básico, como medicamentos de venta libre y remedios caseros')) : ''
+    const tipoT = trat ? (r.q18 && r.q18.includes('3') ? ' y tienes un tratamiento con seguimiento estrecho' : (r.q18 && r.q18.includes('2') ? ' y has recibido un tratamiento continuo' : ' y has usado un tratamiento por tu cuenta o por poco tiempo')) : ''
 
     seccion5 = `Has recibido consulta con ${medStr} ${freqStr}${tipoT}.`
   }
@@ -290,11 +290,11 @@ export function generarReporteBen(r) {
   let seccion6 = ''
   if (trat && sPts >= 2 && cvPts >= 2) {
     if (r.q19 === '0') {
-      seccion6 = `Consideras que tu tratamiento no ha sido nada efectivo. ${CIERRE} es muy importante que hables con un especialista sobre tus síntomas y posibles tratamientos.`
+      seccion6 = `Consideras que tu tratamiento no ha sido nada efectivo. ${CIERRE} es muy importante que hables con un alergólogo o dermatólogo sobre tus síntomas y posibles tratamientos.`
     } else if (r.q19 === '1') {
-      seccion6 = `Consideras que tu tratamiento ha sido poco efectivo. ${CIERRE} es muy importante que hables con un especialista sobre tus síntomas y posibles tratamientos.`
+      seccion6 = `Consideras que tu tratamiento ha sido poco efectivo. ${CIERRE} es muy importante que hables con un alergólogo o dermatólogo sobre tus síntomas y posibles tratamientos.`
     } else if (r.q19 === '2') {
-      seccion6 = `Consideras que tu tratamiento ha sido medianamente efectivo. ${CIERRE} es importante que hables con un especialista sobre la urticaria crónica y los tratamientos disponibles.`
+      seccion6 = `Consideras que tu tratamiento ha sido medianamente efectivo. ${CIERRE} es importante que hables con un alergólogo o dermatólogo sobre la urticaria crónica y los tratamientos disponibles.`
     } else if (r.q19 === '3') {
       seccion6 = `Consideras que tu tratamiento ha sido muy efectivo. ${CIERRE} te recomendamos que continúes con tu tratamiento de la mano de tu proveedor de salud.`
     }

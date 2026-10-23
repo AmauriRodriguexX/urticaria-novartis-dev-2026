@@ -3,8 +3,13 @@
   import { routeHref } from './siteContent.js'
   import SymptomDiary from './SymptomDiary.svelte'
   import Directorio from './Directorio.svelte'
+  import SymptomCompare from './SymptomCompare.svelte'
+  import SkinTimeline from './SkinTimeline.svelte'
+  import Cita from './Cita.svelte'
+  import Fuentes from './Fuentes.svelte'
   import Icon from './Icon.svelte'
   import { reveal } from './reveal.js'
+  import { NOTA_TEST } from './site.js'
 
   export let page
   export let onQuiz
@@ -59,6 +64,7 @@
           {/if}
         {/each}
       </div>
+      {#if page.ctas.some(cta => cta.action === 'quiz')}<small class="cta-note">{NOTA_TEST}</small>{/if}
     {/if}
     </div>
     {#if page.sections.length > 3}
@@ -87,22 +93,23 @@
           </div>
         </div>
         {#if section.intro}<p class="content-section-intro">{section.intro}</p>{/if}
+        {#if section.highlight}<p class="content-highlight">{section.highlight}</p>{/if}
 
         {#if section.paragraphs}
           <div class="content-prose">
-            {#each section.paragraphs as paragraph}<p>{paragraph}</p>{/each}
+            {#each section.paragraphs as paragraph}<p>{paragraph.text ?? paragraph}{#if paragraph.refs}<Cita refs={paragraph.refs} prefix="ref" />{/if}</p>{/each}
           </div>
         {/if}
 
         {#if section.listTitle}<h3 class="content-subtitle">{section.listTitle}</h3>{/if}
         {#if section.list}
-          {#if section.layout === 'steps'}<ol class="content-list content-steps">{#each section.list as item}<li>{item}</li>{/each}</ol>{:else}<ul class="content-list">
-            {#each section.list as item}<li>{item}</li>{/each}
+          {#if section.layout === 'steps'}<ol class="content-list content-steps">{#each section.list as item}<li>{item.text ?? item}{#if item.refs}<Cita refs={item.refs} prefix="ref" />{/if}</li>{/each}</ol>{:else}<ul class="content-list">
+            {#each section.list as item}<li>{item.text ?? item}{#if item.refs}<Cita refs={item.refs} prefix="ref" />{/if}</li>{/each}
           </ul>{/if}
         {/if}
 
         {#if section.cards}
-          <div class="content-card-grid">
+          <div class="content-card-grid" class:content-card-grid-4={section.cardsRow === 4}>
             {#each section.cards as card}
               {#if card.route || card.anchor}
                 <a class="content-card content-card-link" href={cardHref(card)}>
@@ -113,7 +120,9 @@
               {:else}
                 <article class="content-card" class:testimonial-sample-card={card.sampleQuote}>
                   {#if card.sampleQuote}<span class="content-quote-mark" aria-hidden="true">“</span><h3>{card.title}</h3><span class="content-card-label">Relato de muestra · sin autor real</span><blockquote>{card.sampleQuote}</blockquote>{:else}
-                  <h3>{card.title}</h3><p>{card.text}</p>
+                  {#if card.icon}<span class="content-card-icon" aria-hidden="true"><Icon name={card.icon} size={26} /></span>{/if}
+                  {#if card.image}<div class="content-card-media" role="img" aria-label={`Imagen por definir: ${card.title}`}><span>Imagen por definir</span></div>{/if}
+                  <h3>{card.title}</h3><p>{card.text}{#if card.refs}<Cita refs={card.refs} prefix="ref" />{/if}</p>
                   {#if card.label}<span class="content-card-label">{card.label}</span>{/if}
                   {/if}
                 </article>
@@ -121,6 +130,10 @@
             {/each}
           </div>
         {/if}
+
+        {#if section.outro}<p class="content-outro">{section.outro}</p>{/if}
+        {#if section.skinFigure}<SkinTimeline refs={section.skinFigure} />{/if}
+        {#if section.compare}<SymptomCompare data={section.compare} />{/if}
 
         {#if section.table}
           <div class="content-table-wrap" role="region" aria-label={section.title}>
@@ -133,19 +146,40 @@
 
         {#if section.faqs}
           <div class="content-faqs">
-            {#each section.faqs as faq}
-              <details><summary><span>{faq.question}</span><i aria-hidden="true"></i></summary><p>{faq.answer}</p></details>
+            {#each section.faqs as faq, fi}
+              <details open={fi === 0}>
+                <summary><span>{faq.question}</span><i aria-hidden="true"></i></summary>
+                <p>{faq.answer}{#if faq.refs}<Cita refs={faq.refs} prefix="ref" />{/if}</p>
+                {#if faq.cta}
+                  {#if faq.cta.action}
+                    <button class="faq-cta" type="button" on:click={(event) => runAction(event, faq.cta.action)}>{faq.cta.label} <Icon name="arrow_forward" size={16} /></button>
+                  {:else}
+                    <a class="faq-cta" href={routeHref(faq.cta.route)}>{faq.cta.label} <Icon name="arrow_forward" size={16} /></a>
+                  {/if}
+                {/if}
+              </details>
             {/each}
           </div>
         {/if}
 
         {#if section.notice}<aside class="content-notice" role="note"><Icon name="emergency" size={20} /><span>{section.notice}</span></aside>{/if}
+        {#if section.adaptadoDe}
+          <p class="content-adapted">Adaptado de:
+            {#each section.adaptadoDe as n, k}{#if k}{' · '}{/if}<a href={`#ref-fuente-${n}`}>{page.sources.find(s => s.n === n)?.short} [{n}]</a>{/each}
+          </p>
+        {/if}
       </section>
     {/each}
 
+    {#if page.sources}<Fuentes sources={page.sources} prefix="ref" />{/if}
+
+    {#if page.legalNote !== false}
+      <aside class="content-notice content-legal-note" role="note"><Icon name="emergency" size={20} /><span>Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</span></aside>
+    {/if}
+
     {#if page.closing}
       <section class="content-closing" data-reveal>
-        <div><p class="eyebrow">Más que Urticaria</p><h2>{page.closing.title}</h2><p>{page.closing.text}</p></div>
+        <div><p class="eyebrow">Más que Urticaria</p><h2>{page.closing.title}</h2>{#if page.closing.text}<p>{page.closing.text}</p>{/if}</div>
         {#if page.closing.cta.action}
           <button class="button" type="button" on:click={(event) => runAction(event, page.closing.cta.action)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></button>
         {:else}

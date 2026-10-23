@@ -15,7 +15,8 @@
   import { heroVariation } from './lib/heroVariations.js'
   import { homeCopyFor, landingPages, navigation, routeFromPath, routeHref } from './lib/siteContent.js'
   import pageMetadata from './lib/pageMetadata.json'
-  import { SITE_DOMAIN, SITE_NAME, SITE_URL } from './lib/site.js'
+  import { SITE_DOMAIN, SITE_NAME, SITE_URL, CONTENT_ID, VIGENCIA, LEGAL_LINKS } from './lib/site.js'
+  import LogoNovartis from './lib/LogoNovartis.svelte'
 
   let route = routeFromPath()
   // Todo es automático (hora, clima y ciudad). ?vista= solo fuerza un escenario en las ligas de prueba.
@@ -149,8 +150,12 @@
 
   <footer class="site-footer">
     <em>Tu vida es más grande que los brotes de urticaria crónica espontánea.</em>
+    <div class="footer-brand"><LogoNovartis alto={28} /></div>
+    <small class="footer-legal">Consulte a su médico. ID de contenido: {CONTENT_ID}<br />Fecha de vigencia: {VIGENCIA}</small>
     <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
-    <small>Sitio desarrollado con el patrocinio de Novartis.</small>
+    <small>Las imágenes empleadas no corresponden a pacientes reales. Las imágenes empleadas no corresponden a Profesionales de la Salud reales.</small>
+    <small>Novartis Farmacéutica, S.A. de C.V. con domicilio en Av. Insurgentes Sur No.2475, Piso 3, Barrio Loreto, Álvaro Obregón, 01090 Ciudad de México, México</small>
+    <nav class="footer-legal-links" aria-label="Información legal">{#each LEGAL_LINKS as l}<a href={l.href}>{l.label}</a>{/each}</nav>
     <div class="footer-domain">
       <a href={routeHref('')}>{SITE_DOMAIN}</a>
       <span>© {new Date().getFullYear()} {SITE_NAME}</span>

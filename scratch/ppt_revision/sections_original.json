@@ -1,0 +1,262 @@
+[
+  {
+    "code": "SECCIÓN 01",
+    "name": "HOME Y VARIANTES CONTEXTUALES",
+    "desc": "Portadas de inicio dinámicas adaptadas según clima y hora (Día, Calor, Frío, Madrugada y Noche).",
+    "screens": [
+      {
+        "file": "01_home_dia.png",
+        "section": "SECCIÓN: HOME",
+        "title": "Home Principal — Escenario Día (General)"
+      },
+      {
+        "file": "02_home_calor.png",
+        "section": "SECCIÓN: HOME",
+        "title": "Home Principal — Escenario Calor (Temperatura Alta / Sol)"
+      },
+      {
+        "file": "03_home_frio.png",
+        "section": "SECCIÓN: HOME",
+        "title": "Home Principal — Escenario Frío (Invierno / Aire Helado)"
+      },
+      {
+        "file": "04_home_madrugada.png",
+        "section": "SECCIÓN: HOME",
+        "title": "Home Principal — Escenario Madrugada (Modo Oscuro 2am - 5am)"
+      },
+      {
+        "file": "05_home_noche_calor.png",
+        "section": "SECCIÓN: HOME",
+        "title": "Home Principal — Escenario Noche Cálida"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 02",
+    "name": "LANDINGS INFORMATIVAS Y CLÍNICAS",
+    "desc": "Páginas completas de contenidos médicos, tratamientos, información institucional y error 404.",
+    "screens": [
+      {
+        "file": "06_sintomas.png",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/)"
+      },
+      {
+        "file": "07_tratamiento.png",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "title": "Tratamientos para la UCE (/tratamiento/)"
+      },
+      {
+        "file": "08_sobre_nosotros.png",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "title": "Sobre Nosotros — Más que Urticaria (/sobre-nosotros/)"
+      },
+      {
+        "file": "09_error_404.png",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "title": "Página de Error 404 (Ruta no encontrada)"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 03",
+    "name": "RECURSOS Y HERRAMIENTAS",
+    "desc": "Hub de selección de herramientas, bitácora del diario de síntomas, comunidad y biblioteca visual.",
+    "screens": [
+      {
+        "file": "10_recursos_hub.png",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "title": "Hub de Recursos y Herramientas (/recursos-herramientas/)"
+      },
+      {
+        "file": "11_diario_sintomas.png",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/)"
+      },
+      {
+        "file": "12_testimonios_comunidad.png",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/)"
+      },
+      {
+        "file": "19_biblioteca_modal.png",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "title": "Biblioteca Visual — Ficha de Fototipo por Tono de Piel (Modal Lightbox)"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 04",
+    "name": "QUIZ ORIENTATIVO & URGENCIAS",
+    "desc": "Flujo interactivo completo del cuestionario clínico (Q0 a Q19), alerta 911 y pantallas de resultados.",
+    "screens": [
+      {
+        "file": "18_quiz_intro_landing.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Landing Introductoria del Test de Síntomas (/test/)"
+      },
+      {
+        "file": "24_quiz_q0_nombre.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 0 — Nombre / Personalización (Opcional)"
+      },
+      {
+        "file": "25_quiz_q1_sintomas.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 1 — Síntomas Experimentados (Ronchas, Picazón, Hinchazón)"
+      },
+      {
+        "file": "20_quiz_q1b_descarte_urgencia.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 1b — Descarte de Urgencia Crítica (Labios, lengua, garganta)"
+      },
+      {
+        "file": "21_quiz_urgencia_911.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "🚨 Pantalla de Urgencia Médica (Alerta Inmediata 911)"
+      },
+      {
+        "file": "22_quiz_modal_directorio.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Modal Embebido de Especialistas (Buscador dentro del Quiz)"
+      },
+      {
+        "file": "26_quiz_q2_duracion.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 2 — Tiempo con Síntomas (< 1 sem hasta > 6 meses)"
+      },
+      {
+        "file": "27_quiz_q3_ronchas.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 3 — Cantidad de Ronchas en 24h (Escala UAS7)"
+      },
+      {
+        "file": "28_quiz_q4_picazon.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 4 — Intensidad de la Comezón (Escala UAS7)"
+      },
+      {
+        "file": "29_quiz_q5_hinchazon.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 5 — Severidad de la Hinchazón / Angioedema"
+      },
+      {
+        "file": "30_quiz_q6_calidad_vida.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 6 — Áreas de Calidad de Vida Afectadas (CU-Q2oL)"
+      },
+      {
+        "file": "31_quiz_q7_actividades.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 7 — Interferencia en Actividades Diarias"
+      },
+      {
+        "file": "32_quiz_q8_sociales.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 8 — Afectación en Relaciones Familiares y Sociales"
+      },
+      {
+        "file": "33_quiz_q8b_sexual.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 8b — Afectación en Vida Sexual e Intimidad"
+      },
+      {
+        "file": "34_quiz_q9_vestimenta.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 9 — Influencia en la Ropa y Vestimenta que Usas"
+      },
+      {
+        "file": "35_quiz_q10_trabajo.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 10 — Afectación en Trabajo o Estudios"
+      },
+      {
+        "file": "36_quiz_q11_sueno.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 11 — Afectación en Calidad de Sueño (Insomnio nocturno)"
+      },
+      {
+        "file": "37_quiz_q12_detonantes.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 12 — Posibles Desencadenantes (Calor, frío, estrés, sudor)"
+      },
+      {
+        "file": "38_quiz_q13_horario.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 13 — Momento del Día de Mayor Intensidad"
+      },
+      {
+        "file": "39_quiz_q14_consulta_previa.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 14 — ¿Has Consultado Previamente a un Médico?"
+      },
+      {
+        "file": "40_quiz_q15_frecuencia_consulta.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 15 — Frecuencia de Consulta Médica"
+      },
+      {
+        "file": "41_quiz_q16_especialista.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 16 — Especialistas Consultados (Dermatólogo, Alergólogo, General)"
+      },
+      {
+        "file": "42_quiz_q17_tratamiento_previo.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 17 — ¿Has Tomado o Aplicado Tratamiento Previo?"
+      },
+      {
+        "file": "43_quiz_q18_tipo_tratamiento.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 18 — Tipo de Tratamiento Recibido (Básico, Intermedio, Avanzado)"
+      },
+      {
+        "file": "44_quiz_q19_efectividad.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Paso 19 — Efectividad Percibida del Tratamiento"
+      },
+      {
+        "file": "45_quiz_resultado_reporte_completo.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Pantalla de Resultados — Reporte Clínico Completo (Score Ben, PDF y CTA)"
+      },
+      {
+        "file": "23_quiz_resultado_asintomatico.png",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "title": "Pantalla de Resultados — Ruta Asintomática (Ningún síntoma en Paso 1)"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 05",
+    "name": "DIRECTORIO MÉDICO & BLOG EDITORIAL",
+    "desc": "Landing del directorio de especialistas en México y artículos de lectura educativa.",
+    "screens": [
+      {
+        "file": "13_directorio_landing.png",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "title": "Directorio Médico de Especialistas — Landing Principal (/directorio-medico/)"
+      },
+      {
+        "file": "14_blog_feed.png",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "title": "Blog Editorial — Catálogo de Temas (/blog/)"
+      },
+      {
+        "file": "15_blog_articulo_1.png",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "title": "Artículo Blog 1: ¿Qué significa UCE? (/blog/que-significa-uce/)"
+      },
+      {
+        "file": "16_blog_articulo_2.png",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "title": "Artículo Blog 2: Guía para preparar tu consulta (/blog/preparar-consulta/)"
+      },
+      {
+        "file": "17_blog_articulo_3.png",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "title": "Artículo Blog 3: Mitos sobre dietas restrictivas (/blog/dietas-restrictivas-uce/)"
+      }
+    ]
+  }
+]

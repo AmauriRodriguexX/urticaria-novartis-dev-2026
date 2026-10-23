@@ -1,0 +1,781 @@
+[
+  {
+    "code": "SECCIÓN 01",
+    "name": "HOME Y VARIANTES CONTEXTUALES",
+    "desc": "Inicio, contenido inferior y variantes visuales según clima y hora.",
+    "screens": [
+      {
+        "file": "capture_001.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 1 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_002.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 2 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_003.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 3 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_004.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 4 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_005.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 5 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_006.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 6 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_007.png",
+        "title": "Home Principal — Escenario Día (General) — Captura 7 de 7",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=dia"
+      },
+      {
+        "file": "capture_008.png",
+        "title": "Home Principal — Escenario Calor (Temperatura Alta / Sol)",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=calor"
+      },
+      {
+        "file": "capture_009.png",
+        "title": "Home Principal — Escenario Frío (Invierno / Aire Helado)",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=frio"
+      },
+      {
+        "file": "capture_010.png",
+        "title": "Home Principal — Escenario Madrugada (Modo Oscuro 2am - 5am)",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=madrugada"
+      },
+      {
+        "file": "capture_011.png",
+        "title": "Home Principal — Escenario Noche Cálida",
+        "section": "SECCIÓN: HOME",
+        "source": "/?vista=noche-calor"
+      },
+      {
+        "file": "capture_012.png",
+        "title": "Inicio — Variante con video contextual",
+        "section": "SECCIÓN: HOME",
+        "source": "/videos/"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 02",
+    "name": "LANDINGS INFORMATIVAS Y CLÍNICAS",
+    "desc": "Información sobre síntomas, tratamientos e institución, preguntas frecuentes y pantalla 404.",
+    "screens": [
+      {
+        "file": "capture_013.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 1 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_014.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 2 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_015.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 3 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_016.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 4 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_017.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 5 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_018.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 6 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_019.png",
+        "title": "Síntomas de la Urticaria Crónica Espontánea (/sintomas/) — Captura 7 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/?vista=dia"
+      },
+      {
+        "file": "capture_020.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 1 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_021.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 2 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_022.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 3 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_023.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 4 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_024.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 5 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_025.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 6 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_026.png",
+        "title": "Tratamientos para la UCE (/tratamiento/) — Captura 7 de 7",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/tratamiento/?vista=dia"
+      },
+      {
+        "file": "capture_027.png",
+        "title": "Sobre Nosotros — Más que Urticaria (/sobre-nosotros/) — Captura 1 de 5",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sobre-nosotros/?vista=dia"
+      },
+      {
+        "file": "capture_028.png",
+        "title": "Sobre Nosotros — Más que Urticaria (/sobre-nosotros/) — Captura 2 de 5",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sobre-nosotros/?vista=dia"
+      },
+      {
+        "file": "capture_029.png",
+        "title": "Sobre Nosotros — Más que Urticaria (/sobre-nosotros/) — Captura 3 de 5",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sobre-nosotros/?vista=dia"
+      },
+      {
+        "file": "capture_030.png",
+        "title": "Sobre Nosotros — Más que Urticaria (/sobre-nosotros/) — Captura 4 de 5",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sobre-nosotros/?vista=dia"
+      },
+      {
+        "file": "capture_031.png",
+        "title": "Sobre Nosotros — Más que Urticaria (/sobre-nosotros/) — Captura 5 de 5",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sobre-nosotros/?vista=dia"
+      },
+      {
+        "file": "capture_032.png",
+        "title": "Página de Error 404 (Ruta no encontrada) — Captura 1 de 2",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/pagina-inexistente/?vista=dia"
+      },
+      {
+        "file": "capture_033.png",
+        "title": "Página de Error 404 (Ruta no encontrada) — Captura 2 de 2",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/pagina-inexistente/?vista=dia"
+      },
+      {
+        "file": "capture_034.png",
+        "title": "Síntomas — Pregunta frecuente desplegada",
+        "section": "SECCIÓN: LANDINGS INFORMATIVAS",
+        "source": "/sintomas/"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 03",
+    "name": "RECURSOS Y HERRAMIENTAS",
+    "desc": "Recursos, diario interactivo, biblioteca visual y estados del formulario de testimonios.",
+    "screens": [
+      {
+        "file": "capture_035.png",
+        "title": "Hub de Recursos y Herramientas (/recursos-herramientas/) — Captura 1 de 5",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/recursos-herramientas/?vista=dia"
+      },
+      {
+        "file": "capture_036.png",
+        "title": "Hub de Recursos y Herramientas (/recursos-herramientas/) — Captura 2 de 5",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/recursos-herramientas/?vista=dia"
+      },
+      {
+        "file": "capture_037.png",
+        "title": "Hub de Recursos y Herramientas (/recursos-herramientas/) — Captura 3 de 5",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/recursos-herramientas/?vista=dia"
+      },
+      {
+        "file": "capture_038.png",
+        "title": "Hub de Recursos y Herramientas (/recursos-herramientas/) — Captura 4 de 5",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/recursos-herramientas/?vista=dia"
+      },
+      {
+        "file": "capture_039.png",
+        "title": "Hub de Recursos y Herramientas (/recursos-herramientas/) — Captura 5 de 5",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/recursos-herramientas/?vista=dia"
+      },
+      {
+        "file": "capture_040.png",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/) — Captura 1 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/?vista=dia"
+      },
+      {
+        "file": "capture_041.png",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/) — Captura 2 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/?vista=dia"
+      },
+      {
+        "file": "capture_042.png",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/) — Captura 3 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/?vista=dia"
+      },
+      {
+        "file": "capture_043.png",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/) — Captura 4 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/?vista=dia"
+      },
+      {
+        "file": "capture_044.png",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/) — Captura 5 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/?vista=dia"
+      },
+      {
+        "file": "capture_045.png",
+        "title": "Diario de Síntomas — Bitácora Interactiva (/diario/) — Captura 6 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/?vista=dia"
+      },
+      {
+        "file": "capture_046.png",
+        "title": "Diario — Selector de fecha",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/"
+      },
+      {
+        "file": "capture_047.png",
+        "title": "Diario — Registro con datos de ejemplo y totales",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/diario/"
+      },
+      {
+        "file": "capture_048.png",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/) — Captura 1 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/?vista=dia"
+      },
+      {
+        "file": "capture_049.png",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/) — Captura 2 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/?vista=dia"
+      },
+      {
+        "file": "capture_050.png",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/) — Captura 3 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/?vista=dia"
+      },
+      {
+        "file": "capture_051.png",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/) — Captura 4 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/?vista=dia"
+      },
+      {
+        "file": "capture_052.png",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/) — Captura 5 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/?vista=dia"
+      },
+      {
+        "file": "capture_053.png",
+        "title": "Testimonios y Comunidad — 'No lo estás imaginando' (/testimonios/) — Captura 6 de 6",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/?vista=dia"
+      },
+      {
+        "file": "capture_054.png",
+        "title": "Testimonios — Formulario para compartir de forma anónima",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/"
+      },
+      {
+        "file": "capture_055.png",
+        "title": "Testimonios — Formulario con nombre opcional",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/"
+      },
+      {
+        "file": "capture_056.png",
+        "title": "Testimonios — Consentimiento y envío de historia de ejemplo",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/"
+      },
+      {
+        "file": "capture_057.png",
+        "title": "Testimonios — Confirmación del registro en el prototipo",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/testimonios/"
+      },
+      {
+        "file": "capture_058.png",
+        "title": "Biblioteca visual — Imagen ampliada",
+        "section": "SECCIÓN: RECURSOS Y HERRAMIENTAS",
+        "source": "/recursos-herramientas/#biblioteca"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 04",
+    "name": "QUIZ ORIENTATIVO & URGENCIAS",
+    "desc": "Preguntas Q0–Q19 y condicionales Q1b y Q8b, urgencia, resultados, resumen y directorio.",
+    "screens": [
+      {
+        "file": "capture_059.png",
+        "title": "Introducción al Test de Síntomas (/test/) — Captura 1 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "/test/"
+      },
+      {
+        "file": "capture_060.png",
+        "title": "Introducción al Test de Síntomas (/test/) — Captura 2 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "/test/"
+      },
+      {
+        "file": "capture_061.png",
+        "title": "Introducción al Test de Síntomas (/test/) — Captura 3 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "/test/"
+      },
+      {
+        "file": "capture_062.png",
+        "title": "Q0 — Nombre opcional",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q0"
+      },
+      {
+        "file": "capture_063.png",
+        "title": "Q1 — Síntomas presentados (selección múltiple)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q1"
+      },
+      {
+        "file": "capture_064.png",
+        "title": "Q1b — Descarte de urgencia (solo si hay hinchazón)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q1b"
+      },
+      {
+        "file": "capture_065.png",
+        "title": "Q2 — Tiempo con síntomas",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q2"
+      },
+      {
+        "file": "capture_066.png",
+        "title": "Q3 — Cantidad de ronchas (solo si se marcaron ronchas)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q3"
+      },
+      {
+        "file": "capture_067.png",
+        "title": "Q4 — Intensidad de comezón (solo si se marcó comezón)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q4"
+      },
+      {
+        "file": "capture_068.png",
+        "title": "Q5 — Severidad de hinchazón (solo si se marcó hinchazón)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q5"
+      },
+      {
+        "file": "capture_069.png",
+        "title": "Q6 — Áreas de vida afectadas (selección múltiple)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q6"
+      },
+      {
+        "file": "capture_070.png",
+        "title": "Q7 — Actividades diarias (solo si se marcó esta área en Q6)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q7"
+      },
+      {
+        "file": "capture_071.png",
+        "title": "Q8 — Relaciones familiares y sociales (solo si se marcó esta área en Q6)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q8"
+      },
+      {
+        "file": "capture_072.png",
+        "title": "Q8B — Vida sexual (solo si se marcó esta área en Q6)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q8b"
+      },
+      {
+        "file": "capture_073.png",
+        "title": "Q9 — Vestimenta (solo si se marcó esta área en Q6)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q9"
+      },
+      {
+        "file": "capture_074.png",
+        "title": "Q10 — Trabajo o estudios (solo si se marcó esta área en Q6)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q10"
+      },
+      {
+        "file": "capture_075.png",
+        "title": "Q11 — Sueño (solo si se marcó esta área en Q6)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q11"
+      },
+      {
+        "file": "capture_076.png",
+        "title": "Q12 — Posibles desencadenantes (selección múltiple)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q12"
+      },
+      {
+        "file": "capture_077.png",
+        "title": "Q13 — Momento de mayor intensidad",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q13"
+      },
+      {
+        "file": "capture_078.png",
+        "title": "Q14 — Consulta médica previa",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q14"
+      },
+      {
+        "file": "capture_079.png",
+        "title": "Q15 — Frecuencia de consulta (solo si Q14 = Sí)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q15"
+      },
+      {
+        "file": "capture_080.png",
+        "title": "Q16 — Especialistas consultados (solo si Q14 = Sí)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q16"
+      },
+      {
+        "file": "capture_081.png",
+        "title": "Q17 — Tratamiento previo",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q17"
+      },
+      {
+        "file": "capture_082.png",
+        "title": "Q18 — Tipos de tratamiento (solo si Q17 = Sí)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q18"
+      },
+      {
+        "file": "capture_083.png",
+        "title": "Q19 — Efectividad del tratamiento (solo si Q17 = Sí)",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: q19"
+      },
+      {
+        "file": "capture_084.png",
+        "title": "Resultado — Síntomas e impacto altos; tratamiento poco efectivo — Captura 1 de 4",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: resultado con tratamiento poco efectivo"
+      },
+      {
+        "file": "capture_085.png",
+        "title": "Resultado — Síntomas e impacto altos; tratamiento poco efectivo — Captura 2 de 4",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: resultado con tratamiento poco efectivo"
+      },
+      {
+        "file": "capture_086.png",
+        "title": "Resultado — Síntomas e impacto altos; tratamiento poco efectivo — Captura 3 de 4",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: resultado con tratamiento poco efectivo"
+      },
+      {
+        "file": "capture_087.png",
+        "title": "Resultado — Síntomas e impacto altos; tratamiento poco efectivo — Captura 4 de 4",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: resultado con tratamiento poco efectivo"
+      },
+      {
+        "file": "capture_088.png",
+        "title": "Resultado — Confirmación de copia del resumen",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: copiar"
+      },
+      {
+        "file": "capture_089.png",
+        "title": "Resultado — Confirmación de descarga del resumen",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: descargar"
+      },
+      {
+        "file": "capture_090.png",
+        "title": "Directorio dentro del quiz — Buscador y acceso para volver — Captura 1 de 2",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: directorio"
+      },
+      {
+        "file": "capture_091.png",
+        "title": "Directorio dentro del quiz — Buscador y acceso para volver — Captura 2 de 2",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: directorio"
+      },
+      {
+        "file": "capture_092.png",
+        "title": "Urgencia — Interrupción del cuestionario y llamada al 911",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: urgencia"
+      },
+      {
+        "file": "capture_093.png",
+        "title": "Resultado — Ruta sin síntomas (Q1 = Ninguno) — Captura 1 de 2",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: sin síntomas"
+      },
+      {
+        "file": "capture_094.png",
+        "title": "Resultado — Ruta sin síntomas (Q1 = Ninguno) — Captura 2 de 2",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: sin síntomas"
+      },
+      {
+        "file": "capture_095.png",
+        "title": "Resultado — Sin consulta y sin tratamiento previo (saltos Q15–Q16 y Q18–Q19) — Captura 1 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: sin consulta ni tratamiento"
+      },
+      {
+        "file": "capture_096.png",
+        "title": "Resultado — Sin consulta y sin tratamiento previo (saltos Q15–Q16 y Q18–Q19) — Captura 2 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: sin consulta ni tratamiento"
+      },
+      {
+        "file": "capture_097.png",
+        "title": "Resultado — Sin consulta y sin tratamiento previo (saltos Q15–Q16 y Q18–Q19) — Captura 3 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: sin consulta ni tratamiento"
+      },
+      {
+        "file": "capture_098.png",
+        "title": "Resultado — Tratamiento muy efectivo y acceso al directorio — Captura 1 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: tratamiento muy efectivo"
+      },
+      {
+        "file": "capture_099.png",
+        "title": "Resultado — Tratamiento muy efectivo y acceso al directorio — Captura 2 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: tratamiento muy efectivo"
+      },
+      {
+        "file": "capture_100.png",
+        "title": "Resultado — Tratamiento muy efectivo y acceso al directorio — Captura 3 de 3",
+        "section": "SECCIÓN: QUIZ ORIENTATIVO",
+        "source": "Quiz: tratamiento muy efectivo"
+      }
+    ]
+  },
+  {
+    "code": "SECCIÓN 05",
+    "name": "DIRECTORIO MÉDICO & BLOG EDITORIAL",
+    "desc": "Directorio de especialistas, catálogo del blog y sus cuatro artículos.",
+    "screens": [
+      {
+        "file": "capture_101.png",
+        "title": "Directorio Médico de Especialistas — Landing Principal (/directorio-medico/) — Captura 1 de 5",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/directorio-medico/?vista=dia"
+      },
+      {
+        "file": "capture_102.png",
+        "title": "Directorio Médico de Especialistas — Landing Principal (/directorio-medico/) — Captura 2 de 5",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/directorio-medico/?vista=dia"
+      },
+      {
+        "file": "capture_103.png",
+        "title": "Directorio Médico de Especialistas — Landing Principal (/directorio-medico/) — Captura 3 de 5",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/directorio-medico/?vista=dia"
+      },
+      {
+        "file": "capture_104.png",
+        "title": "Directorio Médico de Especialistas — Landing Principal (/directorio-medico/) — Captura 4 de 5",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/directorio-medico/?vista=dia"
+      },
+      {
+        "file": "capture_105.png",
+        "title": "Directorio Médico de Especialistas — Landing Principal (/directorio-medico/) — Captura 5 de 5",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/directorio-medico/?vista=dia"
+      },
+      {
+        "file": "capture_106.png",
+        "title": "Directorio — Resultados filtrados por dermatología",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/directorio-medico/"
+      },
+      {
+        "file": "capture_107.png",
+        "title": "Blog Editorial — Catálogo de Temas (/blog/) — Captura 1 de 3",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/?vista=dia"
+      },
+      {
+        "file": "capture_108.png",
+        "title": "Blog Editorial — Catálogo de Temas (/blog/) — Captura 2 de 3",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/?vista=dia"
+      },
+      {
+        "file": "capture_109.png",
+        "title": "Blog Editorial — Catálogo de Temas (/blog/) — Captura 3 de 3",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/?vista=dia"
+      },
+      {
+        "file": "capture_110.png",
+        "title": "Artículo Blog 1: ¿Qué significa UCE? (/blog/que-significa-uce/) — Captura 1 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/que-significa-uce/?vista=dia"
+      },
+      {
+        "file": "capture_111.png",
+        "title": "Artículo Blog 1: ¿Qué significa UCE? (/blog/que-significa-uce/) — Captura 2 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/que-significa-uce/?vista=dia"
+      },
+      {
+        "file": "capture_112.png",
+        "title": "Artículo Blog 1: ¿Qué significa UCE? (/blog/que-significa-uce/) — Captura 3 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/que-significa-uce/?vista=dia"
+      },
+      {
+        "file": "capture_113.png",
+        "title": "Artículo Blog 1: ¿Qué significa UCE? (/blog/que-significa-uce/) — Captura 4 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/que-significa-uce/?vista=dia"
+      },
+      {
+        "file": "capture_114.png",
+        "title": "Artículo Blog 2: Guía para preparar tu consulta (/blog/preparar-consulta/) — Captura 1 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/preparar-consulta/?vista=dia"
+      },
+      {
+        "file": "capture_115.png",
+        "title": "Artículo Blog 2: Guía para preparar tu consulta (/blog/preparar-consulta/) — Captura 2 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/preparar-consulta/?vista=dia"
+      },
+      {
+        "file": "capture_116.png",
+        "title": "Artículo Blog 2: Guía para preparar tu consulta (/blog/preparar-consulta/) — Captura 3 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/preparar-consulta/?vista=dia"
+      },
+      {
+        "file": "capture_117.png",
+        "title": "Artículo Blog 2: Guía para preparar tu consulta (/blog/preparar-consulta/) — Captura 4 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/preparar-consulta/?vista=dia"
+      },
+      {
+        "file": "capture_118.png",
+        "title": "Artículo Blog: Mitos sobre dietas restrictivas (/blog/dietas-restrictivas-uce/) — Captura 1 de 3",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/dietas-restrictivas-uce/?vista=dia"
+      },
+      {
+        "file": "capture_119.png",
+        "title": "Artículo Blog: Mitos sobre dietas restrictivas (/blog/dietas-restrictivas-uce/) — Captura 2 de 3",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/dietas-restrictivas-uce/?vista=dia"
+      },
+      {
+        "file": "capture_120.png",
+        "title": "Artículo Blog: Mitos sobre dietas restrictivas (/blog/dietas-restrictivas-uce/) — Captura 3 de 3",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/dietas-restrictivas-uce/?vista=dia"
+      },
+      {
+        "file": "capture_121.png",
+        "title": "Artículo Blog — ¿La urticaria empeora con el estrés? — Captura 1 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/estres-y-observaciones/"
+      },
+      {
+        "file": "capture_122.png",
+        "title": "Artículo Blog — ¿La urticaria empeora con el estrés? — Captura 2 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/estres-y-observaciones/"
+      },
+      {
+        "file": "capture_123.png",
+        "title": "Artículo Blog — ¿La urticaria empeora con el estrés? — Captura 3 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/estres-y-observaciones/"
+      },
+      {
+        "file": "capture_124.png",
+        "title": "Artículo Blog — ¿La urticaria empeora con el estrés? — Captura 4 de 4",
+        "section": "SECCIÓN: DIRECTORIO & BLOG",
+        "source": "/blog/estres-y-observaciones/"
+      }
+    ]
+  }
+]

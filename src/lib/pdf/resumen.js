@@ -171,7 +171,7 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
 
   set('normal', 7.5, COLORS.faint)
   const legal = doc.splitTextToSize(
-    'Este resumen es orientativo y no constituye un diagnóstico. Fue generado a partir de respuestas propias en un autochequeo informativo. Solo un profesional de la salud puede valorar el caso.',
+    'Este resumen es orientativo y no constituye un diagnóstico. Fue generado a partir de respuestas propias en un autochequeo informativo. Únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.',
     CONTENT
   )
   doc.text(legal, M, footTop + 6)

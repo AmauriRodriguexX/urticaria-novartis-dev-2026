@@ -1,0 +1,12 @@
+{
+  "finding_count": 0,
+  "findings": [],
+  "slide_count": 131,
+  "slide_size_in": [
+    13.333,
+    7.5
+  ],
+  "warning_count": 0,
+  "warnings": []
+}
+

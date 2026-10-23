@@ -56,6 +56,7 @@
     </div>
     {#if copy.note}<small class="hero-disclaimer">{copy.note}</small>{/if}
   </div>
+  <small class="hero-img-note">Imagen ilustrativa: no representa a una persona real.</small>
 </section>
 {/key}
 
