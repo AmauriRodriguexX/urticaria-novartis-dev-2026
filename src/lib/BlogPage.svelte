@@ -4,6 +4,7 @@
   import { routeHref } from './siteContent.js'
   import { blogDrafts } from './blogDrafts.js'
   import Fuentes from './Fuentes.svelte'
+  import LeyendaProfesional from './LeyendaProfesional.svelte'
 
   export let article = null
 
@@ -59,6 +60,7 @@
       {#if article.sources?.length}<Fuentes sources={article.sources.map((s, i) => ({ n: i + 1, text: s.label, url: s.href }))} prefix="blog" />{/if}
 
       <a class="blog-resource-cta" href={routeHref('recursos-herramientas')}><span><small>PARA SEGUIR EXPLORANDO</small><strong>Conoce los recursos del sitio</strong></span><Icon name="arrow_forward" size={20} /></a>
+      <LeyendaProfesional />
     </div>
   </main>
 {:else}
@@ -107,5 +109,6 @@
         <section class="blog-sidebar-card blog-related"><p class="eyebrow">Explora también</p><a href={routeHref('sintomas')}>Síntomas <Icon name="arrow_forward" size={16} /></a><a href={routeHref('diario')}>Diario de Síntomas <Icon name="arrow_forward" size={16} /></a><a href={routeHref('recursos-herramientas')}>Recursos y herramientas <Icon name="arrow_forward" size={16} /></a></section>
       </aside>
     </div>
+    <LeyendaProfesional />
   </main>
 {/if}

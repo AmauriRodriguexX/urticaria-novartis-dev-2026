@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte'
+  import UasGauge from './UasGauge.svelte'
+  export let ref = null   // número de la referencia del medidor en la lista de la página
 
   const blankDays = () => Array.from({ length: 7 }, (_, index) => ({ day: `Día ${index + 1}`, date: '', hives: 0, itch: 0 }))
   const weekdayNames = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
@@ -117,6 +119,7 @@
       <tfoot><tr><th scope="row">Suma de la semana</th><td></td><td>{hivesTotal}</td><td>{itchTotal}</td></tr></tfoot>
     </table>
   </div>
+  <UasGauge total={hivesTotal + itchTotal} titulo="Tu puntaje UAS7 de esta semana" aviso="Es la suma de habones (ronchas) y comezón de los 7 días. Llévalo a tu consulta: solo un alergólogo o dermatólogo puede evaluar tu actividad." {ref} />
   {#if openDateIndex !== null}
     <div class="material-date-picker" role="dialog" aria-label="Seleccionar fecha" style={`top:${pickerPosition.top}px;left:${pickerPosition.left}px`}>
       <div class="material-date-picker-heading">

@@ -83,11 +83,11 @@ export const landingPages = {
       },
       {
         title: '¿Qué puedes hacer en el sitio?',
-        intro: 'Explora las herramientas y secciones disponibles para conocer más y preparar una consulta:',
+        // Los síntomas se muestran con imagen y su nombre debajo (las imágenes las entrega Novartis); cada uno lleva a Síntomas
+        visuals: { route: 'sintomas', items: ['Habones (ronchas)', 'Hinchazón (angioedema)', 'Comezón'] },
         cards: [
-          { title: 'Entender los síntomas', text: 'Consulta información general sobre habones (ronchas), comezón e hinchazón (angioedema).' , route: 'sintomas', linkLabel: 'Ver síntomas' },
           { title: 'Preparar la consulta', text: 'Usa el test de orientación y el Diario de Síntomas para ordenar tus observaciones.', route: 'recursos-herramientas', linkLabel: 'Explorar recursos' },
-          { title: 'Conocer opciones generales', text: 'Lee información para conversar con un profesional sobre el tratamiento.', route: 'tratamiento', linkLabel: 'Ver tratamientos' }
+          { title: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
         ]
       },
       {
@@ -293,6 +293,11 @@ export const landingPages = {
       }
     ],
     diaryTool: true,
+    diaryRef: 1,
+    // Referencias de la página (numeración propia), estilo IEEE
+    sources: [
+      { n: 1, short: 'Bernstein et al. (2023)', text: 'J. A. Bernstein, A. Gim&eacute;nez-Arnau, M. Maurer, <em>et al.</em>, &ldquo;Why a complete response is the treatment aim in chronic spontaneous urticaria,&rdquo; <em>J. Clin. Med.</em>, vol. 12, no. 10, Art. no. 3561, 2023, doi: 10.3390/jcm12103561.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10219198/' }
+    ],
     closing: { title: '¿Listo para tu próxima consulta?', text: 'Lleva tus observaciones y preguntas para conversar con un profesional de la salud.', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
   },
   test: {

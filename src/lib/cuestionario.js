@@ -89,7 +89,7 @@ export const PREGUNTAS = [
     id: 'q12',
     contextos: 'todos',
     si: (r) => Array.isArray(r.q1) && !r.q1.includes('ninguno') && r.q1.length > 0,
-    resumen: 'Posibles desencadenantes'
+    resumen: 'Comentarios que has recibido'
   },
   {
     id: 'q13',
@@ -134,6 +134,14 @@ export const PREGUNTAS = [
     resumen: 'Efectividad percibida'
   }
 ]
+
+// Tipos de tratamiento (Q18), sin nombres de productos ni fármacos: solo la forma de uso.
+// SUJETO A CAMBIOS: la lista de opciones la define Novartis; ver ajustes-colega/REGISTRO-DE-CAMBIOS.md.
+const TIPOS_TRAT = { oral: 'pastillas o jarabes', inyeccion: 'inyecciones', piel: 'productos en la piel', otro: 'otro tipo de tratamiento' }
+function tiposTrat(sel) {
+  const lista = (sel || []).map(k => TIPOS_TRAT[k]).filter(Boolean)
+  return lista.length ? formatListES(lista, 'y') : 'algún tratamiento'
+}
 
 // Función auxiliar de formateo en español con regla de 'y' / 'e'
 export function formatListES(items, conector = 'y') {
@@ -227,12 +235,15 @@ export function generarReporteBen(r) {
   const seccion3 = aList.length > 0 ? `Estos síntomas han afectado negativamente áreas de tu vida como: ${formatListES(aList, 'y')}.` : ''
 
   // SECCIÓN 4: Detonantes
+  // Q12 son mitos que escuchan los pacientes: en la urticaria crónica espontánea no suele
+  // identificarse un desencadenante externo, así que el resumen no los presenta como causas.
   const dList = []
-  if (r.q12 && r.q12.includes('calor')) dList.push('el calor')
-  if (r.q12 && r.q12.includes('frio')) dList.push('el frío')
   if (r.q12 && r.q12.includes('estres')) dList.push('el estrés')
+  if (r.q12 && r.q12.includes('alergia')) dList.push('una alergia')
   if (r.q12 && r.q12.includes('sudor')) dList.push('el sudor')
-  if (r.q12 && r.q12.includes('ropa')) dList.push('la ropa')
+  if (r.q12 && r.q12.includes('clima')) dList.push('el clima')
+  if (r.q12 && r.q12.includes('comida')) dList.push('lo que comes')
+  if (r.q12 && r.q12.includes('ropa')) dList.push('la ropa o el jabón')
 
   let momentoStr = ''
   if (r.q13) {
@@ -242,20 +253,15 @@ export function generarReporteBen(r) {
     else if (r.q13 === 'sin_patron') momentoStr = 'sin importar el momento del día'
   }
 
-  const SIN_FACTORES = 'factores como el calor, el frío, el estrés, el sudor o la ropa'
   // "principalmente" solo acompaña a un momento concreto del día.
   const momentoFrase = r.q13 === 'sin_patron' ? momentoStr : `principalmente ${momentoStr}`
 
+  const comentarios = dList.length > 0
+    ? `Has escuchado que tus ronchas son por ${formatListES(dList, 'o')}. En la urticaria crónica espontánea no suele identificarse un desencadenante externo concreto: conviene comentarlo con un alergólogo o dermatólogo.`
+    : ''
   let seccion4 = ''
-  if (momentoStr && dList.length > 0) {
-    seccion4 = `Tus brotes se dan ${momentoFrase} y se ven influenciados por factores como ${formatListES(dList, 'y')}.`
-  } else if (dList.length > 0) {
-    seccion4 = `Tus brotes se ven influenciados por factores como ${formatListES(dList, 'y')}.`
-  } else if (r.q13 === 'sin_patron') {
-    seccion4 = `Tus brotes se dan ${momentoStr} y no se ven influenciados por ${SIN_FACTORES}.`
-  } else if (momentoStr) {
-    seccion4 = `Tus brotes se dan ${momentoFrase}, pero no se ven influenciados por ${SIN_FACTORES}.`
-  }
+  if (momentoStr) seccion4 = `Tus ronchas se dan ${momentoFrase}.`
+  if (comentarios) seccion4 = seccion4 ? `${seccion4} ${comentarios}` : comentarios
 
   // SECCIÓN 5: Tratamiento y Consulta
   let seccion5 = ''
@@ -268,8 +274,7 @@ export function generarReporteBen(r) {
   } else if (!consulto && !trat) {
     seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un alergólogo o dermatólogo, o con un médico general que te canalice con uno de ellos, para recibir un tratamiento adecuado a tu caso.'
   } else if (!consulto && trat) {
-    const tipoT = r.q18 && r.q18.includes('3') ? 'un tratamiento con seguimiento estrecho' : (r.q18 && r.q18.includes('2') ? 'un tratamiento continuo' : 'un tratamiento por tu cuenta o por poco tiempo')
-    seccion5 = `No has consultado a un médico sobre tus síntomas, pero has recibido ${tipoT}.`
+    seccion5 = `No has consultado a un médico sobre tus síntomas, pero has usado ${tiposTrat(r.q18)}.`
   } else if (consulto) {
     const medList = []
     if (r.q16 && r.q16.includes('general')) medList.push('médicos generales')
@@ -278,7 +283,7 @@ export function generarReporteBen(r) {
     const medStr = medList.length > 0 ? formatListES(medList, 'y') : 'médicos'
 
     const freqStr = r.q15 === '3' ? 'de manera constante' : (r.q15 === '2' ? 'al menos una vez al mes' : 'pocas veces')
-    const tipoT = trat ? (r.q18 && r.q18.includes('3') ? ' y tienes un tratamiento con seguimiento estrecho' : (r.q18 && r.q18.includes('2') ? ' y has recibido un tratamiento continuo' : ' y has usado un tratamiento por tu cuenta o por poco tiempo')) : ''
+    const tipoT = trat ? ` y has usado ${tiposTrat(r.q18)}` : ''
 
     seccion5 = `Has recibido consulta con ${medStr} ${freqStr}${tipoT}.`
   }

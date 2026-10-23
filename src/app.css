@@ -1217,3 +1217,48 @@ h1 em { font-style: normal; color: var(--accent); }
 @media (min-width: 1024px) { .content-card-grid.content-card-grid-4:has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 640px) and (max-width: 1023px) { .content-card-grid.content-card-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 639px) { .content-card-grid.content-card-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); } .content-card-grid-4 .content-card { padding-inline: var(--s-3); } }
+
+/* Quiz Q2: línea de tiempo en semanas con la marca clínica de 6 semanas */
+.weeks { margin: var(--s-4) 0 var(--s-2); padding: var(--s-4) var(--s-4) var(--s-3); border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--card); }
+.weeks-track { position: relative; height: 12px; margin-top: 22px; border-radius: 999px; overflow: visible; display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.weeks-short, .weeks-long { display: block; border-radius: 999px; }
+.weeks-short { background: color-mix(in srgb, var(--faint) 35%, transparent); }
+.weeks-long { background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, transparent), var(--accent)); }
+.weeks-mark { position: absolute; top: -8px; bottom: -6px; left: 50%; width: 0; border-left: 2px dashed var(--ink); }
+.weeks-mark em { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font: 700 12px var(--font-barlow-c); font-style: normal; letter-spacing: .06em; color: var(--ink); white-space: nowrap; }
+.weeks-axis { display: flex; justify-content: space-between; margin-top: 8px; font: 600 11px var(--font-barlow-c); letter-spacing: .06em; color: var(--faint); }
+.weeks-note { margin: var(--s-3) 0 0; color: var(--soft); font-size: 13px; line-height: 1.5; }
+.weeks-note strong { color: var(--ink); }
+.weeks-note a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+.nav-next:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+/* Resultado del quiz: mitos sobre la causa */
+.myth-card { display: grid; gap: 6px; margin: var(--s-4) 0; padding: var(--s-3) var(--s-4); border-left: 4px solid var(--accent); border-radius: 4px 14px 14px 4px; background: var(--accentSoft); color: var(--soft); font-size: 14px; line-height: 1.5; text-align: left; }
+.myth-card strong { color: var(--ink); font: 700 16px/1.3 var(--font-barlow); }
+.myth-card a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Q1b: cada opción lleva un espacio para imagen (Novartis entrega las imágenes) */
+.options .opt-row { display: flex; gap: var(--s-3); width: 100%; }
+.options-media { flex-direction: row; }
+.options-media button { flex-direction: column; flex: 1; gap: var(--s-3); }
+.opt-media { display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 9; border: 1.5px dashed color-mix(in srgb, var(--faint) 55%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--card) 60%, var(--line)); }
+.opt-media em { color: var(--faint); font: 600 12px var(--font-barlow-c); font-style: normal; letter-spacing: .12em; text-transform: uppercase; }
+@media (max-width: 560px) { .options-media { flex-direction: column; } .opt-media { aspect-ratio: 2.4 / 1; } }
+
+/* Q1: tres síntomas con imagen en una fila y "Ninguno de estos" debajo, de ancho completo */
+.options-q1 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.options-q1 .opt-none { grid-column: 1 / -1; order: 5; }
+.options-q1 .opt-media { aspect-ratio: 4 / 3; }
+@media (max-width: 560px) { .options-q1 { grid-template-columns: 1fr; } .options-q1 .opt-media { aspect-ratio: 2.4 / 1; } }
+
+/* Acerca de, sección 03: síntomas con imagen y su nombre debajo */
+.content-visuals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); margin-top: var(--s-5); }
+.content-visual { display: grid; gap: var(--s-3); text-decoration: none; color: var(--ink); }
+.content-visual .content-card-media { margin: 0; aspect-ratio: 4 / 3; }
+.content-visual strong { font: 700 18px/1.2 var(--font-barlow); text-align: center; transition: color .2s; }
+.content-visual:hover strong, .content-visual:focus-visible strong { color: var(--accent); }
+.content-visual:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
+.content-section .content-card-grid { margin-top: var(--s-5); }
+@media (max-width: 640px) { .content-visuals { grid-template-columns: 1fr; } .content-visual .content-card-media { aspect-ratio: 2.4 / 1; } }
+.community-followup > .content-legal-note, .blog-page > .content-legal-note { max-width: var(--container); margin-inline: auto; }
