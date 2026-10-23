@@ -1,8 +1,8 @@
 export const blogDrafts = [
   {
-    slug: 'que-significa-uce',
-    topic: 'Entender la UCE',
-    title: 'UCE: tres letras para empezar a entender la urticaria crónica',
+    slug: 'que-significa-urticaria-cronica-espontanea',
+    topic: 'Entender la urticaria crónica espontánea',
+    title: 'Qué es la urticaria crónica espontánea',
     excerpt: 'Una guía breve para reconocer qué significa el término y qué preguntas llevar a una consulta, sin intentar llegar a un diagnóstico por cuenta propia.',
     readTime: '3 min de lectura',
     image: 'assets/blog/claridad-ideas.webp',
@@ -11,8 +11,8 @@ export const blogDrafts = [
       {
         title: 'Primero, el nombre',
         paragraphs: [
-          'UCE significa urticaria crónica espontánea. “Crónica” describe que los síntomas aparecen de manera recurrente durante más de seis semanas. “Espontánea” indica que no siempre se identifica un estímulo externo concreto antes de cada episodio.',
-          'La urticaria puede presentarse con habones —ronchas elevadas que suelen dar comezón—, angioedema —hinchazón más profunda— o ambos. La forma de nombrar los síntomas ayuda a compartir lo que observas, pero no confirma por sí sola una condición.'
+          'La urticaria crónica espontánea es una condición de la piel. “Crónica” describe que los síntomas aparecen de manera recurrente durante más de seis semanas. “Espontánea” indica que no siempre se identifica un estímulo externo concreto antes de cada episodio.',
+          'La urticaria puede presentarse con habones (ronchas) —elevaciones que suelen dar comezón—, hinchazón (angioedema) —más profunda— o ambos. La forma de nombrar los síntomas ayuda a compartir lo que observas, pero no confirma por sí sola una condición.'
         ]
       },
       {
@@ -28,7 +28,9 @@ export const blogDrafts = [
       }
     ],
     sources: [
-      { label: 'Guía internacional EAACI/GA²LEN/EuroGuiDerm/APAAACI sobre urticaria (2022)', href: 'https://eaaci.org/guidelines-position-papers/the-international-eaaci-ga%C2%B2len-euroguiderm-apaaaci-guideline-for-the-definition-classification-diagnosis-and-management-of-urticaria/' }
+      { label: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', href: 'https://doi.org/10.4168/aair.2025.17.5.531' },
+      { label: 'MedlinePlus, &ldquo;Urticaria,&rdquo; U.S. National Library of Medicine (NIH), rev. Apr. 1, 2025.', href: 'https://medlineplus.gov/spanish/ency/article/000845.htm' },
+      { label: 'T. Zuberbier <em>et al.</em>, &ldquo;The international EAACI/GA&sup2;LEN/EuroGuiDerm/APAAACI guideline for the definition, classification, diagnosis, and management of urticaria,&rdquo; <em>Allergy</em>, vol. 77, no. 3, pp. 734&ndash;766, 2022, doi: 10.1111/all.15090.', href: 'https://eaaci.org/guidelines-position-papers/the-international-eaaci-ga%C2%B2len-euroguiderm-apaaaci-guideline-for-the-definition-classification-diagnosis-and-management-of-urticaria/' }
     ]
   },
   {
@@ -42,7 +44,7 @@ export const blogDrafts = [
     sections: [
       {
         title: '1. Describe lo que observaste',
-        paragraphs: ['Anota cuándo aparecieron las ronchas o la hinchazón, en qué partes del cuerpo y cuánto tiempo permaneció cada cambio. Si tomas una foto para recordar cómo se veía, guárdala de forma privada y decide tú si quieres mostrarla en la consulta.']
+        paragraphs: ['Anota cuándo aparecieron los habones (ronchas) o la hinchazón (angioedema), en qué partes del cuerpo y cuánto tiempo permaneció cada cambio. Si tomas una foto para recordar cómo se veía, guárdala de forma privada y decide tú si quieres mostrarla en la consulta.']
       },
       {
         title: '2. Cuenta cómo se cruza con tu día',
@@ -50,7 +52,7 @@ export const blogDrafts = [
       },
       {
         title: '3. Lleva tus dudas y una lista de productos',
-        paragraphs: ['Escribe las preguntas que no quieres olvidar. Si te resulta útil, lleva una lista de medicamentos, suplementos o productos que usas y coméntala con el profesional. No cambies ni suspendas un tratamiento por preparar estas notas.']
+        paragraphs: ['Escribe las preguntas que no quieres olvidar. Si te resulta útil, lleva una lista de los tratamientos o productos que usas y coméntala con el profesional. No cambies ni suspendas un tratamiento por preparar estas notas.']
       },
       {
         title: 'Una hoja basta para empezar',
@@ -82,13 +84,13 @@ export const blogDrafts = [
       }
     ],
     sources: [
-      { label: 'Guía internacional EAACI/GA²LEN/EuroGuiDerm/APAAACI sobre definición, clasificación y evaluación de urticaria (2022)', href: 'https://eaaci.org/guidelines-position-papers/the-international-eaaci-ga%C2%B2len-euroguiderm-apaaaci-guideline-for-the-definition-classification-diagnosis-and-management-of-urticaria/' }
+      { label: 'T. Zuberbier <em>et al.</em>, &ldquo;The international EAACI/GA&sup2;LEN/EuroGuiDerm/APAAACI guideline for the definition, classification, diagnosis, and management of urticaria,&rdquo; <em>Allergy</em>, vol. 77, no. 3, pp. 734&ndash;766, 2022, doi: 10.1111/all.15090.', href: 'https://eaaci.org/guidelines-position-papers/the-international-eaaci-ga%C2%B2len-euroguiderm-apaaaci-guideline-for-the-definition-classification-diagnosis-and-management-of-urticaria/' }
     ]
   },
   {
-    slug: 'dietas-restrictivas-uce',
-    topic: 'Alimentación y UCE',
-    title: 'Mitos comunes sobre las dietas restrictivas en UCE',
+    slug: 'dietas-restrictivas-urticaria-cronica-espontanea',
+    topic: 'Alimentación y urticaria crónica espontánea',
+    title: 'Mitos comunes sobre las dietas restrictivas en urticaria crónica espontánea',
     excerpt: 'Información general para conversar sobre alimentación y urticaria crónica espontánea sin hacer cambios por cuenta propia.',
     readTime: '2 min de lectura',
     image: 'assets/blog/claridad-ideas.webp',
@@ -107,6 +109,8 @@ export const blogDrafts = [
         paragraphs: ['Si notas una relación entre algo que comiste y tus síntomas, anota qué ocurrió y cuándo. Comparte esas observaciones con el profesional; un registro personal no establece un diagnóstico.']
       }
     ],
-    sources: []
+    sources: [
+      { label: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', href: 'https://doi.org/10.4168/aair.2025.17.5.531' }
+    ]
   }
 ]

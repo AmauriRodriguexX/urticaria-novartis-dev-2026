@@ -3,9 +3,7 @@
   import Icon from './Icon.svelte'
   import { routeHref } from './siteContent.js'
   import { reveal } from './reveal.js'
-  import { casos, iniciales } from './testimonios.js'
-
-  const base = import.meta.env.BASE_URL
+  import { casos } from './testimonios.js'
 
   const topics = [
     { id: 'todos', label: 'Todo' },
@@ -15,8 +13,8 @@
   ]
   const posts = [
     { id: 1, topic: 'historias', tag: 'Historias', title: 'Pensé que podía ser algo que comía', body: '“Quiero entender qué puede significar lo que observo y qué preguntas puedo llevar a consulta.”', type: 'Experiencia de muestra' },
-    { id: 2, topic: 'consulta', tag: 'Preparar mi consulta', title: 'La picazón afecta mi descanso', body: '“Estoy anotando cómo se presentan las molestias y cómo influyen en mi rutina para comentarlo con un profesional.”', type: 'Experiencia de muestra' },
-    { id: 3, topic: 'dia-a-dia', tag: 'Día a día', title: 'Acompañar a alguien de mi familia', body: '“Me preocupa la picazón que tiene mi hijo. Quiero ordenar lo que observo para conversarlo en consulta.”', type: 'Experiencia de muestra' }
+    { id: 2, topic: 'consulta', tag: 'Preparar mi consulta', title: 'La comezón afecta mi descanso', body: '“Estoy anotando cómo se presentan las molestias y cómo influyen en mi rutina para comentarlo con un profesional.”', type: 'Experiencia de muestra' },
+    { id: 3, topic: 'dia-a-dia', tag: 'Día a día', title: 'Acompañar a alguien de mi familia', body: '“Me preocupa la comezón que tiene mi hijo. Quiero ordenar lo que observo para conversarlo en consulta.”', type: 'Experiencia de muestra' }
   ]
 
   let activeTopic = 'todos'
@@ -42,12 +40,10 @@
     return matchesTopic && (!query || `${post.title} ${post.body} ${post.tag}`.toLowerCase().includes(query))
   })
 
-  // Formulario para compartir. Anónimo por defecto: el nombre solo se pide si la persona elige mostrarlo.
-  let form = { visibility: 'anonimo', name: '', age: '', city: '', topic: 'historias', title: '', story: '', consent: false }
+  // Formulario para compartir. Todas las historias son 100 % anónimas: no se pide nombre, edad ni ciudad.
+  let form = { topic: 'historias', title: '', story: '', consent: false }
   let sent = false
-  $: publicName = form.visibility === 'nombre' && form.name.trim()
-    ? [form.name.trim(), form.age && `${form.age} años`, form.city.trim()].filter(Boolean).join(' · ')
-    : 'Anónimo'
+  const publicName = 'Anónimo'
 
   async function openShare() {
     shareInfoOpen = true
@@ -69,7 +65,7 @@
   }
 
   function resetForm() {
-    form = { visibility: 'anonimo', name: '', age: '', city: '', topic: 'historias', title: '', story: '', consent: false }
+    form = { topic: 'historias', title: '', story: '', consent: false }
     sent = false
   }
 </script>
@@ -78,11 +74,11 @@
   <div class="community-hero">
     <div class="community-copy">
       <p class="eyebrow">Testimonios</p>
-      <h1 id="community-title">Historias Reales de Urticaria Crónica Espontánea: No Estás Solo</h1>
+      <h1 id="community-title">No eres el único: historias sobre urticaria crónica espontánea</h1>
       <p>Detrás de cada brote hay una historia de resiliencia. Conoce los testimonios de personas que, al igual que tú, enfrentaron la incertidumbre, encontraron el tratamiento adecuado y volvieron a tomar el control de su vida.</p>
       <button class="button community-cta" type="button" aria-expanded={shareInfoOpen} aria-controls="compartir" on:click={() => shareInfoOpen ? (shareInfoOpen = false) : openShare()}><Icon name="groups" size={20} /><span>{shareInfoOpen ? 'Cerrar formulario' : 'Compartir mi Historia'}</span></button>
     </div>
-    <div class="community-stat"><span>Las historias de la comunidad se publican con autorización y revisión del equipo médico.</span></div>
+    <div class="community-stat"><span>Todas las historias son 100 % anónimas y se revisan antes de publicarse.</span></div>
   </div>
 
   {#if shareInfoOpen}
@@ -96,20 +92,6 @@
       {:else}
         <form class="composer-form" on:submit|preventDefault={submitStory}>
           <h2>Comparte tu historia</h2>
-          <fieldset class="composer-visibility">
-            <legend>¿Cómo quieres que aparezca?</legend>
-            <label class:chosen={form.visibility === 'anonimo'}><input type="radio" bind:group={form.visibility} value="anonimo" /> <span><strong>Anónima</strong><small>No pedimos ni publicamos tu nombre.</small></span></label>
-            <label class:chosen={form.visibility === 'nombre'}><input type="radio" bind:group={form.visibility} value="nombre" /> <span><strong>Con mi nombre</strong><small>Tú decides qué datos mostrar.</small></span></label>
-          </fieldset>
-
-          {#if form.visibility === 'nombre'}
-            <div class="composer-row">
-              <label>Nombre o seudónimo<input class="composer-title" bind:value={form.name} required maxlength="40" autocomplete="given-name" placeholder="Ej. Mariana S." /></label>
-              <label>Edad <small>(opcional)</small><input class="composer-title" bind:value={form.age} type="number" min="1" max="110" inputmode="numeric" /></label>
-              <label>Ciudad <small>(opcional)</small><input class="composer-title" bind:value={form.city} maxlength="40" autocomplete="address-level2" /></label>
-            </div>
-          {/if}
-
           <label for="share-topic">Tema</label>
           <select id="share-topic" class="composer-title" bind:value={form.topic}>
             {#each topics.slice(1) as topic}<option value={topic.id}>{topic.label}</option>{/each}
@@ -118,12 +100,12 @@
           <input id="share-title" class="composer-title" bind:value={form.title} required maxlength="80" placeholder="Ej. Pensé que era alergia a la comida" />
           <label for="share-story">Tu historia</label>
           <textarea id="share-story" bind:value={form.story} required maxlength="1200" placeholder="Cuéntanos qué viviste, qué te ayudó y qué te gustaría que otras personas supieran."></textarea>
-          <span class="composer-hint">{form.story.length}/1200 · No incluyas teléfonos, correos ni nombres de médicos.</span>
+          <span class="composer-hint">{form.story.length}/1200 · No incluyas nombres, edades, ciudades, teléfonos, correos ni nombres de médicos.</span>
 
           <label class="composer-consent" for="share-consent"><input id="share-consent" type="checkbox" bind:checked={form.consent} required /> <span>Acepto que el equipo médico revise mi historia antes de publicarla.</span></label>
 
           <div class="composer-footer">
-            <p class="composer-preview">Se publicará como: <b>{publicName}</b></p>
+            <p class="composer-preview">Se publicará de forma <b>anónima</b></p>
             <button class="button" type="submit">Enviar mi historia <Icon name="arrow_forward" size={18} /></button>
           </div>
         </form>
@@ -134,18 +116,15 @@
 
 <div class="community-followup content-sections" use:reveal>
   <section class="content-section" aria-labelledby="community-cases-title" data-reveal>
-    <h2 id="community-cases-title">Casos reales de urticaria: Volviendo a vivir sin limitaciones</h2>
-    <p class="content-section-intro">Explora cómo diferentes pacientes mexicanos lograron superar la frustración inicial y reducir la urticaria a la parte más pequeña de sus vidas.</p>
+    <h2 id="community-cases-title">Testimonios anónimos</h2>
+    <p class="content-section-intro">Explora testimonios anónimos de personas que convivieron con ronchas y comezón y acudieron con un profesional de la salud.</p>
     <div class="content-card-grid">
       {#each casos as caso}
         <article class="home-story-card testimonial-case">
           <span class="home-story-mark" aria-hidden="true">“</span>
-          <h3>{caso.name}, {caso.detail} – “{caso.title}”</h3>
+          <h3>“{caso.title}”</h3>
           <blockquote>{caso.story}</blockquote>
-          <footer>
-            <span class="home-story-avatar testimonial-photo">{#if caso.photo}<img src={`${base}${caso.photo}`} alt={`Retrato de ${caso.name}`} loading="lazy" />{:else}<span aria-hidden="true">{iniciales(caso.name)}</span>{/if}</span>
-            <small>{caso.name} · {caso.detail}</small>
-          </footer>
+          <footer><small>Testimonio anónimo</small></footer>
         </article>
       {/each}
     </div>
@@ -192,9 +171,9 @@
   <section class="content-section" aria-labelledby="community-faq-title" data-reveal>
     <h2 id="community-faq-title">Preguntas frecuentes sobre las historias de pacientes</h2>
     <div class="content-faqs">
-      <details><summary><span>¿Puedo compartir mi testimonio de forma anónima?</span><i aria-hidden="true"></i></summary><p>Sí. Sabemos que la salud cutánea es un tema muy personal. Si deseas compartir tu historia para inspirar a otros pero prefieres resguardar tu identidad, podemos usar un seudónimo.</p></details>
-      <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>Directorio Médico</a> para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.</p></details>
+      <details open><summary><span>¿Puedo compartir mi testimonio de forma anónima?</span><i aria-hidden="true"></i></summary><p>Sí. Todas las historias se publican de forma anónima, sin nombre, edad ni ciudad.</p></details>
+      <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>Directorio Médico</a> para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.</p><a class="faq-cta" href={routeHref('directorio-medico')}>Ir al directorio médico <Icon name="arrow_forward" size={16} /></a></details>
     </div>
   </section>
-  <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir al especialista y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi Testimonio <Icon name="arrow_forward" size={18} /></button></section>
+  <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir con un alergólogo o dermatólogo y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi Testimonio <Icon name="arrow_forward" size={18} /></button></section>
 </div>

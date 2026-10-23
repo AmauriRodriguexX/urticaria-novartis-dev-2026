@@ -13,45 +13,46 @@
 
   $: dark = DARK.has(ctx)
 
-  // Red nacional de especialistas certificados en Alergología, Dermatología e Inmunología
+  // Alergólogos y dermatólogos: los especialistas que valoran la urticaria crónica espontánea.
+  // Registros de ejemplo, sin nombres ni consultorios: no hay directorio real todavía.
+  // Si Novartis entrega uno, se cargan aquí sus datos reales (nombre, cédula, consultorio, teléfono).
   const specialists = [
     // Ciudad de México y Área Metropolitana
-    { id: 1, name: 'Dra. Sofía Valenzuela Méndez', type: 'alergologia', label: 'Alergología e Inmunología', address: 'Hospital Español, Ejército Nacional 613, Polanco', cp: '11520', city: 'Ciudad de México', defaultDist: '1.2 km', lat: 19.4402, lng: -99.1915 },
-    { id: 2, name: 'Dr. Alejandro Morales Trejo', type: 'dermatologia', label: 'Dermatología Clínica', address: 'Médica Sur, Puente de Piedra 150, Tlalpan', cp: '14050', city: 'Ciudad de México', defaultDist: '2.1 km', lat: 19.2991, lng: -99.1554 },
-    { id: 3, name: 'Dra. Mariana Estrada Ríos', type: 'alergologia', label: 'Alergología de Alta Especialidad', address: 'Hospital Ángeles del Pedregal, Camino a Santa Teresa 1055', cp: '10700', city: 'Ciudad de México', defaultDist: '3.4 km', lat: 19.3147, lng: -99.2185 },
-    { id: 4, name: 'Dr. Carlos Guzmán Viveros', type: 'dermatologia', label: 'Dermatología y UCE', address: 'Álvaro Obregón 151, Col. Roma Norte', cp: '06700', city: 'Ciudad de México', defaultDist: '1.8 km', lat: 19.4172, lng: -99.1620 },
-    { id: 5, name: 'Dra. Valeria Ortiz Peñaloza', type: 'inmunologia', label: 'Inmunología Clínica', address: 'Centro Médico ABC Santa Fe, Carlos Graef 154', cp: '05300', city: 'Ciudad de México', defaultDist: '4.5 km', lat: 19.3592, lng: -99.2783 },
-    { id: 6, name: 'Dr. Roberto Lozano Garza', type: 'alergologia', label: 'Alergología Integral', address: 'Insurgentes Sur 1388, Col. Actipan / Del Valle', cp: '03230', city: 'Ciudad de México', defaultDist: '2.8 km', lat: 19.3712, lng: -99.1788 },
+    { id: 1, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Ciudad de México', cp: '11520', city: 'Ciudad de México', defaultDist: '1.2 km', lat: 19.4402, lng: -99.1915 },
+    { id: 2, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Ciudad de México', cp: '14050', city: 'Ciudad de México', defaultDist: '2.1 km', lat: 19.2991, lng: -99.1554 },
+    { id: 3, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Ciudad de México', cp: '10700', city: 'Ciudad de México', defaultDist: '3.4 km', lat: 19.3147, lng: -99.2185 },
+    { id: 4, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Ciudad de México', cp: '06700', city: 'Ciudad de México', defaultDist: '1.8 km', lat: 19.4172, lng: -99.1620 },
+    { id: 5, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Ciudad de México', cp: '05300', city: 'Ciudad de México', defaultDist: '4.5 km', lat: 19.3592, lng: -99.2783 },
+    { id: 6, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Ciudad de México', cp: '03230', city: 'Ciudad de México', defaultDist: '2.8 km', lat: 19.3712, lng: -99.1788 },
 
     // Guadalajara y Zapopan
-    { id: 7, name: 'Dr. Marco Villaseñor Fuentes', type: 'dermatologia', label: 'Dermatología', address: 'Puerta de Hierro 5150, Zapopan', cp: '45116', city: 'Guadalajara / Zapopan', defaultDist: '2.0 km', lat: 20.7103, lng: -103.4145 },
-    { id: 8, name: 'Dra. Renata Ceballos Barreda', type: 'alergologia', label: 'Alergología e Inmunología', address: 'Av. Terranova 295, Col. Providencia, Guadalajara', cp: '44630', city: 'Guadalajara', defaultDist: '2.5 km', lat: 20.6931, lng: -103.3832 },
-    { id: 9, name: 'Dr. Héctor Navarro Cuevas', type: 'dermatologia', label: 'Dermatología Clínica', address: 'Av. Vallarta 1525, Col. Americana, Guadalajara', cp: '44160', city: 'Guadalajara', defaultDist: '3.1 km', lat: 20.6749, lng: -103.3670 },
+    { id: 7, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Guadalajara / Zapopan', cp: '45116', city: 'Guadalajara / Zapopan', defaultDist: '2.0 km', lat: 20.7103, lng: -103.4145 },
+    { id: 8, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Guadalajara', cp: '44630', city: 'Guadalajara', defaultDist: '2.5 km', lat: 20.6931, lng: -103.3832 },
+    { id: 9, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Guadalajara', cp: '44160', city: 'Guadalajara', defaultDist: '3.1 km', lat: 20.6749, lng: -103.3670 },
 
     // Monterrey y San Pedro Garza García
-    { id: 10, name: 'Dra. Laura Garza Benavides', type: 'alergologia', label: 'Alergología e Inmunología', address: 'Hospital Zambrano Hellion, Batallón de San Patricio 112', cp: '66278', city: 'Monterrey', defaultDist: '2.3 km', lat: 25.6489, lng: -100.3347 },
-    { id: 11, name: 'Dr. Andrés Cavazos Sada', type: 'dermatologia', label: 'Dermatología Avanzada', address: 'Doctors Hospital, Ecuador 2331, San Jerónimo', cp: '64620', city: 'Monterrey', defaultDist: '3.0 km', lat: 25.6811, lng: -100.3598 },
-    { id: 12, name: 'Dra. Marcela Treviño Cantú', type: 'inmunologia', label: 'Inmunología Clínica', address: 'Hospital San José TecSalud, Morones Prieto 3000 Pte', cp: '64710', city: 'Monterrey', defaultDist: '3.8 km', lat: 25.6661, lng: -100.3475 },
+    { id: 10, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Monterrey', cp: '66278', city: 'Monterrey', defaultDist: '2.3 km', lat: 25.6489, lng: -100.3347 },
+    { id: 11, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Monterrey', cp: '64620', city: 'Monterrey', defaultDist: '3.0 km', lat: 25.6811, lng: -100.3598 },
+    { id: 12, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Monterrey', cp: '64710', city: 'Monterrey', defaultDist: '3.8 km', lat: 25.6661, lng: -100.3475 },
 
     // Puebla
-    { id: 13, name: 'Dra. Gabriela Cordero Vega', type: 'alergologia', label: 'Alergología', address: 'Hospital Puebla, Privada de las Ramblas 4, Angelópolis', cp: '72197', city: 'Puebla', defaultDist: '2.2 km', lat: 19.0272, lng: -98.2295 },
-    { id: 14, name: 'Dr. Fernando Montiel Téllez', type: 'dermatologia', label: 'Dermatología', address: 'Av. Juárez 2108, Col. La Paz, Puebla', cp: '72160', city: 'Puebla', defaultDist: '2.9 km', lat: 19.0514, lng: -98.2198 },
+    { id: 13, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Puebla', cp: '72197', city: 'Puebla', defaultDist: '2.2 km', lat: 19.0272, lng: -98.2295 },
+    { id: 14, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Puebla', cp: '72160', city: 'Puebla', defaultDist: '2.9 km', lat: 19.0514, lng: -98.2198 },
 
     // Querétaro
-    { id: 15, name: 'Dra. Mónica Balderas Ortiz', type: 'alergologia', label: 'Alergología e Inmunología', address: 'Médica Moscati, Villas del Mesón 40, Juriquilla', cp: '76230', city: 'Querétaro', defaultDist: '2.4 km', lat: 20.7025, lng: -100.4430 },
-    { id: 16, name: 'Dr. Daniel Quiroz Ramos', type: 'dermatologia', label: 'Dermatología', address: 'Hospital Ángeles Querétaro, Bernardino del Razo 21', cp: '76010', city: 'Querétaro', defaultDist: '3.2 km', lat: 20.5794, lng: -100.4042 },
+    { id: 15, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Querétaro', cp: '76230', city: 'Querétaro', defaultDist: '2.4 km', lat: 20.7025, lng: -100.4430 },
+    { id: 16, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Querétaro', cp: '76010', city: 'Querétaro', defaultDist: '3.2 km', lat: 20.5794, lng: -100.4042 },
 
     // Mérida
-    { id: 17, name: 'Dra. Elena Cárdenas Pantoja', type: 'alergologia', label: 'Alergología e Inmunología', address: 'Calle 7 #215, Fracc. Altabrisa, Mérida', cp: '97130', city: 'Mérida', defaultDist: '1.5 km', lat: 21.0185, lng: -89.5855 },
-    { id: 18, name: 'Dr. Sergio Peniche Gamboa', type: 'inmunologia', label: 'Inmunología Clínica', address: 'Av. Colón 210, Col. García Ginerés, Mérida', cp: '97070', city: 'Mérida', defaultDist: '2.4 km', lat: 20.9840, lng: -89.6240 },
-    { id: 19, name: 'Dra. Paula Rentería Solís', type: 'alergologia', label: 'Alergología', address: 'Prol. Montejo 220, Col. Itzimná, Mérida', cp: '97100', city: 'Mérida', defaultDist: '2.8 km', lat: 20.9970, lng: -89.6180 },
-    { id: 20, name: 'Dr. Iván Solórzano Peón', type: 'dermatologia', label: 'Dermatología Clínica', address: 'Av. Pérez Ponce 134, Col. Alcalá Martín, Mérida', cp: '97050', city: 'Mérida', defaultDist: '3.4 km', lat: 20.9885, lng: -89.6085 }
+    { id: 17, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Mérida', cp: '97130', city: 'Mérida', defaultDist: '1.5 km', lat: 21.0185, lng: -89.5855 },
+    { id: 18, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Mérida', cp: '97070', city: 'Mérida', defaultDist: '2.4 km', lat: 20.9840, lng: -89.6240 },
+    { id: 19, name: 'Alergólogo/a · ejemplo', type: 'alergologia', label: 'Alergología', address: 'Consultorio por confirmar · Mérida', cp: '97100', city: 'Mérida', defaultDist: '2.8 km', lat: 20.9970, lng: -89.6180 },
+    { id: 20, name: 'Dermatólogo/a · ejemplo', type: 'dermatologia', label: 'Dermatología', address: 'Consultorio por confirmar · Mérida', cp: '97050', city: 'Mérida', defaultDist: '3.4 km', lat: 20.9885, lng: -89.6085 }
   ]
 
   const TYPES = {
     alergologia: { label: 'Alergología', color: '#ee7067' },
-    dermatologia: { label: 'Dermatología', color: '#0081a8' },
-    inmunologia: { label: 'Inmunología', color: '#c9a227' }
+    dermatologia: { label: 'Dermatología', color: '#0081a8' }
   }
 
   let filter = 'todos'
@@ -286,8 +287,8 @@
 </script>
 
 <div class="directory">
-  <h2 tabindex="-1">Especialistas certificados cerca de ti</h2>
-  <p class="sub">Alergólogos, dermatólogos e inmunólogos de la red de atención en urticaria. <b>Llévale tu resumen a uno de ellos.</b></p>
+  <h2 tabindex="-1">Alergólogos y dermatólogos cerca de ti</h2>
+  <p class="sub">Los especialistas que valoran la urticaria crónica espontánea son alergólogos y dermatólogos. <b>Llévale tu resumen a uno de ellos.</b></p>
 
   <div class="dir-controls">
     <div class="filters-wrap" class:at-start={!puedeIzq} class:at-end={!puedeDer}>
@@ -336,7 +337,7 @@
       </div>
       <div class="dir-tips">
         <strong><Icon name="stethoscope" size={17} /> ¿Qué llevar a tu consulta?</strong>
-        <p>1. Tu <b>resumen descargado</b> del test. 2. Fotos de tus brotes fechadas. 3. Lista de antihistamínicos que ya has probado.</p>
+        <p>1. Tu <b>resumen descargado</b> del test. 2. Fotos de tus brotes fechadas. 3. Lista de los tratamientos que ya has usado.</p>
       </div>
     </div>
 

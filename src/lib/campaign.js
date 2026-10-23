@@ -20,9 +20,9 @@ export const questions = {
 
   q1: ['multi', '¿Has presentado alguno de los siguientes síntomas?', 'Marca todos los que hayas notado en tu piel.', [
     ['ninguno', 'Ninguno de estos', ''],
-    ['ronchas', 'Ronchas en la piel', 'Marcas rojizas o elevadas que aparecen y desaparecen'],
+    ['ronchas', 'Habones (ronchas) en la piel', 'Marcas rojizas o elevadas que aparecen y desaparecen'],
     ['picazon', 'Comezón intensa', 'Sensación constante o incómoda de querer rascarte'],
-    ['hinchazon', 'Hinchazón', 'En labios, párpados, manos o pies']
+    ['hinchazon', 'Hinchazón (angioedema)', 'En labios, párpados, manos o pies']
   ]],
 
   q1b: ['single', '¿La hinchazón es en labios, lengua o garganta, o te cuesta respirar?', 'Esto es importante: ayuda a descartar una urgencia.', [
@@ -51,7 +51,7 @@ export const questions = {
     ['3', 'Alta / Severa', 'Comezón intensa que interfiere con tu día o el sueño']
   ]],
 
-  q5: ['single', 'En la última semana, ¿cómo ha sido la hinchazón en tu cuerpo?', 'Hinchazón debajo de la piel en labios, párpados, manos o pies.', [
+  q5: ['single', 'En la última semana, ¿cómo ha sido la hinchazón (angioedema) en tu cuerpo?', 'Hinchazón debajo de la piel en labios, párpados, manos o pies.', [
     ['0', 'Ninguna', 'No he tenido hinchazón'],
     ['1', 'Leve', 'Hinchazón ligera en una zona, cede rápido sin dolor'],
     ['2', 'Moderada', 'Notoria, limita ligeramente o causa molestia'],
@@ -124,15 +124,15 @@ export const questions = {
     ['alergologo', 'Alergólogo/a', '']
   ]],
 
-  q17: ['single', '¿Has tomado o aplicado algún tratamiento para estos síntomas?', 'Medicamentos recetados, de venta libre o remedios.', [
+  q17: ['single', '¿Has tomado o aplicado algún tratamiento para estos síntomas?', 'Cualquier tratamiento indicado por un médico o que hayas usado por tu cuenta.', [
     ['0', 'No', 'No he tomado ni aplicado nada'],
     ['1', 'Sí', 'He tomado o aplicado tratamientos']
   ]],
 
   q18: ['multi', '¿Qué tipo de tratamiento has utilizado?', 'Selecciona los que hayas probado.', [
-    ['1', 'Básico', 'Antihistamínicos de venta libre, pomadas o remedios caseros'],
-    ['2', 'Intermedio', 'Antihistamínicos recetados a dosis continuas o corticoides'],
-    ['3', 'Avanzado', 'Dosis altas, tratamientos específicos o seguimiento estrecho']
+    ['1', 'Por mi cuenta', 'Lo usé por mi cuenta o por poco tiempo'],
+    ['2', 'Continuo', 'Me lo indicaron y lo uso de forma continua'],
+    ['3', 'Con seguimiento', 'Tengo seguimiento estrecho con un alergólogo o dermatólogo']
   ]],
 
   q19: ['single', '¿Qué tan efectivo ha sido tu tratamiento para controlar tus síntomas?', '', [

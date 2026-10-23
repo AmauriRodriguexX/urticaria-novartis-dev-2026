@@ -270,6 +270,7 @@
         <p>La hinchazón de labios, lengua o garganta — o la dificultad para respirar — necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p>
         <a class="button" href="tel:911"><Icon name="call" size={20} /><span>Llamar a emergencias (911)</span></a>
         <button class="text" on:click={() => go('map', step)}><Icon name="location_on" size={18} /> Ver especialistas</button>
+        <p class="urgent-note"><small>Esta pantalla no es un diagnóstico. Únicamente un profesional de la salud puede determinar la enfermedad y sugerir un tratamiento específico.</small></p>
       </div>
 
     {:else if phase === 'result'}
@@ -277,6 +278,7 @@
         <p class="eyebrow accent">Ya diste el primer paso para ponerla en su lugar.</p>
         <h2 tabindex="-1" bind:this={heading}>{lectura.titulo}</h2>
         <p class="sub">{lectura.detalle}</p>
+        <p class="sub quiz-legal-note"><small>Este resultado es solo orientativo y no es un diagnóstico. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</small></p>
 
         {#if lectura.reporte && [2, 3, 4, 5, 6].some(n => lectura.reporte[`seccion${n}`])}
           <div class="report-box" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--card, #fff); border-radius: 14px; border: 1px solid var(--border, #e6e2d4); line-height: 1.6; font-size: 0.98rem; text-align: left;">
@@ -301,9 +303,9 @@
 
         {#if answers.q19 !== '3'}
           <div class="result-banner-cta">
-            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Especialistas certificados</span>
+            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Alergólogos y dermatólogos</span>
             <div class="banner-body">
-              <h3>¿Buscas un especialista que trate tus síntomas?</h3>
+              <h3>¿Buscas un alergólogo o dermatólogo que valore tus síntomas?</h3>
               <p>Encuentra médicos dermatólogos y alergólogos certificados cerca de ti para dar el siguiente paso.</p>
             </div>
             <button class="button banner-action" on:click={() => go('map', step)}>

@@ -1,9 +1,22 @@
 <script>
-  import Icon from './Icon.svelte'
+  import { onMount } from 'svelte'
 
   const blankDays = () => Array.from({ length: 7 }, (_, index) => ({ day: `Día ${index + 1}`, date: '', hives: 0, itch: 0 }))
   const weekdayNames = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+  // Los registros son anónimos y viven solo en el almacenamiento local del navegador; nunca se envían a un servidor.
+  const STORE_KEY = 'mqu-diario-sintomas'
   let days = blankDays()
+  let loaded = false
+  onMount(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null')
+      if (Array.isArray(saved) && saved.length === 7) days = saved
+    } catch { /* sin almacenamiento, el registro vive hasta recargar */ }
+    loaded = true
+  })
+  $: if (loaded) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(days)) } catch { /* el diario sigue funcionando en esta sesión */ }
+  }
   let openDateIndex = null
   let calendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   let pickerPosition = { top: 0, left: 0 }
@@ -80,11 +93,11 @@
 <section class="symptom-diary print-sheet" id="registro" aria-labelledby="diary-tool-title">
   <div class="diary-tool-heading">
     <div><p class="eyebrow">Registro personal</p><h2 id="diary-tool-title">Mi Diario de Síntomas</h2></div>
-    <p>Esta página no crea una cuenta ni guarda o envía tus respuestas.</p>
+    <p>Tu registro es anónimo: se guarda solo en este navegador y no se envía a ningún servidor.</p>
   </div>
   <div class="diary-table-wrap">
     <table class="diary-table">
-      <thead><tr><th scope="col">Día</th><th scope="col">Fecha</th><th scope="col">Habones<br /><small>0 a 3</small></th><th scope="col">Picazón<br /><small>0 a 3</small></th></tr></thead>
+      <thead><tr><th scope="col">Día</th><th scope="col">Fecha</th><th scope="col">Habones (ronchas)<br /><small>0 a 3</small></th><th scope="col">Comezón<br /><small>0 a 3</small></th></tr></thead>
       <tbody>
         {#each days as day, i (day.day)}
           <tr>
@@ -96,8 +109,8 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 15H5V9h14v10ZM7 11h3v3H7z" /></svg>
               </button>
             </td>
-            <td><label class="sr-only" for={`diary-hives-${i}`}>Habones, {day.day}</label><select id={`diary-hives-${i}`} aria-label={`Habones, ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
-            <td><label class="sr-only" for={`diary-itch-${i}`}>Picazón, {day.day}</label><select id={`diary-itch-${i}`} aria-label={`Picazón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
+            <td><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
+            <td><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
           </tr>
         {/each}
       </tbody>
@@ -120,7 +133,7 @@
       <div class="material-date-picker-footer"><button type="button" on:click={() => openDateIndex = null}>Cancelar</button><button type="button" on:click={() => selectCalendarDate(new Date())}>Hoy</button></div>
     </div>
   {/if}
-  <p class="diary-scale">Usa 0 si no observaste el síntoma y de 1 a 3 para registrar su intensidad. Estos totales son solo una forma de ordenar tus notas; no interpretan ni diagnostican tu estado.</p>
+  <p class="diary-scale">Usa 0 si no observaste el síntoma y de 1 a 3 para registrar su intensidad. Estos totales son solo una forma de ordenar tus notas; no interpretan ni diagnostican tu estado. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</p>
   <div class="diary-tool-actions no-print">
     <button class="button" type="button" on:click={() => window.print()}>Imprimir o guardar como PDF</button>
     <button class="text-button" type="button" on:click={clearDiary}>Borrar este registro</button>

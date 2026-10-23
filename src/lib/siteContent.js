@@ -1,5 +1,6 @@
 import pageMetadata from './pageMetadata.json'
 import { heroVariation } from './heroVariations.js'
+import { NOTA_TEST } from './site.js'
 
 const BASE = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
 
@@ -25,6 +26,13 @@ export function routeFromPath(pathname = window.location.pathname) {
   return path.replace(/^\/+|\/+$/g, '')
 }
 
+// Referencias de Inicio (numeración propia de la página).
+export const homeSources = [
+  { n: 1, short: 'Tbakhi et al. (2025)', text: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', url: 'https://doi.org/10.4168/aair.2025.17.5.531' },
+  { n: 2, short: 'MedlinePlus (2025)', text: 'MedlinePlus, &ldquo;Urticaria,&rdquo; U.S. National Library of Medicine (NIH), rev. Apr. 1, 2025.', url: 'https://medlineplus.gov/spanish/ency/article/000845.htm' },
+  { n: 3, short: 'Yadav y Bajaj (2009)', text: 'S. Yadav and A. K. Bajaj, &ldquo;Management of difficult urticaria,&rdquo; <em>Indian J. Dermatol.</em>, vol. 54, no. 3, pp. 275&ndash;279, 2009, doi: 10.4103/0019-5154.55641.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2810698/' }
+]
+
 export const navigation = [
   { label: 'Inicio', slug: '' },
   { label: 'Recursos', slug: 'recursos-herramientas' },
@@ -41,10 +49,10 @@ export function homeCopyFor(ctx, now, city, temp) {
   return {
     kicker: 'Más que Urticaria',
     title: variation?.title || 'Urticaria Crónica Espontánea: Haz de la Urticaria la Parte Más Pequeña de tu Vida',
-    intro: variation?.intro || "Vivir con picazón constante, habones e hinchazón inesperada puede sentirse abrumador. En 'Más que Urticaria' te acompañamos para que entiendas tu diagnóstico, encuentres la atención médica adecuada y recuerdes que tu vida es mucho más grande que tus síntomas.",
+    intro: variation?.intro || "Vivir con comezón constante, habones (ronchas) e hinchazón (angioedema) inesperada puede sentirse abrumador. En 'Más que Urticaria' te acompañamos para que entiendas tu diagnóstico, encuentres la atención médica adecuada y recuerdes que tu vida es mucho más grande que tus síntomas.",
     primaryCta: 'Hacer Test de Autoevaluación',
     secondaryCta: 'Buscar Especialista',
-    note: ''
+    note: NOTA_TEST
   }
 }
 
@@ -59,30 +67,25 @@ export const landingPages = {
       {
         id: 'causa', title: '¿Quiénes somos?',
         paragraphs: [
-          '“Más que Urticaria” es un sitio informativo sobre urticaria crónica espontánea (UCE). Aquí puedes explorar explicaciones en lenguaje claro, registrar lo que observas y preparar preguntas para una consulta.',
+          '“Más que Urticaria” es un sitio informativo sobre urticaria crónica espontánea. Aquí puedes explorar explicaciones en lenguaje claro, registrar lo que observas y preparar preguntas para una consulta.',
           'El contenido del sitio no ofrece diagnóstico ni atención médica. Un profesional de la salud puede valorar tus síntomas y conversar contigo sobre los siguientes pasos.',
-          'Este sitio es desarrollado con el patrocinio de Novartis.'
         ]
       },
       {
         title: 'Cómo se guía este sitio',
+        cardsRow: 4,
         cards: [
-          { title: 'Claridad', text: 'Explicar términos y recursos con palabras sencillas, sin asumir que quien llega conoce el tema.' },
-          { title: 'Orientación', text: 'Ayudar a organizar observaciones y preguntas para conversar con un profesional de la salud.' }
-        ],
-        listTitle: 'Principios de contenido',
-        list: [
-          'Lenguaje accesible: explicar las siglas y los términos médicos cuando aparecen.',
-          'Uso responsable: distinguir información general de una valoración o recomendación médica.',
-          'Privacidad: explicar cómo funcionan las herramientas y qué ocurre con la información que escribes.',
-          'Transparencia: identificar los temas que todavía están en preparación.'
+          { icon: 'check', title: 'Claro', text: 'Explicamos cada término médico con palabras sencillas.' },
+          { icon: 'shield', title: 'Responsable', text: 'Información general, no un diagnóstico.' },
+          { icon: 'lock', title: 'Privado', text: 'Tu diario se guarda solo en tu navegador.' },
+          { icon: 'visibility', title: 'Transparente', text: 'Te avisamos lo que aún está en preparación.' }
         ]
       },
       {
         title: '¿Qué puedes hacer en el sitio?',
         intro: 'Explora las herramientas y secciones disponibles para conocer más y preparar una consulta:',
         cards: [
-          { title: 'Entender los síntomas', text: 'Consulta información general sobre ronchas, comezón e hinchazón.' , route: 'sintomas', linkLabel: 'Ver síntomas' },
+          { title: 'Entender los síntomas', text: 'Consulta información general sobre habones (ronchas), comezón e hinchazón (angioedema).' , route: 'sintomas', linkLabel: 'Ver síntomas' },
           { title: 'Preparar la consulta', text: 'Usa el test de orientación y el Diario de Síntomas para ordenar tus observaciones.', route: 'recursos-herramientas', linkLabel: 'Explorar recursos' },
           { title: 'Conocer opciones generales', text: 'Lee información para conversar con un profesional sobre el tratamiento.', route: 'tratamiento', linkLabel: 'Ver tratamientos' }
         ]
@@ -90,8 +93,8 @@ export const landingPages = {
       {
         title: 'Preguntas frecuentes sobre el sitio',
         faqs: [
-          { question: '¿Más que Urticaria ofrece consultas médicas directas?', answer: 'No. Este es un sitio informativo; no ofrece consultas médicas ni reemplaza la valoración de un profesional de la salud.' },
-          { question: '¿Tiene algún costo acceder a los recursos de la web?', answer: 'Los recursos informativos disponibles en este sitio no requieren registro.' }
+          { question: '¿Más que Urticaria ofrece consultas médicas directas?', answer: 'No. Este es un sitio informativo; no ofrece consultas médicas ni reemplaza la valoración de un profesional de la salud.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
+          { question: '¿Tiene algún costo acceder a los recursos de la web?', answer: 'Los recursos informativos disponibles en este sitio no requieren registro.', cta: { label: 'Ir a Recursos', route: 'recursos-herramientas' } }
         ]
       }
     ],
@@ -100,60 +103,87 @@ export const landingPages = {
   sintomas: {
     ...pageMetadata.sintomas,
     eyebrow: 'Reconoce lo que pasa en tu piel',
-    title: 'Síntomas de la Urticaria Crónica Espontánea: Reconoce los Brotes y Recupera el Control',
-    intro: 'Vivir con comezón constante, habones e hinchazón inesperada puede ser desgastante. Identificar lo que le pasa a tu piel puede ayudarte a preparar una conversación con un profesional de la salud.',
+    title: 'Síntomas de la Urticaria Crónica Espontánea: Reconoce las Ronchas y Recupera el Control',
+    intro: 'Vivir con comezón constante, habones (ronchas) e hinchazón (angioedema) inesperada puede ser desgastante. Identificar lo que le pasa a tu piel puede ayudarte a preparar una conversación con un profesional de la salud.',
     ctas: [{ label: 'Comenzar Test de Síntomas', action: 'quiz' }],
+    // Referencias de toda la página: numeración continua por orden de aparición.
+    // Cada afirmación científica cita su número (refs) y cada sección indica de dónde se adaptó (adaptadoDe).
+    sources: [
+      { n: 1, short: 'MedlinePlus (2025)', text: 'MedlinePlus, &ldquo;Urticaria,&rdquo; U.S. National Library of Medicine (NIH), rev. Apr. 1, 2025.', url: 'https://medlineplus.gov/spanish/ency/article/000845.htm' },
+      { n: 2, short: 'Tbakhi et al. (2025)', text: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', url: 'https://doi.org/10.4168/aair.2025.17.5.531' },
+      { n: 3, short: 'Wasim et al. (2025)', text: 'A. U. Wasim, S. A. Miriyala, R. Haward, Z. Hammoud, <em>et al.</em>, &ldquo;Sleep disturbance and chronic urticaria: A narrative review of its relationship, treatment and evolving literature,&rdquo; <em>Health Sci. Rep.</em>, vol. 8, no. 5, p. e70777, 2025, doi: 10.1002/hsr2.70777.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12051439/' },
+      { n: 4, short: 'Sachdeva et al. (2011)', text: 'S. Sachdeva, V. Gupta, S. S. Amin, and M. Tahseen, &ldquo;Chronic urticaria,&rdquo; <em>Indian J. Dermatol.</em>, vol. 56, no. 6, pp. 622&ndash;628, 2011, doi: 10.4103/0019-5154.91817.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3276885/' },
+      { n: 5, short: 'Hsieh y Lee (2017)', text: 'J. Hsieh and J. K. Lee, &ldquo;Chronic spontaneous urticaria,&rdquo; <em>CMAJ</em>, vol. 189, no. 2, p. E77, 2017, doi: 10.1503/cmaj.150951.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5235931/' },
+      { n: 6, short: 'Yadav y Bajaj (2009)', text: 'S. Yadav and A. K. Bajaj, &ldquo;Management of difficult urticaria,&rdquo; <em>Indian J. Dermatol.</em>, vol. 54, no. 3, pp. 275&ndash;279, 2009, doi: 10.4103/0019-5154.55641.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2810698/' }
+    ],
     sections: [
       {
-        title: '¿Cuáles son los síntomas principales de la urticaria crónica?',
-        intro: 'La Urticaria Crónica Espontánea (UCE) puede manifestarse con lesiones cutáneas recurrentes durante más de seis semanas. Un profesional de la salud puede valorar tus síntomas.',
+        title: '¿Cuáles son los síntomas de la urticaria crónica espontánea?',
+        intro: 'La urticaria crónica espontánea se caracteriza por habones (ronchas), comezón, hinchazón (angioedema) o ardor, que reaparecen durante más de seis semanas sin un desencadenante identificable. Solo un profesional de la salud puede diagnosticarla.',
+        highlight: 'Clave: los síntomas se repiten durante 6 semanas o más.',
         cards: [
-          { title: 'Habones o ronchas', text: 'Elevaciones en la piel, a menudo rojizas o rosadas, que pueden provocar comezón.' },
-          { title: 'Comezón o picazón', text: 'Una sensación de prurito que puede interferir con el descanso y las actividades.' },
-          { title: 'Ardor o molestia local', text: 'Sensación de quemazón, calor o dolor en las zonas afectadas.' },
-          { title: 'Lesiones cambiantes', text: 'Los habones individuales suelen desaparecer en menos de 24 horas; pueden aparecer otros en diferentes zonas.' }
-        ]
+          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel que dan comezón.', image: true },
+          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.', image: true, refs: 1 },
+          { title: 'Comezón', text: 'Puede afectar las actividades diarias, el sueño y el trabajo.', image: true, refs: [2, 3] },
+          { title: 'Ardor', text: 'Sensación de quemazón en la zona afectada.', image: true }
+        ],
+        // Corte de la piel con línea de tiempo (reemplaza el párrafo de duración): números de la lista de fuentes
+        skinFigure: { sachdeva: 4, hsieh: 5 },
+        adaptadoDe: [1, 2, 3, 4, 5]
       },
       {
-        title: '¿En qué se diferencia la UCE de otros tipos de urticaria?',
-        intro: 'Los síntomas pueden tener distintas causas. Esta tabla es una orientación general y no permite identificar por sí sola qué tipo tienes.',
-        table: {
-          headers: ['Criterio', 'Urticaria crónica espontánea', 'Urticaria aguda', 'Urticaria inducible'],
-          rows: [
-            ['Detonante', 'Puede aparecer sin un estímulo externo identificable.', 'Puede relacionarse con un desencadenante específico.', 'Puede asociarse con estímulos como frío, calor, fricción o presión.'],
-            ['Duración', 'Se presenta durante más de seis semanas, con brotes recurrentes.', 'Suele durar menos de seis semanas.', 'Puede aparecer tras el estímulo y variar según la persona.'],
-            ['Evaluación', 'Un profesional determina el diagnóstico y el manejo.', 'La evaluación considera el contexto y los posibles desencadenantes.', 'La evaluación considera el estímulo y los síntomas observados.']
+        title: '¿En qué se diferencia la urticaria crónica espontánea de otros tipos de urticaria?',
+        // Comparador interactivo. Las afirmaciones médicas citan la lista de referencias de la página.
+        adaptadoDe: [1, 2],
+        compare: {
+          lead: 'Explora las principales diferencias. Selecciona un tema para comparar.',
+          notice: 'Esta información es una orientación general y no sustituye la valoración de un profesional de la salud.',
+          types: [
+            { key: 'uce', name: 'Urticaria crónica espontánea', highlight: true },
+            { key: 'aguda', name: 'Urticaria aguda' },
+            { key: 'inducible', name: 'Urticaria inducible' }
+          ],
+          topics: [
+            { icon: 'auto_awesome', label: 'Qué la puede desencadenar', values: {
+              uce: { text: 'Aparece sin un desencadenante identificable.', ref: 2 },
+              aguda: 'Puede relacionarse con un desencadenante específico.',
+              inducible: { text: 'Se provoca por un estímulo físico específico.', ref: 2 } } },
+            { icon: 'calendar_month', label: 'Cuánto tiempo dura', values: {
+              uce: { text: 'Las ronchas reaparecen durante más de seis semanas.', ref: 1, stat: '6 semanas o más' },
+              aguda: { text: 'Los síntomas desaparecen antes de las seis semanas.', ref: 1, stat: 'Menos de 6 semanas' },
+              inducible: 'Aparece tras el estímulo y puede variar según la persona.' } },
+            { icon: 'stethoscope', label: 'Cómo se evalúa', values: {
+              uce: 'Un profesional de la salud determina el diagnóstico y el manejo.',
+              aguda: 'La evaluación considera el contexto y los posibles desencadenantes.',
+              inducible: 'La evaluación considera el estímulo y los síntomas observados.' } }
+          ],
+          key: { text: 'La urticaria crónica espontánea aparece sin un desencadenante identificable y dura más de seis semanas.', ref: [1, 2] },
+          badges: [
+            { icon: 'menu_book', title: 'Información clara', text: 'Con fuentes científicas citadas' },
+            { icon: 'forum', title: 'Para una mejor conversación', text: 'Con tu profesional de la salud' }
           ]
         }
       },
       {
         title: 'Guía visual: signos que puedes describir en consulta',
         cards: [
-          { title: 'Habones y ronchas', text: 'Pueden aparecer en distintas partes del cuerpo y variar de tamaño.' },
-          { title: 'Angioedema o hinchazón', text: 'La inflamación puede afectar zonas como párpados, labios, manos o pies. La hinchazón de lengua o garganta o la dificultad para respirar requiere atención urgente.' },
-          { title: 'Reacción al roce', text: 'Algunas personas notan ronchas después de rascarse o de la presión sobre la piel.' }
-        ]
-      },
-      {
-        title: 'Síntomas en distintas etapas y perfiles',
-        cards: [
-          { title: 'Mujeres', text: 'Los cambios y experiencias pueden variar entre personas. Anota cualquier patrón que quieras conversar con un profesional.' },
-          { title: 'Niños', text: 'Si los brotes persisten o te preocupan, consulta con un profesional de la salud que pueda valorar al menor.' },
-          { title: 'Hombres', text: 'Registra si notas cambios relacionados con tus actividades, ropa, presión o rutina para comentarlos en consulta.' }
-        ]
+          { title: 'Habones (ronchas)', text: 'Pueden aparecer en distintas partes del cuerpo y variar de tamaño.', refs: 1 },
+          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados. La hinchazón de lengua o garganta o la dificultad para respirar requiere atención urgente.', refs: 1 },
+          { title: 'Reacción al roce', text: 'Algunas personas notan ronchas después de rascarse o de la presión sobre la piel.', refs: 1 }
+        ],
+        adaptadoDe: [1]
       },
       {
         title: 'Preguntas frecuentes sobre los síntomas',
         faqs: [
-          { question: '¿Por qué la comezón empeora por la noche?', answer: 'La experiencia varía entre personas. Registra cuándo aparece y cómo afecta tu descanso para comentarlo con un profesional.' },
-          { question: '¿El estrés puede causar los brotes?', answer: 'El estrés puede coincidir con cambios en los síntomas, pero no permite establecer por sí solo la causa. Coméntalo con un profesional.' },
-          { question: '¿Cuánto dura un brote?', answer: 'La duración puede variar. Anota cuánto permanece cada roncha y cuándo aparecen otras.' },
-          { question: '¿La urticaria deja cicatrices?', answer: 'Si una lesión persiste, deja marcas o te preocupa, pide una valoración profesional.' },
-          { question: '¿Es contagiosa?', answer: 'La urticaria no se transmite por contacto entre personas.' }
-        ]
+          { question: '¿Cuánto dura un brote?', answer: 'La duración puede variar. Anota cuánto permanece cada roncha y cuándo aparecen otras.', refs: 1, cta: { label: 'Registrar mis brotes en el diario', route: 'diario' } },
+          { question: '¿La urticaria deja cicatrices?', answer: 'Si una lesión persiste, deja marcas o te preocupa, pide una valoración profesional.', refs: 5, cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
+          { question: '¿Es contagiosa?', answer: 'La urticaria no se transmite por contacto entre personas.', refs: 6, cta: { label: 'Hacer el test orientativo', action: 'quiz' } }
+        ],
+        adaptadoDe: [1, 5, 6]
       }
     ],
-    closing: { title: 'Lleva un registro para tu próxima consulta', text: 'Anota cuándo aparecen los brotes, su intensidad y cómo afectan tu día a día.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } }
+    closing: { title: 'Lleva un registro para tu próxima consulta', text: 'Anota cuándo aparecen las ronchas, su intensidad y cómo afectan tu día a día.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } }
   },
   tratamiento: {
     ...pageMetadata.tratamiento,
@@ -161,12 +191,14 @@ export const landingPages = {
     title: 'Tratamientos para la Urticaria Crónica Espontánea: Encuentra el Camino hacia el Alivio',
     intro: 'El tratamiento adecuado depende de cada persona y debe definirse con un profesional de la salud. Esta guía reúne preguntas e información para preparar esa conversación.',
     ctas: [{ label: 'Buscar Especialista', route: 'directorio-medico' }],
+    sources: [
+      { n: 1, short: 'Tbakhi et al. (2025)', text: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', url: 'https://doi.org/10.4168/aair.2025.17.5.531' }
+    ],
     sections: [
       {
         title: '¿Cómo se aborda la urticaria crónica?',
         paragraphs: [
-          'La urticaria crónica espontánea no es necesariamente una alergia pasajera. Un profesional puede evaluar los síntomas, el historial y las opciones de manejo adecuadas para cada persona.',
-          'El objetivo del tratamiento es controlar los síntomas y ayudar a recuperar el descanso y las actividades cotidianas. No empieces, cambies ni suspendas medicamentos sin hablar con tu médico.'
+          'La urticaria crónica espontánea no es una alergia pasajera. Un profesional puede evaluar los síntomas, el historial y las opciones de manejo adecuadas para cada persona.'
         ]
       },
       {
@@ -174,59 +206,34 @@ export const landingPages = {
         layout: 'steps',
         intro: 'El proceso puede incluir distintas respuestas en la piel. Tu equipo de salud puede explicarte cómo se relaciona con tus síntomas y tu tratamiento.',
         list: [
-          'Algunas células de la piel, como los mastocitos, participan en la respuesta inflamatoria.',
-          'En esa respuesta pueden liberarse histamina y otras sustancias.',
-          'Estas respuestas pueden relacionarse con habones, hinchazón y comezón.',
+          { text: 'Algunas células de la piel, como los mastocitos, participan en la respuesta inflamatoria.', refs: 1 },
+          { text: 'En esa respuesta pueden liberarse histamina y otras sustancias.', refs: 1 },
+          { text: 'Estas respuestas pueden relacionarse con habones (ronchas), hinchazón (angioedema) y comezón.', refs: 1 },
           'El profesional de la salud determina qué tratamiento puede ser apropiado.'
-        ]
-      },
-      {
-        title: 'Opciones de medicamento: información general',
-        cards: [
-          { title: 'Antihistamínicos', text: 'Se utilizan en el manejo de la urticaria. El profesional puede indicar cuál usar y cómo tomarlo según tu caso.' },
-          { title: 'Corticoides', text: 'Su uso y duración requieren indicación médica. Pregunta por los beneficios y riesgos en tu situación.' },
-          { title: 'Otras opciones', text: 'Si los síntomas persisten, el especialista puede valorar otras alternativas de tratamiento.' },
-          { title: 'Terapias dirigidas', text: 'Existen opciones que el especialista puede considerar según la respuesta a tratamientos previos y tu historial.' }
-        ]
-      },
-      {
-        title: 'Medidas cotidianas y remedios: qué conversar',
-        intro: 'Antes de probar remedios o hacer cambios importantes en tu rutina o alimentación, consulta con un profesional.',
-        table: {
-          headers: ['Opción', 'Qué considerar'],
-          rows: [
-            ['Compresas frías o baños tibios', 'Pueden resultar reconfortantes para algunas personas. Evita temperaturas que te irriten y consulta si tienes dudas.'],
-            ['Ropa holgada', 'Puede reducir el roce o la presión sobre la piel.'],
-            ['Medicamentos sin receta o cremas', 'Consulta si son apropiados para ti y cómo usarlos.'],
-            ['Remedios tópicos caseros', 'Consulta antes de aplicarlos; algunos productos pueden irritar la piel.'],
-            ['Dietas restrictivas', 'No elimines grupos de alimentos sin una recomendación profesional.']
-          ]
-        }
+        ],
+        adaptadoDe: [1]
       },
       {
         title: '¿Con qué especialista puedo hablar?',
-        intro: 'Un dermatólogo o alergólogo puede valorar tus síntomas y orientarte sobre los siguientes pasos.',
+        intro: 'Un alergólogo o dermatólogo certificado puede valorar tus síntomas y orientarte sobre los siguientes pasos.',
         cards: [
-          { title: 'Dermatología', text: 'Especialidad enfocada en la piel. Puede evaluar las lesiones y otras condiciones cutáneas.' },
-          { title: 'Alergología e inmunología', text: 'Especialidades que pueden valorar respuestas alérgicas e inmunitarias cuando resulte pertinente.' }
+          { title: 'Encuentra a un especialista cerca de ti', text: 'Busca alergólogos y dermatólogos certificados en tu localidad.', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
         ]
       },
       {
         title: 'Preguntas frecuentes sobre tratamiento',
         faqs: [
-          { question: '¿Puedo tomar antihistamínicos sin consultar?', answer: 'Pregunta a un profesional o farmacéutico si son apropiados para ti, especialmente si tienes otras condiciones o tomas otros medicamentos.' },
-          { question: '¿Cuánto tiempo debo tomar el medicamento?', answer: 'Sigue las indicaciones de quien te lo prescribió y consulta antes de cambiar o suspender el tratamiento.' },
-          { question: '¿Por qué debo conversar sobre los corticoides?', answer: 'El uso, duración y posibles riesgos dependen de cada persona. Pide a tu médico que te explique el plan indicado para ti.' }
+          { question: '¿Puedo cambiar o suspender mi tratamiento?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el alergólogo o dermatólogo que te lo indicó.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
         ]
       }
     ],
-    closing: { title: 'Da el siguiente paso con acompañamiento médico', text: 'Prepara tus preguntas y conversa con un profesional de la salud sobre las opciones para ti.', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
+    closing: { title: 'Da el siguiente paso con acompañamiento médico', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
   },
   testimonios: {
     ...pageMetadata.testimonios,
     eyebrow: 'Experiencias para compartir',
     title: 'Historias sobre urticaria crónica espontánea',
-    intro: 'Aquí reuniremos experiencias compartidas con autorización. Los siguientes relatos de muestra ilustran cómo podría verse esta sección.',
+    intro: 'Aquí reuniremos experiencias compartidas de forma anónima. Los siguientes relatos de muestra ilustran cómo podría verse esta sección.',
     ctas: [{ label: 'Conoce nuestros recursos', route: 'recursos-herramientas' }],
     sections: [
       {
@@ -240,13 +247,13 @@ export const landingPages = {
       },
       {
         title: 'Un espacio para historias autorizadas',
-        paragraphs: ['Las historias reales se publicarán únicamente con autorización de las personas participantes y cuidando su privacidad. Cada experiencia es personal y no sustituye la orientación de un profesional de la salud.']
+        paragraphs: ['Todas las historias son 100 % anónimas: no se publican nombres, edades ni ciudades. Cada experiencia es personal y no sustituye la orientación de un profesional de la salud.']
       },
       {
         title: 'Preguntas frecuentes sobre las historias',
         faqs: [
-          { question: '¿Puedo compartir mi testimonio de forma anónima?', answer: 'Sí. Sabemos que la salud cutánea es un tema muy personal. Si deseas compartir tu historia para inspirar a otros pero prefieres resguardar tu identidad, podemos usar un seudónimo.' },
-          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro Directorio Médico para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.' }
+          { question: '¿Puedo compartir mi testimonio de forma anónima?', answer: 'Sí. Todas las historias se publican de forma anónima, sin nombre, edad ni ciudad.' },
+          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro Directorio Médico para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.', cta: { label: 'Ir al directorio médico', route: 'directorio-medico' } }
         ]
       }
     ],
@@ -255,14 +262,14 @@ export const landingPages = {
   diario: {
     ...pageMetadata.diario,
     eyebrow: 'Una herramienta para preparar tu consulta',
-    title: 'Diario de Síntomas: Registra tus Brotes y Toma el Control',
+    title: 'Diario de Síntomas: Registra tus Ronchas y Toma el Control',
     intro: 'Llevar un registro de tus síntomas puede ayudarte a comunicarte con un profesional de la salud. Usa esta hoja de trabajo en tu navegador o imprímela para llevarla a tu consulta.',
     ctas: [{ label: 'Usar el diario', href: '#registro' }, { label: 'Imprimir o guardar como PDF', action: 'print' }],
     sections: [
       {
         title: '¿Qué es el Diario de Síntomas y cómo te ayuda?',
         paragraphs: [
-          'El Diario de Síntomas es una bitácora para anotar la intensidad de las ronchas, el nivel de picazón y cómo afectan tu descanso.',
+          'El Diario de Síntomas es una bitácora para anotar la intensidad de las ronchas, el nivel de comezón y cómo afectan tu descanso.',
           'Llevar tus notas a la cita puede ayudarte a describir lo que has observado. El registro no diagnostica ni recomienda cambios de tratamiento.'
         ]
       },
@@ -271,15 +278,15 @@ export const landingPages = {
         layout: 'steps',
         intro: 'Registra tus observaciones en una escala sencilla de 0 a 3. Usa los campos como notas y conversa con tu profesional sobre cómo interpretar la información.',
         cards: [
-          { title: '1. Habones o ronchas', text: 'Anota si no observaste ronchas, si fueron pocas, moderadas o numerosas, usando la escala de 0 a 3.' },
-          { title: '2. Picazón', text: 'Registra la intensidad y si interfirió con el sueño o las actividades.' },
+          { title: '1. Habones (ronchas)', text: 'Anota si no observaste ronchas, si fueron pocas, moderadas o numerosas, usando la escala de 0 a 3.' },
+          { title: '2. Comezón', text: 'Registra la intensidad y si interfirió con el sueño o las actividades.' },
           { title: '3. Revisa tus notas', text: 'Lleva el registro a tu consulta para comentarlo con tu profesional de la salud.' }
         ]
       },
       {
         title: 'Preguntas frecuentes sobre el Diario',
         faqs: [
-          { question: '¿El diario guarda mis datos?', answer: 'Esta versión no crea una cuenta ni envía ni guarda tus respuestas. Los datos permanecen en la página abierta y se borran al recargarla o cerrarla.' },
+          { question: '¿El diario guarda mis datos?', answer: 'Tus registros son anónimos y se guardan únicamente en el almacenamiento local de tu navegador. No se envían a ningún servidor ni se crea una cuenta. Puedes borrarlos cuando quieras con el botón “Borrar este registro”.' },
           { question: '¿Con qué frecuencia debo llenarlo?', answer: 'Puedes registrar tus observaciones a diario durante los días previos a tu consulta. Confirma con tu profesional qué registro es adecuado para ti.' },
           { question: '¿Puedo usar la versión impresa?', answer: 'Sí. Usa el botón “Imprimir o guardar como PDF” para imprimir la hoja o guardarla como PDF desde el diálogo del navegador.' }
         ]
@@ -317,7 +324,7 @@ export const landingPages = {
         cards: [
           { title: '¿La urticaria empeora con el estrés?', text: 'Un tema para explorar cómo las emociones y los síntomas pueden relacionarse.' },
           { title: 'Guía para preparar tu consulta con dermatología', text: 'Preguntas y datos que puedes llevar a una cita médica.' },
-          { title: 'Mitos comunes sobre las dietas restrictivas en UCE', text: 'Un tema para aclarar dudas sobre alimentación y urticaria crónica.' }
+          { title: 'Mitos comunes sobre las dietas restrictivas en urticaria crónica espontánea', text: 'Un tema para aclarar dudas sobre alimentación y urticaria crónica.' }
         ],
         notice: 'Los artículos completos se publicarán cuando su contenido haya pasado por revisión editorial y médica.'
       }
@@ -327,18 +334,10 @@ export const landingPages = {
   'directorio-medico': {
     ...pageMetadata['directorio-medico'],
     eyebrow: 'Directorio médico',
-    title: 'Médicos especialistas en urticaria crónica espontánea',
-    intro: 'Encuentra dermatólogos, alergólogos e inmunólogos cerca de ti. Un médico especialista en urticaria puede valorar tus síntomas y conversar contigo sobre los siguientes pasos.',
+    title: 'Directorio de alergólogos y dermatólogos',
+    intro: 'No existen especialistas exclusivos en urticaria crónica espontánea: la valoración corresponde a alergólogos o dermatólogos certificados. Encuéntralos cerca de ti para conversar sobre tus síntomas y los siguientes pasos.',
     directoryTool: true,
     sections: [
-      {
-        title: '¿Qué especialista en urticaria crónica puedo consultar?',
-        cards: [
-          { title: 'Dermatología', text: 'El directorio de dermatólogos reúne especialistas en la piel que pueden valorar ronchas, habones y comezón persistente.' },
-          { title: 'Alergología', text: 'Un alergólogo especialista en urticaria puede ayudarte a distinguir entre una reacción alérgica y una urticaria crónica.' },
-          { title: 'Inmunología clínica', text: 'Valora cómo responde el sistema inmunitario cuando los brotes se repiten durante más de seis semanas.' }
-        ]
-      },
       {
         title: 'Cómo usar el directorio de médicos y clínicas',
         list: [
@@ -372,5 +371,5 @@ export const landingPages = {
 export const homeArticles = [
   { slug: 'estres-y-observaciones', title: '¿La urticaria empeora con el estrés?', text: 'Analizamos cómo las emociones influyen en los brotes y qué estrategias de alivio puedes aplicar.' },
   { slug: 'preparar-consulta', title: 'Guía para preparar tu consulta con el dermatólogo', text: 'Qué preguntas hacer y qué datos llevar para aprovechar al máximo tu cita médica.' },
-  { slug: 'dietas-restrictivas-uce', title: 'Mitos comunes sobre las dietas restrictivas en UCE', text: 'Descubre por qué suspender alimentos sin diagnóstico alérgico no frena la urticaria crónica.' }
+  { slug: 'dietas-restrictivas-uce', title: 'Mitos comunes sobre las dietas restrictivas en urticaria crónica espontánea', text: 'Descubre por qué suspender alimentos sin diagnóstico alérgico no frena la urticaria crónica.' }
 ]
