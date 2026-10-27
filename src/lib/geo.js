@@ -4,6 +4,43 @@
 const CACHE_KEY = 'uce_geo_ctx'
 const CACHE_TTL = 1000 * 60 * 30 // 30 minutos de caché en sesión
 
+// Los servicios de geolocalización devuelven nombres en inglés o sin acentos ("Mexico City").
+// En el sitio la ciudad siempre se muestra en español.
+const CITY_ES = {
+  'mexico city': 'Ciudad de México',
+  'mexico': 'Ciudad de México',
+  'ciudad de mexico': 'Ciudad de México',
+  'cdmx': 'Ciudad de México',
+  'merida': 'Mérida',
+  'queretaro': 'Querétaro',
+  'santiago de queretaro': 'Querétaro',
+  'leon': 'León',
+  'cancun': 'Cancún',
+  'san luis potosi': 'San Luis Potosí',
+  'ciudad juarez': 'Ciudad Juárez',
+  'juarez': 'Ciudad Juárez',
+  'torreon': 'Torreón',
+  'culiacan': 'Culiacán',
+  'mazatlan': 'Mazatlán',
+  'tuxtla gutierrez': 'Tuxtla Gutiérrez',
+  'san nicolas de los garza': 'San Nicolás de los Garza',
+  'benito juarez': 'Benito Juárez',
+  'naucalpan de juarez': 'Naucalpan de Juárez',
+  'tlalnepantla': 'Tlalnepantla',
+  'nezahualcoyotl': 'Nezahualcóyotl',
+  'ciudad nezahualcoyotl': 'Ciudad Nezahualcóyotl',
+  'ecatepec de morelos': 'Ecatepec de Morelos',
+  'apodaca': 'Apodaca',
+  'reynosa': 'Reynosa',
+  'hermosillo': 'Hermosillo'
+}
+
+export function cityEs(city) {
+  if (!city) return city
+  const key = city.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim()
+  return CITY_ES[key] || city
+}
+
 export async function detectGeoAndWeather() {
   if (typeof window === 'undefined') return null
 
@@ -31,7 +68,7 @@ export async function detectGeoAndWeather() {
     }
     const coords = cityCoords[cityClean] || { lat: 19.4326, lon: -99.1332 }
     return {
-      city: simCity || 'Ciudad de México',
+      city: cityEs(simCity) || 'Ciudad de México',
       temp: simTemp ? parseFloat(simTemp) : 22,
       lat: coords.lat,
       lon: coords.lon
@@ -44,7 +81,7 @@ export async function detectGeoAndWeather() {
     if (cached) {
       const parsed = JSON.parse(cached)
       if (Date.now() - parsed.timestamp < CACHE_TTL && parsed.data) {
-        return parsed.data
+        return { ...parsed.data, city: cityEs(parsed.data.city) }
       }
     }
   } catch {}
@@ -87,7 +124,7 @@ export async function detectGeoAndWeather() {
 
     if (!geoData) throw new Error('Geo lookup unavailable')
 
-    const city = geoData.city || null
+    const city = cityEs(geoData.city) || null
     let lat = geoData.latitude || (geoData.loc ? parseFloat(geoData.loc.split(',')[0]) : null)
     let lon = geoData.longitude || (geoData.loc ? parseFloat(geoData.loc.split(',')[1]) : null)
     let temp = null

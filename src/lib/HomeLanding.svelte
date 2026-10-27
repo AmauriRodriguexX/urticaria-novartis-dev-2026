@@ -16,13 +16,13 @@
   }
 
   const facts = [
-    { value: '+6', unit: 'semanas', text: 'con habones (ronchas) o hinchazón (angioedema) que van y vienen', refs: [1, 2] },
-    { value: 'No', unit: 'es contagiosa', text: 'ni es tu culpa', refs: 3 },
-    { value: 'Sí', unit: 'tiene tratamiento', text: 'con un alergólogo o dermatólogo', refs: 1 }
+    { value: '+6', unit: 'semanas', text: 'con habones (ronchas) o hinchazón (angioedema) que van y vienen', refs: 1 },
+    { value: 'No', unit: 'es contagiosa', text: 'ni es tu culpa', refs: 2 },
+    { value: 'Sí', unit: 'tiene tratamiento', text: 'con un alergólogo o dermatólogo' }
   ]
 
   const route = [
-    { icon: 'quiz', title: 'Reconoce tus síntomas', text: 'Identifica las diferencias clave entre una alergia común y la urticaria crónica realizando nuestro test de orientación en menos de 5 minutos.', tag: 'Menos de 5 minutos', cta: 'Hacer el test', href: routeHref('test') },
+    { icon: 'quiz', title: 'Reconoce tus síntomas', text: 'Identifica las diferencias clave entre una alergia común y la urticaria crónica realizando nuestro test informativo en menos de 5 minutos.', tag: 'Menos de 5 minutos', cta: 'Hacer el test', href: routeHref('test') },
     { icon: 'download', title: 'Registra tus brotes', text: 'Lleva tu bitácora diaria mediante nuestra Web App gratuita o descargando la plantilla imprimible en PDF para llevarla a tu cita médica.', tag: 'Web App gratuita · PDF', cta: 'Abrir el diario', href: routeHref('diario') },
     { icon: 'stethoscope', title: 'Encuentra tratamiento', text: 'Conoce cómo se aborda la urticaria crónica espontánea y prepara tu conversación con un alergólogo o dermatólogo.', tag: 'Dermatólogos y alergólogos', cta: 'Buscar especialista', href: routeHref('directorio-medico') }
   ]
@@ -38,8 +38,8 @@
     <div class="home-definition-copy">
       <p class="eyebrow accent">Información para entender lo que pasa en tu piel</p>
       <h2 id="home-definition-title">¿Qué es la Urticaria Crónica Espontánea?</h2>
-      <p class="home-lead">La urticaria crónica espontánea es una afección de la piel caracterizada por la aparición recurrente de <strong>habones (ronchas)</strong> o <strong>hinchazón (angioedema)</strong> durante más de 6 semanas, sin que exista una causa alérgica externa evidente.<Cita refs={[1, 2]} prefix="ref" /></p>
-      <p>No es contagiosa ni es tu culpa. Se trata de una respuesta interna del sistema inmune que hoy en día puede tratarse con éxito si acudes con un alergólogo o dermatólogo.<Cita refs={[1, 3]} prefix="ref" /></p>
+      <p class="home-lead">La urticaria crónica espontánea es una afección de la piel caracterizada por la aparición recurrente de <strong>habones (ronchas)</strong> o <strong>hinchazón (angioedema)</strong> durante más de 6 semanas, sin que exista una causa alérgica externa evidente.<Cita refs={1} prefix="ref" /></p>
+      <p>No es contagiosa ni es tu culpa. Se trata de un padecimiento que hoy en día puede tratarse con éxito si acudes con un alergólogo o dermatólogo.<Cita refs={1} prefix="ref" /></p>
       <ul class="home-facts" aria-label="Datos clave de la urticaria crónica espontánea">
         {#each facts as fact}
           <li><strong>{fact.value}<small>{fact.unit}</small></strong><span>{fact.text}{#if fact.refs}<Cita refs={fact.refs} prefix="ref" />{/if}</span></li>
@@ -103,7 +103,7 @@
 
   <section class="home-blog" aria-labelledby="home-blog-title" data-reveal>
     <div class="home-section-heading home-blog-heading">
-      <div><p class="eyebrow accent">Blog · Artículos de muestra</p><h2 id="home-blog-title">Aprende más sobre la Urticaria Crónica Espontánea</h2><p>Temas informativos de muestra para responder a tus dudas diarias:</p></div>
+      <div><p class="eyebrow accent">Blog · Artículos de muestra</p><h2 id="home-blog-title">Aprende más sobre la Urticaria Crónica Espontánea</h2><p>Conoce más acerca de la urticaria crónica y cómo recuperar tu vida diaria con consejos prácticos.</p></div>
       <a class="inline-link" href={routeHref('blog')}>Ir al blog <Icon name="arrow_forward" size={18} /></a>
     </div>
     <div class="home-article-grid">
@@ -126,7 +126,7 @@
     <div class="home-about-copy">
       <p class="eyebrow accent">Más que Urticaria</p>
       <h2 id="home-about-title">Conoce a la comunidad 'Más que Urticaria'</h2>
-      <p>Somos una asociación creada por y para personas que conviven con la urticaria crónica en México. Nuestra meta es romper el aislamiento, educar a la sociedad y brindarte herramientas prácticas para que recuperes tu bienestar.</p>
+      <p>Somos un sitio informativo sobre la urticaria crónica espontánea en México. Nuestra meta es romper el aislamiento, educar a la sociedad y brindarte herramientas prácticas para que recuperes tu bienestar.</p>
       <ul class="home-pillars">
         {#each pillars as pillar}<li><Icon name="check" size={16} />{pillar}</li>{/each}
       </ul>
@@ -140,10 +140,10 @@
     <div class="home-final-copy">
       <p class="eyebrow">Más que Urticaria</p>
       <h2 id="home-final-title">Da hoy el primer paso: <em>Tu vida es más grande que las ronchas</em></h2>
-      <p>No te acostumbres a la comezón ni a la incertidumbre. Explora nuestras herramientas o encuentra a un alergólogo o dermatólogo hoy mismo.</p>
+      <p>No te acostumbres a la comezón ni a la incertidumbre. Explora nuestras herramientas o encuentra a un especialista médico hoy mismo.</p>
     </div>
     <div class="home-final-actions">
-      <a class="button" href={routeHref('test')}>Ir al Test de Síntomas <Icon name="arrow_forward" size={18} /></a>
+      <a class="button" href={routeHref('test')}>Ir al test informativo <Icon name="arrow_forward" size={18} /></a>
       <a class="button home-final-secondary" href={routeHref('directorio-medico')}>Buscar Especialista <Icon name="arrow_forward" size={18} /></a>
     </div>
   </section>

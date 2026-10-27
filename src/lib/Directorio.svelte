@@ -6,6 +6,7 @@
   import Icon from './Icon.svelte'
   import { DARK } from './context.js'
   import { detectGeoAndWeather } from './geo.js'
+  import { routeHref } from './siteContent.js'
   import 'leaflet/dist/leaflet.css'
 
   export let ctx = 'dia'
@@ -288,7 +289,8 @@
 
 <div class="directory">
   <h2 tabindex="-1">Alergólogos y dermatólogos cerca de ti</h2>
-  <p class="sub">Los especialistas que valoran la urticaria crónica espontánea son alergólogos y dermatólogos. <b>Llévale tu resumen a uno de ellos.</b></p>
+  <p class="sub">Los especialistas que valoran la urticaria crónica espontánea son alergólogos y dermatólogos certificados.</p>
+  <p class="sub">Para facilitar la consulta, lleva los resultados de tu <a class="inline-text-link" href={routeHref('test')}>test informativo</a> y el registro de tu <a class="inline-text-link" href={routeHref('diario')}>diario de síntomas</a>.</p>
 
   <div class="dir-controls">
     <div class="filters-wrap" class:at-start={!puedeIzq} class:at-end={!puedeDer}>
@@ -334,10 +336,6 @@
     <div class="dir-map-pane">
       <div class="map-shell" class:is-dark={dark}>
         <div class="map" bind:this={mapEl} role="application" aria-label="Mapa de especialistas"></div>
-      </div>
-      <div class="dir-tips">
-        <strong><Icon name="stethoscope" size={17} /> ¿Qué llevar a tu consulta?</strong>
-        <p>1. Tu <b>resumen descargado</b> del test. 2. Fotos de tus brotes fechadas. 3. Lista de los tratamientos que ya has usado.</p>
       </div>
     </div>
 

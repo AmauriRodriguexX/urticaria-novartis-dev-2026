@@ -1,5 +1,5 @@
 import pageMetadata from './pageMetadata.json'
-import { heroVariation } from './heroVariations.js'
+import { heroVariation, HOME_DEFAULT_TITLE } from './heroVariations.js'
 import { NOTA_TEST } from './site.js'
 
 const BASE = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
@@ -29,8 +29,7 @@ export function routeFromPath(pathname = window.location.pathname) {
 // Referencias de Inicio (numeración propia de la página).
 export const homeSources = [
   { n: 1, short: 'Tbakhi et al. (2025)', text: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', url: 'https://doi.org/10.4168/aair.2025.17.5.531' },
-  { n: 2, short: 'MedlinePlus (2025)', text: 'MedlinePlus, &ldquo;Urticaria,&rdquo; U.S. National Library of Medicine (NIH), rev. Apr. 1, 2025.', url: 'https://medlineplus.gov/spanish/ency/article/000845.htm' },
-  { n: 3, short: 'Yadav y Bajaj (2009)', text: 'S. Yadav and A. K. Bajaj, &ldquo;Management of difficult urticaria,&rdquo; <em>Indian J. Dermatol.</em>, vol. 54, no. 3, pp. 275&ndash;279, 2009, doi: 10.4103/0019-5154.55641.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2810698/' }
+  { n: 2, short: 'Yadav y Bajaj (2009)', text: 'S. Yadav and A. K. Bajaj, &ldquo;Management of difficult urticaria,&rdquo; <em>Indian J. Dermatol.</em>, vol. 54, no. 3, pp. 275&ndash;279, 2009, doi: 10.4103/0019-5154.55641.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2810698/' }
 ]
 
 export const navigation = [
@@ -48,9 +47,9 @@ export function homeCopyFor(ctx, now, city, temp) {
   const variation = heroVariation('', ctx, now, temp, city)
   return {
     kicker: 'Más que Urticaria',
-    title: variation?.title || 'Urticaria Crónica Espontánea: Haz de la Urticaria la Parte Más Pequeña de tu Vida',
+    title: variation?.title || HOME_DEFAULT_TITLE,
     intro: variation?.intro || "Vivir con comezón constante, habones (ronchas) e hinchazón (angioedema) inesperada puede sentirse abrumador. En 'Más que Urticaria' te acompañamos para que entiendas tu diagnóstico, encuentres la atención médica adecuada y recuerdes que tu vida es mucho más grande que tus síntomas.",
-    primaryCta: 'Hacer Test de Autoevaluación',
+    primaryCta: 'Hacer el test informativo',
     secondaryCta: 'Buscar Especialista',
     note: NOTA_TEST
   }
@@ -72,29 +71,20 @@ export const landingPages = {
         ]
       },
       {
-        title: 'Cómo se guía este sitio',
+        title: 'Nuestros principios',
         cardsRow: 4,
         cards: [
-          { icon: 'check', title: 'Claro', text: 'Explicamos cada término médico con palabras sencillas.' },
-          { icon: 'shield', title: 'Responsable', text: 'Información general, no un diagnóstico.' },
+          { icon: 'check', title: 'Claridad', text: 'Buscamos explicar los términos médicos relacionados con la urticaria crónica espontánea (UCE) de manera simple y fácil de entender.' },
+          { icon: 'info', title: 'Informativos', text: 'Buscamos informar sobre la urticaria crónica espontánea (UCE) y acercar a las personas a especialistas que puedan diagnosticarla.' },
           { icon: 'lock', title: 'Privado', text: 'Tu diario se guarda solo en tu navegador.' },
-          { icon: 'visibility', title: 'Transparente', text: 'Te avisamos lo que aún está en preparación.' }
-        ]
-      },
-      {
-        title: '¿Qué puedes hacer en el sitio?',
-        // Los síntomas se muestran con imagen y su nombre debajo (las imágenes las entrega Novartis); cada uno lleva a Síntomas
-        visuals: { route: 'sintomas', items: ['Habones (ronchas)', 'Hinchazón (angioedema)', 'Comezón'] },
-        cards: [
-          { title: 'Preparar la consulta', text: 'Usa el test de orientación y el Diario de Síntomas para ordenar tus observaciones.', route: 'recursos-herramientas', linkLabel: 'Explorar recursos' },
-          { title: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
+          { icon: 'groups', title: 'Empáticos', text: 'Sabemos por lo que pasas. Ofrecemos recursos que pueden ayudarte.' }
         ]
       },
       {
         title: 'Preguntas frecuentes sobre el sitio',
         faqs: [
           { question: '¿Más que Urticaria ofrece consultas médicas directas?', answer: 'No. Este es un sitio informativo; no ofrece consultas médicas ni reemplaza la valoración de un profesional de la salud.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
-          { question: '¿Tiene algún costo acceder a los recursos de la web?', answer: 'Los recursos informativos disponibles en este sitio no requieren registro.', cta: { label: 'Ir a Recursos', route: 'recursos-herramientas' } }
+          { question: '¿Tiene algún costo acceder a los recursos de la web?', answer: 'No. Todos los recursos de la web son completamente gratuitos, con fines informativos.', cta: { label: 'Ir a Recursos', route: 'recursos-herramientas' } }
         ]
       }
     ],
@@ -103,9 +93,9 @@ export const landingPages = {
   sintomas: {
     ...pageMetadata.sintomas,
     eyebrow: 'Reconoce lo que pasa en tu piel',
-    title: 'Síntomas de la Urticaria Crónica Espontánea: Reconoce las Ronchas y Recupera el Control',
+    title: 'Síntomas de la urticaria crónica espontánea: Reconoce los brotes y recupera el control',
     intro: 'Vivir con comezón constante, habones (ronchas) e hinchazón (angioedema) inesperada puede ser desgastante. Identificar lo que le pasa a tu piel puede ayudarte a preparar una conversación con un profesional de la salud.',
-    ctas: [{ label: 'Comenzar Test de Síntomas', action: 'quiz' }],
+    ctas: [{ label: 'Comenzar el test informativo', action: 'quiz' }],
     // Referencias de toda la página: numeración continua por orden de aparición.
     // Cada afirmación científica cita su número (refs) y cada sección indica de dónde se adaptó (adaptadoDe).
     sources: [
@@ -119,17 +109,17 @@ export const landingPages = {
     sections: [
       {
         title: '¿Cuáles son los síntomas de la urticaria crónica espontánea?',
-        intro: 'La urticaria crónica espontánea se caracteriza por habones (ronchas), comezón, hinchazón (angioedema) o ardor, que reaparecen durante más de seis semanas sin un desencadenante identificable. Solo un profesional de la salud puede diagnosticarla.',
+        intro: 'Aprende a reconocer los síntomas de la urticaria crónica espontánea (UCE) y acércate a un profesional de la salud para encontrar un tratamiento adecuado:',
         highlight: 'Clave: los síntomas se repiten durante 6 semanas o más.',
         cards: [
-          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel que dan comezón.', image: true },
-          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.', image: true, refs: 1 },
+          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel, que provocan comezón.', image: true },
+          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.', image: true, refs: 4 },
           { title: 'Comezón', text: 'Puede afectar las actividades diarias, el sueño y el trabajo.', image: true, refs: [2, 3] },
           { title: 'Ardor', text: 'Sensación de quemazón en la zona afectada.', image: true }
         ],
         // Corte de la piel con línea de tiempo (reemplaza el párrafo de duración): números de la lista de fuentes
         skinFigure: { sachdeva: 4, hsieh: 5 },
-        adaptadoDe: [1, 2, 3, 4, 5]
+        adaptadoDe: [2, 3, 4, 5]
       },
       {
         title: '¿En qué se diferencia la urticaria crónica espontánea de otros tipos de urticaria?',
@@ -157,7 +147,7 @@ export const landingPages = {
               aguda: 'La evaluación considera el contexto y los posibles desencadenantes.',
               inducible: 'La evaluación considera el estímulo y los síntomas observados.' } }
           ],
-          key: { text: 'La urticaria crónica espontánea aparece sin un desencadenante identificable y dura más de seis semanas.', ref: [1, 2] },
+          key: { text: 'La urticaria crónica espontánea aparece sin un desencadenante identificable y dura más de seis semanas.', ref: 2 },
           badges: [
             { icon: 'menu_book', title: 'Información clara', text: 'Con fuentes científicas citadas' },
             { icon: 'forum', title: 'Para una mejor conversación', text: 'Con tu profesional de la salud' }
@@ -167,20 +157,19 @@ export const landingPages = {
       {
         title: 'Guía visual: signos que puedes describir en consulta',
         cards: [
-          { title: 'Habones (ronchas)', text: 'Pueden aparecer en distintas partes del cuerpo y variar de tamaño.', refs: 1 },
-          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados. La hinchazón de lengua o garganta o la dificultad para respirar requiere atención urgente.', refs: 1 },
-          { title: 'Reacción al roce', text: 'Algunas personas notan ronchas después de rascarse o de la presión sobre la piel.', refs: 1 }
+          { title: 'Habones (ronchas)', text: 'Pueden aparecer en distintas partes del cuerpo y variar de tamaño.', refs: 4 },
+          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados. La hinchazón de lengua o garganta o la dificultad para respirar requiere atención urgente.', refs: 4 }
         ],
-        adaptadoDe: [1]
+        adaptadoDe: [4]
       },
       {
         title: 'Preguntas frecuentes sobre los síntomas',
         faqs: [
-          { question: '¿Cuánto dura un brote?', answer: 'La duración puede variar. Anota cuánto permanece cada roncha y cuándo aparecen otras.', refs: 1, cta: { label: 'Registrar mis brotes en el diario', route: 'diario' } },
-          { question: '¿La urticaria deja cicatrices?', answer: 'Si una lesión persiste, deja marcas o te preocupa, pide una valoración profesional.', refs: 5, cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
-          { question: '¿Es contagiosa?', answer: 'La urticaria no se transmite por contacto entre personas.', refs: 6, cta: { label: 'Hacer el test orientativo', action: 'quiz' } }
+          { question: '¿Cuánto dura un brote?', answer: 'La duración puede variar. Las ronchas duran hasta 24 horas, mientras que la hinchazón (angioedema) puede durar hasta 72 horas. Anota cuánto permanece cada roncha y cuándo aparecen otras.', refs: 4, cta: { label: 'Registrar mis brotes en el diario', route: 'diario' } },
+          { question: '¿Los brotes de urticaria crónica dejan cicatrices?', answer: 'Regularmente las ronchas de la urticaria crónica espontánea (UCE) no dejan cicatrices. Si una lesión persiste, deja marcas o te preocupa, pide una valoración profesional.', refs: 5, cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
+          { question: '¿La urticaria crónica es contagiosa?', answer: 'No. La urticaria crónica espontánea (UCE) no se transmite por contacto entre personas.', refs: 6, cta: { label: 'Hacer el test informativo', action: 'quiz' } }
         ],
-        adaptadoDe: [1, 5, 6]
+        adaptadoDe: [4, 5, 6]
       }
     ],
     closing: { title: 'Lleva un registro para tu próxima consulta', text: 'Anota cuándo aparecen las ronchas, su intensidad y cómo afectan tu día a día.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } }
@@ -188,18 +177,21 @@ export const landingPages = {
   tratamiento: {
     ...pageMetadata.tratamiento,
     eyebrow: 'Información para tu próxima consulta',
-    title: 'Tratamientos para la Urticaria Crónica Espontánea: Encuentra el Camino hacia el Alivio',
+    title: 'Tratamientos para la urticaria crónica espontánea: Encuentra el camino hacia el alivio',
     intro: 'El tratamiento adecuado depende de cada persona y debe definirse con un profesional de la salud. Esta guía reúne preguntas e información para preparar esa conversación.',
-    ctas: [{ label: 'Buscar Especialista', route: 'directorio-medico' }],
+    ctas: [{ label: 'Encuentra un especialista', route: 'directorio-medico' }],
     sources: [
-      { n: 1, short: 'Tbakhi et al. (2025)', text: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', url: 'https://doi.org/10.4168/aair.2025.17.5.531' }
+      { n: 1, short: 'Tbakhi et al. (2025)', text: 'B. Tbakhi, K. Ware, H.-S. Park, J. S. Bernstein, and J. A. Bernstein, &ldquo;An overview of chronic spontaneous urticaria: Diagnosis, management, and treatment,&rdquo; <em>Allergy Asthma Immunol. Res.</em>, vol. 17, no. 5, 2025, doi: 10.4168/aair.2025.17.5.531.', url: 'https://doi.org/10.4168/aair.2025.17.5.531' },
+      { n: 2, short: 'Hsieh y Lee (2017)', text: 'J. Hsieh and J. K. Lee, &ldquo;Chronic spontaneous urticaria,&rdquo; <em>CMAJ</em>, vol. 189, no. 2, p. E77, 2017, doi: 10.1503/cmaj.150951.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5235931/' },
+      { n: 3, short: 'Sachdeva et al. (2011)', text: 'S. Sachdeva, V. Gupta, S. S. Amin, and M. Tahseen, &ldquo;Chronic urticaria,&rdquo; <em>Indian J. Dermatol.</em>, vol. 56, no. 6, pp. 622&ndash;628, 2011, doi: 10.4103/0019-5154.91817.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3276885/' }
     ],
     sections: [
       {
         title: '¿Cómo se aborda la urticaria crónica?',
         paragraphs: [
-          'La urticaria crónica espontánea no es una alergia pasajera. Un profesional puede evaluar los síntomas, el historial y las opciones de manejo adecuadas para cada persona.'
-        ]
+          { text: 'La urticaria crónica espontánea no es una alergia pasajera. Un profesional puede evaluar los síntomas, el historial y las opciones de manejo adecuadas para cada persona.', refs: [2, 3] }
+        ],
+        adaptadoDe: [2, 3]
       },
       {
         title: '¿Qué ocurre durante un brote?',
@@ -227,7 +219,7 @@ export const landingPages = {
         ]
       }
     ],
-    closing: { title: 'Da el siguiente paso con acompañamiento médico', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
+    closing: { title: 'Da el siguiente paso con acompañamiento médico', cta: { label: 'Encuentra un especialista', route: 'directorio-medico' } }
   },
   testimonios: {
     ...pageMetadata.testimonios,
@@ -303,9 +295,9 @@ export const landingPages = {
   test: {
     ...pageMetadata.test,
     eyebrow: 'Una guía orientativa',
-    title: 'Test orientativo sobre urticaria crónica espontánea',
+    title: 'Test informativo sobre urticaria crónica espontánea',
     intro: 'Responde unas preguntas para ordenar lo que has observado y preparar una conversación con un profesional de la salud.',
-    ctas: [{ label: 'Iniciar Test de Síntomas', action: 'quiz' }],
+    ctas: [{ label: 'Iniciar el test informativo', action: 'quiz' }],
     sections: [
       {
         title: 'Antes de comenzar',
@@ -334,7 +326,7 @@ export const landingPages = {
         notice: 'Los artículos completos se publicarán cuando su contenido haya pasado por revisión editorial y médica.'
       }
     ],
-    closing: { title: '¿Quieres ordenar tus dudas?', text: 'Usa el test orientativo para preparar una conversación con un profesional.', cta: { label: 'Ir al Test', route: 'test' } }
+    closing: { title: '¿Quieres ordenar tus dudas?', text: 'Usa el test informativo para preparar una conversación con un profesional.', cta: { label: 'Ir al Test', route: 'test' } }
   },
   'directorio-medico': {
     ...pageMetadata['directorio-medico'],
@@ -348,12 +340,12 @@ export const landingPages = {
         list: [
           'Filtra por especialidad o escribe tu código postal para ver médicos y clínicas cercanas.',
           'Usa tu ubicación para ordenar la lista por distancia.',
-          'Lleva a la consulta tu resumen del test o tu Diario de Síntomas.'
+          { parts: ['Lleva a la consulta tu ', { label: 'resumen del test', route: 'test' }, ' o tu ', { label: 'Diario de Síntomas', route: 'diario' }, '.'] }
         ],
         notice: 'Este directorio es informativo. La elección del especialista y cualquier tratamiento se definen en consulta con un profesional de la salud.'
       }
     ],
-    closing: { title: 'Prepara tu consulta', text: 'Ordena lo que has observado antes de hablar con un especialista.', cta: { label: 'Ir al Test de Síntomas', route: 'test' } }
+    closing: { title: 'Prepara tu consulta', text: 'Ordena lo que has observado antes de hablar con un especialista.', cta: { label: 'Ir al test informativo', route: 'test' } }
   },
   'recursos-herramientas': {
     ...pageMetadata['recursos-herramientas'],
@@ -364,8 +356,8 @@ export const landingPages = {
       {
         title: '¿Por dónde quieres empezar?', layout: 'featured',
         cards: [
-          { title: 'Test de orientación', text: 'Ordena lo que has observado y prepara preguntas para tu consulta.', route: 'test', linkLabel: 'Conocer el test' },
-          { title: 'Diario de Síntomas', text: 'Registra tus observaciones y llévalas a una consulta.', route: 'diario', linkLabel: 'Abrir el diario' },
+          { title: 'Test informativo', text: 'Realiza un test de menos de 5 minutos y conoce la intensidad de tus síntomas antes de consultar a un profesional de la salud.', route: 'test', linkLabel: 'Conocer el test' },
+          { title: 'Diario de Síntomas', text: 'Registra tus brotes diarios y lleva esta información a tu consulta médica.', route: 'diario', linkLabel: 'Abrir el diario' },
           { title: 'Biblioteca visual', text: 'Explora imágenes educativas por tono de piel y prepara preguntas para un profesional.', anchor: '#biblioteca', linkLabel: 'Ver la biblioteca' }
         ]
       }

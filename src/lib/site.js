@@ -15,4 +15,4 @@ export const LEGAL_LINKS = [
 ]
 
 // Nota que acompaña a los botones que abren el test (acuerdo de la reunión del 22 de octubre de 2026).
-export const NOTA_TEST = 'Este test es orientativo, no es un diagnóstico. Si tienes ronchas o comezón, conversa con un profesional de la salud.'
+export const NOTA_TEST = 'Este test es informativo, no es un diagnóstico. Si tienes ronchas o comezón, conversa con un profesional de la salud.'

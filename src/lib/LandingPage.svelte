@@ -105,7 +105,7 @@
         {#if section.listTitle}<h3 class="content-subtitle">{section.listTitle}</h3>{/if}
         {#if section.list}
           {#if section.layout === 'steps'}<ol class="content-list content-steps">{#each section.list as item}<li>{item.text ?? item}{#if item.refs}<Cita refs={item.refs} prefix="ref" />{/if}</li>{/each}</ol>{:else}<ul class="content-list">
-            {#each section.list as item}<li>{item.text ?? item}{#if item.refs}<Cita refs={item.refs} prefix="ref" />{/if}</li>{/each}
+            {#each section.list as item}<li>{#if item.parts}{#each item.parts as part}{#if part.route}<a class="inline-text-link" href={routeHref(part.route)}>{part.label}</a>{:else}{part}{/if}{/each}{:else}{item.text ?? item}{/if}{#if item.refs}<Cita refs={item.refs} prefix="ref" />{/if}</li>{/each}
           </ul>{/if}
         {/if}
 
