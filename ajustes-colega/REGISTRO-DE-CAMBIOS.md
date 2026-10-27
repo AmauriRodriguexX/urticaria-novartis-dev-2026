@@ -184,3 +184,22 @@ Archivo: `ajustes-colega/Propuesta-textos_Home-Sintomas-Tratamientos_con-mapa-de
 - **Lámina 29, "El recorrido cambia con las respuestas":** tres caminos de ejemplo (corto de 2 pasos, típico de 11, largo de 22).
 - Si el quiz cambia (por ejemplo Q18), hay que actualizar estas láminas; el script que las genera está en el scratchpad de la sesión (`build_quiz_map.py`).
 - Pendiente: subirla a Google Slides y revisarla ahí.
+
+---
+
+## 27-oct-2026 · Ronda 1 del equipo interno, Inicio (bloque 1)
+
+Fuente: `Downloads/Novartis _ Cambios Ronda 1.xlsx`, hoja "Hoja 6". Respaldo previo: `respaldo/src-2026-10-27-antes-home-ronda1.zip`.
+
+| Fila | Cambio | Archivo |
+|---|---|---|
+| 3 | Párrafo "¿Qué es…?": solo cita [1] (sin MedlinePlus) | `HomeLanding.svelte` |
+| 4 | "Se trata de un padecimiento que hoy en día puede tratarse…" (sin "sistema inmune"); cita [1] | `HomeLanding.svelte` |
+| 5 | "Urticaria pasajera / crónica" cita ahora Yadav y Bajaj (nueva [2]) | `HomeLanding.svelte`, `siteContent.js` |
+| 6 | Cifra "Sí tiene tratamiento" sin referencia | `HomeLanding.svelte` |
+| 8 | Subtítulo del blog: "Conoce más acerca de la urticaria crónica y cómo recuperar tu vida diaria con consejos prácticos." | `HomeLanding.svelte` |
+| 9 | "Somos un sitio informativo sobre la urticaria crónica espontánea en México…" | `HomeLanding.svelte` |
+| 10 | MedlinePlus fuera de las referencias de Inicio; quedan [1] Tbakhi y [2] Yadav y Bajaj | `siteContent.js` |
+| 2 | Ciudad siempre en español ("Mexico City" → "Ciudad de México", acentos en Mérida, Querétaro, etc.) | `geo.js` (`cityEs`) |
+
+Pendiente de Inicio: título "Conoce a la comunidad…", fila 7 (cifra 3.4 %), fila 11 (tamaño de "Más que Urticaria"), fila 12 ("especialista médico"), banners de la fila 2 y la fuente `ram-818` (verificar).

@@ -40,6 +40,29 @@ Estado: todo el trabajo está **sin commit** en el árbol de trabajo. Respaldo c
 - Al terminar: retomar capturas reales y actualizar la presentación de la propuesta (se edita en local con python-pptx; el usuario la sube).
 - Decidir si se hace commit (el usuario no lo ha pedido).
 
+## 2b. Estado al 23-oct-2026 (guardado de contexto)
+
+- **Commits:** el usuario ya hizo `2a69936 cambios` y `6a6b1c3 cambiosm`. Lo trabajado después de eso puede seguir sin commit; revisar con `git status` antes de decir qué está o no publicado. El sitio publicado (https://amaurirodriguexx.github.io/urticaria-novartis-dev-2026/) solo refleja lo que se haya subido y desplegado.
+- **Siguiente paso acordado:** validar todo el sitio recorriendo el glosario máster comentario por comentario (estado: atendido / pendiente de Novartis / falta), luego revisión técnica de todas las páginas (escritorio, celular, tema oscuro) y consistencia de textos. Solo después, actualizar capturas y la presentación (python-pptx, en local; el usuario la sube a Google Slides) y revisar en Google Slides las láminas 28 y 29 del mapa del quiz.
+- **Decisiones del usuario aún abiertas:** tarjeta del blog sobre estrés; nombres de los botones "Hacer el test orientativo" / "Encuentra a un especialista cerca de ti"; "brotes" en la portada (`campaign.js`); "Mexico City" en inglés; si se hace commit y push.
+
+### Variantes de la imagen principal (URLs de prueba)
+
+El escenario se fuerza con `?vista=` (valores: `dia`, `calor`, `frio`, `madrugada`, `noche-calor`) y la hora con `?hora=N` (0 a 23). Con `?vista=` forzada, el texto sigue al escenario y no a la temperatura. `madrugada` y `noche-calor` son los dos escenarios oscuros.
+
+Base: `https://amaurirodriguexx.github.io/urticaria-novartis-dev-2026/` (en local: `http://localhost:5173/`).
+
+| Variante | Consulta |
+|---|---|
+| Tarde, calor | `?vista=calor&hora=15` |
+| Tarde, frío | `?vista=frio&hora=15` |
+| Mañana, calor | `?vista=calor&hora=9` |
+| Mañana, frío | `?vista=frio&hora=9` |
+| Madrugada, calor | `?vista=noche-calor&hora=3` |
+| Madrugada, frío | `?vista=madrugada&hora=3` |
+
+Se pueden añadir a otras rutas (por ejemplo `sintomas/?vista=calor&hora=15`). También existen `?temp=` y `?ciudad=` para simular clima y ciudad. La lógica está en `src/lib/context.js`, `geo.js` y `heroVariations.js` (`heroSlot`).
+
 ## 3. Reglas del usuario (vigentes)
 
 - Editar por partes y que él revise; no cambiar código sin que lo pida.

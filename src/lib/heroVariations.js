@@ -13,7 +13,7 @@ export const LUGAR_SLOTS = ['calor-lugar', 'frio-lugar']
 // Los textos describen el momento en que se visita el sitio. La hora y el clima nunca se presentan como causa
 // de la enfermedad (aclaración de los asesores médicos, reunión del 22 de octubre de 2026).
 const GENERICA = 'Si la comezón interfiere con tu trabajo o tu rutina, un profesional de la salud puede valorar tus síntomas.'
-const CONVERSA = 'Conocer los signos te ayuda a conversarlos con un profesional de la salud.'
+const CONVERSA = 'Conoce los síntomas característicos de la urticaria crónica espontánea (UCE) y coméntalos con un profesional de la salud.'
 const CLIMA = {
   manana: { calor: 'Mañana de calor en [LUGAR]', frio: 'Mañana fría en [LUGAR]' },
   tarde: { calor: 'Tarde de calor en [LUGAR]', frio: 'Tarde fría en [LUGAR]' },
@@ -33,46 +33,70 @@ function armar({ base, conClima, lugar }) {
   return out
 }
 
-const COLA = 'Haz de la Urticaria la Parte Más Pequeña de tu Vida'
+// Títulos del banner de Inicio: documento "Novartis | Cambios Ronda 1" (27-oct-2026), hoja "Hoja 6", fila 2.
+// Solo se corrigieron mayúsculas y "Haz de las Ronchas" (noche y calor) por "Haz de la urticaria".
+const COLA = 'Haz de la urticaria la parte más pequeña de tu vida'
+export const HOME_DEFAULT_TITLE = `Que la comezón no te detenga: ${COLA}`
+const HOME_TITULOS = {
+  manana: `Empieza tu día libre de comezón: ${COLA}`,
+  'manana-calor': `Afronta el calor de la mañana sin ronchas: ${COLA}`,
+  'manana-frio': `¿Mañanas frías y piel irritada? ${COLA}`,
+  tarde: `Recupera tu tarde y para la comezón: ${COLA}`,
+  'tarde-calor': `Que ni el calor ni la comezón detengan tu día: ${COLA}`,
+  'tarde-frio': `¿Frío y comezón?: ${COLA}`,
+  noche: `¿La comezón no te deja dormir? ${COLA}`,
+  'noche-calor': `¿El calor y la comezón no te dejan dormir? ${COLA}`,
+  'noche-frio': `¿El frío y la comezón interrumpen tu sueño?: ${COLA}`,
+  // Variante con ubicación. El documento no indica cuándo se usa; por ahora no se muestra.
+  'calor-lugar': `Ponle un alto a la comezón. ${COLA} en [LUGAR]`,
+  'frio-lugar': `Ponle un alto a la comezón. ${COLA} en [LUGAR]`
+}
+const conTitulos = (page, titulos) =>
+  Object.fromEntries(Object.entries(page).map(([slot, v]) => [slot, titulos[slot] ? { ...v, title: titulos[slot] } : v]))
+
 const variations = {
-  '': armar({
+  '': conTitulos(armar({
     base: {
-      manana: { title: `¿Empiezas el día con comezón? ${COLA}`, intro: 'Comenzar la mañana con ronchas o comezón puede afectar tu día. Un profesional de la salud puede valorar tus síntomas.' },
-      tarde: { title: `¿La comezón te interrumpe por la tarde? ${COLA}`, intro: 'Si la comezón interfiere con tu trabajo o tu rutina, un profesional de la salud puede valorar tus síntomas.' },
-      noche: { title: `¿La comezón no te deja dormir? ${COLA}`, intro: 'La comezón de noche puede afectar tu descanso. Anota cuándo aparece y conversa con un profesional de la salud.' }
+      manana: { intro: 'Comenzar la mañana con ronchas o comezón puede afectar tu día. Un profesional de la salud puede valorar tus síntomas.' },
+      tarde: { intro: 'Si la comezón interfiere con tu trabajo o tu rutina, un profesional de la salud puede valorar tus síntomas.' },
+      noche: { intro: 'La comezón de noche puede afectar tu descanso. Anota cuándo aparece y conversa con un profesional de la salud.' }
     },
     conClima: (frase, m, c) => m === 'noche' && c === 'calor'
-      ? { title: 'Noche calurosa en [LUGAR]: ¿la comezón no te deja dormir?', intro: 'Si la comezón afecta tu descanso, anota cuándo aparece y conversa con un profesional de la salud.' }
-      : { title: `${frase}: ${COLA}`, intro: GENERICA },
-    lugar: (frase, c) => ({ title: `${frase}: ${c === 'calor' ? 'Haz de las Ronchas la Parte Más Pequeña de tu Vida' : COLA}`, intro: GENERICA })
-  }),
-  sintomas: armar({
-    base: {
-      manana: { title: '¿Despiertas con comezón? Conoce los síntomas de la urticaria crónica espontánea', intro: `Comenzar el día con ronchas o comezón puede ser desgastante. ${CONVERSA}` },
-      tarde: { title: '¿Comezón por la tarde? Conoce los síntomas de la urticaria crónica espontánea', intro: `Llegar a la tarde con la piel irritada o con comezón puede dificultar tus actividades. ${CONVERSA}` },
-      noche: { title: '¿La comezón no te deja descansar? Conoce los síntomas de la urticaria crónica espontánea', intro: `La comezón de noche puede afectar tu descanso. ${CONVERSA}` }
-    },
-    conClima: frase => ({ title: `${frase}: conoce los síntomas de la urticaria crónica espontánea`, intro: CONVERSA }),
-    lugar: frase => ({ title: `${frase}: conoce los síntomas de la urticaria crónica espontánea`, intro: CONVERSA })
-  }),
-  tratamiento: armar({
-    base: {
-      manana: { title: '¿La comezón afecta tu mañana? Habla con tu médico sobre tu tratamiento', intro: 'La comezón puede afectar tu vida personal y laboral. Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento.' },
-      tarde: { title: '¿La comezón de la tarde interfiere con tus actividades? Habla con tu médico sobre tu tratamiento', intro: 'La comezón puede afectar tu vida personal y laboral. Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento.' },
-      noche: { title: '¿La comezón afecta tu descanso? Habla con tu médico sobre tu tratamiento', intro: 'La comezón puede afectar tu descanso. Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento.' }
-    },
-    conClima: frase => ({ title: `${frase}: habla con tu médico sobre tu tratamiento`, intro: 'Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento.' }),
-    lugar: frase => ({ title: `${frase}: habla con tu médico sobre tu tratamiento`, intro: 'Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento.' })
-  }),
+      ? { intro: 'Si la comezón afecta tu descanso, anota cuándo aparece y conversa con un profesional de la salud.' }
+      : { intro: GENERICA },
+    lugar: () => ({ intro: GENERICA })
+  }), HOME_TITULOS),
+  // Síntomas solo cambia por momento del día (Cambios Ronda 1, hoja "sintomas", fila 2): con calor o frío se usa
+  // el mismo texto del momento.
+  sintomas: (() => {
+    const base = {
+      manana: { title: '¿Inicias tu mañana con comezón? Reconoce los síntomas de la urticaria crónica y recupera el control', intro: `Comenzar el día con ronchas o comezón puede ser desgastante. ${CONVERSA}` },
+      tarde: { title: 'Aprovecha la tarde. Reconoce los síntomas de la urticaria crónica y recupera el control', intro: `Llegar a la tarde con la piel irritada o con comezón puede dificultar tus actividades. ${CONVERSA}` },
+      noche: { title: 'Que la comezón no te quite el sueño. Reconoce los síntomas de la urticaria crónica y recupera el control', intro: `La comezón de noche puede afectar tu descanso. ${CONVERSA}` }
+    }
+    return armar({ base, conClima: (frase, m) => base[m], lugar: () => base.tarde })
+  })(),
+  // Tratamiento solo cambia por momento del día (Cambios Ronda 1, hoja "tratamiento", fila 2).
+  tratamiento: (() => {
+    const intro = 'La comezón puede afectar tu vida personal y laboral. Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento más adecuado para ti.'
+    const base = {
+      manana: { title: 'Despierta sin comezón: Encuentra el tratamiento para la urticaria crónica espontánea', intro },
+      tarde: { title: '¿La comezón de la tarde interfiere con tus actividades? Habla con tu médico sobre tu tratamiento', intro },
+      noche: { title: 'Duerme sin ronchas ni comezón: Habla con tu médico sobre el tratamiento de la urticaria crónica espontánea', intro: 'La comezón puede afectar tu descanso. Un profesional de la salud puede valorar tu caso y orientarte sobre el tratamiento más adecuado para ti.' }
+    }
+    // Variante con ubicación: cargada, pero el documento no indica cuándo se usa.
+    const lugar = { title: 'Tratamiento para la urticaria crónica espontánea en [LUGAR]: Habla con tu médico hoy', intro }
+    return armar({ base, conClima: (frase, m) => base[m], lugar: () => lugar })
+  })(),
   // El Test no trae subtítulo propio: se conserva el texto base de la página.
   test: Object.fromEntries(Object.entries(armar({
     base: {
-      manana: { title: '¿Despiertas con comezón? Haz el test orientativo' },
-      tarde: { title: '¿La comezón de la tarde afecta tu jornada? Haz el test orientativo' },
-      noche: { title: '¿La comezón afecta tu descanso? Haz el test orientativo' }
+      manana: { title: '¿Despiertas con comezón? Haz el test informativo' },
+      tarde: { title: '¿La comezón de la tarde afecta tu jornada? Haz el test informativo' },
+      noche: { title: '¿La comezón afecta tu descanso? Haz el test informativo' }
     },
-    conClima: frase => ({ title: `${frase}: haz el test orientativo` }),
-    lugar: frase => ({ title: `${frase}: haz el test orientativo` })
+    conClima: frase => ({ title: `${frase}: haz el test informativo` }),
+    lugar: frase => ({ title: `${frase}: haz el test informativo` })
   })))
 }
 
@@ -99,6 +123,8 @@ export function heroSlot(ctx, now = new Date(), temp = null) {
 
 // Devuelve { title, intro? } para la página y el contexto, o null si la página no tiene variaciones.
 export function heroVariation(slug, ctx, now = new Date(), temp = null, city = null) {
+  // Directorio: agrega la ciudad detectada al título (Cambios Ronda 1, hoja "directorio", fila 2).
+  if (slug === 'directorio-medico') return city ? { title: `Directorio de alergólogos y dermatólogos en ${city}` } : null
   const page = variations[slug]
   if (!page) return null
   const v = page[heroSlot(ctx, now, temp)]
