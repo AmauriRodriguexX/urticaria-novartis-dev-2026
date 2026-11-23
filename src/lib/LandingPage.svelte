@@ -195,7 +195,7 @@
     {/if}
 
     {#if page.closing}
-      <section class="content-closing" data-reveal>
+      <section class="content-closing" id="cierre" data-reveal>
         <div><p class="eyebrow">Más que Urticaria</p><h2>{page.closing.title}</h2>{#if page.closing.text}<p>{page.closing.text}</p>{/if}</div>
         {#if page.closing.cta.action}
           <button class="button" type="button" on:click={(event) => runAction(event, page.closing.cta.action)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></button>

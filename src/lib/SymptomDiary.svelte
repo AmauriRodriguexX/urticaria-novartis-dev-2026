@@ -201,7 +201,7 @@
       <ol aria-hidden="true">{#each days as d, i}<li class:done={isFilled(d)}>{#if isFilled(d)}<Icon name="check" size={14} />{:else}{i + 1}{/if}</li>{/each}</ol>
       <p role="status">Llevas <strong>{filled} de 7</strong> días registrados</p>
     </div>
-    <div class="diary-reminder no-print">
+    <div class="diary-reminder no-print" id="recordatorio">
       <div class="diary-reminder-head">
         <span class="diary-reminder-icon" aria-hidden="true"><Icon name="calendar_month" size={20} /></span>
         <div><h3>Recordatorio diario</h3><p>Un aviso diario a las 9:00 p. m. durante 7 días. Puedes cambiar la hora en tu calendario.</p></div>
@@ -272,7 +272,7 @@
   {#if filled < 7}
     <p class="diary-report-wait no-print"><Icon name="calendar_month" size={18} /><span>Tu informe para el médico estará listo al completar los 7 días <strong>(llevas {filled} de 7)</strong>.</span></p>
   {/if}
-  <div class="diary-tool-actions no-print">
+  <div class="diary-tool-actions no-print" id="informe">
     {#if filled === 7}<button class="button" type="button" on:click={() => window.print()}><Icon name="download" size={18} />Descargar informe para mi médico (PDF)</button>{/if}
     <button class="button secondary" type="button" on:click={exportDiary}><Icon name="download" size={18} />Descargar respaldo</button>
     <button class="text-button" type="button" on:click={() => fileInput.click()}>Cargar un registro</button>

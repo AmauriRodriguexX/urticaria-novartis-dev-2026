@@ -229,7 +229,7 @@
     <main id="main-content" class="content-page"><section class="content-hero"><p class="eyebrow accent">Más que Urticaria</p><h1>Esta página todavía no está disponible</h1><p class="content-lead">Vuelve al inicio para explorar los recursos y la información del sitio.</p><a class="button" href={routeHref('')}>Ir al Inicio</a></section></main>
   {/if}
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="pie">
     <em>Tu vida es más grande que los brotes de urticaria crónica espontánea.</em>
     <div class="footer-brand"><LogoNovartis alto={28} /></div>
     <small class="footer-legal">Consulte a su médico. ID de contenido: {CONTENT_ID}<br />Fecha de vigencia: {VIGENCIA}</small>
