@@ -6,6 +6,8 @@
   export let ctx = 'dia'
   export let videosMode = false
   export let autoVideo = false
+  export let diaryHref = ''      // acceso al diario dentro de la barra fija inferior (celular)
+  export let diaryDays = 0
 
   $: a = assetsFor(ctx)
   $: videoSrc = a.video
@@ -61,7 +63,8 @@
 {/key}
 
 {#if ctaOffscreen}
-  <div class="sticky-cta" role="region" aria-label="Acceso rápido al quiz">
-    <button class="button" on:click={onQuiz}><span>{copy.primaryCta}</span><Icon name="arrow_forward" size={20} /></button>
+  <div class="sticky-cta" role="region" aria-label="Accesos rápidos">
+    <button class="button" on:click={onQuiz} aria-label={copy.primaryCta}><span>Hacer el test</span><Icon name="arrow_forward" size={20} /></button>
+    {#if diaryHref}<a class="sticky-diary" href={diaryHref} aria-label={diaryDays ? `Mi diario, privado: ${diaryDays} de 7 días registrados` : 'Abrir mi diario de síntomas, privado'}><Icon name="calendar_month" size={20} /><span>Mi diario</span>{#if diaryDays}<b>{diaryDays}/7</b>{/if}</a>{/if}
   </div>
 {/if}

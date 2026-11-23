@@ -215,7 +215,7 @@
 
   {#if isHome}
     <main id="main-content">
-      <Hero {copy} {ctx} {videosMode} autoVideo={!forced} onQuiz={openQuiz} />
+      <Hero {copy} {ctx} {videosMode} autoVideo={!forced} onQuiz={openQuiz} {diaryHref} {diaryDays} />
       <HomeLanding />
     </main>
   {:else if isBlogRoute}
