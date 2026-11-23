@@ -2,18 +2,18 @@
   import { onMount } from 'svelte'
   import Icon from './Icon.svelte'
 
-  // Fotos ordenadas por zona del cuerpo y síntoma (sin clasificar por tono de piel).
+  // Fotografías clínicas reales de pacientes (Wikimedia Commons, licencias libres). Sin imágenes de banco ni generadas con IA.
+  // Las fotos clínicas son de pacientes reales; cada una muestra su crédito. Fichas completas en ajustes-colega/imagenes/CREDITOS.md
   const photos = [
-    { id: 1, title: 'Brazo', description: 'Referencia visual de cambios en la piel del brazo para comentarlos en consulta.', image: 'library-tone-01.png', className: 'photo-tall' },
-    { id: 2, title: 'Hombro', description: 'Referencia visual para observar la piel y preparar preguntas para la consulta.', image: 'library-tone-02.png', className: 'photo-wide' },
-    { id: 3, title: 'Cuello', description: 'Referencia visual de cambios que pueden notarse en el cuello.', image: 'library-tone-03.png', className: 'photo-standard' },
-    { id: 4, title: 'Mano', description: 'Referencia visual para conversar sobre cambios visibles en manos y muñecas.', image: 'library-tone-04.png', className: 'photo-tall' },
-    { id: 5, title: 'Antebrazo', description: 'Referencia visual de cambios sutiles en el antebrazo.', image: 'library-tone-05.png', className: 'photo-wide' },
-    { id: 6, title: 'Espalda y hombro', description: 'Referencia visual para observar la piel con iluminación natural y uniforme.', image: 'library-tone-06.png', className: 'photo-standard' },
-    { id: 7, title: 'Cuello y escote', description: 'Los cambios en la piel pueden verse distintos en cada persona.', image: 'library-tone-07.png', className: 'photo-tall' },
-    { id: 8, title: 'Brazo, vista lateral', description: 'Referencia visual de cambios discretos en el brazo.', image: 'library-tone-08.png', className: 'photo-wide' },
-    { id: 9, title: 'Dorso de la mano', description: 'Referencia visual para observar cambios en manos y llevar preguntas a consulta.', image: 'library-tone-09.png', className: 'photo-standard' },
-    { id: 10, title: 'Hombro, vista posterior', description: 'Referencia visual con iluminación cuidada para observar la piel.', image: 'library-tone-10.png', className: 'photo-tall' }
+    { id: 1, title: 'Habones en la espalda', description: 'Habones (ronchas) tenues y rosados distribuidos en la espalda.', image: 'biblioteca/bib-01.jpg', credit: 'Foto: Ericalens, Wikimedia Commons · CC BY 3.0', className: 'photo-tall' },
+    { id: 2, title: 'Habones en la mano', description: 'Ronchas rojizas y elevadas en el dorso de la mano, algunas unidas en placas.', image: 'biblioteca/bib-02.jpg', credit: 'Foto: Membeth, Wikimedia Commons · CC0', className: 'photo-wide' },
+    { id: 3, title: 'Hinchazón del párpado', description: 'Hinchazón (angioedema) en el párpado superior. Suele durar de 1 a 3 días.', image: 'biblioteca/bib-03.jpg', credit: 'Foto: NIAID, Wikimedia Commons · CC BY 2.0', className: 'photo-standard' },
+    { id: 4, title: 'Habones en el brazo', description: 'Ronchas rojizas de bordes bien definidos en el antebrazo.', image: 'biblioteca/bib-04.jpg', credit: 'Foto: Heckat, Wikimedia Commons · Dominio público', className: 'photo-tall' },
+    { id: 5, title: 'Habones en el abdomen', description: 'Habones con forma de anillo y placas en el abdomen y la espalda baja.', image: 'biblioteca/bib-05.jpg', credit: 'Foto: Natfernanda, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-tall' },
+    { id: 6, title: 'Habones en la palma', description: 'Habones con forma de anillo en la palma de la mano.', image: 'biblioteca/bib-06.jpg', credit: 'Foto: Klaus D. Peter, Wikimedia Commons · CC BY 3.0 DE', className: 'photo-standard' },
+    { id: 7, title: 'Habones en la pierna', description: 'Ronchas rosadas de bordes bien definidos en la pierna.', image: 'biblioteca/bib-07.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 4.0', className: 'photo-tall' },
+    { id: 8, title: 'Hinchazón del labio', description: 'Hinchazón (angioedema) del labio. Si la hinchazón afecta la lengua o la garganta, o te cuesta respirar, busca atención urgente.', image: 'biblioteca/bib-08.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-standard' },
+    { id: 9, title: 'Habones en el pecho y el costado', description: 'Ronchas extensas y elevadas en el costado del tórax.', image: 'biblioteca/bib-09.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-wide' }
   ]
 
   let selected = null
@@ -62,7 +62,7 @@
   <div class="library-heading">
     <div>
       <p class="eyebrow">Entender también es mirar</p>
-      <h2 id="library-title">Biblioteca visual de la urticaria</h2>
+      <h2 id="library-title">Biblioteca de imágenes</h2>
     </div>
     <p class="library-intro">La urticaria puede verse diferente en cada persona. Explora estas referencias y usa lo que observes para iniciar una conversación con un profesional de la salud.</p>
   </div>
@@ -72,12 +72,13 @@
     {#each visiblePhotos as photo (photo.id)}
       <button class={`photo-tile ${photo.className}`} class:gallery-visible={revealed.has(photo.id)} use:reveal={photo.id} type="button" on:click={() => selected = photo} aria-label={`Abrir foto: ${photo.title}`}>
         <img src={asset(photo.image)} alt={photo.title} loading="lazy" />
+        <span class="photo-credit">{photo.credit}</span>
         <span class="photo-caption"><strong>{photo.title}</strong><small>Ver descripción <Icon name="arrow_forward" size={16} /></small></span>
       </button>
     {/each}
   </div>
 
-  <p class="library-note"><Icon name="info" size={16} /> Estas imágenes son referencias educativas y no sustituyen una valoración médica.</p>
+  <p class="library-note"><Icon name="info" size={16} /> Fotografías clínicas reales de pacientes (Wikimedia Commons); el crédito y la licencia aparecen en cada imagen. Son referencias educativas y no sustituyen una valoración médica.</p>
 </section>
 
 {#if selected}
@@ -88,6 +89,7 @@
       <div class="lightbox-copy">
         <p class="eyebrow">{selected.title}</p>
         <p>{selected.description}</p>
+        <p class="lightbox-credit">{selected.credit}</p>
       </div>
       {#if visiblePhotos.length > 1}
         <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Imagen anterior" on:click={() => move(-1)}><Icon name="arrow_back" size={22} /></button>

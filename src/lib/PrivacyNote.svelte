@@ -9,7 +9,7 @@
 {#if variant === 'banner'}
   <div class="privacy-note privacy-banner" class:on-dark={tone === 'onDark'}>
     <span class="privacy-icon" aria-hidden="true"><Icon name="lock" size={22} /></span>
-    <p><strong>Tu diario es privado.</strong> Tus registros se guardan solo en este dispositivo: el sitio no los guarda, no los envía a ningún servidor y no los comparte con nadie. Si borras los datos de tu navegador, el registro también se borra; usa «Descargar mi registro» para tener un respaldo.</p>
+    <p><strong>Tu diario es privado.</strong> Tus registros se guardan solo en este dispositivo: el sitio no los guarda, no los envía a ningún servidor y no los comparte con nadie. Si borras los datos de tu navegador, el registro también se borra; usa «Descargar respaldo» para conservarlo.</p>
   </div>
 {:else}
   <p class="privacy-note privacy-compact" class:on-dark={tone === 'onDark'}>

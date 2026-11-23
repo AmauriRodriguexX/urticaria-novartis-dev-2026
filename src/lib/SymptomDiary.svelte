@@ -18,9 +18,16 @@
     } catch { /* sin almacenamiento, el registro vive hasta recargar */ }
     loaded = true
   })
+  // Se guarda solo en cada cambio; el aviso confirma al usuario que no necesita un botón de guardar.
+  let savedAt = null
+  let saveFailed = false
+  let firstSave = true
   $: if (loaded) {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(days)) } catch { /* el diario sigue funcionando en esta sesión */ }
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(days)); saveFailed = false } catch { saveFailed = true }
+    if (firstSave) firstSave = false
+    else savedAt = new Date()
   }
+  $: savedLabel = savedAt ? savedAt.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }) : ''
   let openDateIndex = null
   let calendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   let pickerPosition = { top: 0, left: 0 }
@@ -121,7 +128,7 @@
       totales: { habones: hivesTotal, comezon: itchTotal, uas7: hivesTotal + itchTotal }
     }
     saveFile(JSON.stringify(data, null, 2), `diario-sintomas_${dateValue(new Date())}.json`, 'application/json')
-    status = 'Se descargó tu registro. Guárdalo en tu dispositivo para cargarlo después o llevarlo a tu consulta.'
+    status = 'Se descargó tu respaldo. Guárdalo para recuperar tu diario en otro navegador o dispositivo con «Cargar un registro».'
   }
 
   const score = v => Math.max(0, Math.min(3, Math.round(Number(v) || 0)))
@@ -138,7 +145,7 @@
       openDateIndex = null
       status = 'Listo, se cargó tu registro.'
     } catch {
-      status = 'No pudimos leer ese archivo. Usa uno descargado desde este diario con «Descargar mi registro».'
+      status = 'No pudimos leer ese archivo. Usa uno descargado desde este diario con «Descargar respaldo».'
     }
   }
 
@@ -189,9 +196,23 @@
     <div><p class="eyebrow">Registro personal</p><h2 id="diary-tool-title">Mi Diario de Síntomas</h2></div>
   </div>
   <div class="diary-privacy no-print"><PrivacyNote variant="banner" /></div>
-  <div class="diary-progress">
-    <ol aria-hidden="true">{#each days as d, i}<li class:done={isFilled(d)}>{#if isFilled(d)}<Icon name="check" size={14} />{:else}{i + 1}{/if}</li>{/each}</ol>
-    <p role="status">Llevas <strong>{filled} de 7</strong> días registrados</p>
+  <div class="diary-topbar">
+    <div class="diary-progress">
+      <ol aria-hidden="true">{#each days as d, i}<li class:done={isFilled(d)}>{#if isFilled(d)}<Icon name="check" size={14} />{:else}{i + 1}{/if}</li>{/each}</ol>
+      <p role="status">Llevas <strong>{filled} de 7</strong> días registrados</p>
+    </div>
+    <div class="diary-reminder no-print">
+      <div class="diary-reminder-head">
+        <span class="diary-reminder-icon" aria-hidden="true"><Icon name="calendar_month" size={20} /></span>
+        <div><h3>Recordatorio diario</h3><p>Un aviso en tu calendario para llenar el diario los 7 días.</p></div>
+      </div>
+      <div class="diary-reminder-row">
+        <label>Empieza el <input type="date" bind:value={reminderStart} /></label>
+        <label>A las <input type="time" bind:value={reminderTime} /></label>
+        <button class="button" type="button" on:click={downloadIcs}>Agregar a mi calendario</button>
+      </div>
+      <a class="diary-reminder-google" href={googleUrl} target="_blank" rel="noopener">o ábrelo en Google Calendar <Icon name="open_in_new" size={14} /></a>
+    </div>
   </div>
   <div class="diary-legend">
     <div><strong>Habones (ronchas) en 24 h</strong><ul>{#each HIVES_GUIDE as label, n}<li><i style={`background:${SCALE_COLORS[n]}`}>{n}</i>{label}</li>{/each}</ul></div>
@@ -219,7 +240,16 @@
       <tfoot><tr><th scope="row">Suma de la semana</th><td></td><td>{hivesTotal}</td><td>{itchTotal}</td></tr></tfoot>
     </table>
   </div>
-  <UasGauge total={hivesTotal + itchTotal} titulo="Tu puntaje UAS7 de esta semana" aviso="Es la suma de habones (ronchas) y comezón de los 7 días. Llévalo a tu consulta: solo un especialista puede evaluar tu actividad." {ref} />
+  {#if filled === 7}
+    <UasGauge total={hivesTotal + itchTotal} titulo="Tu puntaje UAS7 de esta semana" aviso="Es la suma de habones (ronchas) y comezón de los 7 días. Llévalo a tu consulta: solo un especialista puede evaluar tu actividad." {ref} />
+  {:else}
+    <!-- El UAS7 solo es válido con 7 días: con menos, la suma siempre sale baja y puede confundir -->
+    <div class="diary-partial">
+      <p class="diary-partial-head"><span>Puntaje parcial · {filled} de 7 días</span><strong>{hivesTotal + itchTotal} <small>hasta ahora</small></strong></p>
+      <div class="diary-partial-bar" aria-hidden="true"><span style={`width:${(filled / 7) * 100}%`}></span></div>
+      <p>Completa los 7 días para obtener tu puntaje UAS7. Elige la fecha de cada día, aunque no hayas tenido síntomas.</p>
+    </div>
+  {/if}
   {#if openDateIndex !== null}
     <div class="material-date-picker" role="dialog" aria-label="Seleccionar fecha" style={`top:${pickerPosition.top}px;left:${pickerPosition.left}px`}>
       <div class="material-date-picker-heading">
@@ -237,25 +267,20 @@
     </div>
   {/if}
   <p class="diary-scale">Usa 0 si no observaste el síntoma y de 1 a 3 para registrar su intensidad. Estos totales son solo una forma de ordenar tus notas; no interpretan ni diagnostican tu estado. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</p>
+  <p class="diary-saved no-print" class:failed={saveFailed} aria-live="polite">
+    {#if saveFailed}No se pudo guardar en este navegador (puede estar en modo privado). Descarga un respaldo antes de cerrar la página.
+    {:else}<Icon name="check" size={16} /> Se guarda automáticamente en este dispositivo{#if savedLabel} · último cambio {savedLabel}{/if}{/if}
+  </p>
+  {#if filled < 7}
+    <p class="diary-report-wait no-print"><Icon name="calendar_month" size={18} /><span>Tu informe para el médico estará listo al completar los 7 días <strong>(llevas {filled} de 7)</strong>.</span></p>
+  {/if}
   <div class="diary-tool-actions no-print">
-    <button class="button" type="button" on:click={() => window.print()}>Imprimir o guardar como PDF</button>
-    <button class="button secondary" type="button" on:click={exportDiary}><Icon name="download" size={18} />Descargar mi registro</button>
+    {#if filled === 7}<button class="button" type="button" on:click={() => window.print()}><Icon name="download" size={18} />Descargar informe para mi médico (PDF)</button>{/if}
+    <button class="button secondary" type="button" on:click={exportDiary}><Icon name="download" size={18} />Descargar respaldo</button>
     <button class="text-button" type="button" on:click={() => fileInput.click()}>Cargar un registro</button>
     <input class="sr-only" type="file" accept=".json,application/json" tabindex="-1" aria-hidden="true" bind:this={fileInput} on:change={importDiary} />
     <button class="text-button" type="button" on:click={clearDiary}>Borrar este registro</button>
-  </div>
-
-  <div class="diary-reminder no-print">
-    <h3><Icon name="calendar_month" size={20} />Recordatorio diario</h3>
-    <p>Agrega un aviso a tu calendario para llenar el diario los 7 días a la misma hora. Tu registro no sale de este dispositivo.</p>
-    <div class="diary-reminder-fields">
-      <label>Empieza el <input type="date" bind:value={reminderStart} /></label>
-      <label>A las <input type="time" bind:value={reminderTime} /></label>
-    </div>
-    <div class="diary-tool-actions">
-      <button class="button secondary" type="button" on:click={downloadIcs}>Agregar a mi calendario</button>
-      <a class="text-button" href={googleUrl} target="_blank" rel="noopener">Abrir en Google Calendar <Icon name="open_in_new" size={16} /></a>
-    </div>
+    {#if filled < 7}<button class="text-button" type="button" on:click={() => window.print()}>Imprimir de todos modos</button>{/if}
   </div>
 
   <p class="diary-status no-print" role="status" aria-live="polite">{status}</p>

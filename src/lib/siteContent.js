@@ -257,7 +257,7 @@ export const landingPages = {
     eyebrow: 'Una herramienta para preparar tu consulta',
     title: 'Diario de Síntomas: Registra tus Ronchas y Toma el Control',
     intro: 'Llevar un registro de tus síntomas puede ayudarte a comunicarte con un profesional de la salud. Usa esta hoja de trabajo en tu navegador o imprímela para llevarla a tu consulta.',
-    ctas: [{ label: 'Usar el diario', href: '#registro' }, { label: 'Imprimir o guardar como PDF', action: 'print' }],
+    ctas: [{ label: 'Usar el diario', href: '#registro' }],
     sections: [
       {
         title: '¿Qué es el Diario de Síntomas y cómo te ayuda?',
@@ -359,7 +359,7 @@ export const landingPages = {
         cards: [
           { title: 'Test informativo', text: 'Realiza un test de menos de 5 minutos y conoce la intensidad de tus síntomas antes de consultar a un profesional de la salud.', route: 'test', linkLabel: 'Conocer el test' },
           { title: 'Diario de Síntomas', text: 'Registra tus brotes diarios y lleva esta información a tu consulta médica.', route: 'diario', linkLabel: 'Abrir el diario' },
-          { title: 'Biblioteca visual', text: 'Explora imágenes educativas de la urticaria y prepara preguntas para un profesional.', anchor: '#biblioteca', linkLabel: 'Ver la biblioteca' }
+          { title: 'Biblioteca de imágenes', text: 'Explora fotografías reales de la urticaria y prepara preguntas para un profesional.', anchor: '#biblioteca', linkLabel: 'Ver la biblioteca' }
         ]
       }
     ]
