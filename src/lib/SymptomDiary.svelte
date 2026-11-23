@@ -162,9 +162,6 @@
     if (end.getDate() !== 1) return `${stamp.slice(0, 9)}235900` // no cruzar la medianoche
     return `${stamp.slice(0, 9)}${String(end.getHours()).padStart(2, '0')}${String(end.getMinutes()).padStart(2, '0')}00`
   })()
-  $: googleUrl = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
-    action: 'TEMPLATE', text: REMINDER_TITLE, details: reminderText, dates: `${stamp}/${stampEnd}`, recur: 'RRULE:FREQ=DAILY;COUNT=7'
-  })
 
   const icsEscape = v => v.replace(/[\\;,]/g, m => `\\${m}`).replace(/\n/g, '\\n')
 
@@ -185,7 +182,7 @@
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n')
     saveFile(ics, 'recordatorio-diario-sintomas.ics', 'text/calendar')
-    status = 'Se descargó el recordatorio. Ábrelo para agregarlo a tu calendario: se repite 7 días a la hora que elegiste.'
+    status = 'Listo. Si tu calendario no se abrió solo, abre el archivo descargado para guardar el recordatorio: se repite 7 días a la hora que elegiste.'
   }
 </script>
 
@@ -209,9 +206,8 @@
       <div class="diary-reminder-row">
         <label>Empieza el <input type="date" bind:value={reminderStart} /></label>
         <label>A las <input type="time" bind:value={reminderTime} /></label>
-        <button class="button" type="button" on:click={downloadIcs}>Agregar a mi calendario</button>
+        <button class="button" type="button" on:click={downloadIcs}><Icon name="calendar_month" size={18} />Guardar en mi calendario</button>
       </div>
-      <a class="diary-reminder-google" href={googleUrl} target="_blank" rel="noopener">o ábrelo en Google Calendar <Icon name="open_in_new" size={14} /></a>
     </div>
   </div>
   <div class="diary-legend">
@@ -225,19 +221,20 @@
         {#each days as day, i (day.day)}
           <tr>
             <th scope="row">{day.day}</th>
-            <td>
+            <td class="cell-date">
+              <span class="cell-label" aria-hidden="true">Fecha</span>
               <span class="sr-only" id={`diary-date-label-${i}`}>Fecha, {day.day}</span>
               <button class="diary-date-trigger" id={`diary-date-${i}`} type="button" aria-labelledby={`diary-date-label-${i} diary-date-value-${i}`} aria-haspopup="dialog" aria-expanded={openDateIndex === i} on:click={(event) => openDatePicker(i, event)}>
                 <span id={`diary-date-value-${i}`} class:diary-date-placeholder={!day.date}>{day.date ? formatDate(day.date) : 'Elegir fecha'}</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 15H5V9h14v10ZM7 11h3v3H7z" /></svg>
               </button>
             </td>
-            <td><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
-            <td><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
+            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select></td>
+            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select></td>
           </tr>
         {/each}
       </tbody>
-      <tfoot><tr><th scope="row">Suma de la semana</th><td></td><td>{hivesTotal}</td><td>{itchTotal}</td></tr></tfoot>
+      <tfoot><tr><th scope="row">Suma de la semana</th><td class="cell-date"></td><td><span class="cell-label" aria-hidden="true">Habones</span>{hivesTotal}</td><td><span class="cell-label" aria-hidden="true">Comezón</span>{itchTotal}</td></tr></tfoot>
     </table>
   </div>
   {#if filled === 7}
