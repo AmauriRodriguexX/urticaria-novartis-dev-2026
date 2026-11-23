@@ -19,7 +19,17 @@ const PAGE = { w: 216, h: 279 }          // Carta, en mm
 const M = 18                              // margen
 const CONTENT = PAGE.w - M * 2
 
-export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
+// Rangos del UAS7 (0 a 42), los mismos del medidor del sitio y de la guía internacional.
+const UAS7_BANDAS = [
+  { min: 0, max: 0, nombre: 'Sin actividad', color: [31, 143, 78] },
+  { min: 1, max: 6, nombre: 'Bien controlada', color: [139, 195, 74] },
+  { min: 7, max: 15, nombre: 'Leve', color: [242, 209, 46] },
+  { min: 16, max: 27, nombre: 'Moderada', color: [243, 154, 43] },
+  { min: 28, max: 42, nombre: 'Severa', color: [224, 69, 58] }
+]
+export const bandaUas7 = total => UAS7_BANDAS.find(b => total >= b.min && total <= b.max) || UAS7_BANDAS[0]
+
+export async function construirPdf({ lectura, rows, pregunta, escalacion, uas7 = { habones: 0, comezon: 0 } }) {
   const [{ jsPDF }, bold, regular] = await Promise.all([
     import('jspdf'),
     import('./barlow-bold.js'),
@@ -73,6 +83,41 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
   doc.text(detalle, M, y)
   y += detalle.length * 4.8 + 8
 
+  // ---------- puntaje UAS7 (siempre se imprime) ----------
+  {
+    const hab = Math.max(0, Math.min(3, Number(uas7.habones) || 0))
+    const com = Math.max(0, Math.min(3, Number(uas7.comezon) || 0))
+    const total = (hab + com) * 7
+    const banda = bandaUas7(total)
+    const boxH = 40
+    fill(COLORS.card); doc.setDrawColor(...COLORS.line); doc.setLineWidth(0.3)
+    doc.roundedRect(M, y, CONTENT, boxH, 2.5, 2.5, 'FD')
+    set('bold', 7.5, COLORS.coral)
+    doc.text('ACTIVIDAD SEMANAL ESTIMADA (UAS7)', M + 6, y + 8)
+    set('bold', 22, COLORS.ink)
+    doc.text(String(total), M + CONTENT - 22, y + 11, { align: 'right' })
+    set('normal', 9, COLORS.soft)
+    doc.text('de 42', M + CONTENT - 6, y + 11, { align: 'right' })
+    set('bold', 11, COLORS.ink)
+    doc.text(total === 0 ? 'Sin actividad' : `Actividad ${banda.nombre.toLowerCase()}`, M + 6, y + 15)
+    // barra con los 5 rangos y marcador
+    const barX = M + 6, barW = CONTENT - 12, barY = y + 20, barH = 3.2
+    UAS7_BANDAS.forEach(b => {
+      const x0 = barX + (b.min / 43) * barW, x1 = barX + ((b.max + 1) / 43) * barW
+      fill(b.color); doc.rect(x0, barY, x1 - x0, barH, 'F')
+    })
+    const mx = barX + ((total + 0.5) / 43) * barW
+    fill(COLORS.ink); doc.triangle(mx - 1.6, barY - 2.4, mx + 1.6, barY - 2.4, mx, barY - 0.2, 'F')
+    set('normal', 6.5, COLORS.faint)
+    doc.text('0', barX, barY + barH + 3.4); doc.text('42', barX + barW, barY + barH + 3.4, { align: 'right' })
+    set('normal', 8.5, COLORS.ink)
+    doc.text(`Habones (ronchas): ${hab} por día x 7 días = ${hab * 7}`, M + 6, y + 31)
+    doc.text(`Comezón: ${com} por día x 7 días = ${com * 7}`, M + CONTENT / 2 + 4, y + 31)
+    set('normal', 7, COLORS.soft)
+    doc.text('Estimación con las respuestas del test sobre la última semana. El UAS7 se confirma registrando 7 días en el Diario de Síntomas.', M + 6, y + 36)
+    y += boxH + 8
+  }
+
   // ---------- secciones clínicas de Ben (si están disponibles) ----------
   if (lectura.reporte) {
     const rep = lectura.reporte
@@ -96,39 +141,49 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
     }
   }
 
-  // ---------- tabla ----------
+  // ---------- paginación: si algo no cabe, sigue en otra hoja con el mismo fondo ----------
+  const footTop = PAGE.h - 30
+  const limite = footTop - 6
+  const nuevaPagina = () => {
+    doc.addPage([PAGE.w, PAGE.h])
+    fill(COLORS.alabaster); doc.rect(0, 0, PAGE.w, PAGE.h, 'F')
+    fill(COLORS.coral); doc.rect(0, 0, PAGE.w, 10, 'F')
+    y = 24
+  }
+  const asegurar = h => { if (y + h > limite) nuevaPagina() }
+
+  // ---------- tabla de respuestas ----------
+  const tableRows = rows.slice(0, 14) // respuestas clínicas más relevantes
+  const rowH = 7.5
+  asegurar(5 + rowH * 2)
   set('bold', 8, COLORS.faint)
   doc.text('DETALLE DE RESPUESTAS', M, y)
   y += 5
-
-  // ---------- tabla de respuestas (compacta y proporcional) ----------
-  const tableRows = rows.slice(0, 14) // Muestra las respuestas clínicas más relevantes
-  const reservado = 42 + (escalacion ? 18 : 0) // espacio para escalación, pregunta clave y márgenes
-  const espacioLibre = PAGE.h - 40 - y - reservado
-  const rowH = Math.max(6.5, Math.min(10, espacioLibre / Math.max(tableRows.length, 1)))
-  const tableTop = y
-  fill(COLORS.card)
-  doc.roundedRect(M, y, CONTENT, rowH * tableRows.length, 2.5, 2.5, 'F')
-
-  tableRows.forEach((row, i) => {
-    const top = tableTop + i * rowH
-    if (i > 0) {
+  let primeraEnHoja = true
+  tableRows.forEach(row => {
+    if (y + rowH > limite) { nuevaPagina(); primeraEnHoja = true }
+    fill(COLORS.card)
+    doc.rect(M, y, CONTENT, rowH, 'F')
+    if (!primeraEnHoja) {
       doc.setDrawColor(...COLORS.line)
       doc.setLineWidth(0.2)
-      doc.line(M + 4, top, M + CONTENT - 4, top)
+      doc.line(M + 4, y, M + CONTENT - 4, y)
     }
     set('bold', 6.5, COLORS.faint)
-    doc.text(String(row.etiqueta).toUpperCase(), M + 5, top + rowH / 2 + 1)
+    doc.text(String(row.etiqueta).toUpperCase(), M + 5, y + rowH / 2 + 1)
     set('normal', 8, COLORS.ink)
     const valor = doc.splitTextToSize(String(row.valor), CONTENT - 75)
-    doc.text(valor[0], M + CONTENT - 5, top + rowH / 2 + 1, { align: 'right' })
+    doc.text(valor[0], M + CONTENT - 5, y + rowH / 2 + 1, { align: 'right' })
+    y += rowH
+    primeraEnHoja = false
   })
-  y = tableTop + rowH * tableRows.length + 8
+  y += 8
 
   // ---------- escalación, solo si aplica ----------
   if (escalacion) {
     const texto = doc.splitTextToSize(escalacion, CONTENT - 14)
     const h = texto.length * 4.2 + 8
+    asegurar(h)
     fill(COLORS.coralSoft)
     doc.roundedRect(M, y, CONTENT, h, 2.5, 2.5, 'F')
     fill(COLORS.coral)
@@ -140,8 +195,9 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
 
   // ---------- la pregunta, solo si ya lleva tratamiento ----------
   if (pregunta) {
-    fill(COLORS.cerulean)
     const qH = 22
+    asegurar(qH)
+    fill(COLORS.cerulean)
     doc.roundedRect(M, y, CONTENT, qH, 2.5, 2.5, 'F')
     set('normal', 7.5, COLORS.white)
     doc.text('LA PREGUNTA QUE ABRE LA CONVERSACIÓN', M + 8, y + 7)
@@ -163,23 +219,25 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
     for (let i = 1; i <= nLineas; i++) doc.line(M, y + i * paso, M + CONTENT, y + i * paso)
   }
 
-  // ---------- pie ----------
-  const footTop = PAGE.h - 30
-  doc.setDrawColor(...COLORS.line)
-  doc.setLineWidth(0.3)
-  doc.line(M, footTop, M + CONTENT, footTop)
-
-  set('normal', 7.5, COLORS.faint)
-  const legal = doc.splitTextToSize(
-    'Este resumen es orientativo y no constituye un diagnóstico. Fue generado a partir de respuestas propias en un autochequeo informativo. Únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.',
-    CONTENT
-  )
-  doc.text(legal, M, footTop + 6)
-
-  set('bold', 8, COLORS.ink)
-  doc.text(SITE_NAME, M, PAGE.h - 10)
-  set('bold', 8, COLORS.coral)
-  doc.text(SITE_DOMAIN, M + CONTENT, PAGE.h - 10, { align: 'right' })
+  // ---------- pie en todas las hojas ----------
+  const total = doc.getNumberOfPages()
+  for (let n = 1; n <= total; n++) {
+    doc.setPage(n)
+    doc.setDrawColor(...COLORS.line)
+    doc.setLineWidth(0.3)
+    doc.line(M, footTop, M + CONTENT, footTop)
+    set('normal', 7.5, COLORS.faint)
+    const legal = doc.splitTextToSize(
+      'Este resumen es orientativo y no constituye un diagnóstico. Fue generado a partir de respuestas propias en un autochequeo informativo. Únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.',
+      CONTENT
+    )
+    doc.text(legal, M, footTop + 6)
+    set('bold', 8, COLORS.ink)
+    doc.text(SITE_NAME, M, PAGE.h - 10)
+    if (total > 1) { set('normal', 8, COLORS.faint); doc.text(`Hoja ${n} de ${total}`, PAGE.w / 2, PAGE.h - 10, { align: 'center' }) }
+    set('bold', 8, COLORS.coral)
+    doc.text(SITE_DOMAIN, M + CONTENT, PAGE.h - 10, { align: 'right' })
+  }
 
   return doc
 }

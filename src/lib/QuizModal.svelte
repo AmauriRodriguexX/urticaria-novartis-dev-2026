@@ -153,7 +153,7 @@
 
   // ---------- resultado ----------
   function summary() {
-    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}${preguntaClave ? `\n\nMi pregunta clave: ${preguntaClave}` : ''}`
+    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\nActividad semanal estimada (UAS7): ${((parseInt(answers.q3, 10) || 0) + (parseInt(answers.q4, 10) || 0)) * 7} de 42 (estimación; se confirma con 7 días en el diario)\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}${preguntaClave ? `\n\nMi pregunta clave: ${preguntaClave}` : ''}`
   }
   let downloading = false
   async function download() {
@@ -165,7 +165,8 @@
         lectura,
         rows,
         pregunta: preguntaClave,
-        escalacion: escalacion ? ESCALACION.enPdf : null
+        escalacion: escalacion ? ESCALACION.enPdf : null,
+        uas7: { habones: parseInt(answers.q3, 10) || 0, comezon: parseInt(answers.q4, 10) || 0 }
       })
       downloaded = true
       setTimeout(() => { downloaded = false }, 2500)
