@@ -1,5 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte'
+  import { fly } from 'svelte/transition'
   import UasGauge from './UasGauge.svelte'
   import Icon from './Icon.svelte'
   import PrivacyNote from './PrivacyNote.svelte'
@@ -17,6 +18,7 @@
       if (Array.isArray(saved) && saved.length === 7) days = saved
     } catch { /* sin almacenamiento, el registro vive hasta recargar */ }
     loaded = true
+    prevFilled = days.map(isFilled)
   })
   // Se guarda solo en cada cambio; el aviso confirma al usuario que no necesita un botón de guardar.
   let savedAt = null
@@ -46,6 +48,31 @@
   function clearDiary() {
     days = blankDays()
     openDateIndex = null
+    prevFilled = days.map(isFilled)
+  }
+
+  // ── Aviso breve cada vez que se guarda o se actualiza un día ──
+  const ORDINALES = ['primer', 'segundo', 'tercer', 'cuarto', 'quinto', 'sexto', 'séptimo']
+  let prevFilled = Array(7).fill(false)
+  let toast = ''
+  let toastTimer
+  function showToast(text) {
+    toast = text
+    clearTimeout(toastTimer)
+    toastTimer = setTimeout(() => (toast = ''), 2800)
+  }
+  async function notifyDay(i) {
+    await tick()
+    if (i == null || !days[i]) return
+    const now = isFilled(days[i])
+    const before = prevFilled[i]
+    prevFilled = days.map(isFilled)
+    if (!before && now) {
+      const total = prevFilled.filter(Boolean).length
+      showToast(total === 7 ? '¡Completaste los 7 días! Ya puedes descargar tu informe para el médico.' : `Se guardaron los datos de tu ${ORDINALES[i]} día`)
+    } else if (before) {
+      showToast(`Se actualizó tu ${ORDINALES[i]} día`)
+    }
   }
 
   function getCalendarCells(month) {
@@ -97,8 +124,10 @@
   }
 
   function selectCalendarDate(date) {
+    const i = openDateIndex
     days = days.map((day, index) => index === openDateIndex ? { ...day, date: dateValue(date) } : day)
     openDateIndex = null
+    notifyDay(i)
   }
 
   function closeCalendar(event) {
@@ -142,6 +171,7 @@
       const data = JSON.parse(await file.text())
       if (data?.archivo !== FILE_ID || !Array.isArray(data.dias) || data.dias.length !== 7) throw new Error('formato')
       days = data.dias.map((d, i) => ({ day: `Día ${i + 1}`, date: validDate(d.fecha), hives: score(d.habones), itch: score(d.comezon) }))
+      prevFilled = days.map(isFilled)
       openDateIndex = null
       status = 'Listo, se cargó tu registro.'
     } catch {
@@ -274,8 +304,8 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 15H5V9h14v10ZM7 11h3v3H7z" /></svg>
               </button>
             </td>
-            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.hives}</span></td>
-            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.itch}</span></td>
+            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives} on:change={() => notifyDay(i)}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.hives}</span></td>
+            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch} on:change={() => notifyDay(i)}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.itch}</span></td>
           </tr>
         {/each}
       </tbody>
@@ -326,4 +356,7 @@
   </div>
 
   <p class="diary-status no-print" role="status" aria-live="polite">{status}</p>
+  {#if toast}
+    <div class="diary-toast no-print" role="status" aria-live="polite" transition:fly={{ y: 24, duration: 250 }}><Icon name="check" size={18} /><span>{toast}</span></div>
+  {/if}
 </section>
