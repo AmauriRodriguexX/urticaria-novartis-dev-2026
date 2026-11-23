@@ -36,12 +36,11 @@
     ronchas: { src: 'ronchas.jpg', alt: 'Habones (ronchas) rosados en el costado del torso y el brazo' },
     picazon: { src: 'comezon.jpg', alt: 'Persona rascándose el antebrazo' },
     hinchazon: { src: 'hinchazon.jpg', alt: 'Hinchazón (angioedema) debajo del ojo' },
-    urgente: { src: 'hinchazon-labios.jpg', alt: 'Hinchazón (angioedema) en los labios' },
     no_urgente: { src: 'hinchazon-parpado.jpg', alt: 'Hinchazón (angioedema) en el párpado' }
   }
   const CREDITOS = {
     q1: 'Fotos: Wikimedia Commons · CC0 · Klaus D. Peter, CC BY 3.0 DE · NIAID, CC BY 2.0',
-    q1b: 'Fotos: Wikimedia Commons · James Heilman, MD, CC BY-SA 3.0 · NIAID, CC BY 2.0'
+    q1b: 'Foto: NIAID, Wikimedia Commons · CC BY 2.0'
   }
   const imgSintoma = (name) => `${import.meta.env.BASE_URL}assets/img/sintomas/${name}`
   // Mitos sobre la causa que la persona ha escuchado (Q12), sin contar "Nadie me ha dicho nada"
@@ -242,7 +241,7 @@
   <div class="modal-inner" class:is-wide={phase === 'map'}>
     <header class="modal-head">
       <span class="mini-glass" aria-hidden="true"></span>
-      <b>{phase === 'map' ? 'Especialistas y Consulta' : 'Tu vida es más grande · 1 min'}</b>
+      <b>{phase === 'map' ? 'Especialistas y Consulta' : 'Tu vida es más grande · 5 min'}</b>
       <button class="close" aria-label="Cerrar" on:click={close}><Icon name="close" size={22} /></button>
     </header>
 
@@ -282,6 +281,7 @@
               {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
               <button class:chosen={on} class:opt-none={o[0] === 'ninguno'} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
                 {#if conImagen && IMG_OPCION[o[0]]}<span class="opt-media opt-photo"><img src={imgSintoma(IMG_OPCION[o[0]].src)} alt={IMG_OPCION[o[0]].alt} loading="lazy" /></span>
+                {:else if conImagen && o[0] === 'urgente'}<span class="opt-media opt-alert" aria-hidden="true"><Icon name="emergency" size={40} /></span>
                 {:else if conImagen && o[0] !== 'ninguno'}<span class="opt-media" aria-hidden="true"><em>Imagen por definir</em></span>{/if}
                 <span class="opt-row"><i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
                 <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span></span>
@@ -304,7 +304,7 @@
       <div class="urgent">
         <div class="warning" aria-hidden="true"><Icon name="emergency" size={34} /></div>
         <h2 tabindex="-1" bind:this={heading}>Esto puede ser una urgencia.</h2>
-        <p>La hinchazón de labios, lengua o garganta — o la dificultad para respirar — necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p>
+        <p>La hinchazón de lengua o garganta, o la dificultad para respirar, necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p>
         <a class="button" href="tel:911"><Icon name="call" size={20} /><span>Llamar a emergencias (911)</span></a>
         <button class="text" on:click={() => go('map', step)}><Icon name="location_on" size={18} /> Ver especialistas</button>
         <p class="urgent-note"><small>Esta pantalla no es un diagnóstico. Únicamente un profesional de la salud puede determinar la enfermedad y sugerir un tratamiento específico.</small></p>

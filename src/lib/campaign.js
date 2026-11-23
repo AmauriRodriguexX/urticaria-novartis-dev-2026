@@ -24,9 +24,9 @@ export const questions = {
     ['hinchazon', 'Hinchazón (angioedema)', 'En labios, párpados, manos o pies']
   ]],
 
-  q1b: ['single', '¿La hinchazón es en labios, lengua o garganta, o te cuesta respirar?', 'Esto es importante: ayuda a descartar una urgencia.', [
-    ['urgente', 'Sí — labios, lengua, garganta, o me cuesta respirar', ''],
-    ['no_urgente', 'No — es en párpados, manos o pies', '']
+  q1b: ['single', '¿La hinchazón es en la lengua o la garganta, o te cuesta respirar?', 'Esto es importante: ayuda a descartar una urgencia.', [
+    ['urgente', 'Sí — en la lengua o la garganta, o me cuesta respirar', ''],
+    ['no_urgente', 'No — es en labios, párpados, manos o pies', '']
   ]],
 
   q2: ['single', '¿Cuánto tiempo llevas con estos síntomas?', 'El tiempo ayuda a distinguir entre ronchas pasajeras y crónicas.', [

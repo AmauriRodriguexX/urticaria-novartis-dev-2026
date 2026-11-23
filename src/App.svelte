@@ -153,7 +153,7 @@
     <div class="footer-brand"><LogoNovartis alto={28} /></div>
     <small class="footer-legal">Consulte a su médico. ID de contenido: {CONTENT_ID}<br />Fecha de vigencia: {VIGENCIA}</small>
     <small>Este contenido es solo información general y no sustituye el consejo médico. Si tienes síntomas, habla con un profesional de la salud.</small>
-    <small>Las imágenes empleadas no corresponden a pacientes reales. Las imágenes empleadas no corresponden a Profesionales de la Salud reales.</small>
+    <small>Las imágenes de personas son ilustrativas y no corresponden a pacientes ni a profesionales de la salud reales, salvo las fotografías clínicas de referencia, que se identifican con su crédito.</small>
     <small>Novartis Farmacéutica, S.A. de C.V. con domicilio en Av. Insurgentes Sur No.2475, Piso 3, Barrio Loreto, Álvaro Obregón, 01090 Ciudad de México, México</small>
     <nav class="footer-legal-links" aria-label="Información legal">{#each LEGAL_LINKS as l}<a href={l.href}>{l.label}</a>{/each}</nav>
     <div class="footer-domain">

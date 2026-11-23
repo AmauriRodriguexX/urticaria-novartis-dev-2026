@@ -37,7 +37,7 @@
   <section class="home-definition" aria-labelledby="home-definition-title" data-reveal>
     <div class="home-definition-copy">
       <p class="eyebrow accent">Información para entender lo que pasa en tu piel</p>
-      <h2 id="home-definition-title">¿Qué es la Urticaria Crónica Espontánea?</h2>
+      <h2 id="home-definition-title">¿Qué es la urticaria crónica espontánea?</h2>
       <p class="home-lead">La urticaria crónica espontánea es una afección de la piel caracterizada por la aparición recurrente de <strong>habones (ronchas)</strong> e <strong>hinchazón (angioedema)</strong> durante más de 6 semanas, sin que exista una causa externa evidente y sin dejar marcas ni cicatrices.</p>
       <p>No es contagiosa ni es tu culpa. Se trata de un padecimiento que hoy en día puede tratarse con éxito si acudes con un especialista médico.<Cita refs={1} prefix="ref" /></p>
       <ul class="home-facts" aria-label="Datos clave de la urticaria crónica espontánea">
@@ -103,7 +103,7 @@
 
   <section class="home-blog" aria-labelledby="home-blog-title" data-reveal>
     <div class="home-section-heading home-blog-heading">
-      <div><p class="eyebrow accent">Blog · Artículos de muestra</p><h2 id="home-blog-title">Aprende más sobre la Urticaria Crónica Espontánea</h2><p>Conoce más acerca de la urticaria crónica y cómo recuperar tu vida diaria con consejos prácticos.</p></div>
+      <div><p class="eyebrow accent">Blog · Artículos de muestra</p><h2 id="home-blog-title">Aprende más sobre la urticaria crónica espontánea</h2><p>Conoce más acerca de la urticaria crónica y cómo recuperar tu vida diaria con consejos prácticos.</p></div>
       <a class="inline-link" href={routeHref('blog')}>Ir al blog <Icon name="arrow_forward" size={18} /></a>
     </div>
     <div class="home-article-grid">

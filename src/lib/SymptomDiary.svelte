@@ -28,8 +28,8 @@
   $: filled = days.filter(isFilled).length
   // Guía visual de la escala (mismos colores que la escala del test)
   const SCALE_COLORS = ['#1f8f4e', '#f2d12e', '#f39a2b', '#e0453a']
-  const HIVES_GUIDE = ['Ninguno', 'Menos de 20', 'De 20 a 50', 'Más de 50']
-  const ITCH_GUIDE = ['Nada', 'Leve', 'Moderada', 'Intensa']
+  const HIVES_GUIDE = ['Ninguna', 'Menos de 20', 'De 20 a 50', 'Más de 50']
+  const ITCH_GUIDE = ['Ninguna', 'Leve', 'Moderada', 'Alta / Severa']
   $: hivesTotal = days.reduce((sum, day) => sum + Number(day.hives || 0), 0)
   $: itchTotal = days.reduce((sum, day) => sum + Number(day.itch || 0), 0)
   $: calendarCells = getCalendarCells(calendarMonth)

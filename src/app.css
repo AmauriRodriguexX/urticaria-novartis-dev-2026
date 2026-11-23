@@ -1275,6 +1275,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .options-media { flex-direction: row; }
 .options-media button { flex-direction: column; flex: 1; gap: var(--s-3); }
 .opt-media { display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 9; border: 1.5px dashed color-mix(in srgb, var(--faint) 55%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--card) 60%, var(--line)); }
+.opt-alert { border-style: solid; border-color: color-mix(in srgb, #e0453a 45%, transparent); background: color-mix(in srgb, #e0453a 10%, var(--card)); color: #c8372d; }
 .opt-media em { color: var(--faint); font: 600 12px var(--font-barlow-c); font-style: normal; letter-spacing: .12em; text-transform: uppercase; }
 @media (max-width: 560px) { .options-media { flex-direction: column; } .opt-media { aspect-ratio: 2.4 / 1; } }
 

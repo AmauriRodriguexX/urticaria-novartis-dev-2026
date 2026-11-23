@@ -141,7 +141,7 @@ export const landingPages = {
             { icon: 'calendar_month', label: 'Cuánto tiempo dura', values: {
               uce: { text: 'Las ronchas reaparecen durante más de seis semanas.', ref: 1, stat: '6 semanas o más' },
               aguda: { text: 'Los síntomas desaparecen antes de las seis semanas.', ref: 1, stat: 'Menos de 6 semanas' },
-              inducible: 'Aparece tras el estímulo y detona ronchas en minutos (usualmente ≤1 h).' } },
+              inducible: 'Las ronchas aparecen minutos después del estímulo y suelen durar menos de 1 hora.' } },
             { icon: 'stethoscope', label: 'Cómo se evalúa', values: {
               uce: 'Un profesional de la salud determina el diagnóstico y el manejo.',
               aguda: 'La evaluación considera el contexto y los posibles desencadenantes.',
@@ -158,7 +158,7 @@ export const landingPages = {
         title: 'Guía visual: signos que puedes describir en consulta',
         cards: [
           { title: 'Habones (ronchas)', text: 'Pueden aparecer en distintas partes del cuerpo y variar de tamaño.', refs: 4 },
-          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados.\n\nAnte hinchazón de lengua o garganta, o dificultad para respirar se requiere atención urgente. La Urticaria Crónica Espontánea no causa hinchazón en la garganta, por lo que este síntoma específico puede indicar otros padecimientos.', refs: 4 }
+          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados.\n\nAnte hinchazón de lengua o garganta, o dificultad para respirar, se requiere atención urgente. Estos síntomas no son habituales en la urticaria crónica espontánea y pueden indicar otros padecimientos.', refs: 4 }
         ],
         adaptadoDe: [4]
       },
@@ -167,7 +167,7 @@ export const landingPages = {
         faqs: [
           { question: '¿Cuánto dura un brote de ronchas o hinchazón?', answer: 'La duración puede variar. Las ronchas duran hasta 24 horas, mientras que la hinchazón (angioedema) puede durar de 1 a 3 días (hasta 72 horas).\n\nPuesto que estos síntomas aparecen y desaparecen sin dejar rastro, es importante tomar fotos y anotar cuánto permanece cada síntoma, dónde y cuándo aparecen más.', refs: 4, cta: { label: 'Registrar mis brotes en el diario', route: 'diario' } },
           { question: '¿Las ronchas dejan marcas o cicatrices?', answer: 'Las ronchas de la UCE desaparecen sin dejar ninguna secuela ni mancha residual en la piel. Si una roncha dura fija en el mismo punto más de 24 horas y al quitarse deja una mancha café o morada (equimosis/hiperpigmentación), debes consultar de inmediato a un especialista para descartar otros padecimientos.', refs: 5, cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
-          { question: '¿Puedo tener más de un tipo de urticaria a la vez?', answer: 'Sí. En más del 10% de las personas coexisten dos o más formas de urticaria.\n\nDe ahí la importancia de registrar adecuadamente tu diario de síntomas. Con esta información tu médico podrá recomendarte un tratamiento que se ajuste a tus necesidades.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } },
+          { question: '¿Puedo tener más de un tipo de urticaria a la vez?', answer: 'Sí. Más del 10% de las personas con urticaria crónica espontánea tiene también otra forma de urticaria, como la inducible.\n\nDe ahí la importancia de registrar adecuadamente tu diario de síntomas. Con esta información tu médico podrá recomendarte un tratamiento que se ajuste a tus necesidades.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } },
           { question: '¿La urticaria crónica es contagiosa?', answer: 'No. La urticaria crónica espontánea (UCE) no se transmite por contacto entre personas.', refs: 6, cta: { label: 'Hacer el test informativo', action: 'quiz' } }
         ],
         adaptadoDe: [4, 5, 6]
@@ -216,7 +216,7 @@ export const landingPages = {
       {
         title: 'Preguntas frecuentes sobre tratamiento',
         faqs: [
-          { question: '¿Puedo suspender o espaciar mi tratamiento si ya no tengo ronchas?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el médico que te lo indicó.\n\nLa UCE dura en promedio entre 3 y 5 años con un comportamiento fluctuante. La ausencia de lesiones significa que la terapia está cumpliendo su objetivo de controlar la actividad celular, no que la enfermedad haya desaparecido de inmediato. Si alcanzas un control completo sostenido durante varios meses, tu especialista médico planificará una reducción gradual y segura del tratamiento.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
+          { question: '¿Puedo suspender o espaciar mi tratamiento si ya no tengo ronchas?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el médico que te lo indicó.\n\nLa UCE puede durar varios años (en promedio, de 1 a 4) y su actividad fluctúa. La ausencia de lesiones significa que la terapia está cumpliendo su objetivo de controlar la actividad celular, no que la enfermedad haya desaparecido de inmediato. Si alcanzas un control completo sostenido durante varios meses, tu especialista médico planificará una reducción gradual y segura del tratamiento.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
         ]
       }
     ],
