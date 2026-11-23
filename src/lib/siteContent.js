@@ -112,10 +112,10 @@ export const landingPages = {
         intro: 'Aprende a reconocer los síntomas de la urticaria crónica espontánea (UCE) y acércate a un profesional de la salud para encontrar un tratamiento adecuado:',
         highlight: 'Clave: los síntomas se repiten durante 6 semanas o más.',
         cards: [
-          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel, que provocan comezón.', image: true },
-          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.', image: true, refs: 4 },
-          { title: 'Comezón', text: 'Puede afectar las actividades diarias, el sueño y el trabajo.', image: true, refs: [2, 3] },
-          { title: 'Ardor', text: 'Sensación de quemazón en la zona afectada.', image: true }
+          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel, que provocan comezón.', image: 'ronchas.jpg', imageAlt: 'Habones (ronchas) rosados en el costado del torso y el brazo', imageCredit: 'Foto: Wikimedia Commons · CC0' },
+          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.', image: 'hinchazon.jpg', imageAlt: 'Hinchazón (angioedema) debajo del ojo', imageCredit: 'Foto: Klaus D. Peter, Wikimedia Commons · CC BY 3.0 DE', refs: 4 },
+          { title: 'Comezón', text: 'Puede afectar las actividades diarias, el sueño y el trabajo.', image: 'comezon.jpg', imageAlt: 'Persona rascándose el antebrazo', imageCredit: 'Foto: NIAID, Wikimedia Commons · CC BY 2.0', refs: [2, 3] },
+          { title: 'Ardor', text: 'Sensación de quemazón en la zona afectada.', image: 'ardor.jpg', imageAlt: 'Piel enrojecida e irritada en el dorso de la mano', imageCredit: 'Foto: Wikimedia Commons · CC0' }
         ],
         // Corte de la piel con línea de tiempo (reemplaza el párrafo de duración): números de la lista de fuentes
         skinFigure: { sachdeva: 4, hsieh: 5 },
@@ -207,15 +207,15 @@ export const landingPages = {
       },
       {
         title: '¿Con qué especialista puedo hablar?',
-        intro: 'Un alergólogo o dermatólogo certificado puede valorar tus síntomas y orientarte sobre los siguientes pasos.',
+        intro: 'Un especialista certificado puede valorar tus síntomas y orientarte sobre los siguientes pasos.',
         cards: [
-          { title: 'Encuentra a un especialista cerca de ti', text: 'Busca alergólogos y dermatólogos certificados en tu localidad.', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
+          { title: 'Encuentra a un especialista cerca de ti', text: 'Busca especialistas certificados en tu localidad.', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
         ]
       },
       {
         title: 'Preguntas frecuentes sobre tratamiento',
         faqs: [
-          { question: '¿Puedo cambiar o suspender mi tratamiento?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el alergólogo o dermatólogo que te lo indicó.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
+          { question: '¿Puedo cambiar o suspender mi tratamiento?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el especialista que te lo indicó.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
         ]
       }
     ],
@@ -245,7 +245,7 @@ export const landingPages = {
         title: 'Preguntas frecuentes sobre las historias',
         faqs: [
           { question: '¿Puedo compartir mi testimonio de forma anónima?', answer: 'Sí. Todas las historias se publican de forma anónima, sin nombre, edad ni ciudad.' },
-          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro Directorio Médico para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.', cta: { label: 'Ir al directorio médico', route: 'directorio-medico' } }
+          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro Directorio Médico para ubicar especialistas certificados cerca de tu localidad.', cta: { label: 'Ir al directorio médico', route: 'directorio-medico' } }
         ]
       }
     ],
@@ -302,7 +302,7 @@ export const landingPages = {
       {
         title: 'Antes de comenzar',
         list: ['Toma menos de 5 minutos.', 'No requiere registro previo.', 'Tus respuestas no sustituyen una evaluación médica.'],
-        notice: 'Este test es una herramienta de orientación informativa y educativa. No constituye un diagnóstico médico ni sustituye la consulta con un dermatólogo, alergólogo u otro profesional de la salud.'
+        notice: 'Este test es una herramienta de orientación informativa y educativa. No constituye un diagnóstico médico ni sustituye la consulta con un especialista u otro profesional de la salud.'
       },
       {
         title: '¿Qué pasa después?',
@@ -331,8 +331,8 @@ export const landingPages = {
   'directorio-medico': {
     ...pageMetadata['directorio-medico'],
     eyebrow: 'Directorio médico',
-    title: 'Directorio de alergólogos y dermatólogos',
-    intro: 'No existen especialistas exclusivos en urticaria crónica espontánea: la valoración corresponde a alergólogos o dermatólogos certificados. Encuéntralos cerca de ti para conversar sobre tus síntomas y los siguientes pasos.',
+    title: 'Directorio de especialistas',
+    intro: 'No existen especialistas exclusivos en urticaria crónica espontánea: la valoración corresponde a especialistas certificados. Encuéntralos cerca de ti para conversar sobre tus síntomas y los siguientes pasos.',
     directoryTool: true,
     sections: [
       {
@@ -368,5 +368,5 @@ export const landingPages = {
 export const homeArticles = [
   { slug: 'estres-y-observaciones', title: '¿La urticaria empeora con el estrés?', text: 'Analizamos cómo las emociones influyen en los brotes y qué estrategias de alivio puedes aplicar.' },
   { slug: 'preparar-consulta', title: 'Guía para preparar tu consulta con el dermatólogo', text: 'Qué preguntas hacer y qué datos llevar para aprovechar al máximo tu cita médica.' },
-  { slug: 'dietas-restrictivas-uce', title: 'Mitos comunes sobre las dietas restrictivas en urticaria crónica espontánea', text: 'Descubre por qué suspender alimentos sin diagnóstico alérgico no frena la urticaria crónica.' }
+  { slug: 'dietas-restrictivas-uce', title: 'Mitos comunes sobre las dietas restrictivas en urticaria crónica espontánea', text: 'Descubre por qué suspender alimentos sin indicación médica no frena la urticaria crónica.' }
 ]

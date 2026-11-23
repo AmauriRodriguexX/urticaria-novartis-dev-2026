@@ -98,7 +98,7 @@ export const blogDrafts = [
     sections: [
       {
         title: 'No todas las urticarias tienen el mismo origen',
-        paragraphs: ['La urticaria crónica espontánea puede aparecer sin un desencadenante externo identificable. La coincidencia entre un alimento y un brote no confirma por sí sola una alergia ni una causa.']
+        paragraphs: ['La urticaria crónica espontánea puede aparecer sin un desencadenante externo identificable. La coincidencia entre un alimento y un brote no confirma por sí sola que sea la causa.']
       },
       {
         title: 'Evita eliminar alimentos sin orientación',

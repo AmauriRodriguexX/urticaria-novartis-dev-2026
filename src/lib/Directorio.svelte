@@ -14,7 +14,7 @@
 
   $: dark = DARK.has(ctx)
 
-  // Alergólogos y dermatólogos: los especialistas que valoran la urticaria crónica espontánea.
+  // Especialistas (la especialidad de cada médico es dato de su ficha) que valoran la urticaria crónica espontánea.
   // Registros de ejemplo, sin nombres ni consultorios: no hay directorio real todavía.
   // Si Novartis entrega uno, se cargan aquí sus datos reales (nombre, cédula, consultorio, teléfono).
   const specialists = [
@@ -288,8 +288,8 @@
 </script>
 
 <div class="directory">
-  <h2 tabindex="-1">Alergólogos y dermatólogos cerca de ti</h2>
-  <p class="sub">Los especialistas que valoran la urticaria crónica espontánea son alergólogos y dermatólogos certificados.</p>
+  <h2 tabindex="-1">Especialistas cerca de ti</h2>
+  <p class="sub">Encuentra especialistas certificados que pueden valorar la urticaria crónica espontánea.</p>
   <p class="sub">Para facilitar la consulta, lleva los resultados de tu <a class="inline-text-link" href={routeHref('test')}>test informativo</a> y el registro de tu <a class="inline-text-link" href={routeHref('diario')}>diario de síntomas</a>.</p>
 
   <div class="dir-controls">

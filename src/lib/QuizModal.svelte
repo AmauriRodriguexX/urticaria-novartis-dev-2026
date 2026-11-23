@@ -7,6 +7,7 @@
   import Directorio from './Directorio.svelte'
   import UasGauge from './UasGauge.svelte'
   import ScaleSelect from './ScaleSelect.svelte'
+  import { routeHref } from './siteContent.js'
   export let ctx
   export let onClose
   export let initialPhase = 'quiz'
@@ -30,6 +31,19 @@
   $: isScale = id === 'q3' || id === 'q4'
   // Q1 y Q1b llevan un espacio de imagen por opción (las imágenes las entrega Novartis); ver ajustes-colega/imagenes/INDICE.md
   $: conImagen = id === 'q1b' || id === 'q1'
+  // Q1 y Q1b: imágenes de referencia con licencia Creative Commons hasta confirmar si Novartis tiene imágenes autorizadas
+  const IMG_OPCION = {
+    ronchas: { src: 'ronchas.jpg', alt: 'Habones (ronchas) rosados en el costado del torso y el brazo' },
+    picazon: { src: 'comezon.jpg', alt: 'Persona rascándose el antebrazo' },
+    hinchazon: { src: 'hinchazon.jpg', alt: 'Hinchazón (angioedema) debajo del ojo' },
+    urgente: { src: 'hinchazon-labios.jpg', alt: 'Hinchazón (angioedema) en los labios' },
+    no_urgente: { src: 'hinchazon-parpado.jpg', alt: 'Hinchazón (angioedema) en el párpado' }
+  }
+  const CREDITOS = {
+    q1: 'Fotos: Wikimedia Commons · CC0 · Klaus D. Peter, CC BY 3.0 DE · NIAID, CC BY 2.0',
+    q1b: 'Fotos: Wikimedia Commons · James Heilman, MD, CC BY-SA 3.0 · NIAID, CC BY 2.0'
+  }
+  const imgSintoma = (name) => `${import.meta.env.BASE_URL}assets/img/sintomas/${name}`
   // Mitos sobre la causa que la persona ha escuchado (Q12), sin contar "Nadie me ha dicho nada"
   $: mitos = (answers.q12 || []).filter(v => v !== 'sin_patron')
   $: lectura = leerResultado(answers)
@@ -267,12 +281,14 @@
             {#each q[3] as o}
               {@const on = q[0] === 'multi' ? (answers[id] || []).includes(o[0]) : answers[id] === o[0]}
               <button class:chosen={on} class:opt-none={o[0] === 'ninguno'} role={q[0] === 'multi' ? 'checkbox' : 'radio'} aria-checked={on} on:click={() => select(o[0])}>
-                {#if conImagen && o[0] !== 'ninguno'}<span class="opt-media" aria-hidden="true"><em>Imagen por definir</em></span>{/if}
+                {#if conImagen && IMG_OPCION[o[0]]}<span class="opt-media opt-photo"><img src={imgSintoma(IMG_OPCION[o[0]].src)} alt={IMG_OPCION[o[0]].alt} loading="lazy" /></span>
+                {:else if conImagen && o[0] !== 'ninguno'}<span class="opt-media" aria-hidden="true"><em>Imagen por definir</em></span>{/if}
                 <span class="opt-row"><i aria-hidden="true">{#if on}<Icon name="check" size={14} />{/if}</i>
                 <span><strong>{o[1]}</strong>{#if o[2]}<small>{o[2]}</small>{/if}</span></span>
               </button>
             {/each}
           </div>
+          {#if CREDITOS[id]}<p class="opt-credits">{CREDITOS[id]}</p>{/if}
         {/if}
         <div class="quiz-nav" class:has-next={q[0] === 'multi' || q[0] === 'text' || isScale}>
           <button class="nav-back" on:click={step ? back : close}>
@@ -302,13 +318,18 @@
         <p class="sub quiz-legal-note"><small>Este resultado es solo orientativo y no es un diagnóstico. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</small></p>
 
         {#if answers.q3 != null || answers.q4 != null}
-          <UasGauge total={((parseInt(answers.q3, 10) || 0) + (parseInt(answers.q4, 10) || 0)) * 7} titulo="Estimación de tu actividad semanal (UAS7)" aviso="Calculada con tus respuestas sobre habones (ronchas) y comezón en la última semana. Es una estimación orientativa, no un puntaje clínico ni un diagnóstico: solo un alergólogo o dermatólogo puede evaluarte. En el Diario de Síntomas puedes llevar el cálculo de los 7 días." fuenteUrl="https://pmc.ncbi.nlm.nih.gov/articles/PMC10219198/" />
+          <UasGauge total={((parseInt(answers.q3, 10) || 0) + (parseInt(answers.q4, 10) || 0)) * 7} titulo="Estimación de tu actividad semanal (UAS7)" aviso="Calculada con tus respuestas sobre habones (ronchas) y comezón en la última semana. Es una estimación orientativa, no un puntaje clínico ni un diagnóstico: solo un especialista puede evaluarte. En el Diario de Síntomas puedes llevar el cálculo de los 7 días." fuenteUrl="https://pmc.ncbi.nlm.nih.gov/articles/PMC10219198/" />
         {/if}
+        <a class="result-diary-card" href={`${routeHref('diario')}#registro`}>
+          <span class="result-diary-icon" aria-hidden="true"><Icon name="calendar_month" size={22} /></span>
+          <span class="result-diary-text"><strong>Registra tus síntomas 7 días</strong><small>Usa el diario y activa un recordatorio diario. Se guarda solo en tu dispositivo.</small></span>
+          <Icon name="arrow_forward" size={18} />
+        </a>
 
         {#if mitos.length}
           <aside class="myth-card" role="note">
             <strong>Has escuchado {mitos.length === 1 ? 'un comentario' : `${mitos.length} comentarios`} sobre la causa de tus ronchas.</strong>
-            <span>En la urticaria crónica espontánea las ronchas aparecen sin un desencadenante externo identificable{mitos.includes('estres') ? '; el estrés suele ser una consecuencia, no la causa' : ''}. Conversarlo con un alergólogo o dermatólogo ayuda a aclararlo.
+            <span>En la urticaria crónica espontánea las ronchas aparecen sin un desencadenante externo identificable{mitos.includes('estres') ? '; el estrés suele ser una consecuencia, no la causa' : ''}. Conversarlo con un especialista ayuda a aclararlo.
               <a href="https://doi.org/10.4168/aair.2025.17.5.531" target="_blank" rel="noopener">Fuente<span class="sr-only"> (se abre en otra pestaña)</span></a></span>
           </aside>
         {/if}
@@ -336,10 +357,10 @@
 
         {#if answers.q19 !== '3'}
           <div class="result-banner-cta">
-            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Alergólogos y dermatólogos</span>
+            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Especialistas cerca de ti</span>
             <div class="banner-body">
-              <h3>¿Buscas un alergólogo o dermatólogo que valore tus síntomas?</h3>
-              <p>Encuentra médicos dermatólogos y alergólogos certificados cerca de ti para dar el siguiente paso.</p>
+              <h3>¿Buscas un especialista que valore tus síntomas?</h3>
+              <p>Encuentra especialistas certificados cerca de ti para dar el siguiente paso.</p>
             </div>
             <button class="button banner-action" on:click={() => go('map', step)}>
               <span>Mira nuestro directorio médico</span>

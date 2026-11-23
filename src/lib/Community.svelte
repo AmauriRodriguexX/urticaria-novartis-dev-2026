@@ -98,7 +98,7 @@
             {#each topics.slice(1) as topic}<option value={topic.id}>{topic.label}</option>{/each}
           </select>
           <label for="share-title">Título</label>
-          <input id="share-title" class="composer-title" bind:value={form.title} required maxlength="80" placeholder="Ej. Pensé que era alergia a la comida" />
+          <input id="share-title" class="composer-title" bind:value={form.title} required maxlength="80" placeholder="Ej. Pensé que era algo que comía" />
           <label for="share-story">Tu historia</label>
           <textarea id="share-story" bind:value={form.story} required maxlength="1200" placeholder="Cuéntanos qué viviste, qué te ayudó y qué te gustaría que otras personas supieran."></textarea>
           <span class="composer-hint">{form.story.length}/1200 · No incluyas nombres, edades, ciudades, teléfonos, correos ni nombres de médicos.</span>
@@ -163,7 +163,7 @@
     </div>
     <aside class="community-aside">
       <div class="community-card"><Icon name="groups" size={22} /><h3>Historias reales: El camino desde el aislamiento hasta el diagnóstico</h3><p>La mayoría de las personas con urticaria crónica atraviesan por etapas de frustración, aislamiento y agotamiento físico. Leer o escuchar testimonios de urticaria ayuda a entender que tus síntomas son reales, que no estás exagerando y que existe una comunidad que comprende por lo que estás pasando.</p></div>
-      <div class="community-card community-guidelines"><p>El punto de inflexión en todos los casos exitosos siempre ha sido el mismo: acudir con un dermatólogo o alergólogo capacitado y comprometerse con el plan de tratamiento prescrito.</p><a class="text" href={routeHref('directorio-medico')}>Buscar especialista <Icon name="arrow_forward" size={17} /></a></div>
+      <div class="community-card community-guidelines"><p>El punto de inflexión en todos los casos exitosos siempre ha sido el mismo: acudir con un especialista capacitado y comprometerse con el plan de tratamiento prescrito.</p><a class="text" href={routeHref('directorio-medico')}>Buscar especialista <Icon name="arrow_forward" size={17} /></a></div>
     </aside>
   </div>
 </section>
@@ -173,9 +173,9 @@
     <h2 id="community-faq-title">Preguntas frecuentes sobre las historias de pacientes</h2>
     <div class="content-faqs">
       <details open><summary><span>¿Puedo compartir mi testimonio de forma anónima?</span><i aria-hidden="true"></i></summary><p>Sí. Todas las historias se publican de forma anónima, sin nombre, edad ni ciudad.</p></details>
-      <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>Directorio Médico</a> para ubicar dermatólogos y alergólogos certificados cerca de tu localidad.</p><a class="faq-cta" href={routeHref('directorio-medico')}>Ir al directorio médico <Icon name="arrow_forward" size={16} /></a></details>
+      <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>Directorio Médico</a> para ubicar especialistas certificados cerca de tu localidad.</p><a class="faq-cta" href={routeHref('directorio-medico')}>Ir al directorio médico <Icon name="arrow_forward" size={16} /></a></details>
     </div>
   </section>
   <LeyendaProfesional />
-  <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir con un alergólogo o dermatólogo y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi Testimonio <Icon name="arrow_forward" size={18} /></button></section>
+  <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir con un especialista y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi Testimonio <Icon name="arrow_forward" size={18} /></button></section>
 </div>

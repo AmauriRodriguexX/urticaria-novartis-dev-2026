@@ -18,13 +18,13 @@
   const facts = [
     { value: '+6', unit: 'semanas', text: 'con habones (ronchas) o hinchazón (angioedema) que van y vienen', refs: 1 },
     { value: 'No', unit: 'es contagiosa', text: 'ni es tu culpa', refs: 2 },
-    { value: 'Sí', unit: 'tiene tratamiento', text: 'con un alergólogo o dermatólogo' }
+    { value: 'Sí', unit: 'tiene tratamiento', text: 'con un especialista' }
   ]
 
   const route = [
-    { icon: 'quiz', title: 'Reconoce tus síntomas', text: 'Identifica las diferencias clave entre una alergia común y la urticaria crónica realizando nuestro test informativo en menos de 5 minutos.', tag: 'Menos de 5 minutos', cta: 'Hacer el test', href: routeHref('test') },
+    { icon: 'quiz', title: 'Reconoce tus síntomas', text: 'Conoce más sobre tus síntomas y la urticaria crónica espontánea realizando nuestro test informativo en menos de 5 minutos.', tag: 'Menos de 5 minutos', cta: 'Hacer el test', href: routeHref('test') },
     { icon: 'download', title: 'Registra tus brotes', text: 'Lleva tu bitácora diaria mediante nuestra Web App gratuita o descargando la plantilla imprimible en PDF para llevarla a tu cita médica.', tag: 'Web App gratuita · PDF', cta: 'Abrir el diario', href: routeHref('diario') },
-    { icon: 'stethoscope', title: 'Encuentra tratamiento', text: 'Conoce cómo se aborda la urticaria crónica espontánea y prepara tu conversación con un alergólogo o dermatólogo.', tag: 'Dermatólogos y alergólogos', cta: 'Buscar especialista', href: routeHref('directorio-medico') }
+    { icon: 'stethoscope', title: 'Encuentra tratamiento', text: 'Conoce cómo se aborda la urticaria crónica espontánea y prepara tu conversación con un especialista.', tag: 'Especialistas cerca de ti', cta: 'Buscar especialista', href: routeHref('directorio-medico') }
   ]
 
   const stories = casos.filter(caso => caso.homeQuote)
@@ -38,8 +38,8 @@
     <div class="home-definition-copy">
       <p class="eyebrow accent">Información para entender lo que pasa en tu piel</p>
       <h2 id="home-definition-title">¿Qué es la Urticaria Crónica Espontánea?</h2>
-      <p class="home-lead">La urticaria crónica espontánea es una afección de la piel caracterizada por la aparición recurrente de <strong>habones (ronchas)</strong> o <strong>hinchazón (angioedema)</strong> durante más de 6 semanas, sin que exista una causa alérgica externa evidente.<Cita refs={1} prefix="ref" /></p>
-      <p>No es contagiosa ni es tu culpa. Se trata de un padecimiento que hoy en día puede tratarse con éxito si acudes con un alergólogo o dermatólogo.<Cita refs={1} prefix="ref" /></p>
+      <p class="home-lead">La urticaria crónica espontánea es una afección de la piel caracterizada por la aparición recurrente de <strong>habones (ronchas)</strong> o <strong>hinchazón (angioedema)</strong> durante más de 6 semanas, sin un desencadenante externo identificable.<Cita refs={1} prefix="ref" /></p>
+      <p>No es contagiosa ni es tu culpa. Se trata de un padecimiento que hoy en día puede tratarse con éxito si acudes con un especialista.<Cita refs={1} prefix="ref" /></p>
       <ul class="home-facts" aria-label="Datos clave de la urticaria crónica espontánea">
         {#each facts as fact}
           <li><strong>{fact.value}<small>{fact.unit}</small></strong><span>{fact.text}{#if fact.refs}<Cita refs={fact.refs} prefix="ref" />{/if}</span></li>

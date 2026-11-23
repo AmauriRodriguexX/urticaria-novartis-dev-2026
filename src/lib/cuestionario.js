@@ -10,7 +10,6 @@
 // ============================================================================
 
 export const PREGUNTAS = [
-  { id: 'q0', contextos: 'todos', resumen: 'Nombre' },
   { id: 'q1', contextos: 'todos', resumen: 'Síntomas presentados' },
   {
     id: 'q1b',
@@ -176,7 +175,7 @@ export function calcularPuntuacionBen(r) {
 
 /** Generador de las 6 Secciones del Modelo de Ben */
 export function generarReporteBen(r) {
-  const nombre = (r.q0 || '').trim() || 'Hola'
+  // Sin nombre: por protección de datos el test no pide datos personales
   const { sintomasPts: sPts, cvPts, total } = calcularPuntuacionBen(r)
 
   // SECCIÓN 1: Diagnóstico probabilístico
@@ -200,7 +199,7 @@ export function generarReporteBen(r) {
   else if (total <= 24) probDesc = 'Es probable que sufras urticaria crónica espontánea.'
   else probDesc = 'Es altamente probable que sufras urticaria crónica espontánea.'
 
-  const seccion1 = `${nombre}, ${sDesc}${cvDesc}. ${probDesc}`
+  const seccion1 = `Según tus respuestas, ${sDesc}${cvDesc}. ${probDesc}`
 
   // SECCIÓN 2: Síntomas
   const sList = []
@@ -239,7 +238,6 @@ export function generarReporteBen(r) {
   // identificarse un desencadenante externo, así que el resumen no los presenta como causas.
   const dList = []
   if (r.q12 && r.q12.includes('estres')) dList.push('el estrés')
-  if (r.q12 && r.q12.includes('alergia')) dList.push('una alergia')
   if (r.q12 && r.q12.includes('sudor')) dList.push('el sudor')
   if (r.q12 && r.q12.includes('clima')) dList.push('el clima')
   if (r.q12 && r.q12.includes('comida')) dList.push('lo que comes')
@@ -257,7 +255,7 @@ export function generarReporteBen(r) {
   const momentoFrase = r.q13 === 'sin_patron' ? momentoStr : `principalmente ${momentoStr}`
 
   const comentarios = dList.length > 0
-    ? `Has escuchado que tus ronchas son por ${formatListES(dList, 'o')}. En la urticaria crónica espontánea no suele identificarse un desencadenante externo concreto: conviene comentarlo con un alergólogo o dermatólogo.`
+    ? `Has escuchado que tus ronchas son por ${formatListES(dList, 'o')}. En la urticaria crónica espontánea no suele identificarse un desencadenante externo concreto: conviene comentarlo con un especialista.`
     : ''
   let seccion4 = ''
   if (momentoStr) seccion4 = `Tus ronchas se dan ${momentoFrase}.`
@@ -272,7 +270,7 @@ export function generarReporteBen(r) {
     // Sin síntomas no se hicieron las preguntas de historial: no hay nada que resumir.
     seccion5 = ''
   } else if (!consulto && !trat) {
-    seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un alergólogo o dermatólogo, o con un médico general que te canalice con uno de ellos, para recibir un tratamiento adecuado a tu caso.'
+    seccion5 = 'No has consultado a un médico sobre tus síntomas y no has recibido ninguna clase de tratamiento. Es altamente recomendable que acudas con un especialista, o con un médico general que te canalice con uno, para recibir un tratamiento adecuado a tu caso.'
   } else if (!consulto && trat) {
     seccion5 = `No has consultado a un médico sobre tus síntomas, pero has usado ${tiposTrat(r.q18)}.`
   } else if (consulto) {
@@ -295,11 +293,11 @@ export function generarReporteBen(r) {
   let seccion6 = ''
   if (trat && sPts >= 2 && cvPts >= 2) {
     if (r.q19 === '0') {
-      seccion6 = `Consideras que tu tratamiento no ha sido nada efectivo. ${CIERRE} es muy importante que hables con un alergólogo o dermatólogo sobre tus síntomas y posibles tratamientos.`
+      seccion6 = `Consideras que tu tratamiento no ha sido nada efectivo. ${CIERRE} es muy importante que hables con un especialista sobre tus síntomas y posibles tratamientos.`
     } else if (r.q19 === '1') {
-      seccion6 = `Consideras que tu tratamiento ha sido poco efectivo. ${CIERRE} es muy importante que hables con un alergólogo o dermatólogo sobre tus síntomas y posibles tratamientos.`
+      seccion6 = `Consideras que tu tratamiento ha sido poco efectivo. ${CIERRE} es muy importante que hables con un especialista sobre tus síntomas y posibles tratamientos.`
     } else if (r.q19 === '2') {
-      seccion6 = `Consideras que tu tratamiento ha sido medianamente efectivo. ${CIERRE} es importante que hables con un alergólogo o dermatólogo sobre la urticaria crónica y los tratamientos disponibles.`
+      seccion6 = `Consideras que tu tratamiento ha sido medianamente efectivo. ${CIERRE} es importante que hables con un especialista sobre la urticaria crónica y los tratamientos disponibles.`
     } else if (r.q19 === '3') {
       seccion6 = `Consideras que tu tratamiento ha sido muy efectivo. ${CIERRE} te recomendamos que continúes con tu tratamiento de la mano de tu proveedor de salud.`
     }
@@ -332,7 +330,7 @@ const aplicaContexto = (p, ctx) => p.contextos === 'todos' || p.contextos.includ
 export function construirFlujo(respuestas, ctx) {
   // Si respondió que no tiene ningún síntoma, detiene el flujo
   if (Array.isArray(respuestas.q1) && respuestas.q1.includes('ninguno')) {
-    return ['q0', 'q1']
+    return ['q1']
   }
   return PREGUNTAS
     .filter((p) => aplicaContexto(p, ctx) && (!p.si || p.si(respuestas)))
@@ -362,7 +360,7 @@ export function construirResumen(respuestas, ctx, questions) {
   const flujo = construirFlujo(respuestas, ctx)
 
   return PREGUNTAS
-    .filter((p) => p.resumen !== false && flujo.includes(p.id) && p.id !== 'q0')
+    .filter((p) => p.resumen !== false && flujo.includes(p.id))
     .map((p) => {
       const definicion = questions[p.id]
       const etiqueta = typeof p.resumen === 'string' ? p.resumen : definicion?.[1] ?? p.id

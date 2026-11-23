@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import UasGauge from './UasGauge.svelte'
+  import Icon from './Icon.svelte'
   export let ref = null   // número de la referencia del medidor en la lista de la página
 
   const blankDays = () => Array.from({ length: 7 }, (_, index) => ({ day: `Día ${index + 1}`, date: '', hives: 0, itch: 0 }))
@@ -22,6 +23,13 @@
   let openDateIndex = null
   let calendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   let pickerPosition = { top: 0, left: 0 }
+  // Avance de la semana: un día cuenta como registrado si tiene fecha o algún puntaje mayor que 0
+  const isFilled = d => Boolean(d.date) || Number(d.hives) > 0 || Number(d.itch) > 0
+  $: filled = days.filter(isFilled).length
+  // Guía visual de la escala (mismos colores que la escala del test)
+  const SCALE_COLORS = ['#1f8f4e', '#f2d12e', '#f39a2b', '#e0453a']
+  const HIVES_GUIDE = ['Ninguno', 'Menos de 20', 'De 20 a 50', 'Más de 50']
+  const ITCH_GUIDE = ['Nada', 'Leve', 'Moderada', 'Intensa']
   $: hivesTotal = days.reduce((sum, day) => sum + Number(day.hives || 0), 0)
   $: itchTotal = days.reduce((sum, day) => sum + Number(day.itch || 0), 0)
   $: calendarCells = getCalendarCells(calendarMonth)
@@ -88,6 +96,89 @@
   function closeCalendar(event) {
     if (event.key === 'Escape') openDateIndex = null
   }
+
+  // ── Exportar / importar el registro (JSON anónimo: solo fechas y puntajes, nada personal) ──
+  const FILE_ID = 'mas-que-urticaria-diario'
+  let fileInput
+  let status = ''
+
+  function saveFile(content, name, type) {
+    const url = URL.createObjectURL(new Blob([content], { type }))
+    const link = Object.assign(document.createElement('a'), { href: url, download: name })
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
+
+  function exportDiary() {
+    const data = {
+      archivo: FILE_ID,
+      version: 1,
+      exportado: dateValue(new Date()),
+      dias: days.map(d => ({ dia: d.day, fecha: d.date || null, habones: Number(d.hives) || 0, comezon: Number(d.itch) || 0 })),
+      totales: { habones: hivesTotal, comezon: itchTotal, uas7: hivesTotal + itchTotal }
+    }
+    saveFile(JSON.stringify(data, null, 2), `diario-sintomas_${dateValue(new Date())}.json`, 'application/json')
+    status = 'Se descargó tu registro. Guárdalo en tu dispositivo para cargarlo después o llevarlo a tu consulta.'
+  }
+
+  const score = v => Math.max(0, Math.min(3, Math.round(Number(v) || 0)))
+  const validDate = v => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : '')
+
+  async function importDiary(event) {
+    const file = event.currentTarget.files?.[0]
+    event.currentTarget.value = ''
+    if (!file) return
+    try {
+      const data = JSON.parse(await file.text())
+      if (data?.archivo !== FILE_ID || !Array.isArray(data.dias) || data.dias.length !== 7) throw new Error('formato')
+      days = data.dias.map((d, i) => ({ day: `Día ${i + 1}`, date: validDate(d.fecha), hives: score(d.habones), itch: score(d.comezon) }))
+      openDateIndex = null
+      status = 'Listo, se cargó tu registro.'
+    } catch {
+      status = 'No pudimos leer ese archivo. Usa uno descargado desde este diario con «Descargar mi registro».'
+    }
+  }
+
+  // ── Recordatorio diario durante 7 días (archivo .ics o Google Calendar) ──
+  let reminderStart = dateValue(new Date())
+  let reminderTime = '21:00'
+  const REMINDER_TITLE = 'Registro diario de síntomas'
+  $: diaryUrl = typeof window !== 'undefined' ? `${location.origin}${location.pathname}#registro` : ''
+  $: reminderText = `Anota hoy tus habones (ronchas) y tu comezón en el diario: ${diaryUrl}`
+  $: stamp = `${(reminderStart || dateValue(new Date())).replaceAll('-', '')}T${(reminderTime || '21:00').replace(':', '')}00`
+  $: stampEnd = (() => {
+    const [h, m] = (reminderTime || '21:00').split(':').map(Number)
+    const end = new Date(2000, 0, 1, h, m + 10)
+    if (end.getDate() !== 1) return `${stamp.slice(0, 9)}235900` // no cruzar la medianoche
+    return `${stamp.slice(0, 9)}${String(end.getHours()).padStart(2, '0')}${String(end.getMinutes()).padStart(2, '0')}00`
+  })()
+  $: googleUrl = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+    action: 'TEMPLATE', text: REMINDER_TITLE, details: reminderText, dates: `${stamp}/${stampEnd}`, recur: 'RRULE:FREQ=DAILY;COUNT=7'
+  })
+
+  const icsEscape = v => v.replace(/[\\;,]/g, m => `\\${m}`).replace(/\n/g, '\\n')
+
+  function downloadIcs() {
+    const now = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '')
+    const ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Mas que Urticaria//Diario de sintomas//ES', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      `UID:diario-${now}-${Math.random().toString(36).slice(2)}@masqueurticaria`,
+      `DTSTAMP:${now}`,
+      `DTSTART:${stamp}`,
+      `DTEND:${stampEnd}`,
+      'RRULE:FREQ=DAILY;COUNT=7',
+      `SUMMARY:${icsEscape(REMINDER_TITLE)}`,
+      `DESCRIPTION:${icsEscape(reminderText)}`,
+      `URL:${diaryUrl}`,
+      'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${icsEscape(REMINDER_TITLE)}`, 'TRIGGER:PT0M', 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n')
+    saveFile(ics, 'recordatorio-diario-sintomas.ics', 'text/calendar')
+    status = 'Se descargó el recordatorio. Ábrelo para agregarlo a tu calendario: se repite 7 días a la hora que elegiste.'
+  }
 </script>
 
 <svelte:window on:keydown={closeCalendar} on:scroll={() => openDateIndex = null} on:resize={() => openDateIndex = null} />
@@ -96,6 +187,14 @@
   <div class="diary-tool-heading">
     <div><p class="eyebrow">Registro personal</p><h2 id="diary-tool-title">Mi Diario de Síntomas</h2></div>
     <p>Tu registro es anónimo: se guarda solo en este navegador y no se envía a ningún servidor.</p>
+  </div>
+  <div class="diary-progress">
+    <ol aria-hidden="true">{#each days as d, i}<li class:done={isFilled(d)}>{#if isFilled(d)}<Icon name="check" size={14} />{:else}{i + 1}{/if}</li>{/each}</ol>
+    <p role="status">Llevas <strong>{filled} de 7</strong> días registrados</p>
+  </div>
+  <div class="diary-legend">
+    <div><strong>Habones (ronchas) en 24 h</strong><ul>{#each HIVES_GUIDE as label, n}<li><i style={`background:${SCALE_COLORS[n]}`}>{n}</i>{label}</li>{/each}</ul></div>
+    <div><strong>Comezón</strong><ul>{#each ITCH_GUIDE as label, n}<li><i style={`background:${SCALE_COLORS[n]}`}>{n}</i>{label}</li>{/each}</ul></div>
   </div>
   <div class="diary-table-wrap">
     <table class="diary-table">
@@ -111,15 +210,15 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 15H5V9h14v10ZM7 11h3v3H7z" /></svg>
               </button>
             </td>
-            <td><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
-            <td><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
+            <td><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
+            <td><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score}</option>{/each}</select></td>
           </tr>
         {/each}
       </tbody>
       <tfoot><tr><th scope="row">Suma de la semana</th><td></td><td>{hivesTotal}</td><td>{itchTotal}</td></tr></tfoot>
     </table>
   </div>
-  <UasGauge total={hivesTotal + itchTotal} titulo="Tu puntaje UAS7 de esta semana" aviso="Es la suma de habones (ronchas) y comezón de los 7 días. Llévalo a tu consulta: solo un alergólogo o dermatólogo puede evaluar tu actividad." {ref} />
+  <UasGauge total={hivesTotal + itchTotal} titulo="Tu puntaje UAS7 de esta semana" aviso="Es la suma de habones (ronchas) y comezón de los 7 días. Llévalo a tu consulta: solo un especialista puede evaluar tu actividad." {ref} />
   {#if openDateIndex !== null}
     <div class="material-date-picker" role="dialog" aria-label="Seleccionar fecha" style={`top:${pickerPosition.top}px;left:${pickerPosition.left}px`}>
       <div class="material-date-picker-heading">
@@ -139,6 +238,24 @@
   <p class="diary-scale">Usa 0 si no observaste el síntoma y de 1 a 3 para registrar su intensidad. Estos totales son solo una forma de ordenar tus notas; no interpretan ni diagnostican tu estado. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</p>
   <div class="diary-tool-actions no-print">
     <button class="button" type="button" on:click={() => window.print()}>Imprimir o guardar como PDF</button>
+    <button class="button secondary" type="button" on:click={exportDiary}><Icon name="download" size={18} />Descargar mi registro</button>
+    <button class="text-button" type="button" on:click={() => fileInput.click()}>Cargar un registro</button>
+    <input class="sr-only" type="file" accept=".json,application/json" tabindex="-1" aria-hidden="true" bind:this={fileInput} on:change={importDiary} />
     <button class="text-button" type="button" on:click={clearDiary}>Borrar este registro</button>
   </div>
+
+  <div class="diary-reminder no-print">
+    <h3><Icon name="calendar_month" size={20} />Recordatorio diario</h3>
+    <p>Agrega un aviso a tu calendario para llenar el diario los 7 días a la misma hora. Tu registro no sale de este dispositivo.</p>
+    <div class="diary-reminder-fields">
+      <label>Empieza el <input type="date" bind:value={reminderStart} /></label>
+      <label>A las <input type="time" bind:value={reminderTime} /></label>
+    </div>
+    <div class="diary-tool-actions">
+      <button class="button secondary" type="button" on:click={downloadIcs}>Agregar a mi calendario</button>
+      <a class="text-button" href={googleUrl} target="_blank" rel="noopener">Abrir en Google Calendar <Icon name="open_in_new" size={16} /></a>
+    </div>
+  </div>
+
+  <p class="diary-status no-print" role="status" aria-live="polite">{status}</p>
 </section>

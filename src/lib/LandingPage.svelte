@@ -133,7 +133,9 @@
                 <article class="content-card" class:testimonial-sample-card={card.sampleQuote}>
                   {#if card.sampleQuote}<span class="content-quote-mark" aria-hidden="true">“</span><h3>{card.title}</h3><span class="content-card-label">Relato de muestra · sin autor real</span><blockquote>{card.sampleQuote}</blockquote>{:else}
                   {#if card.icon}<span class="content-card-icon" aria-hidden="true"><Icon name={card.icon} size={26} /></span>{/if}
-                  {#if card.image}<div class="content-card-media" role="img" aria-label={`Imagen por definir: ${card.title}`}><span>Imagen por definir</span></div>{/if}
+                  <!-- Las tarjetas con nombre de archivo muestran una foto Creative Commons de referencia hasta confirmar si Novartis tiene imágenes autorizadas -->
+                  {#if typeof card.image === 'string'}<figure class="content-card-media content-card-photo"><img src={`${import.meta.env.BASE_URL}assets/img/sintomas/${card.image}`} alt={card.imageAlt} loading="lazy" />{#if card.imageCredit}<figcaption>{card.imageCredit}</figcaption>{/if}</figure>
+                  {:else if card.image}<div class="content-card-media" role="img" aria-label={`Imagen por definir: ${card.title}`}><span>Imagen por definir</span></div>{/if}
                   <h3>{card.title}</h3><p>{card.text}{#if card.refs}<Cita refs={card.refs} prefix="ref" />{/if}</p>
                   {#if card.label}<span class="content-card-label">{card.label}</span>{/if}
                   {/if}

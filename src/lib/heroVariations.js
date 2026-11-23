@@ -124,7 +124,7 @@ export function heroSlot(ctx, now = new Date(), temp = null) {
 // Devuelve { title, intro? } para la página y el contexto, o null si la página no tiene variaciones.
 export function heroVariation(slug, ctx, now = new Date(), temp = null, city = null) {
   // Directorio: agrega la ciudad detectada al título (Cambios Ronda 1, hoja "directorio", fila 2).
-  if (slug === 'directorio-medico') return city ? { title: `Directorio de alergólogos y dermatólogos en ${city}` } : null
+  if (slug === 'directorio-medico') return city ? { title: `Directorio de especialistas en ${city}` } : null
   const page = variations[slug]
   if (!page) return null
   const v = page[heroSlot(ctx, now, temp)]

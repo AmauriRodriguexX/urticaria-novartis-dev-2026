@@ -17,6 +17,8 @@
   $: chosen = index >= 0 ? options[index] : null
   // etiqueta corta: lo que va antes del paréntesis (p. ej. "Leve (Menos de 20 ronchas)" -> "Leve")
   const short = label => label.split(' (')[0]
+  // detalle entre paréntesis (p. ej. "Menos de 20 ronchas") que se muestra en pequeño bajo la etiqueta
+  const detail = label => (label.match(/\(([^)]+)\)/) || [])[1] || ''
 
   function pick(i) {
     const next = Math.max(0, Math.min(options.length - 1, i))
@@ -73,7 +75,7 @@
   </div>
 
   <ul class="scale-labels" aria-hidden="true">
-    {#each options as o, i}<li class:on={i === index} on:pointerenter={() => (hover = i)} on:pointerleave={leave} on:click={() => pick(i)}><i style={`background:${COLORS[i]}`}></i>{short(o[1])}</li>{/each}
+    {#each options as o, i}<li class:on={i === index} on:pointerenter={() => (hover = i)} on:pointerleave={leave} on:click={() => pick(i)}><i style={`background:${COLORS[i]}`}></i>{short(o[1])}{#if detail(o[1])}<small>{detail(o[1])}</small>{/if}</li>{/each}
   </ul>
 
   <p class="scale-desc" class:empty={!chosen} style={chosen ? `border-color:${COLORS[index]}` : ''} aria-live="polite">
@@ -95,8 +97,9 @@
   .scale-arrow b { min-width: 26px; padding: 3px 9px; border-radius: 999px; background: var(--ink); color: var(--bg-solid); font: 700 15px var(--font-barlow-c); text-align: center; }
   .scale-arrow i { width: 0; height: 0; border: 7px solid transparent; border-top-color: var(--ink); border-bottom: 0; }
   .scale-labels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
-  .scale-labels li { cursor: pointer; padding: 6px 0; border-radius: 8px; display: grid; justify-items: center; gap: 4px; text-align: center; color: var(--soft); font: 600 13px/1.2 var(--font-barlow); }
+  .scale-labels li { align-content: start; cursor: pointer; padding: 6px 0; border-radius: 8px; display: grid; justify-items: center; gap: 4px; text-align: center; color: var(--soft); font: 600 13px/1.2 var(--font-barlow); }
   .scale-labels li.on { color: var(--ink); font-weight: 700; }
+  .scale-labels small { color: var(--faint); font: 500 11px/1.2 var(--font-barlow); }
   .scale-labels i { width: 10px; height: 10px; border-radius: 50%; }
   .scale-desc { display: grid; gap: 2px; margin: 0; padding: 12px 16px; border-left: 4px solid var(--line); border-radius: 4px 12px 12px 4px; background: var(--card); color: var(--soft); font-size: 14px; line-height: 1.45; transition: border-color .3s; }
   .scale-desc strong { color: var(--ink); font: 700 16px var(--font-barlow); }

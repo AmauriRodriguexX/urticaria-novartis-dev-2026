@@ -16,7 +16,6 @@ export const copies = {
 
 export const questions = {
   // --- Preguntas de Ben (Novartis CSU Cuestionario) ---
-  q0: ['text', '¿Cuál es tu nombre? (Opcional)', 'Para personalizar tu resumen médico orientativo.', []],
 
   q1: ['multi', '¿Has presentado alguno de los siguientes síntomas?', 'Marca todos los que hayas notado en tu piel.', [
     ['ninguno', 'Ninguno de estos', ''],
@@ -93,7 +92,6 @@ export const questions = {
 
   q12: ['multi', 'Cuando te salen habones (ronchas), ¿cuáles de estos comentarios has recibido?', 'Son mitos que escuchan a diario las personas con urticaria crónica espontánea. Marca todos los que te hayan dicho.', [
     ['estres', 'Es por estrés', ''],
-    ['alergia', 'Es una alergia', ''],
     ['sudor', 'Es por el sudor', ''],
     ['clima', 'Es por el clima', ''],
     ['comida', 'Es por lo que comes', ''],
