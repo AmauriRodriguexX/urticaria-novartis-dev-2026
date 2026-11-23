@@ -1401,3 +1401,7 @@ h1 em { font-style: normal; color: var(--accent); }
   .diary-table tfoot td.cell-date { display: none; }
   .diary-table tfoot td { font: 700 20px var(--font-barlow-c); }
 }
+@media screen and (max-width: 420px) {
+  .diary-table tbody tr { grid-template-columns: 1fr; }
+  .diary-table select { font-size: 15px; }
+}
