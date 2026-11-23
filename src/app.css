@@ -871,7 +871,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .content-closing { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-6); padding: clamp(28px, 6vw, 64px); overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: calc(var(--radius-m) + 6px); background: radial-gradient(640px 380px at 100% 0%, color-mix(in srgb, var(--accent) 45%, transparent), transparent 65%), radial-gradient(520px 320px at 0% 110%, rgba(97,195,217,.28), transparent 65%), #1e3238; color: #fff; }
 .content-closing .eyebrow { color: rgba(255,255,255,.62); }
 .content-closing h2 { max-width: 22ch; margin: var(--s-2) 0 0; color: #fff; font: 600 clamp(30px, 4.6vw, 52px)/1.02 var(--font-barlow-c); letter-spacing: -.025em; text-wrap: balance; }
-.content-closing p:not(.eyebrow) { max-width: 40rem; margin: var(--s-4) 0 0; color: rgba(255,255,255,.8); font-size: 16px; line-height: 1.7; }
+.content-closing p:not(.eyebrow) { max-width: 40rem; margin: var(--s-4) 0 0; color: rgba(255,255,255,.9); font-size: clamp(19px, 2vw, 22px); line-height: 1.55; }
 .content-closing .button { flex: none; width: auto; color: #fff; }
 .dark .content-closing .button { color: #211a14; }
 
@@ -983,7 +983,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .home-landing .home-final h2 { max-width: 20ch; color: #fff; font-size: clamp(32px, 5vw, 56px); }
 .home-final h2 em { color: color-mix(in srgb, var(--accent) 60%, #fff); font-style: normal; }
 .home-final .eyebrow { color: rgba(255,255,255,.62); }
-.home-landing .home-final p:not(.eyebrow) { max-width: 38rem; margin: var(--s-4) 0 0; color: rgba(255,255,255,.8); font-size: 16px; }
+.home-landing .home-final p:not(.eyebrow) { max-width: 38rem; margin: var(--s-4) 0 0; color: rgba(255,255,255,.9); font-size: clamp(19px, 2vw, 22px); line-height: 1.55; }
 .home-final-actions { position: relative; display: flex; flex-direction: column; gap: var(--s-3); width: 100%; }
 .home-final .button { color: #fff; }
 .dark .home-final .button:not(.home-final-secondary) { color: #211a14; }
@@ -1113,6 +1113,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .diary-table tfoot th, .diary-table tfoot td { border-bottom: 0; background: var(--accentSoft); font-weight: 700; }
 .diary-scale { color: var(--faint); font-size: 11px; line-height: 1.55; }
 .diary-tool-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); margin-top: var(--s-4); }
+.keep-breaks { white-space: pre-line; }
 .diary-progress { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3, 14px); margin: var(--s-4, 20px) 0 var(--s-3, 14px); }
 .diary-progress ol { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .diary-progress li { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--border); border-radius: 50%; color: var(--faint); font: 700 13px var(--font-barlow); transition: background .25s, border-color .25s, color .25s; }

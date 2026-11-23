@@ -112,8 +112,8 @@ export const landingPages = {
         intro: 'Aprende a reconocer los síntomas de la urticaria crónica espontánea (UCE) y acércate a un profesional de la salud para encontrar un tratamiento adecuado:',
         highlight: 'Clave: los síntomas se repiten durante 6 semanas o más.',
         cards: [
-          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel, que provocan comezón.', image: 'ronchas.jpg', imageAlt: 'Habones (ronchas) rosados en el costado del torso y el brazo', imageCredit: 'Foto: Wikimedia Commons · CC0' },
-          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.', image: 'hinchazon.jpg', imageAlt: 'Hinchazón (angioedema) debajo del ojo', imageCredit: 'Foto: Klaus D. Peter, Wikimedia Commons · CC BY 3.0 DE', refs: 4 },
+          { title: 'Habones (ronchas)', text: 'Elevaciones rojizas o rosadas en la piel, que provocan comezón intensa. Duran menos de 24 horas y desaparecen sin dejar ninguna marca ni cicatriz. Pueden brotar en cualquier área del cuerpo (incluso en el cuero cabelludo) y variar de tamaño (desde pequeños puntos hasta placas extensas).', image: 'ronchas.jpg', imageAlt: 'Habones (ronchas) rosados en el costado del torso y el brazo', imageCredit: 'Foto: Wikimedia Commons · CC0' },
+          { title: 'Hinchazón (angioedema)', text: 'Puede aparecer en cualquier parte del cuerpo, como labios o párpados.\n\nSuele durar de 1 a 3 días (24 a 72 h). No produce secreción, lagañas ni comezón. Su mayor impacto es la dificultad para abrir los ojos, hablar o comer y menor sensibilidad en la parte hinchada.', image: 'hinchazon.jpg', imageAlt: 'Hinchazón (angioedema) debajo del ojo', imageCredit: 'Foto: Klaus D. Peter, Wikimedia Commons · CC BY 3.0 DE', refs: 4 },
           { title: 'Comezón', text: 'Puede afectar las actividades diarias, el sueño y el trabajo.', image: 'comezon.jpg', imageAlt: 'Persona rascándose el antebrazo', imageCredit: 'Foto: NIAID, Wikimedia Commons · CC BY 2.0', refs: [2, 3] },
           { title: 'Ardor', text: 'Sensación de quemazón en la zona afectada.', image: 'ardor.jpg', imageAlt: 'Piel enrojecida e irritada en el dorso de la mano', imageCredit: 'Foto: Wikimedia Commons · CC0' }
         ],
@@ -135,13 +135,13 @@ export const landingPages = {
           ],
           topics: [
             { icon: 'auto_awesome', label: 'Qué la puede desencadenar', values: {
-              uce: { text: 'Aparece sin un desencadenante identificable.', ref: 2 },
+              uce: { text: 'Aparece sin un desencadenante identificable. Las ronchas y la hinchazón van y vienen, sin dejar marcas o cicatrices.', ref: 2 },
               aguda: 'Puede relacionarse con un desencadenante específico.',
-              inducible: { text: 'Se provoca por un estímulo físico específico.', ref: 2 } } },
+              inducible: { text: 'Se provoca por un estímulo físico específico (frío, presión por ropa apretada, fricción, agua, calor, ejercicio).', ref: 2 } } },
             { icon: 'calendar_month', label: 'Cuánto tiempo dura', values: {
               uce: { text: 'Las ronchas reaparecen durante más de seis semanas.', ref: 1, stat: '6 semanas o más' },
               aguda: { text: 'Los síntomas desaparecen antes de las seis semanas.', ref: 1, stat: 'Menos de 6 semanas' },
-              inducible: 'Aparece tras el estímulo y puede variar según la persona.' } },
+              inducible: 'Aparece tras el estímulo y detona ronchas en minutos (usualmente ≤1 h).' } },
             { icon: 'stethoscope', label: 'Cómo se evalúa', values: {
               uce: 'Un profesional de la salud determina el diagnóstico y el manejo.',
               aguda: 'La evaluación considera el contexto y los posibles desencadenantes.',
@@ -158,21 +158,22 @@ export const landingPages = {
         title: 'Guía visual: signos que puedes describir en consulta',
         cards: [
           { title: 'Habones (ronchas)', text: 'Pueden aparecer en distintas partes del cuerpo y variar de tamaño.', refs: 4 },
-          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados. La hinchazón de lengua o garganta o la dificultad para respirar requiere atención urgente.', refs: 4 }
+          { title: 'Hinchazón (angioedema)', text: 'La inflamación puede aparecer en cualquier parte del cuerpo, como labios o párpados.\n\nAnte hinchazón de lengua o garganta, o dificultad para respirar se requiere atención urgente. La Urticaria Crónica Espontánea no causa hinchazón en la garganta, por lo que este síntoma específico puede indicar otros padecimientos.', refs: 4 }
         ],
         adaptadoDe: [4]
       },
       {
         title: 'Preguntas frecuentes sobre los síntomas',
         faqs: [
-          { question: '¿Cuánto dura un brote?', answer: 'La duración puede variar. Las ronchas duran hasta 24 horas, mientras que la hinchazón (angioedema) puede durar hasta 72 horas. Anota cuánto permanece cada roncha y cuándo aparecen otras.', refs: 4, cta: { label: 'Registrar mis brotes en el diario', route: 'diario' } },
-          { question: '¿Los brotes de urticaria crónica dejan cicatrices?', answer: 'Regularmente las ronchas de la urticaria crónica espontánea (UCE) no dejan cicatrices. Si una lesión persiste, deja marcas o te preocupa, pide una valoración profesional.', refs: 5, cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
+          { question: '¿Cuánto dura un brote de ronchas o hinchazón?', answer: 'La duración puede variar. Las ronchas duran hasta 24 horas, mientras que la hinchazón (angioedema) puede durar de 1 a 3 días (hasta 72 horas).\n\nPuesto que estos síntomas aparecen y desaparecen sin dejar rastro, es importante tomar fotos y anotar cuánto permanece cada síntoma, dónde y cuándo aparecen más.', refs: 4, cta: { label: 'Registrar mis brotes en el diario', route: 'diario' } },
+          { question: '¿Las ronchas dejan marcas o cicatrices?', answer: 'Las ronchas de la UCE desaparecen sin dejar ninguna secuela ni mancha residual en la piel. Si una roncha dura fija en el mismo punto más de 24 horas y al quitarse deja una mancha café o morada (equimosis/hiperpigmentación), debes consultar de inmediato a un especialista para descartar otros padecimientos.', refs: 5, cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
+          { question: '¿Puedo tener más de un tipo de urticaria a la vez?', answer: 'Sí. En más del 10% de las personas coexisten dos o más formas de urticaria.\n\nDe ahí la importancia de registrar adecuadamente tu diario de síntomas. Con esta información tu médico podrá recomendarte un tratamiento que se ajuste a tus necesidades.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } },
           { question: '¿La urticaria crónica es contagiosa?', answer: 'No. La urticaria crónica espontánea (UCE) no se transmite por contacto entre personas.', refs: 6, cta: { label: 'Hacer el test informativo', action: 'quiz' } }
         ],
         adaptadoDe: [4, 5, 6]
       }
     ],
-    closing: { title: 'Lleva un registro para tu próxima consulta', text: 'Anota cuándo aparecen las ronchas, su intensidad y cómo afectan tu día a día.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } }
+    closing: { title: 'Lleva un registro para tu próxima consulta', text: 'Acudir a tu cita médica con información completa de tus síntomas ayuda a un diagnóstico certero.', cta: { label: 'Abrir el Diario de Síntomas', route: 'diario' } }
   },
   tratamiento: {
     ...pageMetadata.tratamiento,
@@ -189,7 +190,7 @@ export const landingPages = {
       {
         title: '¿Cómo se aborda la urticaria crónica?',
         paragraphs: [
-          { text: 'La urticaria crónica espontánea no es una alergia pasajera. Un profesional puede evaluar los síntomas, el historial y las opciones de manejo adecuadas para cada persona.', refs: [2, 3] }
+          { text: 'La urticaria crónica espontánea no es una reacción pasajera. Un profesional puede evaluar los síntomas, el historial y las opciones de manejo adecuadas para cada persona.', refs: [2, 3] }
         ],
         adaptadoDe: [2, 3]
       },
@@ -207,15 +208,15 @@ export const landingPages = {
       },
       {
         title: '¿Con qué especialista puedo hablar?',
-        intro: 'Un especialista certificado puede valorar tus síntomas y orientarte sobre los siguientes pasos.',
+        intro: 'Un médico certificado puede valorar tus síntomas y orientarte sobre los siguientes pasos.',
         cards: [
-          { title: 'Encuentra a un especialista cerca de ti', text: 'Busca especialistas certificados en tu localidad.', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
+          { title: 'Encuentra a un especialista cerca de ti', text: 'Busca médicos certificados en tu localidad.', route: 'directorio-medico', linkLabel: 'Ir al directorio médico' }
         ]
       },
       {
         title: 'Preguntas frecuentes sobre tratamiento',
         faqs: [
-          { question: '¿Puedo cambiar o suspender mi tratamiento?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el especialista que te lo indicó.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
+          { question: '¿Puedo suspender o espaciar mi tratamiento si ya no tengo ronchas?', answer: 'No lo cambies ni lo suspendas por tu cuenta: consúltalo con el médico que te lo indicó.\n\nLa UCE dura en promedio entre 3 y 5 años con un comportamiento fluctuante. La ausencia de lesiones significa que la terapia está cumpliendo su objetivo de controlar la actividad celular, no que la enfermedad haya desaparecido de inmediato. Si alcanzas un control completo sostenido durante varios meses, tu especialista médico planificará una reducción gradual y segura del tratamiento.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } }
         ]
       }
     ],

@@ -136,7 +136,7 @@
                   <!-- Las tarjetas con nombre de archivo muestran una foto Creative Commons de referencia hasta confirmar si Novartis tiene imágenes autorizadas -->
                   {#if typeof card.image === 'string'}<figure class="content-card-media content-card-photo"><img src={`${import.meta.env.BASE_URL}assets/img/sintomas/${card.image}`} alt={card.imageAlt} loading="lazy" />{#if card.imageCredit}<figcaption>{card.imageCredit}</figcaption>{/if}</figure>
                   {:else if card.image}<div class="content-card-media" role="img" aria-label={`Imagen por definir: ${card.title}`}><span>Imagen por definir</span></div>{/if}
-                  <h3>{card.title}</h3><p>{card.text}{#if card.refs}<Cita refs={card.refs} prefix="ref" />{/if}</p>
+                  <h3>{card.title}</h3><p class="keep-breaks">{card.text}{#if card.refs}<Cita refs={card.refs} prefix="ref" />{/if}</p>
                   {#if card.label}<span class="content-card-label">{card.label}</span>{/if}
                   {/if}
                 </article>
@@ -163,7 +163,7 @@
             {#each section.faqs as faq, fi}
               <details open={fi === 0}>
                 <summary><span>{faq.question}</span><i aria-hidden="true"></i></summary>
-                <p>{faq.answer}{#if faq.refs}<Cita refs={faq.refs} prefix="ref" />{/if}</p>
+                <p class="keep-breaks">{faq.answer}{#if faq.refs}<Cita refs={faq.refs} prefix="ref" />{/if}</p>
                 {#if faq.cta}
                   {#if faq.cta.action}
                     <button class="faq-cta" type="button" on:click={(event) => runAction(event, faq.cta.action)}>{faq.cta.label} <Icon name="arrow_forward" size={16} /></button>
