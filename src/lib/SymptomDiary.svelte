@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
   import UasGauge from './UasGauge.svelte'
   import Icon from './Icon.svelte'
   import PrivacyNote from './PrivacyNote.svelte'
@@ -150,8 +150,11 @@
   }
 
   // ── Recordatorio diario durante 7 días (archivo .ics o Google Calendar) ──
-  let reminderStart = dateValue(new Date())
-  let reminderTime = '21:00'
+  // Sin campos que llenar: el aviso empieza hoy a las 9:00 p. m. (mañana si ya pasó esa hora).
+  // La persona puede cambiar la hora en su calendario al guardar el evento.
+  const reminderTime = '21:00'
+  const startDate = () => { const d = new Date(); if (d.getHours() >= 21) d.setDate(d.getDate() + 1); return dateValue(d) }
+  let reminderStart = startDate()
   const REMINDER_TITLE = 'Registro diario de síntomas'
   $: diaryUrl = typeof window !== 'undefined' ? `${location.origin}${location.pathname}#registro` : ''
   $: reminderText = `Anota hoy tus habones (ronchas) y tu comezón en el diario: ${diaryUrl}`
@@ -182,7 +185,7 @@
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n')
     saveFile(ics, 'recordatorio-diario-sintomas.ics', 'text/calendar')
-    status = 'Listo. Si tu calendario no se abrió solo, abre el archivo descargado para guardar el recordatorio: se repite 7 días a la hora que elegiste.'
+    status = 'Listo. Si tu calendario no se abrió solo, abre el archivo descargado para guardar el recordatorio: se repite 7 días a las 9:00 p. m.'
   }
 </script>
 
@@ -201,12 +204,10 @@
     <div class="diary-reminder no-print">
       <div class="diary-reminder-head">
         <span class="diary-reminder-icon" aria-hidden="true"><Icon name="calendar_month" size={20} /></span>
-        <div><h3>Recordatorio diario</h3><p>Un aviso en tu calendario para llenar el diario los 7 días.</p></div>
+        <div><h3>Recordatorio diario</h3><p>Un aviso diario a las 9:00 p. m. durante 7 días. Puedes cambiar la hora en tu calendario.</p></div>
       </div>
       <div class="diary-reminder-row">
-        <label>Empieza el <input type="date" bind:value={reminderStart} /></label>
-        <label>A las <input type="time" bind:value={reminderTime} /></label>
-        <button class="button" type="button" on:click={downloadIcs}><Icon name="calendar_month" size={18} />Guardar en mi calendario</button>
+        <button class="button" type="button" on:click={async () => { reminderStart = startDate(); await tick(); downloadIcs() }}><Icon name="calendar_month" size={18} />Guardar en mi calendario</button>
       </div>
     </div>
   </div>
