@@ -1,5 +1,6 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
+  import { fade, fly } from 'svelte/transition'
   import Hero from './lib/Hero.svelte'
   import QuizModal from './lib/QuizModal.svelte'
   import Icon from './lib/Icon.svelte'
@@ -75,6 +76,36 @@
     quizOpen = false
     queueMicrotask(() => quizTrigger?.focus?.())
   }
+  // ---------- Menú: encabezado fijo y menú lateral en celular ----------
+  let menuOpen = false
+  let scrolled = false
+  let menuButton
+  let menuClose
+  const isActive = item => route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/'))
+  async function openMenu() {
+    menuOpen = true
+    document.documentElement.classList.add('menu-open')
+    await tick()
+    menuClose?.focus()
+  }
+  function closeMenu() {
+    if (!menuOpen) return
+    menuOpen = false
+    document.documentElement.classList.remove('menu-open')
+    menuButton?.focus()
+  }
+  function menuKey(event) {
+    if (!menuOpen) return
+    if (event.key === 'Escape') { closeMenu(); return }
+    if (event.key === 'Tab') {
+      // el foco se queda dentro del menú mientras está abierto
+      const items = [...document.querySelectorAll('#mobile-menu a, #mobile-menu button')]
+      const first = items[0], last = items[items.length - 1]
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
+    }
+  }
+
   function handleAnchorClick(event) {
     const link = event.target.closest?.('a[href^="#"]')
     if (!link) return
@@ -115,22 +146,46 @@
   {#if jsonLdTag}{@html jsonLdTag}{/if}
 </svelte:head>
 
-<svelte:window on:click={handleAnchorClick} />
+<svelte:window on:click={handleAnchorClick} on:keydown={menuKey} on:scroll={() => (scrolled = window.scrollY > 8)} />
 
 <div class="shell" class:dark style={css}>
   <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
-  <header class="brand">
-    <a class="brand-link" href={routeHref('')} aria-label="Inicio">
-      <span>Más que Urticaria</span>
-    </a>
-    <div class="brand-actions">
-      <nav class="site-navigation" aria-label="Navegación principal">
+  <!-- Encabezado fijo: en escritorio muestra todo el menú; en celular y tableta, un botón abre el menú lateral -->
+  <div class="site-header" class:scrolled>
+    <header class="brand">
+      <a class="brand-link" href={routeHref('')} aria-label="Inicio">
+        <span>Más que Urticaria</span>
+      </a>
+      <div class="brand-actions">
+        <nav class="site-navigation" aria-label="Navegación principal">
+          {#each navigation as item}
+            <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)}>{item.label}</a>
+          {/each}
+        </nav>
+        <button class="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" bind:this={menuButton} on:click={openMenu}>
+          <Icon name="menu" size={22} /><span>Menú</span>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  {#if menuOpen}
+    <div class="menu-overlay" aria-hidden="true" on:click={closeMenu} transition:fade={{ duration: 200 }}></div>
+    <aside id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú del sitio" transition:fly={{ x: 340, duration: 280, opacity: 1 }}>
+      <div class="mobile-menu-head">
+        <span class="brand-link">Más que Urticaria</span>
+        <button class="menu-close" type="button" aria-label="Cerrar menú" bind:this={menuClose} on:click={closeMenu}><Icon name="close" size={22} /></button>
+      </div>
+      <nav aria-label="Navegación principal">
         {#each navigation as item}
-          <a class:active={route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/'))} aria-current={route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/')) ? 'page' : undefined} href={routeHref(item.slug)}>{item.label}</a>
+          <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)} on:click={closeMenu}>
+            <span>{item.label}</span><Icon name="arrow_forward" size={18} />
+          </a>
         {/each}
       </nav>
-    </div>
-  </header>
+      <a class="button mobile-menu-cta" href={routeHref('test')} on:click={closeMenu}>Hacer el test informativo <Icon name="arrow_forward" size={18} /></a>
+    </aside>
+  {/if}
 
   {#if isHome}
     <main id="main-content">
