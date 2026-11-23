@@ -3,6 +3,7 @@
   import { homeArticles, homeSources, routeHref } from './siteContent.js'
   import { blogDrafts } from './blogDrafts.js'
   import Icon from './Icon.svelte'
+  import PrivacyNote from './PrivacyNote.svelte'
   import Cita from './Cita.svelte'
   import SkinSamples from './SkinSamples.svelte'
   import Fuentes from './Fuentes.svelte'
@@ -23,7 +24,7 @@
 
   const route = [
     { icon: 'quiz', title: 'Reconoce tus síntomas', text: 'Identifica las diferencias clave entre una urticaria común y la urticaria crónica espontánea realizando nuestro test informativo en menos de 5 minutos.', tag: 'Menos de 5 minutos', cta: 'Hacer el test', href: routeHref('test') },
-    { icon: 'download', title: 'Registra tus brotes', text: 'Lleva tu bitácora diaria mediante nuestra Web App gratuita o descargando la plantilla imprimible en PDF para llevarla a tu cita médica.', tag: 'Web App gratuita · PDF', cta: 'Abrir el diario', href: routeHref('diario') },
+    { icon: 'download', title: 'Registra tus brotes', text: 'Lleva tu bitácora diaria mediante nuestra Web App gratuita o descargando la plantilla imprimible en PDF para llevarla a tu cita médica.', tag: 'Web App gratuita · PDF', cta: 'Abrir el diario', href: routeHref('diario'), privacy: true },
     { icon: 'stethoscope', title: 'Encuentra tratamiento', text: 'Conoce cómo se aborda la urticaria crónica espontánea y prepara tu conversación con un especialista médico.', tag: 'Médicos certificados', cta: 'Buscar especialista', href: routeHref('directorio-medico') }
   ]
 
@@ -75,6 +76,7 @@
             <span class="home-route-tag">{step.tag}</span>
             <h3>{i + 1}. {step.title}</h3>
             <p>{step.text}</p>
+            {#if step.privacy}<PrivacyNote />{/if}
             <b>{step.cta} <Icon name="arrow_forward" size={17} /></b>
           </a>
         </li>

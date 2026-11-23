@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import UasGauge from './UasGauge.svelte'
   import Icon from './Icon.svelte'
+  import PrivacyNote from './PrivacyNote.svelte'
   export let ref = null   // número de la referencia del medidor en la lista de la página
 
   const blankDays = () => Array.from({ length: 7 }, (_, index) => ({ day: `Día ${index + 1}`, date: '', hives: 0, itch: 0 }))
@@ -186,8 +187,8 @@
 <section class="symptom-diary print-sheet" id="registro" aria-labelledby="diary-tool-title">
   <div class="diary-tool-heading">
     <div><p class="eyebrow">Registro personal</p><h2 id="diary-tool-title">Mi Diario de Síntomas</h2></div>
-    <p>Tu registro es anónimo: se guarda solo en este navegador y no se envía a ningún servidor.</p>
   </div>
+  <div class="diary-privacy no-print"><PrivacyNote variant="banner" /></div>
   <div class="diary-progress">
     <ol aria-hidden="true">{#each days as d, i}<li class:done={isFilled(d)}>{#if isFilled(d)}<Icon name="check" size={14} />{:else}{i + 1}{/if}</li>{/each}</ol>
     <p role="status">Llevas <strong>{filled} de 7</strong> días registrados</p>

@@ -1195,10 +1195,41 @@ h1 em { font-style: normal; color: var(--accent); }
 .home-stories-intro { top: calc(var(--header-h) + var(--s-4)) !important; }
 @media (min-width: 1024px) { .blog-sidebar { top: calc(var(--header-h) + 24px); } }
 
+/* Acceso al diario: encabezado (escritorio), menú lateral (celular) y botón flotante */
+.header-diary { display: none; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px 0 13px; border-radius: var(--radius-pill); background: var(--accent); color: #fff; text-decoration: none; font: 700 13px var(--font-barlow); white-space: nowrap; transition: filter .2s, transform .2s; }
+.header-diary:hover { filter: saturate(1.1) brightness(1.04); transform: translateY(-1px); }
+.dark .header-diary { color: #211a14; }
+.mobile-menu-diary { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 16px; background: var(--accentSoft); color: var(--ink); text-decoration: none; }
+.mobile-menu-diary > span:nth-child(2) { display: grid; flex: 1; gap: 2px; min-width: 0; }
+.mobile-menu-diary strong { font: 700 17px var(--font-barlow); }
+.mobile-menu-diary small { color: var(--soft); font-size: 13px; }
+.mobile-menu-diary-icon { display: grid; flex: none; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--accent); color: #fff; }
+.dark .mobile-menu-diary-icon { color: #211a14; }
+.diary-fab { position: fixed; z-index: 15; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 18px 0 16px; border-radius: var(--radius-pill); background: var(--ink); color: var(--bg-solid, var(--bg)); text-decoration: none; font: 700 15px var(--font-barlow); box-shadow: 0 12px 30px rgba(0, 0, 0, .25); transition: transform .2s, box-shadow .2s; }
+.diary-fab:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0, 0, 0, .3); }
+.diary-fab:focus-visible, .header-diary:focus-visible, .mobile-menu-diary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.diary-fab b { padding: 3px 8px; border-radius: var(--radius-pill); background: var(--accent); color: #fff; font: 700 12px var(--font-barlow); font-variant-numeric: tabular-nums; }
+.dark .diary-fab b { color: #211a14; }
+.shell { --ok: #1f7a45; } .shell.dark { --ok: #86d9a6; }
+.fab-text { display: grid; line-height: 1.1; text-align: left; }
+.fab-text small { display: inline-flex; align-items: center; gap: 3px; margin-top: 2px; opacity: .82; font: 600 10.5px var(--font-barlow); letter-spacing: .02em; }
+.header-diary-lock { display: inline-grid; place-items: center; margin-left: 2px; opacity: .85; }
+.menu-diary-privacy { display: inline-flex; align-items: center; gap: 4px; color: var(--ok) !important; font-weight: 600; }
+.diary-privacy { margin-top: var(--s-4, 20px); }
+.faq-privacy { margin-top: 10px; }
+.closing-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.result-diary-text .privacy-note { margin-top: 4px; }
+.home-route-card .privacy-note, .content-card-link .privacy-note { margin-top: 2px; }
+.site-footer::after { content: ""; display: block; height: 64px; }
+@media (prefers-reduced-motion: reduce) { .diary-fab, .header-diary { transition: none; } }
+
 @media (max-width: 1023px) {
   .site-navigation { display: none; }
   .menu-toggle { display: inline-flex; }
+  /* en el Inicio, el botón del diario sube para no encimarse con la barra fija del test */
+  .shell:has(.sticky-cta) .diary-fab { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
 }
+@media (min-width: 1024px) { .header-diary { display: inline-flex; } }
 @media (min-width: 1024px) { :root { --header-h: 72px; } }
 
 /* ---------- Unificación visual: testimonios y blog con el lenguaje del home ---------- */
@@ -1324,3 +1355,6 @@ h1 em { font-style: normal; color: var(--accent); }
 .content-section .content-card-grid { margin-top: var(--s-5); }
 @media (max-width: 640px) { .content-visuals { grid-template-columns: 1fr; } .content-visual .content-card-media { aspect-ratio: 2.4 / 1; } }
 .community-followup > .content-legal-note, .blog-page > .content-legal-note { max-width: var(--container); margin-inline: auto; }
+/* el aviso de privacidad no hereda la letra grande del texto de cierre */
+.content-closing p.privacy-note:not(.eyebrow) { max-width: 24rem; margin: 0; color: #bfeccd; font-size: 13px; line-height: 1.45; }
+.home-route-card p.privacy-note, .content-card p.privacy-note { margin: 0; color: var(--ok); font-size: 12.5px; line-height: 1.4; }

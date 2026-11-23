@@ -82,6 +82,20 @@
   let menuButton
   let menuClose
   const isActive = item => route === item.slug || (item.slug === 'blog' && route?.startsWith('blog/'))
+
+  // ---------- Acceso al diario: botón flotante y avance de la semana ----------
+  // Lee lo que el diario ya guardó en este navegador; no se envía nada a ningún servidor.
+  const DIARY_KEY = 'mqu-diario-sintomas'
+  let diaryDays = 0
+  function readDiary() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(DIARY_KEY) || 'null')
+      diaryDays = Array.isArray(saved) ? saved.filter(d => d && (d.date || Number(d.hives) > 0 || Number(d.itch) > 0)).length : 0
+    } catch { diaryDays = 0 }
+  }
+  onMount(readDiary)
+  $: diaryHref = `${routeHref('diario')}#registro`
+  $: showDiaryFab = route !== 'diario' && !quizOpen && !menuOpen
   async function openMenu() {
     menuOpen = true
     document.documentElement.classList.add('menu-open')
@@ -146,7 +160,7 @@
   {#if jsonLdTag}{@html jsonLdTag}{/if}
 </svelte:head>
 
-<svelte:window on:click={handleAnchorClick} on:keydown={menuKey} on:scroll={() => (scrolled = window.scrollY > 8)} />
+<svelte:window on:click={handleAnchorClick} on:keydown={menuKey} on:scroll={() => (scrolled = window.scrollY > 8)} on:storage={readDiary} on:focus={readDiary} on:pageshow={readDiary} />
 
 <div class="shell" class:dark style={css}>
   <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
@@ -162,6 +176,7 @@
             <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)}>{item.label}</a>
           {/each}
         </nav>
+        <a class="header-diary" class:active={route === 'diario'} href={diaryHref} aria-current={route === 'diario' ? 'page' : undefined}><Icon name="calendar_month" size={18} /><span>Mi diario</span><span class="header-diary-lock" title="Privado: se guarda solo en tu dispositivo"><Icon name="lock" size={13} /><span class="sr-only">, privado: se guarda solo en tu dispositivo</span></span></a>
         <button class="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" bind:this={menuButton} on:click={openMenu}>
           <Icon name="menu" size={22} /><span>Menú</span>
         </button>
@@ -176,6 +191,11 @@
         <span class="brand-link">Más que Urticaria</span>
         <button class="menu-close" type="button" aria-label="Cerrar menú" bind:this={menuClose} on:click={closeMenu}><Icon name="close" size={22} /></button>
       </div>
+      <a class="mobile-menu-diary" class:active={route === 'diario'} href={diaryHref} on:click={closeMenu}>
+        <span class="mobile-menu-diary-icon" aria-hidden="true"><Icon name="calendar_month" size={22} /></span>
+        <span><strong>Mi diario de síntomas</strong><small>{diaryDays ? `Llevas ${diaryDays} de 7 días` : 'Registra 7 días para tu consulta'}</small><small class="menu-diary-privacy"><Icon name="lock" size={12} /> Privado: solo en tu dispositivo</small></span>
+        <Icon name="arrow_forward" size={18} />
+      </a>
       <nav aria-label="Navegación principal">
         {#each navigation as item}
           <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)} on:click={closeMenu}>
@@ -185,6 +205,12 @@
       </nav>
       <a class="button mobile-menu-cta" href={routeHref('test')} on:click={closeMenu}>Hacer el test informativo <Icon name="arrow_forward" size={18} /></a>
     </aside>
+  {/if}
+
+  {#if showDiaryFab}
+    <a class="diary-fab" href={diaryHref} aria-label={diaryDays ? `Mi diario, privado: ${diaryDays} de 7 días registrados` : 'Abrir mi diario de síntomas, privado: se guarda solo en tu dispositivo'} transition:fly={{ y: 24, duration: 260 }}>
+      <Icon name="calendar_month" size={20} /><span class="fab-text"><span>Mi diario</span><small><Icon name="lock" size={11} /> Privado · en tu dispositivo</small></span>{#if diaryDays}<b>{diaryDays}/7</b>{/if}
+    </a>
   {/if}
 
   {#if isHome}

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import PrivacyNote from './PrivacyNote.svelte'
   import { routeHref } from './siteContent.js'
   import SymptomDiary from './SymptomDiary.svelte'
   import Directorio from './Directorio.svelte'
@@ -127,6 +128,7 @@
                 <a class="content-card content-card-link" href={cardHref(card)}>
                   <span class="content-card-icon" aria-hidden="true"><Icon name={cardIcon(card)} size={22} /></span>
                   <h3>{card.title}</h3>{#if card.text}<p>{card.text}</p>{/if}
+                  {#if card.route === 'diario'}<PrivacyNote />{/if}
                   {#if card.linkLabel}<span class="content-card-cta">{card.linkLabel} <Icon name="arrow_forward" size={16} /></span>{/if}
                 </a>
               {:else}
@@ -169,6 +171,7 @@
                     <button class="faq-cta" type="button" on:click={(event) => runAction(event, faq.cta.action)}>{faq.cta.label} <Icon name="arrow_forward" size={16} /></button>
                   {:else}
                     <a class="faq-cta" href={routeHref(faq.cta.route)}>{faq.cta.label} <Icon name="arrow_forward" size={16} /></a>
+                    {#if faq.cta.route === 'diario'}<div class="faq-privacy"><PrivacyNote /></div>{/if}
                   {/if}
                 {/if}
               </details>
@@ -197,7 +200,7 @@
         {#if page.closing.cta.action}
           <button class="button" type="button" on:click={(event) => runAction(event, page.closing.cta.action)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></button>
         {:else}
-          <a class="button" href={routeHref(page.closing.cta.route)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></a>
+          <div class="closing-cta"><a class="button" href={routeHref(page.closing.cta.route)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></a>{#if page.closing.cta.route === 'diario'}<PrivacyNote tone="onDark" />{/if}</div>
         {/if}
       </section>
     {/if}

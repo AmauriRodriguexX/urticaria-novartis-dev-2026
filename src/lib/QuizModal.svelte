@@ -8,6 +8,7 @@
   import UasGauge from './UasGauge.svelte'
   import ScaleSelect from './ScaleSelect.svelte'
   import { routeHref } from './siteContent.js'
+  import PrivacyNote from './PrivacyNote.svelte'
   export let ctx
   export let onClose
   export let initialPhase = 'quiz'
@@ -322,7 +323,7 @@
         {/if}
         <a class="result-diary-card" href={`${routeHref('diario')}#registro`}>
           <span class="result-diary-icon" aria-hidden="true"><Icon name="calendar_month" size={22} /></span>
-          <span class="result-diary-text"><strong>Registra tus síntomas 7 días</strong><small>Usa el diario y activa un recordatorio diario. Se guarda solo en tu dispositivo.</small></span>
+          <span class="result-diary-text"><strong>Registra tus síntomas 7 días</strong><small>Usa el diario y activa un recordatorio diario.</small><PrivacyNote /></span>
           <Icon name="arrow_forward" size={18} />
         </a>
 
