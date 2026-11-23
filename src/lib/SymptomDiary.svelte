@@ -6,7 +6,7 @@
   import PrivacyNote from './PrivacyNote.svelte'
   export let ref = null   // número de la referencia del medidor en la lista de la página
 
-  const blankDays = () => Array.from({ length: 7 }, (_, index) => ({ day: `Día ${index + 1}`, date: '', hives: 0, itch: 0 }))
+  const blankDays = () => Array.from({ length: 7 }, (_, index) => ({ day: `Día ${index + 1}`, date: '', hives: null, itch: null }))
   const weekdayNames = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
   // Los registros son anónimos y viven solo en el almacenamiento local del navegador; nunca se envían a un servidor.
   const STORE_KEY = 'mqu-diario-sintomas'
@@ -34,7 +34,9 @@
   let calendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   let pickerPosition = { top: 0, left: 0 }
   // Avance de la semana: un día cuenta como registrado si tiene fecha o algún puntaje mayor que 0
-  const isFilled = d => Boolean(d.date) || Number(d.hives) > 0 || Number(d.itch) > 0
+  // Un día está completo solo con sus 3 datos: fecha, habones y comezón (0 también es una respuesta válida)
+  const chosen = v => v !== null && v !== undefined && v !== ''
+  const isFilled = d => Boolean(d.date) && chosen(d.hives) && chosen(d.itch)
   $: filled = days.filter(isFilled).length
   // Guía visual de la escala (mismos colores que la escala del test)
   const SCALE_COLORS = ['#1f8f4e', '#f2d12e', '#f39a2b', '#e0453a']
@@ -70,7 +72,7 @@
     if (!before && now) {
       const total = prevFilled.filter(Boolean).length
       showToast(total === 7 ? '¡Completaste los 7 días! Ya puedes descargar tu informe para el médico.' : `Se guardaron los datos de tu ${ORDINALES[i]} día`)
-    } else if (before) {
+    } else if (before && now) {
       showToast(`Se actualizó tu ${ORDINALES[i]} día`)
     }
   }
@@ -153,14 +155,14 @@
       archivo: FILE_ID,
       version: 1,
       exportado: dateValue(new Date()),
-      dias: days.map(d => ({ dia: d.day, fecha: d.date || null, habones: Number(d.hives) || 0, comezon: Number(d.itch) || 0 })),
+      dias: days.map(d => ({ dia: d.day, fecha: d.date || null, habones: chosen(d.hives) ? Number(d.hives) : null, comezon: chosen(d.itch) ? Number(d.itch) : null })),
       totales: { habones: hivesTotal, comezon: itchTotal, uas7: hivesTotal + itchTotal }
     }
     saveFile(JSON.stringify(data, null, 2), `diario-sintomas_${dateValue(new Date())}.json`, 'application/json')
     status = 'Se descargó tu respaldo. Guárdalo para recuperar tu diario en otro navegador o dispositivo con «Cargar un registro».'
   }
 
-  const score = v => Math.max(0, Math.min(3, Math.round(Number(v) || 0)))
+  const score = v => (v === null || v === undefined || v === '' ? null : Math.max(0, Math.min(3, Math.round(Number(v) || 0))))
   const validDate = v => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : '')
 
   async function importDiary(event) {
@@ -304,8 +306,8 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 15H5V9h14v10ZM7 11h3v3H7z" /></svg>
               </button>
             </td>
-            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives} on:change={() => notifyDay(i)}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.hives}</span></td>
-            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch} on:change={() => notifyDay(i)}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.itch}</span></td>
+            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives} on:change={() => notifyDay(i)}><option value={null} disabled>Elegir…</option>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select><span class="print-score">{chosen(day.hives) ? day.hives : '–'}</span></td>
+            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch} on:change={() => notifyDay(i)}><option value={null} disabled>Elegir…</option>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select><span class="print-score">{chosen(day.itch) ? day.itch : '–'}</span></td>
           </tr>
         {/each}
       </tbody>

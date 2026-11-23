@@ -90,7 +90,7 @@
   function readDiary() {
     try {
       const saved = JSON.parse(localStorage.getItem(DIARY_KEY) || 'null')
-      diaryDays = Array.isArray(saved) ? saved.filter(d => d && (d.date || Number(d.hives) > 0 || Number(d.itch) > 0)).length : 0
+      diaryDays = Array.isArray(saved) ? saved.filter(d => d && d.date && d.hives !== null && d.hives !== undefined && d.hives !== '' && d.itch !== null && d.itch !== undefined && d.itch !== '').length : 0
     } catch { diaryDays = 0 }
   }
   onMount(readDiary)
