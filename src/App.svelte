@@ -191,18 +191,20 @@
         <span class="brand-link">Más que Urticaria</span>
         <button class="menu-close" type="button" aria-label="Cerrar menú" bind:this={menuClose} on:click={closeMenu}><Icon name="close" size={22} /></button>
       </div>
-      <a class="mobile-menu-diary" class:active={route === 'diario'} href={diaryHref} on:click={closeMenu}>
-        <span class="mobile-menu-diary-icon" aria-hidden="true"><Icon name="calendar_month" size={22} /></span>
-        <span><strong>Mi diario de síntomas</strong><small>{diaryDays ? `Llevas ${diaryDays} de 7 días` : 'Registra 7 días para tu consulta'}</small><small class="menu-diary-privacy"><Icon name="lock" size={12} /> Privado: solo en tu dispositivo</small></span>
-        <Icon name="arrow_forward" size={18} />
-      </a>
-      <nav aria-label="Navegación principal">
-        {#each navigation as item}
-          <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)} on:click={closeMenu}>
-            <span>{item.label}</span><Icon name="arrow_forward" size={18} />
-          </a>
-        {/each}
-      </nav>
+      <div class="mobile-menu-body">
+        <a class="mobile-menu-diary" class:active={route === 'diario'} href={diaryHref} on:click={closeMenu}>
+          <span class="mobile-menu-diary-icon" aria-hidden="true"><Icon name="calendar_month" size={22} /></span>
+          <span><strong>Mi diario de síntomas</strong><small>{diaryDays ? `Llevas ${diaryDays} de 7 días` : 'Registra 7 días para tu consulta'}</small><small class="menu-diary-privacy"><Icon name="lock" size={12} /> Privado: solo en tu dispositivo</small></span>
+          <Icon name="arrow_forward" size={18} />
+        </a>
+        <nav aria-label="Navegación principal">
+          {#each navigation as item}
+            <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)} on:click={closeMenu}>
+              <span>{item.label}</span><Icon name="arrow_forward" size={18} />
+            </a>
+          {/each}
+        </nav>
+      </div>
       <a class="button mobile-menu-cta" href={routeHref('test')} on:click={closeMenu}>Hacer el test informativo <Icon name="arrow_forward" size={18} /></a>
     </aside>
   {/if}
