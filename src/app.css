@@ -1422,3 +1422,11 @@ h1 em { font-style: normal; color: var(--accent); }
   .diary-table tbody tr { grid-template-columns: 1fr; }
   .diary-table select { font-size: 15px; }
 }
+
+/* Barra inferior del Inicio: al aparecer, el test sube y el diario entra desde donde estaba el botón flotante */
+@keyframes bar-quiz-in { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+@keyframes bar-diary-in { from { opacity: 0; transform: translate(28px, -14px) scale(.85); } 60% { opacity: 1; } }
+.sticky-cta .button { animation: bar-quiz-in .42s cubic-bezier(.22, 1, .36, 1) both; }
+.sticky-diary { transform-origin: right center; animation: bar-diary-in .5s .06s cubic-bezier(.22, 1, .36, 1) both; }
+.sticky-diary b { animation: bar-quiz-in .3s .3s both; }
+@media (prefers-reduced-motion: reduce) { .sticky-cta .button, .sticky-diary, .sticky-diary b { animation: none; } }
