@@ -2,33 +2,24 @@
   import { onMount } from 'svelte'
   import Icon from './Icon.svelte'
 
-  const tones = [
-    { id: 'todos', label: 'Todos' },
-    { id: 'claro', label: 'Tono claro' },
-    { id: 'medio-claro', label: 'Tono medio claro' },
-    { id: 'medio', label: 'Tono medio' },
-    { id: 'medio-oscuro', label: 'Tono medio oscuro' },
-    { id: 'oscuro', label: 'Tono oscuro' }
-  ]
-
+  // Fotos ordenadas por zona del cuerpo y síntoma (sin clasificar por tono de piel).
   const photos = [
-    { id: 1, tone: 'claro', title: 'Tono claro · brazo', description: 'Referencia visual de cambios sutiles en el brazo sobre un tono de piel claro.', image: 'library-tone-01.png', className: 'photo-tall' },
-    { id: 2, tone: 'claro', title: 'Tono claro · hombro', description: 'Referencia visual para observar la piel y preparar preguntas para la consulta.', image: 'library-tone-02.png', className: 'photo-wide' },
-    { id: 3, tone: 'medio-claro', title: 'Tono medio claro · cuello', description: 'Referencia visual de cambios que pueden notarse en el cuello sobre un tono medio claro.', image: 'library-tone-03.png', className: 'photo-standard' },
-    { id: 4, tone: 'medio-claro', title: 'Tono medio claro · mano', description: 'Referencia visual para conversar sobre cambios visibles en manos y muñecas.', image: 'library-tone-04.png', className: 'photo-tall' },
-    { id: 5, tone: 'medio', title: 'Tono medio · brazo', description: 'Referencia visual de cambios sutiles en el brazo sobre un tono de piel medio.', image: 'library-tone-05.png', className: 'photo-wide' },
-    { id: 6, tone: 'medio', title: 'Tono medio · hombro', description: 'Referencia visual para observar la piel con iluminación natural y uniforme.', image: 'library-tone-06.png', className: 'photo-standard' },
-    { id: 7, tone: 'medio-oscuro', title: 'Tono medio oscuro · cuello', description: 'Referencia visual para recordar que los cambios pueden verse distintos en cada piel.', image: 'library-tone-07.png', className: 'photo-tall' },
-    { id: 8, tone: 'medio-oscuro', title: 'Tono medio oscuro · brazo', description: 'Referencia visual de cambios discretos sobre un tono medio oscuro.', image: 'library-tone-08.png', className: 'photo-wide' },
-    { id: 9, tone: 'oscuro', title: 'Tono oscuro · mano', description: 'Referencia visual para observar cambios en manos y llevar preguntas a consulta.', image: 'library-tone-09.png', className: 'photo-standard' },
-    { id: 10, tone: 'oscuro', title: 'Tono oscuro · hombro', description: 'Referencia visual con iluminación cuidada para conservar el tono natural de la piel.', image: 'library-tone-10.png', className: 'photo-tall' }
+    { id: 1, title: 'Brazo', description: 'Referencia visual de cambios en la piel del brazo para comentarlos en consulta.', image: 'library-tone-01.png', className: 'photo-tall' },
+    { id: 2, title: 'Hombro', description: 'Referencia visual para observar la piel y preparar preguntas para la consulta.', image: 'library-tone-02.png', className: 'photo-wide' },
+    { id: 3, title: 'Cuello', description: 'Referencia visual de cambios que pueden notarse en el cuello.', image: 'library-tone-03.png', className: 'photo-standard' },
+    { id: 4, title: 'Mano', description: 'Referencia visual para conversar sobre cambios visibles en manos y muñecas.', image: 'library-tone-04.png', className: 'photo-tall' },
+    { id: 5, title: 'Antebrazo', description: 'Referencia visual de cambios sutiles en el antebrazo.', image: 'library-tone-05.png', className: 'photo-wide' },
+    { id: 6, title: 'Espalda y hombro', description: 'Referencia visual para observar la piel con iluminación natural y uniforme.', image: 'library-tone-06.png', className: 'photo-standard' },
+    { id: 7, title: 'Cuello y escote', description: 'Los cambios en la piel pueden verse distintos en cada persona.', image: 'library-tone-07.png', className: 'photo-tall' },
+    { id: 8, title: 'Brazo, vista lateral', description: 'Referencia visual de cambios discretos en el brazo.', image: 'library-tone-08.png', className: 'photo-wide' },
+    { id: 9, title: 'Dorso de la mano', description: 'Referencia visual para observar cambios en manos y llevar preguntas a consulta.', image: 'library-tone-09.png', className: 'photo-standard' },
+    { id: 10, title: 'Hombro, vista posterior', description: 'Referencia visual con iluminación cuidada para observar la piel.', image: 'library-tone-10.png', className: 'photo-tall' }
   ]
 
-  let activeTone = 'todos'
   let selected = null
   let revealed = new Set()
 
-  $: visiblePhotos = activeTone === 'todos' ? photos : photos.filter(photo => photo.tone === activeTone)
+  const visiblePhotos = photos
 
   function asset(name) {
     return `${import.meta.env.BASE_URL}assets/img/${name}`
@@ -71,16 +62,11 @@
   <div class="library-heading">
     <div>
       <p class="eyebrow">Entender también es mirar</p>
-      <h2 id="library-title">Biblioteca de fotos por tono de piel</h2>
+      <h2 id="library-title">Biblioteca visual de la urticaria</h2>
     </div>
-    <p class="library-intro">La urticaria puede verse diferente en cada piel. Explora estas referencias y usa lo que observes para iniciar una conversación con un profesional de la salud.</p>
+    <p class="library-intro">La urticaria puede verse diferente en cada persona. Explora estas referencias y usa lo que observes para iniciar una conversación con un profesional de la salud.</p>
   </div>
 
-  <div class="tone-filters" role="tablist" aria-label="Filtrar fotos por tono de piel">
-    {#each tones as tone}
-      <button type="button" role="tab" aria-selected={activeTone === tone.id} class:active={activeTone === tone.id} on:click={() => activeTone = tone.id}>{tone.label}</button>
-    {/each}
-  </div>
 
   <div class="photo-masonry">
     {#each visiblePhotos as photo (photo.id)}

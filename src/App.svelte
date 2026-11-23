@@ -176,7 +176,7 @@
             <a class:active={isActive(item)} aria-current={isActive(item) ? 'page' : undefined} href={routeHref(item.slug)}>{item.label}</a>
           {/each}
         </nav>
-        <a class="header-diary" class:active={route === 'diario'} href={diaryHref} aria-current={route === 'diario' ? 'page' : undefined}><Icon name="calendar_month" size={18} /><span>Mi diario</span><span class="header-diary-lock" title="Privado: se guarda solo en tu dispositivo"><Icon name="lock" size={13} /><span class="sr-only">, privado: se guarda solo en tu dispositivo</span></span></a>
+        <a class="header-diary" class:active={route === 'diario'} href={diaryHref} aria-current={route === 'diario' ? 'page' : undefined} title="Privado: se guarda solo en tu dispositivo">Mi diario</a>
         <button class="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" bind:this={menuButton} on:click={openMenu}>
           <Icon name="menu" size={22} /><span>Menú</span>
         </button>

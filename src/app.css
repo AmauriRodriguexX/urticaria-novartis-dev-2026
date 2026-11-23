@@ -1196,8 +1196,8 @@ h1 em { font-style: normal; color: var(--accent); }
 @media (min-width: 1024px) { .blog-sidebar { top: calc(var(--header-h) + 24px); } }
 
 /* Acceso al diario: encabezado (escritorio), menú lateral (celular) y botón flotante */
-.header-diary { display: none; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px 0 13px; border-radius: var(--radius-pill); background: var(--accent); color: #fff; text-decoration: none; font: 700 13px var(--font-barlow); white-space: nowrap; transition: filter .2s, transform .2s; }
-.header-diary:hover { filter: saturate(1.1) brightness(1.04); transform: translateY(-1px); }
+.header-diary { display: none; align-items: center; margin-left: var(--s-2); padding: 10px 18px; border-radius: var(--radius-pill); background: var(--accent); color: #fff; text-decoration: none; font: 700 13px var(--font-barlow); line-height: 1; white-space: nowrap; transition: filter .2s; }
+.header-diary:hover { filter: saturate(1.1) brightness(1.05); }
 .dark .header-diary { color: #211a14; }
 .mobile-menu-diary { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); border-radius: 16px; background: var(--accentSoft); color: var(--ink); text-decoration: none; }
 .mobile-menu-diary > span:nth-child(2) { display: grid; flex: 1; gap: 2px; min-width: 0; }
@@ -1215,7 +1215,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .fab-text small { display: inline-flex; align-items: center; gap: 3px; margin-top: 2px; opacity: .82; font: 600 10.5px var(--font-barlow); letter-spacing: .02em; }
 .header-diary-lock { display: inline-grid; place-items: center; margin-left: 2px; opacity: .85; }
 .menu-diary-privacy { display: inline-flex; align-items: center; gap: 4px; color: var(--ok) !important; font-weight: 600; }
-.diary-privacy { margin-top: var(--s-4, 20px); }
+.diary-privacy { margin: var(--s-4, 16px) 0 var(--s-2, 8px); }
 .faq-privacy { margin-top: 10px; }
 .closing-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .result-diary-text .privacy-note { margin-top: 4px; }
