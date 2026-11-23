@@ -1299,7 +1299,18 @@ h1 em { font-style: normal; color: var(--accent); }
   .diary-date-trigger svg, .material-date-picker { display: none; }
   .no-print { display: none !important; }
   .diary-scale { color: #444; }
+  /* La hoja impresa queda como antes: solo título, tabla con números, medidor y nota */
+  .diary-topbar, .diary-legend, .diary-partial-bar { display: none !important; }
+  .diary-table select { display: none !important; }
+  .print-score { display: inline !important; }
+  /* Sin hojas en blanco: se oculta todo lo que no sea el diario o lo contenga */
+  body *:not(:has(.symptom-diary)):not(.symptom-diary):not(.symptom-diary *) { display: none !important; }
+  .symptom-diary { position: static; padding: 8px 4px; }
+  html, body, .shell { background: #fff !important; }
+  @page { margin: 14mm; }
+  .shell, .content-page, main { min-height: 0 !important; padding: 0 !important; margin: 0 !important; }
 }
+.print-score { display: none; }
 
 /* Sección de síntomas: definición destacada, espacios para imagen y cierre */
 .content-highlight { display: inline-block; margin: var(--s-3) 0 0; padding: 6px 14px; border-radius: 999px; background: var(--accentSoft); color: var(--accent); font: 700 14px var(--font-barlow); letter-spacing: .01em; }

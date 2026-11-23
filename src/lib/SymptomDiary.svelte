@@ -230,8 +230,8 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 15H5V9h14v10ZM7 11h3v3H7z" /></svg>
               </button>
             </td>
-            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select></td>
-            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select></td>
+            <td><span class="cell-label" aria-hidden="true">Habones (ronchas)</span><label class="sr-only" for={`diary-hives-${i}`}>Habones (ronchas), {day.day}</label><select style={`--score:${SCALE_COLORS[day.hives] || 'transparent'}`} id={`diary-hives-${i}`} aria-label={`Habones (ronchas), ${day.day}`} bind:value={day.hives}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {HIVES_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.hives}</span></td>
+            <td><span class="cell-label" aria-hidden="true">Comezón</span><label class="sr-only" for={`diary-itch-${i}`}>Comezón, {day.day}</label><select style={`--score:${SCALE_COLORS[day.itch] || 'transparent'}`} id={`diary-itch-${i}`} aria-label={`Comezón, ${day.day}`} bind:value={day.itch}>{#each [0, 1, 2, 3] as score}<option value={score}>{score} · {ITCH_GUIDE[score]}</option>{/each}</select><span class="print-score">{day.itch}</span></td>
           </tr>
         {/each}
       </tbody>
