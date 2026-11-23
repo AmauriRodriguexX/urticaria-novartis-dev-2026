@@ -1435,3 +1435,10 @@ h1 em { font-style: normal; color: var(--accent); }
 .sticky-diary { transform-origin: right center; animation: bar-diary-in .5s .06s cubic-bezier(.22, 1, .36, 1) both; }
 .sticky-diary b { animation: bar-quiz-in .3s .3s both; }
 @media (prefers-reduced-motion: reduce) { .sticky-cta .button, .sticky-diary, .sticky-diary b { animation: none; } }
+
+/* Elección de calendario (solo en computadoras que no son Mac) */
+.calendar-choice { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.calendar-choice p { flex-basis: 100%; margin: 0; color: var(--soft); font: 600 13px var(--font-barlow); }
+.calendar-choice button { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--card); color: var(--ink); font: 700 14px var(--font-barlow); cursor: pointer; }
+.calendar-choice button:hover { border-color: var(--accent); background: var(--accentSoft); }
+.calendar-choice button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }

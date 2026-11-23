@@ -168,9 +168,14 @@
 
   const icsEscape = v => v.replace(/[\\;,]/g, m => `\\${m}`).replace(/\n/g, '\\n')
 
-  function downloadIcs() {
+  // Enlace de Google Calendar con el evento armado (se repite 7 días). En Android abre la app.
+  $: googleUrl = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+    action: 'TEMPLATE', text: REMINDER_TITLE, details: reminderText, dates: `${stamp}/${stampEnd}`, recur: 'RRULE:FREQ=DAILY;COUNT=7'
+  })
+
+  function buildIcs() {
     const now = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '')
-    const ics = [
+    return [
       'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Mas que Urticaria//Diario de sintomas//ES', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
       'BEGIN:VEVENT',
       `UID:diario-${now}-${Math.random().toString(36).slice(2)}@masqueurticaria`,
@@ -184,8 +189,40 @@
       'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${icsEscape(REMINDER_TITLE)}`, 'TRIGGER:PT0M', 'END:VALARM',
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n')
-    saveFile(ics, 'recordatorio-diario-sintomas.ics', 'text/calendar')
-    status = 'Listo. Si tu calendario no se abrió solo, abre el archivo descargado para guardar el recordatorio: se repite 7 días a las 9:00 p. m.'
+  }
+
+  // Un solo botón que abre el calendario del dispositivo con el evento listo para guardar:
+  // Android → Google Calendar · iPhone/iPad/Mac → Calendario de Apple · otras computadoras → se elige.
+  // No hay conexión con cuentas: nada se envía a un servidor nuestro.
+  let calendarChoice = false
+  function device() {
+    const ua = navigator.userAgent || ''
+    if (/Android/i.test(ua)) return 'android'
+    if (/iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'ios'
+    if (/Macintosh/.test(ua)) return 'mac'
+    return 'otro'
+  }
+  const DONE = 'Revisa tu calendario y confirma el evento: se repite 7 días a las 9:00 p. m.'
+  function openGoogle() {
+    window.open(googleUrl, '_blank', 'noopener')
+    calendarChoice = false
+    status = DONE
+  }
+  function openIcs() {
+    const ics = buildIcs()
+    // En iPhone, abrir el archivo de calendario muestra «Agregar al calendario» sin pasar por Descargas
+    if (device() === 'ios') location.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }))
+    else saveFile(ics, 'recordatorio-diario-sintomas.ics', 'text/calendar')
+    calendarChoice = false
+    status = DONE
+  }
+  async function saveToCalendar() {
+    reminderStart = startDate()
+    await tick()
+    const d = device()
+    if (d === 'android') openGoogle()
+    else if (d === 'ios' || d === 'mac') openIcs()
+    else calendarChoice = !calendarChoice
   }
 </script>
 
@@ -207,8 +244,15 @@
         <div><h3>Recordatorio diario</h3><p>Un aviso diario a las 9:00 p. m. durante 7 días. Puedes cambiar la hora en tu calendario.</p></div>
       </div>
       <div class="diary-reminder-row">
-        <button class="button" type="button" on:click={async () => { reminderStart = startDate(); await tick(); downloadIcs() }}><Icon name="calendar_month" size={18} />Guardar en mi calendario</button>
+        <button class="button" type="button" aria-expanded={calendarChoice} on:click={saveToCalendar}><Icon name="calendar_month" size={18} />Guardar en mi calendario</button>
       </div>
+      {#if calendarChoice}
+        <div class="calendar-choice" role="group" aria-label="Elige tu calendario">
+          <p>¿Qué calendario usas?</p>
+          <button type="button" on:click={openGoogle}>Google Calendar <Icon name="open_in_new" size={14} /></button>
+          <button type="button" on:click={openIcs}>Outlook u otro calendario</button>
+        </div>
+      {/if}
     </div>
   </div>
   <div class="diary-legend">
