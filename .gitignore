@@ -6,3 +6,12 @@ dist/
 # Documentación y materiales internos: se conservan localmente, no se publican.
 /*.md
 /legacy/
+
+# Solo el sitio va al repo: materiales internos se quedan en local.
+/ajustes-colega/
+/scratch/
+/screenshots/
+/screenshots_viewport/
+/output/
+/*.pptx
+/*.pdf
