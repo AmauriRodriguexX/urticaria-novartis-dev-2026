@@ -141,15 +141,15 @@ export const landingPages = {
             { key: 'inducible', name: 'Urticaria inducible' }
           ],
           topics: [
-            { icon: 'auto_awesome', label: 'Qué la puede desencadenar', values: {
+            { icon: 'auto_awesome', label: '¿Qué la puede desencadenar?', values: {
               uce: { text: 'Aparece sin un desencadenante identificable. Las ronchas y la hinchazón van y vienen, sin dejar marcas o cicatrices, por periodo de 6 semanas o más.', ref: 2 },
               aguda: 'Dura menos de 6 semanas. Puede o no relacionarse con un desencadenante específico.',
               inducible: { text: 'Se provoca por un estímulo físico específico (frío, presión por ropa apretada, fricción, agua, calor, ejercicio).', ref: 2 } } },
-            { icon: 'calendar_month', label: 'Cuánto tiempo dura', values: {
+            { icon: 'calendar_month', label: '¿Cuánto tiempo dura?', values: {
               uce: { text: 'Las ronchas reaparecen durante más de seis semanas.', ref: 1, stat: '6 semanas o más' },
               aguda: { text: 'Los síntomas desaparecen antes de las seis semanas.', ref: 1, stat: 'Menos de 6 semanas' },
               inducible: 'Las ronchas aparecen minutos después del estímulo y suelen durar menos de 1 hora.' } },
-            { icon: 'stethoscope', label: 'Cómo se evalúa', values: {
+            { icon: 'stethoscope', label: '¿Cómo se evalúa?', values: {
               uce: 'Un profesional de la salud determina el diagnóstico y el manejo.',
               aguda: 'La evaluación considera el contexto y los posibles desencadenantes.',
               inducible: 'La evaluación considera el estímulo y los síntomas observados.' } }
@@ -345,7 +345,7 @@ export const landingPages = {
     directoryTool: true,
     sections: [
       {
-        title: 'Cómo usar el directorio de médicos y clínicas',
+        title: '¿Cómo usar el directorio de médicos y clínicas?',
         list: [
           'Filtra por especialidad o escribe tu código postal para ver médicos y clínicas cercanas.',
           'Usa tu ubicación para ordenar la lista por distancia.',

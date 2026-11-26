@@ -2,7 +2,7 @@ export const blogDrafts = [
   {
     slug: 'que-significa-urticaria-cronica-espontanea',
     topic: 'Entender la urticaria crónica espontánea',
-    title: 'Qué es la urticaria crónica espontánea',
+    title: '¿Qué es la urticaria crónica espontánea?',
     excerpt: 'Una guía breve para reconocer qué significa el término y qué preguntas llevar a una consulta, sin intentar llegar a un diagnóstico por cuenta propia.',
     readTime: '3 min de lectura',
     image: 'assets/blog/claridad-ideas.webp',

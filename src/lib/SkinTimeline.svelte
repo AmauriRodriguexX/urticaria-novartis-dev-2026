@@ -181,7 +181,7 @@
 
 <div class="skin-figure" bind:this={el.root}>
   <div class="skin-top">
-    <p class="skin-title">Qué pasa en la piel</p>
+    <p class="skin-title">¿Qué pasa en la piel?</p>
     <div class="skin-seg" role="group" aria-label="Qué mostrar">
       <button type="button" aria-pressed={mode === 'roncha'} on:click={() => setMode('roncha')}>Habón (roncha)</button>
       <button type="button" aria-pressed={mode === 'angio'} on:click={() => setMode('angio')}>Hinchazón (angioedema)</button>
