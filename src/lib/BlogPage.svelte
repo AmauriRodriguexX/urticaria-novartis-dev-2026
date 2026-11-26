@@ -1,7 +1,6 @@
 <script>
-  import { onMount } from 'svelte'
   import Icon from './Icon.svelte'
-  import { routeHref } from './siteContent.js'
+  import { routeHref, blogVacio, BLOG_VACIO } from './siteContent.js'
   import { blogDrafts } from './blogDrafts.js'
   import Fuentes from './Fuentes.svelte'
   import LeyendaProfesional from './LeyendaProfesional.svelte'
@@ -9,7 +8,6 @@
   export let article = null
 
   let activeTopic = 'Todos los temas'
-  let showSampleNotice = true
   const topics = ['Todos los temas', ...new Set(blogDrafts.map(post => post.topic))]
   const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
 
@@ -17,15 +15,6 @@
     ? blogDrafts
     : blogDrafts.filter(post => post.topic === activeTopic)
   $: listedCount = visiblePosts.length - (activeTopic === 'Todos los temas' && visiblePosts.length ? 1 : 0)
-
-  onMount(() => {
-    try { showSampleNotice = sessionStorage.getItem('blog-sample-notice-dismissed') !== 'true' } catch { showSampleNotice = true }
-  })
-
-  function dismissSampleNotice() {
-    showSampleNotice = false
-    try { sessionStorage.setItem('blog-sample-notice-dismissed', 'true') } catch { /* El aviso también puede cerrarse sin almacenamiento de sesión. */ }
-  }
 
   function imageUrl(path) {
     return `${baseUrl}${path.replace(/^\/+/, '')}`
@@ -39,10 +28,7 @@
       <p class="eyebrow accent blog-article-topic">{article.topic}</p>
       <h1>{article.title}</h1>
       <p class="blog-article-deck">{article.excerpt}</p>
-      <div class="blog-article-byline"><span>Lectura de muestra</span><span aria-hidden="true">·</span><span>{article.readTime}</span></div>
-      {#if showSampleNotice}
-        <aside class="blog-draft-notice" role="note"><p><strong>Contenido de muestra.</strong> La información es general y no tiene validez. Se incluye solo de forma representativa para mostrar el diseño y la maquetación del sitio.</p><button type="button" aria-label="Cerrar aviso" title="Cerrar aviso" on:click={dismissSampleNotice}><Icon name="close" size={18} /></button></aside>
-      {/if}
+      <div class="blog-article-byline"><span>{article.readTime}</span></div>
       <figure class="blog-article-cover">
         <img src={imageUrl(article.image)} alt={article.imageAlt} />
         <figcaption>Imagen ilustrativa y representativa; no muestra un paciente ni una situación clínica.</figcaption>
@@ -69,39 +55,40 @@
       <div><p class="eyebrow accent">Más que Urticaria · Blog</p><h1>Ideas para entender y conversar</h1><p>Lecturas breves sobre urticaria crónica espontánea, registro y preparación para consulta.</p></div>
     </header>
 
+    {#if !blogVacio}
     <nav class="blog-topic-nav" aria-label="Filtrar artículos por tema">
       {#each topics as topic}
         <button class:active={activeTopic === topic} aria-pressed={activeTopic === topic} type="button" on:click={() => activeTopic = topic}>{topic}</button>
       {/each}
     </nav>
-
-    {#if showSampleNotice}
-      <aside class="blog-draft-notice blog-draft-notice-wide" role="note"><p><strong>Contenido de muestra.</strong> La información es general y no tiene validez. Se incluye solo de forma representativa para mostrar el diseño y la maquetación del sitio.</p><button type="button" aria-label="Cerrar aviso" title="Cerrar aviso" on:click={dismissSampleNotice}><Icon name="close" size={18} /></button></aside>
     {/if}
 
     <div class="blog-layout">
-      <section class="blog-feed" aria-label="Lecturas de muestra">
+      <section class="blog-feed" aria-label="Artículos">
+        {#if blogVacio}
+          <div class="blog-empty-state"><Icon name="menu_book" size={28} /><strong>{BLOG_VACIO.titulo}</strong><p>{BLOG_VACIO.texto}</p></div>
+        {:else}
         {#if activeTopic === 'Todos los temas' && visiblePosts.length}
           {@const featured = visiblePosts[0]}
           <a class="blog-featured" href={routeHref(`blog/${featured.slug}`)}>
-            <div class="blog-featured-copy"><span class="blog-story-kicker">Para empezar · {featured.topic}</span><span class="blog-draft-label">Lectura de muestra</span><h2>{featured.title}</h2><p>{featured.excerpt}</p><span class="blog-read-link">Leer muestra <Icon name="arrow_forward" size={17} /></span></div>
-            <figure><img src={imageUrl(featured.image)} alt="" /><figcaption>Imagen representativa para mostrar el diseño.</figcaption></figure>
+            <div class="blog-featured-copy"><span class="blog-story-kicker">Para empezar · {featured.topic}</span><h2>{featured.title}</h2><p>{featured.excerpt}</p><span class="blog-read-link">Leer artículo <Icon name="arrow_forward" size={17} /></span></div>
+            <figure><img src={imageUrl(featured.image)} alt="" /></figure>
           </a>
         {/if}
 
-        <div class="blog-feed-heading"><h2>{activeTopic === 'Todos los temas' ? 'Lecturas de muestra' : activeTopic}</h2><span>{listedCount} {listedCount === 1 ? 'lectura' : 'lecturas'}</span></div>
+        <div class="blog-feed-heading"><h2>{activeTopic === 'Todos los temas' ? 'Artículos recientes' : activeTopic}</h2><span>{listedCount} {listedCount === 1 ? 'lectura' : 'lecturas'}</span></div>
         {#each (activeTopic === 'Todos los temas' ? visiblePosts.slice(1) : visiblePosts) as post}
           <article class="blog-story">
             <div class="blog-story-copy">
               <div class="blog-story-meta"><span>{post.topic}</span><span aria-hidden="true">·</span><span>{post.readTime}</span></div>
               <h3><a href={routeHref(`blog/${post.slug}`)}>{post.title}</a></h3>
               <p>{post.excerpt}</p>
-              <span class="blog-draft-label">Lectura de muestra</span>
             </div>
-            <a class="blog-story-image" href={routeHref(`blog/${post.slug}`)} aria-label={`Abrir borrador: ${post.title}`}><img src={imageUrl(post.image)} alt="" loading="lazy" /></a>
+            <a class="blog-story-image" href={routeHref(`blog/${post.slug}`)} aria-label={`Abrir artículo: ${post.title}`}><img src={imageUrl(post.image)} alt="" loading="lazy" /></a>
           </article>
         {/each}
-        {#if !visiblePosts.length}<p class="blog-empty">No hay lecturas de muestra para este tema.</p>{/if}
+        {#if !visiblePosts.length}<p class="blog-empty">No hay artículos de este tema por ahora.</p>{/if}
+        {/if}
       </section>
 
       <aside class="blog-sidebar" aria-label="Acerca del blog">

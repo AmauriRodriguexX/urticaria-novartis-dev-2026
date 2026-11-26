@@ -3,8 +3,8 @@
   import Icon from './Icon.svelte'
   import LeyendaProfesional from './LeyendaProfesional.svelte'
   import { routeHref } from './siteContent.js'
-  import { reveal } from './reveal.js'
   import { casos } from './testimonios.js'
+  import { reveal } from './reveal.js'
 
   const topics = [
     { id: 'todos', label: 'Todo' },
@@ -12,11 +12,9 @@
     { id: 'consulta', label: 'Preparar mi consulta' },
     { id: 'dia-a-dia', label: 'Día a día' }
   ]
-  const posts = [
-    { id: 1, topic: 'historias', tag: 'Historias', title: 'Pensé que podía ser algo que comía', body: '“Quiero entender qué puede significar lo que observo y qué preguntas puedo llevar a consulta.”', type: 'Experiencia de muestra' },
-    { id: 2, topic: 'consulta', tag: 'Preparar mi consulta', title: 'La comezón afecta mi descanso', body: '“Estoy anotando cómo se presentan las molestias y cómo influyen en mi rutina para comentarlo con un profesional.”', type: 'Experiencia de muestra' },
-    { id: 3, topic: 'dia-a-dia', tag: 'Día a día', title: 'Acompañar a alguien de mi familia', body: '“Me preocupa la comezón que tiene mi hijo. Quiero ordenar lo que observo para conversarlo en consulta.”', type: 'Experiencia de muestra' }
-  ]
+  // Los 3 testimonios anónimos del sitio, cada uno en su filtro (antes eran relatos cortos de ejemplo).
+  const TEMA = { 'caso-1': ['historias', 'Historias'], 'caso-2': ['consulta', 'Preparar mi consulta'], 'caso-3': ['dia-a-dia', 'Día a día'] }
+  const posts = casos.map((caso, i) => ({ id: i + 1, topic: TEMA[caso.id][0], tag: TEMA[caso.id][1], title: caso.title, body: `“${caso.story}”` }))
 
   let activeTopic = 'todos'
   let search = ''
@@ -115,23 +113,6 @@
   {/if}
 </section>
 
-<div class="community-followup content-sections" use:reveal>
-  <section class="content-section" aria-labelledby="community-cases-title" data-reveal>
-    <h2 id="community-cases-title">Testimonios anónimos</h2>
-    <p class="content-section-intro">Explora testimonios anónimos de personas que convivieron con ronchas y comezón y acudieron con un profesional de la salud.</p>
-    <div class="content-card-grid">
-      {#each casos as caso}
-        <article class="home-story-card testimonial-case">
-          <span class="home-story-mark" aria-hidden="true">“</span>
-          <h3>“{caso.title}”</h3>
-          <blockquote>{caso.story}</blockquote>
-          <footer><small>Testimonio anónimo</small></footer>
-        </article>
-      {/each}
-    </div>
-  </section>
-</div>
-
 <section class="community community-ugc" aria-labelledby="community-ugc-title">
   <div class="community-copy">
     <h2 id="community-ugc-title">Historias compartidas por la comunidad</h2>
@@ -154,7 +135,7 @@
           </article>
         {:else}
           <article class="community-post community-post-sample">
-            <div class="post-main"><span class="post-tag">{post.tag} · {post.type}</span><h3>{post.title}</h3><blockquote>{post.body}</blockquote><footer><span>Ejemplo representativo · sin autor real</span></footer></div>
+            <div class="post-main"><span class="post-tag">{post.tag}</span><h3>{post.title}</h3><blockquote>{post.body}</blockquote><footer><span>Historia anónima</span></footer></div>
           </article>
         {/if}
       {:else}

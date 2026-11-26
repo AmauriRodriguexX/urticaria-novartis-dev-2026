@@ -4,14 +4,14 @@ export const casos = [
   {
     id: 'caso-1',
     title: 'Pensé que era algo que comía',
-    story: 'Durante casi un año dejé de comer de todo porque creía que las ronchas eran por intoxicación. Nadie me daba respuestas hasta que llegué con un dermatólogo que me diagnosticó urticaria crónica espontánea. Entender que no era mi culpa ni algo que comí me devolvió la paz. Hoy, con el tratamiento indicado por mi médico, volví a disfrutar de mis salidas con amigos.',
+    story: 'Durante casi un año dejé de comer de todo porque creía que las ronchas eran por intoxicación. Nadie me daba respuestas hasta que llegué con un especialista que me diagnosticó urticaria crónica espontánea. Entender que no era mi culpa ni algo que comí me devolvió la paz. Hoy, con el tratamiento indicado por mi médico, volví a disfrutar de mis salidas con amigos.',
     homeQuote: 'Durante un año pensé que era algo que comía. Entender qué es la urticaria crónica espontánea y dar con el especialista correcto me devolvió mi tranquilidad.'
   },
   {
     id: 'caso-2',
-    title: 'La comezón no me dejaba trabajar',
+    title: 'La comezón no me dejaba dormir',
     story: 'Pasé meses sin dormir bien y con mucho estrés. Encontrar al especialista correcto y seguir el tratamiento que indicó cambió todo. Ahora puedo concentrarme en mi trabajo y mi familia. Tu vida es mucho más grande que las ronchas.',
-    homeQuote: 'La comezón nocturna no me dejaba trabajar. Con el seguimiento de mi médico volvieron mis noches de descanso.'
+    homeQuote: 'La comezón nocturna no me dejaba dormir. Con el seguimiento de mi médico volvieron mis noches de descanso.'
   },
   {
     id: 'caso-3',

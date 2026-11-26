@@ -19,17 +19,7 @@ const PAGE = { w: 216, h: 279 }          // Carta, en mm
 const M = 18                              // margen
 const CONTENT = PAGE.w - M * 2
 
-// Rangos del UAS7 (0 a 42), los mismos del medidor del sitio y de la guía internacional.
-const UAS7_BANDAS = [
-  { min: 0, max: 0, nombre: 'Sin actividad', color: [31, 143, 78] },
-  { min: 1, max: 6, nombre: 'Bien controlada', color: [139, 195, 74] },
-  { min: 7, max: 15, nombre: 'Leve', color: [242, 209, 46] },
-  { min: 16, max: 27, nombre: 'Moderada', color: [243, 154, 43] },
-  { min: 28, max: 42, nombre: 'Severa', color: [224, 69, 58] }
-]
-export const bandaUas7 = total => UAS7_BANDAS.find(b => total >= b.min && total <= b.max) || UAS7_BANDAS[0]
-
-export async function construirPdf({ lectura, rows, pregunta, escalacion, uas7 = { habones: 0, comezon: 0 } }) {
+export async function construirPdf({ lectura, rows, pregunta, escalacion }) {
   const [{ jsPDF }, bold, regular] = await Promise.all([
     import('jspdf'),
     import('./barlow-bold.js'),
@@ -82,41 +72,6 @@ export async function construirPdf({ lectura, rows, pregunta, escalacion, uas7 =
   const detalle = doc.splitTextToSize(lectura.detalle, CONTENT)
   doc.text(detalle, M, y)
   y += detalle.length * 4.8 + 8
-
-  // ---------- puntaje UAS7 (siempre se imprime) ----------
-  {
-    const hab = Math.max(0, Math.min(3, Number(uas7.habones) || 0))
-    const com = Math.max(0, Math.min(3, Number(uas7.comezon) || 0))
-    const total = (hab + com) * 7
-    const banda = bandaUas7(total)
-    const boxH = 40
-    fill(COLORS.card); doc.setDrawColor(...COLORS.line); doc.setLineWidth(0.3)
-    doc.roundedRect(M, y, CONTENT, boxH, 2.5, 2.5, 'FD')
-    set('bold', 7.5, COLORS.coral)
-    doc.text('ACTIVIDAD SEMANAL ESTIMADA (UAS7)', M + 6, y + 8)
-    set('bold', 22, COLORS.ink)
-    doc.text(String(total), M + CONTENT - 22, y + 11, { align: 'right' })
-    set('normal', 9, COLORS.soft)
-    doc.text('de 42', M + CONTENT - 6, y + 11, { align: 'right' })
-    set('bold', 11, COLORS.ink)
-    doc.text(total === 0 ? 'Sin actividad' : `Actividad ${banda.nombre.toLowerCase()}`, M + 6, y + 15)
-    // barra con los 5 rangos y marcador
-    const barX = M + 6, barW = CONTENT - 12, barY = y + 20, barH = 3.2
-    UAS7_BANDAS.forEach(b => {
-      const x0 = barX + (b.min / 43) * barW, x1 = barX + ((b.max + 1) / 43) * barW
-      fill(b.color); doc.rect(x0, barY, x1 - x0, barH, 'F')
-    })
-    const mx = barX + ((total + 0.5) / 43) * barW
-    fill(COLORS.ink); doc.triangle(mx - 1.6, barY - 2.4, mx + 1.6, barY - 2.4, mx, barY - 0.2, 'F')
-    set('normal', 6.5, COLORS.faint)
-    doc.text('0', barX, barY + barH + 3.4); doc.text('42', barX + barW, barY + barH + 3.4, { align: 'right' })
-    set('normal', 8.5, COLORS.ink)
-    doc.text(`Habones (ronchas): ${hab} por día x 7 días = ${hab * 7}`, M + 6, y + 31)
-    doc.text(`Comezón: ${com} por día x 7 días = ${com * 7}`, M + CONTENT / 2 + 4, y + 31)
-    set('normal', 7, COLORS.soft)
-    doc.text('Estimación con las respuestas del test sobre la última semana. El UAS7 se confirma registrando 7 días en el Diario de Síntomas.', M + 6, y + 36)
-    y += boxH + 8
-  }
 
   // ---------- secciones clínicas de Ben (si están disponibles) ----------
   if (lectura.reporte) {

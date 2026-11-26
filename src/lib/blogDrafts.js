@@ -36,7 +36,7 @@ export const blogDrafts = [
   {
     slug: 'preparar-consulta',
     topic: 'Preparar una consulta',
-    title: 'Guía para preparar tu consulta con el dermatólogo',
+    title: 'Guía para preparar tu consulta médica',
     excerpt: 'No necesitas llegar con todo resuelto. Unas notas sencillas pueden ayudarte a explicar lo que observaste y recordar tus preguntas.',
     readTime: '2 min de lectura',
     image: 'assets/blog/consulta-en-notas.webp',

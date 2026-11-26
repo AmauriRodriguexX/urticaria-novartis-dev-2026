@@ -5,15 +5,15 @@
   // Fotografías clínicas reales de pacientes (Wikimedia Commons, licencias libres). Sin imágenes de banco ni generadas con IA.
   // Las fotos clínicas son de pacientes reales; cada una muestra su crédito. Fichas completas en ajustes-colega/imagenes/CREDITOS.md
   const photos = [
-    { id: 1, title: 'Habones en la espalda', description: 'Habones (ronchas) tenues y rosados distribuidos en la espalda.', image: 'biblioteca/bib-01.jpg', credit: 'Foto: Ericalens, Wikimedia Commons · CC BY 3.0', className: 'photo-tall' },
-    { id: 2, title: 'Habones en la mano', description: 'Ronchas rojizas y elevadas en el dorso de la mano, algunas unidas en placas.', image: 'biblioteca/bib-02.jpg', credit: 'Foto: Membeth, Wikimedia Commons · CC0', className: 'photo-wide' },
-    { id: 3, title: 'Hinchazón del párpado', description: 'Hinchazón (angioedema) en el párpado superior. Suele durar de 1 a 3 días.', image: 'biblioteca/bib-03.jpg', credit: 'Foto: NIAID, Wikimedia Commons · CC BY 2.0', className: 'photo-standard' },
-    { id: 4, title: 'Habones en el brazo', description: 'Ronchas rojizas de bordes bien definidos en el antebrazo.', image: 'biblioteca/bib-04.jpg', credit: 'Foto: Heckat, Wikimedia Commons · Dominio público', className: 'photo-tall' },
-    { id: 5, title: 'Habones en el abdomen', description: 'Habones con forma de anillo y placas en el abdomen y la espalda baja.', image: 'biblioteca/bib-05.jpg', credit: 'Foto: Natfernanda, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-tall' },
-    { id: 6, title: 'Habones en la palma', description: 'Habones con forma de anillo en la palma de la mano.', image: 'biblioteca/bib-06.jpg', credit: 'Foto: Klaus D. Peter, Wikimedia Commons · CC BY 3.0 DE', className: 'photo-standard' },
-    { id: 7, title: 'Habones en la pierna', description: 'Ronchas rosadas de bordes bien definidos en la pierna.', image: 'biblioteca/bib-07.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 4.0', className: 'photo-tall' },
+    { id: 1, title: 'Ronchas en la espalda', description: 'Ronchas tenues y rosados distribuidos en la espalda.', image: 'biblioteca/bib-01.jpg', credit: 'Foto: Ericalens, Wikimedia Commons · CC BY 3.0', className: 'photo-tall' },
+    { id: 2, title: 'Ronchas en la mano', description: 'Ronchas rojizas y elevadas en el dorso de la mano, algunas unidas en placas.', image: 'biblioteca/bib-02.jpg', credit: 'Foto: Membeth, Wikimedia Commons · CC0', className: 'photo-wide' },
+    { id: 3, title: 'Hinchazón de párpados y labios', description: 'Hinchazón (angioedema) en párpados, nariz y labios en una persona con urticaria crónica espontánea. Suele durar de 1 a 3 días.', image: 'biblioteca/bib-10-uce-angioedema.jpg', credit: 'Foto: Rezendevaleria, Wikimedia Commons · CC BY-SA 4.0', className: 'photo-tall' },
+    { id: 4, title: 'Ronchas en el brazo', description: 'Ronchas rojizas de bordes bien definidos en el antebrazo.', image: 'biblioteca/bib-04.jpg', credit: 'Foto: Heckat, Wikimedia Commons · Dominio público', className: 'photo-tall' },
+    { id: 5, title: 'Ronchas en el costado', description: 'Ronchas con forma de anillo en el costado: presentación típica de la urticaria crónica espontánea.', image: 'biblioteca/bib-11-uce-ronchas.jpg', credit: 'Foto: ECARF, Wikimedia Commons · CC BY 4.0', className: 'photo-standard' },
+    { id: 6, title: 'Ronchas en la palma', description: 'Ronchas con forma de anillo en la palma de la mano.', image: 'biblioteca/bib-06.jpg', credit: 'Foto: Klaus D. Peter, Wikimedia Commons · CC BY 3.0 DE', className: 'photo-standard' },
+    { id: 7, title: 'Ronchas en la pierna', description: 'Ronchas rosadas de bordes bien definidos en la pierna.', image: 'biblioteca/bib-07.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 4.0', className: 'photo-tall' },
     { id: 8, title: 'Hinchazón del labio', description: 'Hinchazón (angioedema) del labio. Si la hinchazón afecta la lengua o la garganta, o te cuesta respirar, busca atención urgente.', image: 'biblioteca/bib-08.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-standard' },
-    { id: 9, title: 'Habones en el pecho y el costado', description: 'Ronchas extensas y elevadas en el costado del tórax.', image: 'biblioteca/bib-09.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-wide' }
+    { id: 9, title: 'Ronchas en el pecho y el costado', description: 'Ronchas extensas y elevadas en el costado del tórax.', image: 'biblioteca/bib-09.jpg', credit: 'Foto: James Heilman, MD, Wikimedia Commons · CC BY-SA 3.0', className: 'photo-wide' }
   ]
 
   let selected = null

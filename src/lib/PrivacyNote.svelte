@@ -9,11 +9,11 @@
 {#if variant === 'banner'}
   <div class="privacy-note privacy-banner" class:on-dark={tone === 'onDark'}>
     <span class="privacy-icon" aria-hidden="true"><Icon name="lock" size={22} /></span>
-    <p><strong>Tu diario es privado.</strong> Tus registros se guardan solo en este dispositivo: el sitio no los guarda, no los envía a ningún servidor y no los comparte con nadie. Si borras los datos de tu navegador, el registro también se borra; usa «Descargar respaldo» para conservarlo.</p>
+    <p><strong>Tu diario es privado.</strong> Tus registros se guardan solo en este dispositivo: el sitio no los guarda, no los envía a ningún servidor y no los comparte con nadie. Su único fin es apoyar tu evaluación médica: tú decides si se los muestras a tu médico. Si borras los datos de tu navegador, el registro también se borra; usa «Descargar respaldo» para conservarlo.</p>
   </div>
 {:else}
   <p class="privacy-note privacy-compact" class:on-dark={tone === 'onDark'}>
-    <Icon name="lock" size={14} /><span><strong>Privado:</strong> se guarda solo en tu dispositivo. No se envía ni se comparte.</span>
+    <Icon name="lock" size={14} /><span><strong>Privado:</strong> se guarda solo en tu dispositivo. No se envía ni se comparte. Su único fin es apoyar tu evaluación médica: tú decides si se lo muestras a tu médico.</span>
   </p>
 {/if}
 

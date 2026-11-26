@@ -119,8 +119,8 @@ export const questions = {
 
   q16: ['multi', '¿Qué tipo de especialista has consultado?', 'Marca todos los que apliquen.', [
     ['general', 'Médico general', ''],
-    ['dermatologo', 'Dermatólogo/a', ''],
-    ['alergologo', 'Alergólogo/a', '']
+    ['especialista', 'Médico especialista', ''],
+    ['otro', 'Otro', '']
   ]],
 
   q17: ['single', '¿Has tomado o aplicado algún tratamiento para estos síntomas?', 'Cualquier tratamiento indicado por un médico o que hayas usado por tu cuenta.', [

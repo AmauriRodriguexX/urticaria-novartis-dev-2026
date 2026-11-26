@@ -99,7 +99,7 @@
 
         {#if section.paragraphs}
           <div class="content-prose">
-            {#each section.paragraphs as paragraph}<p>{paragraph.text ?? paragraph}{#if paragraph.refs}<Cita refs={paragraph.refs} prefix="ref" />{/if}</p>{/each}
+            {#each section.paragraphs as paragraph}<p>{#if paragraph.before}{paragraph.before}{/if}{#if paragraph.strong}<strong class="prose-strong">{paragraph.strong}</strong>{/if}{paragraph.text ?? paragraph}{#if paragraph.refs}<Cita refs={paragraph.refs} prefix="ref" />{/if}</p>{/each}
           </div>
         {/if}
 
@@ -133,7 +133,7 @@
                 </a>
               {:else}
                 <article class="content-card" class:testimonial-sample-card={card.sampleQuote}>
-                  {#if card.sampleQuote}<span class="content-quote-mark" aria-hidden="true">“</span><h3>{card.title}</h3><span class="content-card-label">Relato de muestra · sin autor real</span><blockquote>{card.sampleQuote}</blockquote>{:else}
+                  {#if card.sampleQuote}<span class="content-quote-mark" aria-hidden="true">“</span><h3>{card.title}</h3><span class="content-card-label">Relato anónimo</span><blockquote>{card.sampleQuote}</blockquote>{:else}
                   {#if card.icon}<span class="content-card-icon" aria-hidden="true"><Icon name={card.icon} size={26} /></span>{/if}
                   <!-- Las tarjetas con nombre de archivo muestran una foto Creative Commons de referencia hasta confirmar si Novartis tiene imágenes autorizadas -->
                   {#if typeof card.image === 'string'}<figure class="content-card-media content-card-photo"><img src={`${import.meta.env.BASE_URL}assets/img/sintomas/${card.image}`} alt={card.imageAlt} loading="lazy" />{#if card.imageCredit}<figcaption>{card.imageCredit}</figcaption>{/if}</figure>
@@ -200,7 +200,13 @@
         {#if page.closing.cta.action}
           <button class="button" type="button" on:click={(event) => runAction(event, page.closing.cta.action)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></button>
         {:else}
-          <div class="closing-cta"><a class="button" href={routeHref(page.closing.cta.route)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></a>{#if page.closing.cta.route === 'diario'}<PrivacyNote tone="onDark" />{/if}</div>
+          <div class="closing-cta">
+            <div class="closing-buttons">
+              <a class="button" href={routeHref(page.closing.cta.route)}>{page.closing.cta.label} <Icon name="arrow_forward" size={18} /></a>
+              {#if page.closing.secondary}<a class="button closing-secondary" href={`${routeHref(page.closing.secondary.route)}${page.closing.secondary.hash ? `#${page.closing.secondary.hash}` : ''}`}><Icon name="calendar_month" size={18} /> {page.closing.secondary.label}</a>{/if}
+            </div>
+            {#if page.closing.cta.route === 'diario' || page.closing.secondary?.route === 'diario'}<PrivacyNote tone="onDark" />{/if}
+          </div>
         {/if}
       </section>
     {/if}

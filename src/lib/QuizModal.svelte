@@ -5,7 +5,6 @@
   import { DARK } from './context.js'
   import Icon from './Icon.svelte'
   import Directorio from './Directorio.svelte'
-  import UasGauge from './UasGauge.svelte'
   import ScaleSelect from './ScaleSelect.svelte'
   import { routeHref } from './siteContent.js'
   import PrivacyNote from './PrivacyNote.svelte'
@@ -153,7 +152,7 @@
 
   // ---------- resultado ----------
   function summary() {
-    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\nActividad semanal estimada (UAS7): ${((parseInt(answers.q3, 10) || 0) + (parseInt(answers.q4, 10) || 0)) * 7} de 42 (estimación; se confirma con 7 días en el diario)\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}${preguntaClave ? `\n\nMi pregunta clave: ${preguntaClave}` : ''}`
+    return `RESUMEN PARA MI MÉDICO — Autochequeo de urticaria\n(Orientativo. Mi médico confirma.)\n\n${lectura.titulo}\n\n${lectura.detalle}\n\n${rows.map(r => `• ${r.etiqueta}: ${r.valor}`).join('\n')}${preguntaClave ? `\n\nMi pregunta clave: ${preguntaClave}` : ''}`
   }
   let downloading = false
   async function download() {
@@ -165,8 +164,7 @@
         lectura,
         rows,
         pregunta: preguntaClave,
-        escalacion: escalacion ? ESCALACION.enPdf : null,
-        uas7: { habones: parseInt(answers.q3, 10) || 0, comezon: parseInt(answers.q4, 10) || 0 }
+        escalacion: escalacion ? ESCALACION.enPdf : null
       })
       downloaded = true
       setTimeout(() => { downloaded = false }, 2500)
@@ -319,12 +317,23 @@
         <p class="sub">{lectura.detalle}</p>
         <p class="sub quiz-legal-note"><small>Este resultado es solo orientativo y no es un diagnóstico. Recuerda: únicamente un profesional de la salud puede hacer un diagnóstico de esta enfermedad y sugerir un tratamiento específico.</small></p>
 
-        {#if answers.q3 != null || answers.q4 != null}
-          <UasGauge total={((parseInt(answers.q3, 10) || 0) + (parseInt(answers.q4, 10) || 0)) * 7} titulo="Estimación de tu actividad semanal (UAS7)" aviso="Calculada con tus respuestas sobre habones (ronchas) y comezón en la última semana. Es una estimación orientativa, no un puntaje clínico ni un diagnóstico: solo un especialista puede evaluarte. En el Diario de Síntomas puedes llevar el cálculo de los 7 días." fuenteUrl="https://pmc.ncbi.nlm.nih.gov/articles/PMC10219198/" />
+        <!-- Lo más importante primero: el directorio y luego el diario (el UAS7 se calcula solo en el diario, con 7 días) -->
+        {#if answers.q19 !== '3'}
+          <div class="result-banner-cta is-top">
+            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Especialistas cerca de ti</span>
+            <div class="banner-body">
+              <h3>¿Buscas un especialista que valore tus síntomas?</h3>
+              <p>Encuentra especialistas certificados cerca de ti para dar el siguiente paso.</p>
+            </div>
+            <button class="button banner-action" on:click={() => go('map', step)}>
+              <span>Mira nuestro directorio médico</span>
+              <Icon name="arrow_forward" size={18} />
+            </button>
+          </div>
         {/if}
         <a class="result-diary-card" href={`${routeHref('diario')}#registro`}>
           <span class="result-diary-icon" aria-hidden="true"><Icon name="calendar_month" size={22} /></span>
-          <span class="result-diary-text"><strong>Registra tus síntomas 7 días</strong><small>Usa el diario y activa un recordatorio diario.</small><PrivacyNote /></span>
+          <span class="result-diary-text"><strong>Registra tus síntomas 7 días</strong><small>Usa el diario, basado en la escala UAS7, y activa un recordatorio diario.</small><PrivacyNote /></span>
           <Icon name="arrow_forward" size={18} />
         </a>
 
@@ -356,20 +365,6 @@
             <button class="ghost" on:click={copy}><Icon name={copied ? 'check' : 'content_copy'} size={18} /><span>{copied ? 'Copiado' : 'Copiar'}</span></button>
           </div>
         </div>
-
-        {#if answers.q19 !== '3'}
-          <div class="result-banner-cta">
-            <span class="banner-badge"><Icon name="stethoscope" size={15} /> Especialistas cerca de ti</span>
-            <div class="banner-body">
-              <h3>¿Buscas un especialista que valore tus síntomas?</h3>
-              <p>Encuentra especialistas certificados cerca de ti para dar el siguiente paso.</p>
-            </div>
-            <button class="button banner-action" on:click={() => go('map', step)}>
-              <span>Mira nuestro directorio médico</span>
-              <Icon name="arrow_forward" size={18} />
-            </button>
-          </div>
-        {/if}
 
         <div class="result-next" class:has-banner={answers.q19 !== '3'}>
           {#if answers.q19 === '3'}

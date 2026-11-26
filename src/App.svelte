@@ -18,6 +18,7 @@
   import pageMetadata from './lib/pageMetadata.json'
   import { SITE_DOMAIN, SITE_NAME, SITE_URL, CONTENT_ID, VIGENCIA, LEGAL_LINKS } from './lib/site.js'
   import LogoNovartis from './lib/LogoNovartis.svelte'
+  import { initGlossary } from './lib/glossary.js'
 
   let route = routeFromPath()
   // Todo es automático (hora, clima y ciudad). ?vista= solo fuerza un escenario en las ligas de prueba.
@@ -94,6 +95,8 @@
     } catch { diaryDays = 0 }
   }
   onMount(readDiary)
+  // Ayuda emergente automática para términos como UAS7 en todo el sitio
+  onMount(() => initGlossary(document.body))
   $: diaryHref = `${routeHref('diario')}#registro`
   $: showDiaryFab = route !== 'diario' && !quizOpen && !menuOpen
   async function openMenu() {

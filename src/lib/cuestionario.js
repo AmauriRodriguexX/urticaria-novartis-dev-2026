@@ -112,7 +112,7 @@ export const PREGUNTAS = [
     id: 'q16',
     contextos: 'todos',
     si: (r) => r.q14 === '1',
-    resumen: 'Especialista consultado'
+    resumen: 'Médico consultado'
   },
   {
     id: 'q17',
@@ -199,7 +199,13 @@ export function generarReporteBen(r) {
   else if (total <= 24) probDesc = 'Es probable que sufras urticaria crónica espontánea.'
   else probDesc = 'Es altamente probable que sufras urticaria crónica espontánea.'
 
-  const seccion1 = `Según tus respuestas, ${sDesc}${cvDesc}. ${probDesc}`
+  // Si en la última semana respondió «Ninguna» en todo lo que se le preguntó (ronchas, comezón, hinchazón),
+  // no se habla de intensidad ni de probabilidad: sus respuestas no se relacionan con síntomas activos.
+  const intensidades = [r.q3, r.q4, r.q5].filter((v) => v != null)
+  const sinSintomasActivos = intensidades.length > 0 && intensidades.every((v) => v === '0')
+  const seccion1 = sinSintomasActivos
+    ? 'No presentas síntomas de urticaria, como ronchas, comezón o hinchazón. Es poco probable que sufras urticaria crónica espontánea. Aun así, es recomendable que consultes a tu médico para obtener un diagnóstico para tus síntomas.'
+    : `Según tus respuestas, ${sDesc}${cvDesc}. ${probDesc}`
 
   // SECCIÓN 2: Síntomas
   const sList = []
@@ -276,8 +282,8 @@ export function generarReporteBen(r) {
   } else if (consulto) {
     const medList = []
     if (r.q16 && r.q16.includes('general')) medList.push('médicos generales')
-    if (r.q16 && r.q16.includes('dermatologo')) medList.push('dermatólogos')
-    if (r.q16 && r.q16.includes('alergologo')) medList.push('alergólogos')
+    if (r.q16 && r.q16.includes('especialista')) medList.push('médicos especialistas')
+    if (r.q16 && r.q16.includes('otro')) medList.push('otros profesionales de la salud')
     const medStr = medList.length > 0 ? formatListES(medList, 'y') : 'médicos'
 
     const freqStr = r.q15 === '3' ? 'de manera constante' : (r.q15 === '2' ? 'al menos una vez al mes' : 'pocas veces')
