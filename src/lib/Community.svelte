@@ -14,7 +14,7 @@
   ]
   // Los 3 testimonios anónimos del sitio, cada uno en su filtro (antes eran relatos cortos de ejemplo).
   const TEMA = { 'caso-1': ['historias', 'Historias'], 'caso-2': ['consulta', 'Preparar mi consulta'], 'caso-3': ['dia-a-dia', 'Día a día'] }
-  const posts = casos.map((caso, i) => ({ id: i + 1, topic: TEMA[caso.id][0], tag: TEMA[caso.id][1], title: caso.title, body: `“${caso.story}”` }))
+  const posts = casos.map((caso, i) => ({ id: i + 1, topic: TEMA[caso.id][0], tag: TEMA[caso.id][1], title: caso.title, body: `“${caso.story.replace(/\.$/, '')}”.` }))
 
   let activeTopic = 'todos'
   let search = ''
@@ -75,7 +75,7 @@
       <p class="eyebrow">Testimonios</p>
       <h1 id="community-title">No eres el único: historias sobre urticaria crónica espontánea</h1>
       <p>Detrás de cada brote hay una historia de resiliencia. Conoce los testimonios de personas que, al igual que tú, enfrentaron la incertidumbre, encontraron el tratamiento adecuado y volvieron a tomar el control de su vida.</p>
-      <button class="button community-cta" type="button" aria-expanded={shareInfoOpen} aria-controls="compartir" on:click={() => shareInfoOpen ? (shareInfoOpen = false) : openShare()}><Icon name="groups" size={20} /><span>{shareInfoOpen ? 'Cerrar formulario' : 'Compartir mi Historia'}</span></button>
+      <button class="button community-cta" type="button" aria-expanded={shareInfoOpen} aria-controls="compartir" on:click={() => shareInfoOpen ? (shareInfoOpen = false) : openShare()}><Icon name="groups" size={20} /><span>{shareInfoOpen ? 'Cerrar formulario' : 'Compartir mi historia'}</span></button>
     </div>
     <div class="community-stat"><span>Todas las historias son 100 % anónimas y se revisan antes de publicarse.</span></div>
   </div>
@@ -143,7 +143,7 @@
       {/each}
     </div>
     <aside class="community-aside">
-      <div class="community-card"><Icon name="groups" size={22} /><h3>Historias reales: El camino desde el aislamiento hasta el diagnóstico</h3><p>La mayoría de las personas con urticaria crónica atraviesan por etapas de frustración, aislamiento y agotamiento físico. Leer o escuchar testimonios de urticaria ayuda a entender que tus síntomas son reales, que no estás exagerando y que existe una comunidad que comprende por lo que estás pasando.</p></div>
+      <div class="community-card"><Icon name="groups" size={22} /><h3>Historias reales: el camino desde el aislamiento hasta el diagnóstico</h3><p>La mayoría de las personas con urticaria crónica atraviesan por etapas de frustración, aislamiento y agotamiento físico. Leer o escuchar testimonios de urticaria ayuda a entender que tus síntomas son reales, que no estás exagerando y que existe una comunidad que comprende por lo que estás pasando.</p></div>
       <div class="community-card community-guidelines"><p>El punto de inflexión en todos los casos exitosos siempre ha sido el mismo: acudir con un especialista capacitado y comprometerse con el plan de tratamiento prescrito.</p><a class="text" href={routeHref('directorio-medico')}>Buscar especialista <Icon name="arrow_forward" size={17} /></a></div>
     </aside>
   </div>
@@ -154,9 +154,9 @@
     <h2 id="community-faq-title">Preguntas frecuentes sobre las historias de pacientes</h2>
     <div class="content-faqs">
       <details open><summary><span>¿Puedo compartir mi testimonio de forma anónima?</span><i aria-hidden="true"></i></summary><p>Sí. Todas las historias se publican de forma anónima, sin nombre, edad ni ciudad.</p></details>
-      <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>Directorio Médico</a> para ubicar especialistas certificados cerca de tu localidad.</p><a class="faq-cta" href={routeHref('directorio-medico')}>Ir al directorio médico <Icon name="arrow_forward" size={16} /></a></details>
+      <details><summary><span>¿Cómo puedo ponerme en contacto con un especialista?</span><i aria-hidden="true"></i></summary><p>Puedes acceder directamente a nuestro <a href={routeHref('directorio-medico')}>directorio médico</a> para ubicar especialistas certificados cerca de tu localidad.</p><a class="faq-cta" href={routeHref('directorio-medico')}>Ir al directorio médico <Icon name="arrow_forward" size={16} /></a></details>
     </div>
   </section>
   <LeyendaProfesional />
-  <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir con un especialista y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi Testimonio <Icon name="arrow_forward" size={18} /></button></section>
+  <section class="content-closing" data-reveal><div><p class="eyebrow">Más que Urticaria</p><h2>¿Quieres compartir cómo hiciste a la urticaria más pequeña en tu vida?</h2><p>Tu historia puede ser el impulso que alguien necesita para acudir con un especialista y transformar su calidad de vida.</p></div><button class="button" type="button" on:click={openShare}>Enviar mi testimonio <Icon name="arrow_forward" size={18} /></button></section>
 </div>

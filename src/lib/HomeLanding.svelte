@@ -88,7 +88,7 @@
   <section class="home-stories" aria-labelledby="home-stories-title" data-reveal>
     <div class="home-stories-intro">
       <p class="eyebrow accent">Testimonios</p>
-      <h2 id="home-stories-title">Historias reales: No estás solo en este camino</h2>
+      <h2 id="home-stories-title">Historias reales: no estás solo en este camino</h2>
       <p>Miles de mexicanos viven con urticaria crónica. Escuchar y leer cómo otros han vuelto a vivir sin limitaciones es el primer paso para no perder la esperanza.</p>
       <a class="button secondary" href={routeHref('testimonios')}>Ver todos los testimonios <Icon name="arrow_forward" size={18} /></a>
     </div>
@@ -146,12 +146,12 @@
   <section class="home-final" aria-labelledby="home-final-title" data-reveal>
     <div class="home-final-copy">
       <p class="eyebrow">Más que Urticaria</p>
-      <h2 id="home-final-title">Da hoy el primer paso: <em>Tu vida es más grande que las ronchas</em></h2>
+      <h2 id="home-final-title">Da hoy el primer paso: <em>tu vida es más grande que las ronchas</em></h2>
       <p>No te acostumbres a la comezón ni a la incertidumbre. Explora nuestras herramientas o encuentra a un especialista médico hoy mismo.</p>
     </div>
     <div class="home-final-actions">
       <a class="button" href={routeHref('test')}>Ir al test informativo <Icon name="arrow_forward" size={18} /></a>
-      <a class="button home-final-secondary" href={routeHref('directorio-medico')}>Buscar Especialista <Icon name="arrow_forward" size={18} /></a>
+      <a class="button home-final-secondary" href={routeHref('directorio-medico')}>Buscar especialista <Icon name="arrow_forward" size={18} /></a>
     </div>
   </section>
 </div>

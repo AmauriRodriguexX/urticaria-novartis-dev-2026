@@ -28,7 +28,7 @@ export const PREGUNTAS = [
     id: 'q3',
     contextos: 'todos',
     si: (r) => Array.isArray(r.q1) && r.q1.includes('ronchas'),
-    resumen: 'Cantidad de ronchas (24h)'
+    resumen: 'Cantidad de ronchas (24 h)'
   },
   {
     id: 'q4',
@@ -211,7 +211,7 @@ export function generarReporteBen(r) {
   const sList = []
   if (r.q3 === '1') sList.push('menos de 20 ronchas al día')
   else if (r.q3 === '2') sList.push('entre 20 y 50 ronchas al día')
-  else if (r.q3 === '3') sList.push('más de 50 ronchas o largas áreas de enrojecimiento')
+  else if (r.q3 === '3') sList.push('más de 50 ronchas o grandes áreas de enrojecimiento')
 
   if (r.q4 === '1') sList.push('comezón leve')
   else if (r.q4 === '2') sList.push('comezón moderada que es algo molesta')
@@ -237,7 +237,7 @@ export function generarReporteBen(r) {
     .filter(([area, q]) => r.q6?.includes(area) && (parseInt(r[q], 10) || 0) > 0)
     .map(([, , texto]) => texto)
 
-  const seccion3 = aList.length > 0 ? `Estos síntomas han afectado negativamente áreas de tu vida como: ${formatListES(aList, 'y')}.` : ''
+  const seccion3 = aList.length > 0 ? `Estos síntomas han afectado negativamente áreas de tu vida como ${formatListES(aList, 'y')}.` : ''
 
   // SECCIÓN 4: Detonantes
   // Q12 son mitos que escuchan los pacientes: en la urticaria crónica espontánea no suele
@@ -317,7 +317,7 @@ export function generarReporteBen(r) {
 // ---------------------------------------------------------------------------
 export const ESCALACION = {
   cuando: (r) => r.q17 === '1' && (r.q19 === '0' || r.q19 === '1'),
-  enPantalla: 'Has llevado tratamiento y sigues con síntomas persistentes. En tu próxima consulta, pregunta: «¿hay algo más que podamos intentar?».',
+  enPantalla: 'Has llevado tratamiento y sigues con síntomas persistentes. En tu próxima consulta, pregunta: «¿Hay algo más que podamos intentar?».',
   enPdf: 'He llevado tratamiento previo sin control adecuado de mis síntomas. Quisiera valorar opciones avanzadas o tratamientos dirigidos.'
 }
 

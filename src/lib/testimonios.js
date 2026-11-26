@@ -16,6 +16,6 @@ export const casos = [
   {
     id: 'caso-3',
     title: 'La tranquilidad que necesitábamos como familia',
-    story: 'Ver a mi hijo despertar en las madrugadas por la comezón era angustiante. Acudimos con un especialista que nos guió con mucha paciencia. Hoy mi hijo juega fútbol sin molestia alguna y yo volví a dormir tranquila.'
+    story: 'Ver a mi hijo despertar en las madrugadas por la comezón era angustiante. Acudimos con un especialista que nos guio con mucha paciencia. Hoy mi hijo juega fútbol sin molestia alguna y yo volví a dormir tranquila.'
   }
 ]

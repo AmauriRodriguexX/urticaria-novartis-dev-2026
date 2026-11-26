@@ -10,8 +10,8 @@ export const copies = {
   dia: ['Buenos días','Tu vida es más grande que ','los brotes',' de urticaria crónica espontánea.','Entender qué te pasa es el primer paso para retomar el control. Te acompañamos a preparar tu próxima consulta médica.','Descúbrelo en 1 minuto','Un quiz que te orienta. No reemplaza a tu médico.'],
   calor: ['En Mérida, ahora mismo','En Mérida el calor está fuerte. Y el calor puede subir ','los brotes','.','No es tu imaginación: el calor y la humedad despiertan la piel. Esto puede ayudarte hoy a entender qué te pasa.','Esto puede ayudarte hoy','Un quiz que te orienta. No reemplaza a tu médico.'],
   frio: ['Con el frío de esta temporada','Con el frío, a algunas personas la piel se les ','brota','.','Sí, existe la urticaria por frío, y el aire seco del invierno irrita la piel. Esto ayuda a entender qué te pasa.','Entiende qué te pasa','Un quiz que te orienta. No reemplaza a tu médico.'],
-  madrugada: ['Son las 3:15 a.m.','¿No puedes ','dormir','?','La comezón aparece justo cuando todo se queda en silencio. Respira: no estás solo/a, y esto pasa. Quédate, te acompañamos.','Quédate un momento','Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.'],
-  'noche-calor': ['Son las 9:00 p.m.','La noche está calurosa, y la comezón no te deja ','dormir','.','El calor de esta noche aviva la piel. Respira: no estás solo/a, y esto pasa. Quédate, te acompañamos.','Quédate un momento','Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.']
+  madrugada: ['Son las 3:15 a. m.','¿No puedes ','dormir','?','La comezón aparece justo cuando todo se queda en silencio. Respira: no estás solo/a, y esto pasa. Quédate, te acompañamos.','Quédate un momento','Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.'],
+  'noche-calor': ['Son las 9:00 p. m.','La noche está calurosa, y la comezón no te deja ','dormir','.','El calor de esta noche aviva la piel. Respira: no estás solo/a, y esto pasa. Quédate, te acompañamos.','Quédate un momento','Sin prisa. Cuando amanezca, esto puede ayudarte a entender qué pasa.']
 }
 
 export const questions = {
@@ -40,14 +40,14 @@ export const questions = {
     ['0', 'Ninguna', 'No he tenido ronchas visibles'],
     ['1', 'Leve (Menos de 20 ronchas)', 'Aparecen pocas y aisladas'],
     ['2', 'Moderada (De 20 a 50 ronchas)', 'Brote notorio en varias partes'],
-    ['3', 'Alta (+ de 50 ronchas)', 'Grandes áreas de ronchas que se unen']
+    ['3', 'Alta (más de 50 ronchas)', 'Grandes áreas de ronchas que se unen']
   ]],
 
   q4: ['single', 'En la última semana, ¿qué tan intensa ha sido la comezón?', '¿Qué tanto te ha molestado en tu día a día?', [
     ['0', 'Ninguna', 'Sin comezón'],
-    ['1', 'Leve', 'Presente pero no molesta'],
-    ['2', 'Moderada', 'Molesta pero no interfiere con tus actividades o sueño'],
-    ['3', 'Alta / Severa', 'Comezón intensa que interfiere con tu día o el sueño']
+    ['1', 'Leve', 'Presente, pero no molesta'],
+    ['2', 'Moderada', 'Molesta, pero no interfiere con tus actividades o sueño'],
+    ['3', 'Alta/severa', 'Comezón intensa que interfiere con tu día o el sueño']
   ]],
 
   q5: ['single', 'En la última semana, ¿cómo ha sido la hinchazón (angioedema) en tu cuerpo?', 'Hinchazón debajo de la piel en labios, párpados, manos o pies.', [
@@ -138,7 +138,7 @@ export const questions = {
   q19: ['single', '¿Qué tan efectivo ha sido tu tratamiento para controlar tus síntomas?', '', [
     ['0', 'Nada efectivo', 'Sigo con los mismos síntomas'],
     ['1', 'Poco efectivo', 'Apenas he notado alivio'],
-    ['2', 'Medianamente efectivo', 'Me ayuda pero las ronchas regresan'],
+    ['2', 'Medianamente efectivo', 'Me ayuda, pero las ronchas regresan'],
     ['3', 'Muy efectivo', 'Controla favorablemente mis síntomas']
   ]]
 }

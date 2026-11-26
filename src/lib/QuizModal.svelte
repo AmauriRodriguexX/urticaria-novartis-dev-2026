@@ -241,7 +241,7 @@
   <div class="modal-inner" class:is-wide={phase === 'map'}>
     <header class="modal-head">
       <span class="mini-glass" aria-hidden="true"></span>
-      <b>{phase === 'map' ? 'Especialistas y Consulta' : 'Tu vida es más grande · 5 min'}</b>
+      <b>{phase === 'map' ? 'Especialistas y consulta' : 'Tu vida es más grande · 5 min'}</b>
       <button class="close" aria-label="Cerrar" on:click={close}><Icon name="close" size={22} /></button>
     </header>
 
@@ -303,7 +303,7 @@
     {:else if phase === 'urgent'}
       <div class="urgent">
         <div class="warning" aria-hidden="true"><Icon name="emergency" size={34} /></div>
-        <h2 tabindex="-1" bind:this={heading}>Esto puede ser una urgencia.</h2>
+        <h2 tabindex="-1" bind:this={heading}>Esto puede ser una urgencia</h2>
         <p>La hinchazón de lengua o garganta, o la dificultad para respirar, necesita atención médica ahora. No esperes: busca ayuda o llama a emergencias de inmediato.</p>
         <a class="button" href="tel:911"><Icon name="call" size={20} /><span>Llamar a emergencias (911)</span></a>
         <button class="text" on:click={() => go('map', step)}><Icon name="location_on" size={18} /> Ver especialistas</button>

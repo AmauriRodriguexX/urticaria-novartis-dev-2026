@@ -55,7 +55,7 @@ export function homeCopyFor(ctx, now, city, temp) {
     title: variation?.title || HOME_DEFAULT_TITLE,
     intro: variation?.intro || "Vivir con comezón constante, habones (ronchas) y/o hinchazón (angioedema) inesperada puede sentirse abrumador. En 'Más que Urticaria' te acompañamos para que entiendas tu diagnóstico, encuentres la atención médica adecuada y recuerdes que tu vida es mucho más grande que tus síntomas.",
     primaryCta: 'Hacer el test informativo',
-    secondaryCta: 'Buscar Especialista',
+    secondaryCta: 'Buscar especialista',
     note: NOTA_TEST
   }
 }
@@ -64,7 +64,7 @@ export const landingPages = {
   'sobre-nosotros': {
     ...pageMetadata['sobre-nosotros'],
     eyebrow: 'Más que Urticaria',
-    title: 'Sobre Nosotros: Más que Urticaria',
+    title: 'Sobre nosotros: Más que Urticaria',
     intro: 'Más que Urticaria reúne información y herramientas para ayudar a las personas a entender la urticaria crónica y preparar una conversación con un profesional de la salud.',
     ctas: [{ label: 'Conoce el sitio', href: '#causa' }],
     sections: [
@@ -89,11 +89,11 @@ export const landingPages = {
         title: 'Preguntas frecuentes sobre el sitio',
         faqs: [
           { question: '¿Más que Urticaria ofrece consultas médicas directas?', answer: 'No. Este es un sitio informativo; no ofrece consultas médicas ni reemplaza la valoración de un profesional de la salud.', cta: { label: 'Encuentra a un especialista cerca de ti', route: 'directorio-medico' } },
-          { question: '¿Tiene algún costo acceder a los recursos de la web?', answer: 'No. Todos los recursos de la web son completamente gratuitos, con fines informativos.', cta: { label: 'Ir a Recursos', route: 'recursos-herramientas' } }
+          { question: '¿Tiene algún costo acceder a los recursos de la web?', answer: 'No. Todos los recursos de la web son completamente gratuitos, con fines informativos.', cta: { label: 'Ir a recursos', route: 'recursos-herramientas' } }
         ]
       }
     ],
-    closing: { title: 'Recuerda: tu vida es más que urticaria.', text: 'Explora los recursos disponibles o prepara una conversación con un profesional de la salud.', cta: { label: 'Ir a Recursos', route: 'recursos-herramientas' }, secondary: { label: 'Mi diario', route: 'diario', hash: 'registro' } }
+    closing: { title: 'Recuerda: tu vida es más que urticaria', text: 'Explora los recursos disponibles o prepara una conversación con un profesional de la salud.', cta: { label: 'Ir a recursos', route: 'recursos-herramientas' }, secondary: { label: 'Mi diario', route: 'diario', hash: 'registro' } }
   },
   sintomas: {
     ...pageMetadata.sintomas,
@@ -253,11 +253,11 @@ export const landingPages = {
         title: 'Preguntas frecuentes sobre las historias',
         faqs: [
           { question: '¿Puedo compartir mi testimonio de forma anónima?', answer: 'Sí. Todas las historias se publican de forma anónima, sin nombre, edad ni ciudad.' },
-          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro Directorio Médico para ubicar especialistas certificados cerca de tu localidad.', cta: { label: 'Ir al directorio médico', route: 'directorio-medico' } }
+          { question: '¿Cómo puedo ponerme en contacto con un especialista?', answer: 'Puedes acceder directamente a nuestro directorio médico para ubicar especialistas certificados cerca de tu localidad.', cta: { label: 'Ir al directorio médico', route: 'directorio-medico' } }
         ]
       }
     ],
-    closing: { title: 'Mientras tanto, consulta los recursos disponibles', text: 'Explora herramientas para reconocer y registrar tus síntomas.', cta: { label: 'Ir a Recursos', route: 'recursos-herramientas' } }
+    closing: { title: 'Mientras tanto, consulta los recursos disponibles', text: 'Explora herramientas para reconocer y registrar tus síntomas.', cta: { label: 'Ir a recursos', route: 'recursos-herramientas' } }
   },
   diario: {
     ...pageMetadata.diario,
@@ -284,7 +284,7 @@ export const landingPages = {
         ]
       },
       {
-        title: 'Preguntas frecuentes sobre el Diario',
+        title: 'Preguntas frecuentes sobre el diario',
         faqs: [
           { question: '¿El diario es el UAS7?', answer: 'Sí. El diario sigue la escala UAS7: cada día calificas las ronchas de 0 a 3 y la comezón de 0 a 3. Al sumar 7 días consecutivos obtienes un puntaje de 0 a 42 que muestra la actividad de tu urticaria. Llévalo a tu consulta: solo un especialista puede interpretarlo.' },
           { question: '¿El diario guarda mis datos?', answer: 'Tus registros son anónimos y se guardan únicamente en el almacenamiento local de tu navegador. No se envían a ningún servidor ni se crea una cuenta. Puedes borrarlos cuando quieras con el botón “Borrar este registro”.' },
@@ -299,7 +299,7 @@ export const landingPages = {
     sources: [
       { n: 1, short: 'Bernstein et al. (2023)', text: 'J. A. Bernstein, A. Gim&eacute;nez-Arnau, M. Maurer, <em>et al.</em>, &ldquo;Why a complete response is the treatment aim in chronic spontaneous urticaria,&rdquo; <em>J. Clin. Med.</em>, vol. 12, no. 10, Art. no. 3561, 2023, doi: 10.3390/jcm12103561.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10219198/' }
     ],
-    closing: { title: '¿Listo para tu próxima consulta?', text: 'Lleva tus observaciones y preguntas para conversar con un profesional de la salud.', cta: { label: 'Buscar Especialista', route: 'directorio-medico' } }
+    closing: { title: '¿Listo para tu próxima consulta?', text: 'Lleva tus observaciones y preguntas para conversar con un profesional de la salud.', cta: { label: 'Buscar especialista', route: 'directorio-medico' } }
   },
   test: {
     ...pageMetadata.test,

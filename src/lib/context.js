@@ -88,7 +88,7 @@ export function formatTimeGreeting(ctx, city = null, now = new Date()) {
   const d = getSimulatedDate(now)
   let h = d.getHours()
   const m = d.getMinutes().toString().padStart(2, '0')
-  const ampm = h >= 12 ? 'p.m.' : 'a.m.'
+  const ampm = h >= 12 ? 'p. m.' : 'a. m.'
   let h12 = h % 12
   if (h12 === 0) h12 = 12
   const horaStr = `Son las ${h12}:${m} ${ampm}`
